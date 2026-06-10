@@ -111,9 +111,12 @@ $\square$
 
 From now on fix $M=2023$ and let $n_0,T$ be as in Lemma P. **This is the $n_0$ we use in the statement.** Since the product in (i)/(ii) starts exactly at $u_{n_0}$, *every* factor $u_{n_0+m}$ ($m\ge0$) lies in the periodic phase: by (7) its residue mod $2023$ equals that of the block term $u_{n_0+(m\bmod T)}$. There is no pre-period tail inside the product.
 
-By the Chinese Remainder Theorem (KB "Modular arithmetic, CRT"), for an integer $N$:
-$$7\mid N\iff N\equiv0\ \text{has the factor }7;\qquad 17\mid N;\qquad 2023\mid N\iff 7\mid N\text{ and }17^2\mid N.$$
-In particular, divisibility statements modulo $7$, $17$, $2023$ are all detected by residues mod $2023$.
+Since $2023=7\cdot 17^2$ with $7$ and $17^2$ coprime, the Chinese Remainder
+Theorem (KB "Modular arithmetic, CRT") gives, for an integer $N$,
+$$2023\mid N \iff \big(7\mid N \ \text{and}\ 17^2\mid N\big),$$
+and the residue $N\bmod 2023$ determines $N\bmod 7$, $N\bmod 17$, and
+$N\bmod 17^2$. In particular, divisibility statements modulo $7$, $17$, $17^2$,
+and $2023$ are all detected by residues mod $2023$.
 
 #### The dichotomy.
 Examine the periodic block $u_{n_0},u_{n_0+1},\dots,u_{n_0+T-1}$ modulo $7$ and modulo $17$:

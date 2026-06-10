@@ -38,7 +38,7 @@ $$0\le j\le m\le n-1.$$
 
 It remains to show $j\le m$, i.e. $e\le T_m+m=T_{m+1}$ (using $T_{m+1}=T_m+m$). Consider two cases.
 
-*Case A: $m<n-1$.* Then $m+1\in\{0,\dots,n-1\}$, but $m+1\notin S$ by maximality of $m$, so $T_{m+1}>e$. Hence $e\le T_{m+1}-1<T_{m+1}=T_m+m$, giving $j=e-T_m<m\le m$, so $j\le m$.
+*Case A: $m<n-1$.* Then $m+1\in\{0,\dots,n-1\}$, but $m+1\notin S$ by maximality of $m$, so $T_{m+1}>e$. Hence $e\le T_{m+1}-1<T_{m+1}=T_m+m$, giving $j=e-T_m<m$, so $j\le m$.
 
 *Case B: $m=n-1$.* Then $T_m=T_{n-1}\le e\le T_n=\frac{n(n-1)}{2}$ (the upper bound is the hypothesis on $e$). Since $T_n=T_{n-1}+(n-1)=T_m+m$, we get $e\le T_m+m$, i.e. $j=e-T_m\le m$.
 

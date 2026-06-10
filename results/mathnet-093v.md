@@ -117,8 +117,9 @@ to disprove `H` it suffices to exhibit a single collision pair `(k, j)` with
 Every integer `n ≥ 3` falls into exactly one of:
 
 - **Case A:** `n` is odd, `n ≥ 3`. Write `n = 2l+1` with `l ≥ 1`.
-- **Case B:** `n` is even but not a power of `2`. Write `n = 2^a · m` with
-  `a ≥ 1` and `m` odd, `m ≥ 3`.
+- **Case B:** `n` is even but not a power of `2`. Write `n = 2^a · q` with
+  `a ≥ 1` and `q` odd, `q ≥ 3`. (Here `q` is the odd part of `n`; it must not be
+  confused with `m = ⌈n/2⌉`.)
 - **Case C:** `n` is a power of `2`. Since `n ≥ 3`, write `n = 2^s` with `s ≥ 2`.
 
 These three are clearly pairwise disjoint (a number is odd or even, and an even
@@ -163,90 +164,91 @@ By the Collision Lemma, `2n | (j-k)(j+k+1)` (indeed they are equal), so
 
 ---
 
-### Case B — `n` even but not a power of `2`, `n = 2^a · m`, `a ≥ 1`, `m` odd `≥ 3`
+### Case B — `n` even but not a power of `2`, `n = 2^a · q`, `a ≥ 1`, `q` odd `≥ 3`
 
-Set `p := 2^{a+1}`, so `2n = 2^{a+1} · m = p · m`. Note `p` is even and `m` is
-odd, hence `p ≠ m`; so exactly one of the two strict inequalities `m < p` or
-`m > p` holds. We split accordingly and in each sub-case factor `2n = p·m` into
+(Recall `q` is the odd part of `n`, distinct from `m = ⌈n/2⌉ = n/2`.)
+
+Set `p := 2^{a+1}`, so `2n = 2^{a+1} · q = p · q`. Note `p` is even and `q` is
+odd, hence `p ≠ q`; so exactly one of the two strict inequalities `q < p` or
+`q > p` holds. We split accordingly and in each sub-case factor `2n = p·q` into
 the two quantities `j-k` and `j+k+1`, assigning the **even** quantity the value
-`p` and the **odd** quantity the value `m`.
+`p` and the **odd** quantity the value `q`.
 
-**Sub-case B1: `m < p`.** Put
+**Sub-case B1: `q < p`.** Put
 $$
-j = \frac{p - 1 + m}{2}, \qquad k = \frac{p - 1 - m}{2}.
+j = \frac{p - 1 + q}{2}, \qquad k = \frac{p - 1 - q}{2}.
 $$
 
-*Integrality.* `p = 2^{a+1}` is even, so `p - 1` is odd; `m` is odd. The sum and
-difference of two odd numbers are even, so both `p-1+m` and `p-1-m` are even,
+*Integrality.* `p = 2^{a+1}` is even, so `p - 1` is odd; `q` is odd. The sum and
+difference of two odd numbers are even, so both `p-1+q` and `p-1-q` are even,
 making `j` and `k` integers.
 
-*Range and order.* Since `m < p`, we have `p - 1 - m ≥ p - 1 - (p-1) = 0`
-(strict integers give `p-1-m ≥ 0`; more precisely `m ≤ p-1` because `m,p` are
-integers with `m<p`), so `k = (p-1-m)/2 ≥ 0`. Also `j - k = m ≥ 3 > 0`, so
-`j > k`.
+*Range and order.* Since `q < p`, we have `p - 1 - q ≥ p - 1 - (p-1) = 0`
+(more precisely `q ≤ p-1` because `q,p` are integers with `q<p`), so
+`k = (p-1-q)/2 ≥ 0`. Also `j - k = q ≥ 3 > 0`, so `j > k`.
 
 *Product and collision.*
 $$
-j - k = \frac{(p-1+m) - (p-1-m)}{2} = \frac{2m}{2} = m \quad(\text{odd}),
+j - k = \frac{(p-1+q) - (p-1-q)}{2} = \frac{2q}{2} = q \quad(\text{odd}),
 $$
 $$
-j + k + 1 = \frac{(p-1+m) + (p-1-m)}{2} + 1 = \frac{2(p-1)}{2} + 1 = (p-1)+1 = p
+j + k + 1 = \frac{(p-1+q) + (p-1-q)}{2} + 1 = \frac{2(p-1)}{2} + 1 = (p-1)+1 = p
 \quad(\text{even}),
 $$
-so `(j-k)(j+k+1) = m·p = 2n`. By the Collision Lemma, `T_j ≡ T_k (mod n)`.
+so `(j-k)(j+k+1) = q·p = 2n`. By the Collision Lemma, `T_j ≡ T_k (mod n)`.
 
-*Index bound `j ≤ m = ⌈n/2⌉ = n/2`.* We must check `j ≤ n/2`, i.e.
-`p - 1 + m ≤ n = 2^a · m`. Equivalently
+*Index bound `j ≤ ⌈n/2⌉ = n/2`.* We must check `j ≤ n/2`, i.e.
+`p - 1 + q ≤ n = 2^a · q`. Equivalently
 $$
-p - 1 \le (2^a - 1)\, m, \qquad\text{i.e.}\qquad 2^{a+1} - 1 \le (2^a - 1)\, m.
+p - 1 \le (2^a - 1)\, q, \qquad\text{i.e.}\qquad 2^{a+1} - 1 \le (2^a - 1)\, q.
 $$
-Since `m ≥ 3` and `a ≥ 1` (so `2^a - 1 ≥ 1 > 0`),
+Since `q ≥ 3` and `a ≥ 1` (so `2^a - 1 ≥ 1 > 0`),
 $$
-(2^a - 1)\, m \;\ge\; (2^a - 1)\cdot 3 \;=\; 3\cdot 2^a - 3.
+(2^a - 1)\, q \;\ge\; (2^a - 1)\cdot 3 \;=\; 3\cdot 2^a - 3.
 $$
 It therefore suffices to show `3·2^a - 3 ≥ 2^{a+1} - 1`, i.e.
 `3·2^a - 3 ≥ 2·2^a - 1`, i.e. `2^a ≥ 2`, which holds because `a ≥ 1`. Hence
-`j ≤ n/2 = m`, so both indices `k, j` lie in `{0, …, m}`.
+`j ≤ n/2 = ⌈n/2⌉`, so both indices `k, j` lie in `{0, …, ⌈n/2⌉}`.
 
-**Sub-case B2: `m > p`.** Put
+**Sub-case B2: `q > p`.** Put
 $$
-j = \frac{m - 1 + p}{2}, \qquad k = \frac{m - 1 - p}{2}.
+j = \frac{q - 1 + p}{2}, \qquad k = \frac{q - 1 - p}{2}.
 $$
 
-*Integrality.* `m` is odd, so `m - 1` is even; `p` is even. The sum and
-difference of two even numbers are even, so `m-1+p` and `m-1-p` are even, making
+*Integrality.* `q` is odd, so `q - 1` is even; `p` is even. The sum and
+difference of two even numbers are even, so `q-1+p` and `q-1-p` are even, making
 `j, k` integers.
 
-*Range and order.* Since `m > p`, `m - 1 - p ≥ 0` (as `m, p` integers with
-`m > p` give `m - 1 ≥ p`), so `k = (m-1-p)/2 ≥ 0`. Also `j - k = p = 2^{a+1} ≥ 4
+*Range and order.* Since `q > p`, `q - 1 - p ≥ 0` (as `q, p` integers with
+`q > p` give `q - 1 ≥ p`), so `k = (q-1-p)/2 ≥ 0`. Also `j - k = p = 2^{a+1} ≥ 4
 > 0`, so `j > k`.
 
 *Product and collision.*
 $$
-j - k = \frac{(m-1+p) - (m-1-p)}{2} = \frac{2p}{2} = p \quad(\text{even}),
+j - k = \frac{(q-1+p) - (q-1-p)}{2} = \frac{2p}{2} = p \quad(\text{even}),
 $$
 $$
-j + k + 1 = \frac{(m-1+p)+(m-1-p)}{2} + 1 = \frac{2(m-1)}{2} + 1 = (m-1)+1 = m
+j + k + 1 = \frac{(q-1+p)+(q-1-p)}{2} + 1 = \frac{2(q-1)}{2} + 1 = (q-1)+1 = q
 \quad(\text{odd}),
 $$
-so `(j-k)(j+k+1) = p·m = 2n`, and by the Collision Lemma `T_j ≡ T_k (mod n)`.
+so `(j-k)(j+k+1) = p·q = 2n`, and by the Collision Lemma `T_j ≡ T_k (mod n)`.
 
-*Index bound `j ≤ m = n/2`.* We need `j ≤ n/2`, i.e. `m - 1 + p ≤ n = 2^a · m`,
+*Index bound `j ≤ ⌈n/2⌉ = n/2`.* We need `j ≤ n/2`, i.e. `q - 1 + p ≤ n = 2^a · q`,
 equivalently
 $$
-p - 1 \le (2^a - 1)\, m.
+p - 1 \le (2^a - 1)\, q.
 $$
 This is the **same** inequality as in B1, and the identical computation
-(`m ≥ 3`, `a ≥ 1`, `2^a ≥ 2`) gives `2^{a+1} - 1 ≤ (2^a-1)m`. Hence `j ≤ n/2 = m`.
+(`q ≥ 3`, `a ≥ 1`, `2^a ≥ 2`) gives `2^{a+1} - 1 ≤ (2^a-1)q`. Hence `j ≤ n/2 = ⌈n/2⌉`.
 
 In both sub-cases we have produced a collision pair `(k, j)` with
-`0 ≤ k < j ≤ m`, so `H` is false.
+`0 ≤ k < j ≤ ⌈n/2⌉`, so `H` is false.
 
-(For example `n = 6 = 2·3`: `a = 1`, `m = 3`, `p = 4`, and `m < p`, so B1 gives
+(For example `n = 6 = 2·3`: `a = 1`, `q = 3`, `p = 4`, and `q < p`, so B1 gives
 `k = 0`, `j = 3 = ⌈6/2⌉`; indeed `T_0 = 0`, `T_3 = 6 ≡ 0 (mod 6)`. The index
-bound is tight here, `j = m`, which is permitted since the hypothesis range
-`{0, …, m}` is inclusive. As another example `n = 20 = 2^2·5`: `a=2`, `m=5`,
-`p=8`, `m<p`, B1 gives `k=1`, `j=6 ≤ 10`; `T_6 = 21 ≡ 1`, `T_1 = 1`.) ∎(Case B)
+bound is tight here, `j = ⌈n/2⌉`, which is permitted since the hypothesis range
+`{0, …, ⌈n/2⌉}` is inclusive. As another example `n = 20 = 2^2·5`: `a=2`, `q=5`,
+`p=8`, `q<p`, B1 gives `k=1`, `j=6 ≤ 10`; `T_6 = 21 ≡ 1`, `T_1 = 1`.) ∎(Case B)
 
 ---
 
