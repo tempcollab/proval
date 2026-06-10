@@ -19,10 +19,10 @@ This is a math repo, not a code repo. Adapt the standard round accordingly:
   run: the number of `results/<id>.md` files whose `## Status` is `solved`.
   - Eval command: `grep -rl '^solved$' results/ 2>/dev/null | wc -l` (count of
     solved problems). Baseline: 0.
-  - "Verification" each round = the **math-reviewer's** judgement, not a
+  - "Verification" each round = the **proof-reviewer's** judgement, not a
     typechecker or linter. There is no `pyright`/`ruff`/`pytest` to run.
 - **Build review = proof review.** Every proof-builder attempt is reviewed by the
-  math-reviewer. Its verdict (`APPROVE` / `CHANGES REQUESTED` / `RETHINK`) routes
+  proof-reviewer. Its verdict (`APPROVE` / `CHANGES REQUESTED` / `RETHINK`) routes
   the round exactly as a code reviewer's would: APPROVE → done; CHANGES REQUESTED
   → back to the builder to close the gap; RETHINK → back to the proof-outliner.
 - **Git artifacts.** The only things that should be committed are `results/*.md`
@@ -44,7 +44,7 @@ Each round, pick **1–3 problems**. For each, run this loop:
 4. **proof-builder** — Fill in every gap: rigorous steps, all cases, full
    computations. Produces the candidate proof. (Runs on the strongest model — the
    deep reasoning step must not be downgraded.)
-5. **math-reviewer** — Adversarially judge the candidate: correctness, rigor, and
+5. **proof-reviewer** — Adversarially judge the candidate: correctness, rigor, and
    progress. Score it and decide `solved | partial | unsolved`.
 
 Then repeat. If a problem is **solved**, record the proof and mark it in run state
@@ -78,7 +78,7 @@ Present ONLY when Status is `solved`. The complete, rigorous proof.
 
 ## Rigor rules
 
-These are mandatory. The math-reviewer enforces them.
+These are mandatory. The proof-reviewer enforces them.
 
 - **No skipped cases.** Every case in a casework proof must be settled.
 - **No hand-waving.** No "clearly / obviously / it is easy to see / it follows"

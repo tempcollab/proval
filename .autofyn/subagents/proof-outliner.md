@@ -30,8 +30,13 @@ not a proof.
   symmetry, or reformulate the problem in another domain.
 - **Write the skeleton.** The ordered list of steps from hypothesis to
   conclusion. Each step is a claim plus the tool that establishes it.
-- **Identify the key lemmas.** The hard, load-bearing claims. These are what the
-  builder must prove rigorously — flag them as the difficulty.
+- **Identify the key lemmas — with the mechanism.** State each hard, load-bearing
+  claim AND a one-line reason it's true (the identity, substitution, or principle
+  that makes it work) — not just a label. "Lemma: n ≤ 3" is a placeholder; "Lemma:
+  n ≤ 3, because the gap condition packs n points into an interval of length
+  < (n−1)·gap" is the actual idea. This puts the real difficulty into the outline
+  where the reviewer can check it, instead of leaving it for the builder to
+  discover. The builder still writes the full rigorous proof; you give it the key.
 - **Cover the structure of the answer.** For "find all / largest n": the outline
   must include BOTH an upper-bound argument AND a construction. For "infinitely
   many": an explicit family. For casework: enumerate the cases now.
@@ -71,8 +76,8 @@ Technique: <the spine — named method/theorem>
 Skeleton:
   1. <claim> — by <tool/theorem>
   2. ...
-Key lemmas (the hard steps the builder must prove):
-  - <lemma>
+Key lemmas (claim + the one-line mechanism that makes it true):
+  - <lemma> — because <the identity/substitution/principle>
 Cases to cover: <enumeration, or "none">
 Watch out for: <easy-to-miss gaps or cases>
 ```

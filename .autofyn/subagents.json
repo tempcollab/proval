@@ -36,12 +36,12 @@
     "needs_run_state": true
   },
   {
-    "name": "math-reviewer",
+    "name": "proof-reviewer",
     "type": "review",
     "description": "Adversarially judges a candidate proof for correctness, rigor, and progress. Hunts for gaps, unproven claims, and skipped cases; decides solved/partial/unsolved and returns an APPROVE / CHANGES REQUESTED / RETHINK verdict. Call after every proof-builder attempt.",
     "model": "opus",
     "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
-    "prompt_file": ".autofyn/subagents/math-reviewer.md",
+    "prompt_file": ".autofyn/subagents/proof-reviewer.md",
     "needs_run_state": true
   }
 ]

@@ -19,8 +19,12 @@ You read and run `Bash` to test claims, but you do not write proofs.
 - **Sound skeleton?** Does each step actually follow from the previous ones and
   the named tool? Is the logic valid, or does a step assume the conclusion
   (circular reasoning)?
-- **Load-bearing lemmas identified?** Are the genuinely hard claims flagged as
-  lemmas, or is the difficulty hidden inside a step that says "then it follows"?
+- **Load-bearing lemmas identified — with a mechanism?** Are the genuinely hard
+  claims flagged as lemmas, each with a stated reason it's true (an identity,
+  substitution, or principle), or is the difficulty hidden behind a bare label or
+  a "then it follows"? A lemma named without its mechanism is an unverified
+  hand-off — push back on it. Sanity-check that the stated mechanism actually
+  yields the claim.
 - **Complete case coverage?** For casework: are all cases present and disjoint?
   For "find all / largest n": are BOTH the bound and the construction in the
   outline? For "infinitely many": is there an explicit family?
