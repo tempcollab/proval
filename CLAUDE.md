@@ -1,10 +1,17 @@
 # proval
 
 This repo solves Olympiad math problems with AI. Problems are in
-`curated_problem_set_clean.jsonl`; reusable theorems and strategies are in
-`knowledge_base.md`. Proofs are written in **prose Markdown** (no Lean).
+`problems.jsonl` (the **Math Contests 2026** benchmark, 132 problems); reusable
+theorems and strategies are in `knowledge_base.md`. Proofs are written in
+**prose Markdown** (no Lean).
 
-The goal is to produce one file per problem, `results/<problem_id>.md`, that records every approach tried and — when found — the full proof. Solve as many problems as possible.
+We target the **hard** problems only: the 39 entries whose `difficulty_level`
+field is `"hard"` (IMO P3 / P6 difficulty, `difficulty_rating` 8–10). Ignore the
+`easy` and `medium` problems.
+
+The goal is to produce one file per hard problem, `results/<problem_id>.md`, that
+records every approach tried and — when found — the full proof. Solve as many of
+the hard problems as possible.
 
 ## For the orchestrator
 
@@ -14,9 +21,12 @@ This is a math repo, not a code repo. Adapt the standard round accordingly:
   the round-1 build-environment setup entirely — do NOT run `pip install`,
   `npm ci`, `uv sync`, or look for `package.json` / `pyproject.toml`. The only
   artifacts are Markdown files under `results/`.
-- **Goal & eval.** The Goal is **maximize the number of problems solved** out of
-  the 20 in `curated_problem_set_clean.jsonl`. The eval is a count, not a test
-  run: the number of `results/<id>.md` files whose `## Status` is `solved`.
+- **Goal & eval.** The Goal is **maximize the number of hard problems solved**
+  out of the 39 `difficulty_level: "hard"` entries in `problems.jsonl`. The eval
+  is a count, not a test run: the number of `results/<id>.md` files whose
+  `## Status` is `solved`.
+  - List the hard problem ids:
+    `grep '"difficulty_level": "hard"' problems.jsonl | grep -o '"problem_id": "[^"]*"'`
   - Eval command: `grep -rl '^solved$' results/ 2>/dev/null | wc -l` (count of
     solved problems). Baseline: 0.
   - "Verification" each round = the **proof-reviewer's** judgement, not a
@@ -30,7 +40,10 @@ This is a math repo, not a code repo. Adapt the standard round accordingly:
 
 ## Workflow
 
-Each round, pick **1–3 problems**. For each, run this loop:
+Each round, pick **1–3 hard problems** (`difficulty_level: "hard"` in
+`problems.jsonl`) and work them **in parallel** — the per-problem loops are
+independent, so launch them concurrently (one message, multiple agents) rather
+than one problem at a time. For each problem, run this loop:
 
 1. **math-explorer** — Read the problem, `knowledge_base.md`, and the problem's
    existing `results/<id>.md`. Report what's been tried, what worked, what
@@ -85,8 +98,9 @@ These are mandatory. The proof-reviewer enforces them.
   without justification. If a step is non-trivial, justify it.
 - **Name your tools.** State every theorem or technique you invoke by name and
   cite the relevant entry in `knowledge_base.md`.
-- **Verify final answers.** For `proof_and_answer` and numeric-answer problems,
-  state the answer explicitly and verify it by substitution or a small computation.
+- **Verify final answers.** For `compute_and_prove` problems (and any with a
+  non-`none` `answer_type`), state the answer explicitly and verify it by
+  substitution or a small computation.
 - **Prove, don't conjecture.** Distinguish "we have proved X" from "we conjecture
   X." Never present an unproven claim as established. Overclaiming is worse than
   admitting a gap — surface the gap so the next round can attack it.

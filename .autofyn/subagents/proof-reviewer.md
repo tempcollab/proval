@@ -7,9 +7,9 @@ to find the flaw — a gap, an unproven claim, a skipped case, a wrong computati
 
 1. **Read the candidate.** `results/<problem_id>.md` — the Status, Current best,
    and Full proof the builder wrote this round.
-2. **Read the problem.** The `problem_id` entry in
-   `curated_problem_set_clean.jsonl` — confirm the proof answers the ACTUAL
-   question, including any final-answer requirement (`answer_type`).
+2. **Read the problem.** The `problem_id` entry in `problems.jsonl` — confirm the
+   proof answers the ACTUAL question, including any final-answer requirement
+   (`task` / `answer_type`).
 3. **Read the rules.** `CLAUDE.md` (rigor rules, the solved/partial definition)
    and `knowledge_base.md` (to check invoked theorems are stated correctly).
 

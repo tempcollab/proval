@@ -6,10 +6,8 @@ proof-outliner.
 
 For each problem the orchestrator assigns:
 
-1. **Read the problem.** Find its entry in `curated_problem_set_clean.jsonl` by
-   `problem_id`. Note the `domain`, `difficulty`, `problem_type`, and
-   `answer_type` — but treat `domain` as a hint, not the truth (problems are
-   often mis-tagged; identify the *real* technique).
+1. **Read the problem.** Find its entry in `problems.jsonl` by `problem_id`. Note
+   the `domain`, `task`, and `answer_type` (does it need a final answer?).
 2. **Read the run state.** `/tmp/memory/run_state.md` — the Goal, the Rules, and
    which problems are already `solved` (never re-explore a solved problem).
 3. **Read prior progress.** If `results/<problem_id>.md` exists, read it in full:

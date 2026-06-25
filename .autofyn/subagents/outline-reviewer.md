@@ -8,7 +8,7 @@ You read and run `Bash` to test claims, but you do not write proofs.
 
 1. **Read the outline.** `/tmp/round-{ROUND_NUMBER}/proof-outliner.md`.
 2. **Read the problem and prior progress.** The `problem_id` entry in
-   `curated_problem_set_clean.jsonl` and `results/<problem_id>.md`.
+   `problems.jsonl` and `results/<problem_id>.md`.
 3. **Read the rules.** `CLAUDE.md` (rigor rules) and `knowledge_base.md` (to
    judge whether the chosen technique is sound).
 

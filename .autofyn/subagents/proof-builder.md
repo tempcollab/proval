@@ -9,9 +9,8 @@ deep-reasoning step — every gap the outline left is yours to close, fully.
 2. **Read the outline review** if present:
    `/tmp/round-{ROUND_NUMBER}/outline-reviewer.md` — fix every issue it raised. A
    REJECTED outline must not be built; tell the orchestrator it needs re-planning.
-3. **Read the problem.** The `problem_id` entry in
-   `curated_problem_set_clean.jsonl` — note `answer_type` (does it need a final
-   answer?).
+3. **Read the problem.** The `problem_id` entry in `problems.jsonl` — note `task`
+   and `answer_type` (does it need a final answer?).
 4. **Read the rules and prior progress.** `CLAUDE.md` (rigor rules + the
    `results/<id>.md` contract) and `results/<problem_id>.md` (build on the
    Current best; don't restart from scratch if a lemma is already proven).
@@ -27,8 +26,9 @@ deep-reasoning step — every gap the outline left is yours to close, fully.
 - **Show the computations.** Don't assert an algebraic identity — derive it. You
   may use `Bash`/`python3` to CHECK a computation, but the written proof must
   stand on its own; a numeric check is not a proof step.
-- **State the final answer.** For `proof_and_answer` / numeric problems, give the
-  answer explicitly and verify it (substitute back, or compute directly).
+- **State the final answer.** For `compute_and_prove` problems (any non-`none`
+  `answer_type`), give the answer explicitly and verify it (substitute back, or
+  compute directly).
 - **Name your theorems.** Every invoked result is named and matches a
   knowledge-base entry where applicable.
 - **Don't overclaim.** If, while building, you hit a genuine gap you cannot
