@@ -154,5 +154,119 @@ in-fiber *pair* to an in-fiber *triple* (or otherwise bound the fiber size). The
 Claim "`Q_{b,c}` satisfies `P(n-1)`" must NOT be used. Until this is closed, the result is a
 rigorous reduction, not a full proof.
 
+## Proof outline (round 3 — full solution plan)
+
+Spec review: required
+
+**Technique:** Structural induction via an *iterated fiber decomposition*. The spine is
+not induction on `n` but a finite descent through a hierarchy of conditions `C_0, C_1, ...`,
+each obtained from the previous by a generalization of Lemma 3 (the *propagation lemma*),
+terminating at depth `n` where the antichain property forces the set empty. Builds on the
+already-proved Lemmas 0–3 and the greedy-`B` Case-I elimination.
+
+### Corrected indexing (IMPORTANT — explorer had an off-by-one)
+
+Define, for a set `Q ⊆ A` and an ordered tuple of *accumulated base elements*
+`(b_1, ..., b_k)` (each `b_i ∈ A`):
+
+> **C_k(Q; b_1,...,b_k):** every subset `T ⊆ Q` with `|T| = n+1−k` either contains an
+> inner divisor-triple, or has distinct `x, z ∈ T` with `x | b_i + z` for some `i ≤ k`.
+
+Calibration (verify against the proved lemmas):
+- **C_0 = P(n):** every `(n+1)`-subset has an inner triple (0 bases). ✓
+- **Lemma 3 is exactly `C_1`:** every `n`-subset of a fiber `Q_{b,c}` has an inner triple or a
+  `b`-shift `x|b+z`. So subset size `n = n+1−1`, one base `b`. ✓
+
+The explorer wrote "Level k: every `(n−k)`-subset", which mis-calibrates Lemma 3 and pushes
+termination to `n−1`. The **correct** subset size at level `k` is `n+1−k`, and termination is
+at **`k = n`** (subset size `1`). The final bound is `|A| ≤ g(n)`, not `g(n−1)`; verified
+numerically (below) that `< 2^{n^3}` still holds with huge margin either way.
+
+### Skeleton
+
+1. **Setup / Lemma 0** — divisor-triple parity: divisor odd, summands odd ⇒ quotient even ⇒
+   divisor `< max(summand)`; summands occupy complementary residues mod the divisor. *(Already
+   proved.)*
+2. **Greedy maximal bad set + Case-I elimination** — build `B` greedily from below in any set
+   `Q` (process in increasing order, add `a` if `Q`-so-far `∪{a}` is still bad). Then `|B| ≤ n`
+   *(Lemma 1; bad sets have size ≤ n by P(n), and the same bound holds inside any fiber since a
+   fiber is a subset of `A`)*, and **every** `a ∈ Q∖B` is Case II (a summand `b|a+c`,
+   `b,c ∈ B` distinct), i.e. **Case I is empty**. Mechanism: if `a > max(B)`, the triple in
+   `B∪{a}` has `a` as its largest element, so by Lemma 0 `a` is not the divisor; if `a` was
+   skipped by the greedy at step `t`, the triple formed with the partial `B_t` uses only
+   elements `< a`, so again by Lemma 0 `a` is not the divisor. Either way `a` is a summand.
+   *(New this round; verified on `A` and on fibers, 0 violations / 1655 elements.)*
+3. **Fiber decomposition** — `Q∖B = ⋃ Q_{b,c}` over the `≤ n(n−1)` ordered pairs of distinct
+   `b,c ∈ B`, where `Q_{b,c} = {a ∈ Q : a ≢ {b,c}, a ≡ −c (mod b)}`; `Q_{b,c}∩B = ∅`. Hence
+   `|Q| ≤ |B| + Σ_{(b,c)}|Q_{b,c}| ≤ n + n(n−1)·max_{(b,c)}|Q_{b,c}|`. *(Lemma 2.)*
+4. **Propagation lemma (generalized Lemma 3) — KEY LEMMA, see below** — if `Q` satisfies
+   `C_k(Q; b_1,...,b_k)`, then each secondary fiber `Q_{b',c'}` (built from a greedy `B'` of `Q`,
+   with `b',c' ∈ B'`) satisfies `C_{k+1}(Q_{b',c'}; b_1,...,b_k,b')`.
+5. **Termination lemma** — any `Q` satisfying `C_n(Q; b_1,...,b_n)` is empty. Mechanism: the
+   condition is on `1`-subsets `{x}`; a size-1 set has no inner triple, and a shift `x|b_i+z`
+   with `z ∈ {x}` forces `z=x`, i.e. `x | b_i + x`, i.e. `x | b_i`. But `x, b_i ∈ A` are distinct
+   antichain elements (`x` in the deepest fiber, `b_i` an accumulated base), so `x ∤ b_i`.
+   Contradiction unless no such `x` exists. Hence `Q = ∅`.
+6. **Size recursion + arithmetic** — let `h(k)` = max size of a set satisfying `C_k`. Steps 3–5
+   give `h(n) = 0` and `h(k) ≤ n + n(n−1)·h(k+1)`. Setting `g(j) = h(n−j)`:
+   `g(0) = 0`, `g(j) = n + n(n−1)g(j−1)`, so `g(j) ≤ n·(n(n−1))^j`. Then
+   `|A| ≤ h(0) = g(n) ≤ n·(n(n−1))^n < 2^{n^3}` for all `n ≥ 1`.
+   *(Verified: `n=2`: 6 vs 256; `n=3`: 129 vs 1.3e8; growth `n·(n(n−1))^n` stays far below
+   `2^{n^3}` — take log₂: `log₂n + n·log₂(n(n−1)) ≤ log₂n + 2n·log₂n < n^3` for `n ≥ 2`; `n=1`
+   handled by the base case `|A| ≤ 1`.)*
+
+### Key lemmas (claim + mechanism)
+
+- **Lemma 0** (proved): in an antichain divisor-triple `x|y+z`, `x < max(y,z)` and `y,z` are in
+  complementary nonzero residues mod `x`. *Because* `y,z` odd ⇒ `y+z` even, `x` odd ⇒ quotient
+  `≥ 2`.
+- **Case-I elimination** (Step 2): greedy-from-below `B` ⇒ no outside element is a divisor.
+  *Because* by Lemma 0 the divisor of any forced triple is below the largest element of the
+  triple, and greedy-from-below guarantees every newly-forced triple's other two members are
+  `≤` (resp. `<`) the new element.
+- **Propagation `C_k ⇒ C_{k+1}`** (Step 4, the crux): Let `T'` be a *bad* `(n−k)`-subset of the
+  secondary fiber `Q_{b',c'}`. Then `T'∪{b'}` is an `(n+1−k)`-subset of `Q`, so `C_k` applies.
+  Since `T'` is bad, any inner triple of `T'∪{b'}` uses `b'`. `b'` cannot be the **divisor**:
+  `b'|y+z` with `y,z ∈ Q_{b',c'}` ⇒ `y≡z≡−c' (mod b')` ⇒ `b'|2c'` ⇒ `b'|c'` (b' odd),
+  contradicting the antichain. So `b'` is a **summand**: `x|b'+z`, `x,z ∈ T'` — a `b'`-shift,
+  i.e. the `i=k+1` clause of `C_{k+1}`. If instead `C_k` produced a `b_i`-shift (`i≤k`) it is
+  inherited; **the load-bearing subcase** is when that inherited shift has `b'` as an endpoint —
+  see "Watch out for".
+- **Termination** (Step 5): `C_n` ⇒ empty, *because* a `1`-subset shift forces `x|b_i`, banned by
+  the antichain.
+
+### Cases to cover
+- Step 2 Case-I elimination: (a) `a > max(B)`; (b) `a < max(B)` skipped by greedy. Both must use
+  Lemma 0 and conclude `a` is a summand.
+- Step 4 propagation, the inherited `b_i`-shift: (a) both endpoints `x,z ∈ T'` (direct, inherited);
+  (b) one endpoint equals the new base `b'` — must be resolved (the hard subcase).
+- Base case `n=1`: `P(1)` ⇒ `|A| ≤ 1 < 2`.
+
+### Watch out for (hard steps / gaps to close)
+- **HARD STEP — the inherited-shift endpoint subcase in propagation.** When `C_k` yields a
+  `b_i`-shift `x|b_i+z` with one endpoint equal to `b'` (the new base), it is *not literally* a
+  shift within `T'`. The builder MUST show this case either (i) cannot occur, or (ii) still
+  produces an inner triple or an accumulated-base shift *within `T'`*. Empirically this never
+  breaks `C_{k+1}` (439 P(n) antichains, n=2..4, fully descended through the fiber tree: **0**
+  failures of `C_k` at any node), but the empirics do NOT substitute for the argument. Likely
+  resolution: a shift `x|b_i+z` with `x=b'` means `b'|b_i+z`; combined with `z ≡ −c' (mod b')`
+  and the structure of `b_i` this should be ruled out or rerouted — the builder must pin it down.
+  This is the single genuinely non-routine step.
+- **Indexing.** Use subset size `n+1−k` at level `k` and terminate at `k=n`. Do NOT copy the
+  explorer's `(n−k)` / depth-`n−1`. The final bound is `g(n) ≤ n·(n(n−1))^n`, still `< 2^{n^3}`.
+- **`|B| ≤ n` inside fibers.** Re-justify each time: a fiber is a subset of `A`, bad subsets of a
+  subset of `A` are bad subsets of `A`, so P(n) still caps them at `n`.
+- **Greedy applied recursively.** The Case-I-elimination argument is reused at every level on the
+  fiber `Q` in place of `A`; it only needs `Q` to be an antichain (true: `Q ⊆ A`) and Lemma 0.
+- **The new base `b'` and `c'` are antichain elements of `A`** (they lie in `Q ⊆ A`), so the
+  antichain steps `b'∤c'` and `x∤b_i` are valid at every depth.
+
+### Recorded dead ends (do NOT retry)
+- Do NOT claim `Q_{b,c}` satisfies `P(n−1)` (FALSE: `A={5,9,11,61}`, `Q_{5,9}={11,61}`).
+- Do NOT use the bound `2^{(n−1)^3}` or the strengthened predicate `S(n)` (indexing mismatch,
+  wrong base for `n=2`).
+- Do NOT induct on `max(A)` for fixed `n` (non-strict reduction).
+- Do NOT use residue-class decomposition mod `2b` (unbounded number of classes).
+
 ## Full proof
 (omitted — Status is partial)
