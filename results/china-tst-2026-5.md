@@ -29,6 +29,19 @@ partial
   the hub pigeonhole does not apply. A unified small-label-scarcity double-count
   was attempted but not closed airtight. This is the single missing step; see
   Current best.
+- **Spanning-tree per-edge charge (round 2)** — DEAD END, refuted numerically.
+  Tried: fix MST T, charge each T-expensive pair to the max-label non-tree edge on
+  its serving route, hope for an injection into the 1936 extra edges. At n=10 the
+  per-extra-edge charge has cap **9** (not 1), and the number of T-expensive pairs
+  servable at ≤k−1 reaches **13** while |X|=4. A low non-tree label acts as a second
+  hub serving many pairs. No per-edge injection exists.
+- **Per-non-hub-label charge for general A (round 2)** — DEAD END, refuted. Even in
+  the hub regime, up to **19** hub-critical pairs are served off-hub with only |B|=4
+  non-hub labels at n=10. So the round-3 "WLOG A={1,…,2025}, each non-hub label serves
+  ≤1 critical pair" reduction is FALSE for general A; GAP 1 is as hard as GAP 2.
+  The real invariant is GLOBAL: at n=10 every connected G leaves ≥5 pairs with
+  d_G>k−1, but no closed-form charging bound is known. The viable next attempt is a
+  global cheap-reach/betweenness budget with relay-feedback (Lemma B2), HARD and open.
 
 ## Current best
 
@@ -244,3 +257,166 @@ as a lower bound in the hub case; the no-hub case of the lower bound is the only
 gap. All displayed arithmetic identities (C(2026,2)=2,051,325; critical-pair count
 44²=1936 with threshold >3962; hub-critical count 44·45=1980 with threshold >3961;
 non-hub label budget 3961−2025=1936) have been verified.
+
+---
+
+## OUTLINE (round 2, proof-outliner) — unified lower bound closing GAP 1 + GAP 2
+
+**Spec review: required**
+
+**Strategy decision.** The two open gaps (general-A hub; no-hub) are symptoms of the
+SAME weakness: the round-3 argument fixed a *star* tree and excluded detours by
+hand. Instead of patching two cases, replace the whole of Part B's lower bound with
+ONE argument that never mentions a hub. Spine: **a global double-count on a fixed
+spanning tree T of G, charging each "T-expensive" pair to a non-tree small label on
+its serving route, with a detour-cost lemma capping how many pairs one non-tree edge
+can serve.** This is the "small-label-scarcity charging" that Lemma B2 asked for, and
+it subsumes Case B-hub (the star is just one tree).
+
+**Numerical backing (this round, n=10, m=3, k=14, so k−1=13):**
+- Identities: |E(G)|=13, tree budget n−1=9, extra=(m−1)²=4, hub-critical N=6=(m−1)·m. ✓
+- Exhaustive-ish random search over **343,537 connected** 13-edge labelings: EVERY one
+  has some pair with d_G > 13. So k≥14 holds **unconditionally** at n=10 — the
+  contradiction does not need the hub. This is the evidence the unified argument exists.
+- For the MST T of any sampled G, the set of T-expensive pairs is never fully served
+  at cost ≤13 by the extra edges. ✓
+
+### Setup (shared, replaces the B-hub / B-noHub split)
+
+Assume for contradiction a bijective labeling with all-pairs min-path ≤ k−1 = 3961.
+Let G = edges of label ≤ 3961 (|E(G)| = 3961, connected by Lemma B0). Write the
+labels on G as the bijection ℓ: E(G) → {1,…,3961}. Let **T** be the **minimum
+spanning tree of G** (Kruskal, weights = labels); |E(T)| = n−1 = 2025. Let
+**X = E(G)∖E(T)** be the extra edges; |X| = 3961 − 2025 = **1936 = (m−1)²**.
+For a pair {u,v} let P_T(u,v) be the unique T-path and t(u,v) = its label-sum.
+
+### Skeleton
+
+1. **(MST label bound.)** Σ_{e∈E(T)} ℓ(e) ≤ Σ_{e∈E(T)} (the 2025 cheapest labels
+   that form a tree) — and more usefully, the labels on T are 2025 distinct values in
+   {1,…,3961}. KEY refinement: by the Kruskal/cut property, for every non-tree edge
+   e=(x,y)∈X, every edge on P_T(x,y) has label ≤ ℓ(e). — by **MST cycle property**
+   (knowledge_base: Extremal graph theory / spanning-tree exchange).
+
+2. **(T-expensive pairs are numerous.)** Define {u,v} **T-expensive** if t(u,v) > 3961.
+   Lemma E below: the number of T-expensive pairs is ≥ (m−1)·m = **1980**.
+
+3. **(Every T-expensive pair must be served off-tree.)** For a T-expensive pair, its
+   T-path costs > 3961, so by hypothesis its cheapest route (cost ≤ 3961, hence inside
+   G by B0) is NOT the T-path; it therefore uses ≥ 1 edge of X. — by B0 + definition.
+
+4. **(Detour-capacity cap — REFUTED this round, see ⚠ below.)** The intended Lemma D
+   ("each extra edge serves ≤1 T-expensive pair") is FALSE: numerics give cap = 9.
+   Steps 4–5 below are RETAINED only to show the line that was tried and refuted; the
+   real argument must instead bound the GLOBAL cheap-reach (HARD STEP 1).
+
+5. **(Pigeonhole — does NOT go through.)** The hoped-for injection 1980 ≤ |X| = 1936
+   fails because Step 4 is false. The contradiction is real (n=10: always ≥5 unserved
+   pairs) but global, not a per-edge injection. See revised HARD STEPS.
+
+### Key lemmas (claim + mechanism)
+
+- **Lemma E (T-expensive count ≥ (m−1)·m = 1980).**
+  *Mechanism:* This is a statement about ANY spanning tree on n=2026 vertices whose
+  edges carry 2025 distinct labels from {1,…,3961}. Order the tree edges by label;
+  the cheapest possible distribution of T-path sums is achieved by the **star** (the
+  round-3 computation: with star labels {1,…,2025}, pairs {v_i,v_j} with i+j>3961
+  number Σ_{b=1982}^{2025}(2b−3962)=1980). The general claim is that the star
+  *minimizes* the number of T-expensive pairs over all trees AND all label-sets:
+  (a) for fixed tree shape, the round-3 majorization argument (replace largest label
+  by smallest unused) shows {1,…,2025} minimizes the count; (b) over tree shapes,
+  every tree-path of length ≥2 between leaves only adds label-sum, so non-star shapes
+  have ≥ as many expensive pairs. *This is the load-bearing combinatorial lemma — see
+  "HARD STEP 1".* Numerically the star and double-star tie at the minimum 1980 (n=2026)
+  / 6 (n=10); all other trees exceed it.
+
+- **Lemma D (each extra edge serves ≤ 1 T-expensive pair).**
+  *Mechanism (the real difficulty, and where GAP 1/2 actually live):* Let pair {u,v}
+  be T-expensive, served by a route R of cost ≤ 3961 using extra edges
+  e_1,…,e_r ∈ X (r≥1) and tree edges. Charge {u,v} to the extra edge e* = argmax label
+  on R. Suppose two T-expensive pairs {u,v},{u',v'} both charge to the same e*=(x,y),
+  ℓ(e*)=L. Their routes both contain e* and have cost ≤ 3961, so each route splits as
+  (tree-ish path to x) + e* + (tree-ish path from y), and the two flanking pieces both
+  cost ≤ 3961 − L using only labels ≤ L (by the "e* is the max label on R" choice).
+  The **cost arithmetic**: because L ≥ (the 2026-th smallest label) and the flanks must
+  be cheap, the two flanks pin {u,v} and {u',v'} to the same pair — OR the flank that
+  reconnects to T would re-enter T-paths whose sum already exceeds the budget. Precisely:
+  if e*=(x,y) serves {u,v}, then t(u,x)+L+t(y,v) ≤ 3961 forces t(u,x)+t(y,v) ≤ 3961−L,
+  and the MST cycle property (Step 1) gives L ≥ every label on P_T(x,y), so
+  t(x,y) ≤ (n−1)·L is not the bound we want — instead use: the flanks are themselves
+  T-paths, and a T-path of cost ≤ 3961−L from a fixed endpoint reaches a BALL of bounded
+  T-radius; the number of (u,v) with u in ball(x), v in ball(y) and {u,v} T-expensive is
+  forced to ≤ 1 because T-expensive means t(u,v) is large while u,v sit in small-radius
+  balls around x,y, leaving only {u,v}={x,y}'s own neighborhood. *This is HARD STEP 2.*
+
+### ⚠ NUMERICAL CORRECTION (this round) — the naive per-edge charge is DEAD
+
+Before trusting the skeleton above, I tested the detour-cap claim at n=10. RESULTS:
+
+- **Per-extra-edge charge (max-label rule) cap = 9, NOT 1.** One extra edge can be the
+  max-label edge on the serving route of up to 9 distinct T-expensive pairs. So the
+  injection {T-expensive pairs} ↪ X in Step 4 is FALSE. Lemma D as stated is FALSE.
+- **#T-expensive pairs SERVED at ≤K reaches 13, while |X| = 4.** So "extra edges serve
+  ≤ |X| T-expensive pairs" is also false. A low-label non-tree edge acts as a *second
+  hub*, serving many pairs.
+- **Even in the HUB regime**, up to **19** hub-critical pairs are served off-hub with
+  only |B|=4 non-hub labels. So the round-3 "WLOG A={1,…,2025}, each non-hub label
+  serves ≤1 critical pair" reduction is NOT a minor patch — it is FALSE for general A,
+  and GAP 1 is genuinely as hard as GAP 2.
+- **What IS true (the real invariant):** over 343,537 connected configs, EVERY one has
+  ≥ 1 pair with d_G > K; the MINIMUM number of unserved pairs is **5** (never 0). So
+  k ≥ 14 holds unconditionally at n=10, but the obstruction is GLOBAL, not a per-edge
+  injection.
+
+CONCLUSION: **the tree-charge / per-label-charge family of arguments is a DEAD END**
+(record it as such). The contradiction is real but its mechanism is a *global* bound on
+how many pairs the small labels can collectively serve, with a feedback effect: making
+one pair cheap (a low non-tree label) forces OTHER pairs expensive.
+
+### HARD STEPS (revised — the genuine remaining difficulty)
+
+- **HARD STEP 1 — a global "cheap-reach budget" bound (replaces Lemma D).** The correct
+  shape: bound the TOTAL number of pairs servable at cost ≤ k−1 by a quantity strictly
+  below C(n,2). Candidate mechanism (to be developed, NOT yet rigorous): a *betweenness /
+  flow* count. For each small label ℓ on edge e, the set of pairs whose cheapest ≤(k−1)
+  route passes through e is a "ball-product" B_x(ρ)×B_y(ρ') with ρ+ρ'+ℓ ≤ k−1; sum the
+  ball sizes. The feedback (a vertex used as a relay for many pairs must itself have many
+  small incident labels, which are then unavailable elsewhere) is what caps the total.
+  This is the **Lemma B2 the file already asks for**; the numerics (min 5 unserved at
+  n=10) confirm a margin exists but give no closed form yet.
+
+- **HARD STEP 2 — quantify the relay feedback.** The "second hub" effect: a vertex w with
+  a small incident label can serve pairs {u,v} via u–w–v. But w can have at most
+  deg_G(w) small incident labels, and the total small-label mass is fixed at
+  1+2+…+(k−1). An entropy/convexity argument bounding Σ_w (cheap-reach of w) by the
+  label budget is the likely route. UNDEVELOPED — flag to builder as the open research
+  step; a PARTIAL (e.g. tighten the hub case only, or prove a weaker bound k ≥ 3962−c)
+  may be the realistic deliverable this round.
+
+**Honest status for the builder:** the clean tree-charge is refuted by this round's
+numerics. Do NOT submit it as a proof. Either (a) develop the global cheap-reach budget
+(HARD STEP 1) into a rigorous bound — high risk, may not close — or (b) deliver a clearly
+FLAGGED partial: re-state the proven k≤3962 and the proven hub-case-A={1..2025} bound,
+record the tree-charge and per-label-charge as dead ends, and leave GAP 1/GAP 2 open with
+this round's numerical map as the guide for the next attempt.
+
+### Cases to cover
+- The argument is **case-free** (no hub/no-hub split): T is the MST, X the extra edges,
+  done globally. This is the whole point — it closes GAP 1 and GAP 2 simultaneously.
+- Within Lemma E: tree-shape majorization (star vs general) — enumerate via the cut/edge
+  exchange, not by listing shapes.
+
+### Watch out for
+- **The cap might be 2, not 1** (explorer's warning). The construction serves exactly
+  1936 critical pairs with 1936 redirect labels — a one-to-one usage. So in the TIGHT
+  configuration each extra edge serves exactly 1 pair. The lower bound needs cap ≤ 1 to
+  match. If cap = 2 is achievable in some adversarial (non-construction) G, the unified
+  argument breaks and one must instead show Lemma E gives ≥ 2·1936+1 = 3873 expensive
+  pairs in exactly the configs where cap=2 — i.e. a trade-off. BUILD THIS CHECK FIRST.
+- **MST may not use labels {1,…,2025}** (some small labels form cycles). Lemma E and D
+  must use only "T has 2025 distinct labels in {1,…,3961}" + the cut property, never
+  "T = {1,…,2025}".
+- **B0 confinement** must be re-cited for every "route of cost ≤ 3961 lies in G."
+- **Do not overwrite Part A or the proven B-hub(A={1..2025})** — they stand; this
+  outline REPLACES only the OPEN parts (general-A gluing + Lemma B2) with the unified
+  charge.

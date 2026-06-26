@@ -2,6 +2,13 @@
 solved
 
 ## Approaches tried
+- **[Round 2 proof-reviewer]** Independent adversarial verification: re-derived H=A+B+C,
+  the three radius-1 circles, the six tangent normals/distances, Lemma L1, the Step-7
+  reduction, and the Step-8 determinant identity. Numerically stress-tested over 2000
+  random acute scalene triangles (max error ~1e-14): in every case r1+r2=1, I1+I2=H,
+  both incenters interior with positive inradius, H strictly inside all three half-planes
+  (confirming the Step-4 outward-orientation claim), and the diagonals HO, I1I2 share a
+  midpoint. Lemma L1 residual ~1e-16; det[M1,M2,u]=0 to ~1e-16. No gap found. APPROVE/solved.
 - Closed-form computation of the six tangent lines, the two triangles' vertices and
   incenters, then subtracting — dead end (messy trig quotients; recorded by explorer).
 - Complex coordinates with `O=0`, unit circumcircle. Reduce the parallelogram claim to
