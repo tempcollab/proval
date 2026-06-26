@@ -8,199 +8,275 @@ Petya wins if a ball of mass k ever appears; otherwise Vasya. Who wins?
 partial
 
 ## Approaches tried
-- Brute-force minimax over the full game tree (in cut language; parity of
-  cut-count = whose turn), m=3..7, all 1<k<2m — WORKED: fixes the threshold
-  **Petya wins iff k ≤ m+1**. (script /tmp/b2_explore.py reproduces it.)
-- **Cut reformulation** (the key reframing) — WORKED, makes the certificate clean.
-  Put the row on positions 0..2m with 2m+1 boundary "cuts"; a merge removes exactly
-  one interior present cut; a ball of mass k = two consecutive present cuts at
-  distance k. Defined k-windows and "live" windows (interior count 1). Both
-  directions are stated in this language below.
-- **Lemma B1 (trapped ⇒ Petya wins next exchange)** — WORKED, fully rigorous,
-  written out below. It is a clean 2-ply certificate. Strictly verified over all
-  901 trapped positions for m=3..6 (every k): for every Vasya reply Petya completes
-  a mass-k ball on the next single move, 0 failures (script /tmp/b1_verify.py). The
-  written argument is a genuine mechanism, not a numeric check.
-- **Lemma B2 (Petya FORCES a trapped position from the start)** — REAL GAP, NOT
-  closed this round. The trapped-certificate fixpoint exactly equals the true
-  Petya-win set for all k ≤ m+1, m=4..7 (script /tmp/b2_fixpoint.py), so the
-  strategy is *correct*, but a fixpoint verified to m=7 is not a proof for m > 100,
-  and the forcing depth grows linearly in m. Five natural *describable* Petya
-  strategies were tested and all FAIL to match the win set for k near m+1:
-  - left-anchored greedy (grow the leftmost block) — fails for all k ≥ 3
-    (/tmp/b2_greedy.py);
-  - two-ended greedy "grow the smaller end" / "grow the bigger end" — fails k ≥ 4
-    (/tmp/b2_two.py);
-  - "grow the longest block toward k without overshoot" — fails k ≥ 4
-    (/tmp/b2_central.py);
-  - adaptive two-end "grow the end whose neighbor is still a unit" — fails k ≥ 4
-    (/tmp/b2_adapt.py).
-  Diagnosis: the *unique* winning Petya first move at k = m+1 is the **centre
-  merge**, NOT any end move; and for k near m+1 the starting position has **no
-  winning end-move at all** (/tmp/b2_think.py). So no end-anchored single- or
-  double-block greedy can be correct; the true strategy maintains two interior
-  blocks straddling the centre with shared central material, chosen dynamically.
-  Producing and proving an explicit m-uniform such strategy is the open step.
-- (Prior rounds) Round 5 "no adjacent pair sums to k" Vasya invariant — DEAD END as
-  a maintainable static set. Round 5 "n=3 stuck config [2m−k,2k−2m,2m−k]" — DEAD END
-  except k=m+1 (middle mass ≤ 0 for k ≤ m). Mirror/symmetry Vasya strategy — DEAD
-  END (Vasya stuck on centre removal). Single static cut-potential — DEAD END.
+- Brute-force minimax over the full game tree (cut language; parity of cut-count
+  = whose turn), m=3..7, all 1<k<2m — WORKED: fixes the threshold
+  **Petya wins iff k ≤ m+1, Vasya wins iff k ≥ m+2** (re-confirmed for m=3..6 by
+  /tmp/partb_check.py; matches all prior rounds).
+- **Cut reformulation** (the key reframing) — WORKED, makes both certificates
+  clean. Row on positions 0..2m, 2m+1 boundary cuts; a merge removes exactly one
+  interior present cut; a ball of mass k = two present cuts at distance k with no
+  present cut between. Petya moves on odd cut-count, Vasya on even. Used throughout.
+- **Lemma A0 (centre-straddle)** — PROVED, m-uniform. For k ≥ m+2 every k-window
+  contains both central cuts m, m+1 strictly inside. Pure arithmetic.
+- **Lemma B1 (trapped ⇒ Petya wins on next exchange)** — PROVED, m-uniform, full
+  case proof below. A clean 2-ply certificate; verified over all 901 trapped
+  positions m=3..6 (0 exceptions). This is the finishing tool for the Petya
+  direction.
+- **Vasya direction via invariant J′** (no mass-k, no live window, ≤1 t=2 window),
+  maintained on Petya-turn positions and "restored" by Vasya removing a live
+  window's endpoint (lw=1) or a "safe" cut (lw=0) — **DOES NOT CLOSE.** The
+  prescribed Vasya strategy IS empirically a winning strategy (verified over all
+  states reachable *under that strategy*, m=3..7, k≥m+2, 0 failures —
+  /tmp/a_verify.py). BUT J′ is **not a self-maintaining invariant**: there exist
+  J′-positions from which Vasya's restoring rule provably fails to return to J′
+  (explicit counterexample below). Equivalently the "safe cut" step (the planned
+  Lemma A2) is FALSE in general: a cut outside the lone t=2 window's interior can
+  still create a *new* t=2 window by lowering a t=3 window. So the J′ machinery
+  only certifies Vasya's win on the reachable sub-DAG, which we have not
+  characterized in m-uniform prose. Recorded as the open gap for the Vasya
+  direction.
+- **Lemma B2 (Petya forces a trapped position from the start)** — OPEN. The
+  forcing depth grows linearly in m, the certificate fixpoint is verified only to
+  m ≤ 7, and no fixed describable greedy realizes the win set (at k=m+1 the unique
+  winning first move is the centre merge; the strategy is genuinely adaptive). Not
+  closed.
+- (Prior rounds) Static "no adjacent pair sums to k" Vasya invariant — DEAD END.
+  Mirror/symmetry Vasya strategy — DEAD END. Static invariant I = "no mass-k, no
+  live window" alone — DEAD END (not self-maintaining). J′ = I + "≤1 t=2 window" —
+  also NOT self-maintaining (this round's finding); it is *necessary* for safety
+  (every Vasya-safe no-live position has ≤1 t=2 window, m=4,5 — /tmp/distinguish.py)
+  but not *sufficient* and not maintainable from arbitrary J′-positions.
 
 ## Current best
 
-**Answer (brute-force verified, m=3..7, all 1<k<2m):**
+**Answer (brute-force verified m=3..7, all 1<k<2m), with proof of neither
+direction completed in full:**
+
 **Petya wins iff k ≤ m+1; Vasya wins iff k ≥ m+2.**
 
-The Petya direction (k ≤ m+1) is established below down to a single, clearly marked
-forcing gap (Lemma B2). The Vasya direction (k ≥ m+2) remains open.
+What is rigorously established this round (all m-uniform unless noted):
 
-### Cut reformulation
+1. **Cut reformulation** with correct turn parity.
+2. **Lemma A0** (centre-straddle), proved.
+3. **Core safety fact for k ≥ m+2 (proved):** from a Petya-turn position with no
+   mass-k ball and *no live window* (every k-window has interior count ≥ 2), Petya
+   cannot create a mass-k ball on his move. (Each window's count drops by ≤ 1 per
+   removal, so a count-≥2 window cannot reach 0.) This is the genuine, provable
+   half of the Vasya-side analysis. The unproven half is that Vasya can *maintain*
+   "no live window" forever — for which J′ is the natural candidate invariant but
+   is not self-maintaining (see the counterexample below).
+4. **Lemma B1** (trapped ⇒ Petya wins next exchange), proved — the finishing tool
+   for the Petya direction.
 
-Place the row on positions 0,1,…,2m. The 2m+1 integer points are the **cuts**;
-initially all are *present*. A **ball** is a maximal run between two consecutive
-present cuts, and its **mass** is the distance between those cuts. Merging two
-adjacent balls = **removing one interior present cut** (cuts 0 and 2m are never
-removed, being the row's ends).
+The two open gaps, recorded precisely so the next round can attack them:
+- **Vasya direction (k ≥ m+2):** find an invariant J ⊆ {no mass-k, no live window}
+  that is BOTH (a) preserved by Vasya's restoring move from any J-position and
+  (b) such that from any Petya move out of J the result still admits a J-restoring
+  Vasya reply. J′ fails (a). The true safe set is strictly between I and the
+  reachable set and has no simple closed form we have found.
+- **Petya direction (k ≤ m+1):** Lemma B2 — an explicit m-uniform forcing strategy
+  reaching a trapped position, checked against *all* Vasya replies.
 
-- Start: all 2m+1 cuts present (2m balls of mass 1). After all 2m−1 merges only
-  0 and 2m remain (one ball of mass 2m).
-- *Petya's goal:* at some moment two consecutive present cuts are at distance k —
-  equivalently, present cuts a and a+k with **no present cut strictly between**
-  them (a ball of mass k).
-- *Parity / turn order:* #present cuts = (#balls) + 1. The start has 2m+1 cuts
-  (odd); a merge removes exactly one cut, so the count strictly decreases by 1 each
-  move. Petya moves when the cut-count is **odd**, Vasya when it is **even**.
+================================================================================
+
+### Cut reformulation (shared setup)
+
+Place the row on the integer points 0,1,…,2m. These 2m+1 points are the **cuts**;
+initially all are *present*. A **ball** is a maximal segment between two
+consecutive present cuts, and its **mass** is the distance between those cuts.
+Merging two adjacent balls **removes exactly one interior present cut** (the cut
+between them); the two end cuts 0 and 2m are never removed.
+
+- *Start.* All 2m+1 cuts present (2m balls of mass 1). After all 2m−1 merges only
+  0 and 2m remain (a single ball of mass 2m).
+- *Petya's goal.* At some moment two present cuts lie at distance k with **no
+  present cut strictly between** them (a ball of mass k).
+- *Turn parity.* #present cuts = #balls + 1. The start has 2m+1 cuts (odd); each
+  merge removes exactly one cut. Hence **Petya moves when the cut-count is odd,
+  Vasya when it is even.** A merge can only remove a present cut, never add one.
 
 Definitions used throughout.
-- A **k-window** is an interval [a, a+k] whose endpoints a, a+k are both present
-  cuts. Its **interior count** t is the number of present cuts strictly inside; a
-  mass-k ball exists ⇔ some k-window has t = 0.
-- A k-window is **live** if t = 1: it has exactly one interior present cut u, and
-  removing u (one merge) creates a mass-k ball.
+- A **k-window** is an interval [a, a+k] with 0 ≤ a, a+k ≤ 2m and both endpoints
+  a, a+k present. Its **interior count** t is the number of present cuts strictly
+  inside (a, a+k). A mass-k ball exists ⇔ some k-window has t = 0.
+- A k-window is **live** if t = 1 (one merge — removing its lone interior cut —
+  creates a mass-k ball). Write **lw** for the number of live windows. A k-window
+  is a **t=2 window** if t = 2.
 
-**Lemma A0 (centre-straddle), proved.** For k ≥ m+2, every k-window [a, a+k] (with
-0 ≤ a and a+k ≤ 2m) satisfies a < m < m+1 < a+k; i.e. every k-window contains both
-central cuts m and m+1 strictly inside.
-*Proof.* Since a+k ≤ 2m and k ≥ m+2, we get a ≤ 2m − k ≤ 2m − (m+2) = m − 2 < m,
-so a < m. Also a+k ≥ 0 + k = k ≥ m+2 > m+1, so a+k > m+1. Hence
-a < m < m+1 < a+k. ∎  (Algebra rechecked for all m=3..7, k=m+2..2m−1,
-/tmp/a0.py.)
+**Lemma A0 (centre-straddle).** *For k ≥ m+2, every k-window [a, a+k]
+(0 ≤ a, a+k ≤ 2m) satisfies a < m < m+1 < a+k; both central cuts m, m+1 lie
+strictly inside every k-window.*
 
-This is used only in the (open) Vasya direction; it is recorded here for the next
-round.
+*Proof.* From a+k ≤ 2m and k ≥ m+2: a ≤ 2m − k ≤ 2m − (m+2) = m − 2 < m. From
+a ≥ 0, k ≥ m+2: a+k ≥ k ≥ m+2 > m+1. Hence a < m < m+1 < a+k. ∎
 
----
+================================================================================
+## PART A — Vasya wins for k ≥ m+2 (CORE FACT PROVED; full strategy OPEN)
+================================================================================
 
-### Part B (k ≤ m+1, Petya wins): the certificate is rigorous; the forcing is open
+Fix k ≥ m+2 (so k ≥ 103 and k < 2m).
+
+### What is proved (m-uniform)
+
+**Core safety fact.** *Let P be a Petya-turn position with no mass-k ball and no
+live window (every k-window has interior count ≥ 2). Then after any Petya move,
+the resulting position has no mass-k ball.*
+
+*Proof.* Petya removes one interior present cut c. For each k-window the present
+cuts strictly inside it lose c if c was strictly inside it, and are otherwise
+unchanged; and no new k-window appears (no cut is added, and a surviving window
+keeps both endpoints). So every window's interior count drops by at most 1. Each
+window had count ≥ 2 by hypothesis, hence count ≥ 1 after Petya's move: no window
+reaches count 0, so no mass-k ball is created. ∎
+
+This shows **Petya can never win on his move out of a "no-live, no-mass-k"
+position.** Consequently, IF Vasya can guarantee that every Petya-turn position is
+"no-live, no-mass-k," then a mass-k ball never appears and Vasya wins when the
+interior empties. The entire remaining content of the Vasya direction is the
+maintenance of "no live window," which we have NOT closed.
+
+**Empirical correctness of a concrete Vasya strategy.** Define Vasya's reply to a
+Vasya-turn position (no mass-k, lw ≤ 1): if lw = 1, remove a removable endpoint of
+the unique live window (one exists since k < 2m, else {a, a+k} = {0, 2m} forces
+k = 2m); if lw = 0, remove an interior cut outside the interior of every t=2
+window. Under this strategy, over **all positions reachable from the start under
+Vasya's own play**, for m = 3..7 and every k ≥ m+2: no mass-k ball ever appears,
+after every Petya move lw ≤ 1, and Vasya always has a legal restoring reply (0
+failures — /tmp/a_verify.py). So this is a genuine winning strategy for m ≤ 7.
+
+### Why this does NOT yet prove the Vasya direction (the open gap)
+
+The natural way to make the above m-uniform is an invariant maintained on
+Petya-turn positions. The candidate is
+
+  **J′:** no mass-k ball; every k-window has interior count ≥ 2 (no live window);
+          at most one t=2 window.
+
+J′ is *necessary* for Vasya-safety (every Vasya-safe no-live Petya-turn position
+has ≤ 1 t=2 window — verified m=4,5, /tmp/distinguish.py). But **J′ is not
+self-maintaining**, so it cannot be used as the invariant:
+
+> **Counterexample (m=4, k=6).** The Vasya-turn position with present cuts
+> {0,1,2,3,6,8} has windows [0,6] (interior {1,2,3}, count 3) and [2,8]
+> (interior {3,6}, count 2): no mass-k ball, no live window, exactly one t=2
+> window — it satisfies J′. Vasya's lw=0 rule removes a cut outside the interior
+> {3,6} of the t=2 window; the legal choices are 1 or 2. Removing 1 yields
+> {0,2,3,6,8}, whose windows are [0,6] (interior {2,3}, count 2) and [2,8]
+> (interior {3,6}, count 2): **two** t=2 windows — J′ is violated.
+> (/tmp/note_check.py exhibits this explicitly.)
+
+The failure mechanism is exactly the "≤ 1 new t=2 window" reasoning the outline
+review flagged as false: removing a cut outside the lone t=2 window's interior can
+still *lower a t=3 window to t=2*, creating a second t=2 window. So the planned
+Lemma A2 ("a safe cut exists") is **false** as a statement about arbitrary
+J′-positions. More broadly, an exhaustive test over *all* (not merely reachable)
+Vasya-turn positions with no mass-k and lw ≤ 1 finds many from which Vasya's rule
+fails to restore J′ (e.g. m=5, k=7: 14 such positions among 246 — /tmp/Jprime_general.py).
+
+The concrete strategy still wins because these bad J′-positions are **not reachable
+under Vasya's own play** — but we have no m-uniform description of the reachable
+safe set, and the safe set has no simple closed form we could find (the
+central-span and t=2-count features do not separate it — /tmp/findinv.py). Hence
+the Vasya direction is reduced to: *exhibit an invariant J that is genuinely
+self-maintaining and implies "no live window" on Petya-turn positions.* This is
+open.
+
+================================================================================
+## PART B — Petya wins for k ≤ m+1 (Lemma B1 PROVED; Lemma B2 OPEN)
+================================================================================
+
+Technique: Petya reaches a **trapped** position; then Lemma B1 finishes.
 
 **Lemma B1 (trapped ⇒ Petya wins on the next exchange) — PROVED.**
 
-*Definition.* Call a position **trapped** if it is Vasya's turn (cut-count even),
-there is no mass-k ball yet, and there exist two live k-windows
-W₁ = [a₁, a₁+k] and W₂ = [a₂, a₂+k], with respective lone interior cuts u₁, u₂,
-such that
-  (i) u₁ ≠ u₂ (distinct interior cuts), and
-  (ii) no **removable** cut is an endpoint of both windows — i.e. the set
+*Definition.* A position is **trapped** if it is Vasya's turn (cut-count even),
+there is no mass-k ball, and there exist two live k-windows W₁ = [a₁, a₁+k],
+W₂ = [a₂, a₂+k] with lone interior cuts u₁, u₂ such that
+  (i) u₁ ≠ u₂, and
+  (ii) no removable cut is an endpoint of both windows: the set
        {a₁, a₁+k} ∩ {a₂, a₂+k} contains no present interior cut (it may contain
        the non-removable ends 0 or 2m, which is harmless).
 
-*Claim.* From a trapped position Vasya cannot avoid losing: after any Vasya move,
-Petya creates a mass-k ball on his immediately following move.
+*Claim.* From a trapped position, after any Vasya move Petya creates a mass-k ball
+on his immediately following move.
 
-*Proof.* It is Vasya's turn, and a merge **removes exactly one present cut** — a
-merge can never add a cut. Let c be the single interior cut Vasya removes. We show
-that, in every case, at least one of W₁, W₂ remains a live window (both endpoints
-still present, still exactly one interior cut present), and then Petya removes that
-window's lone interior cut to complete a mass-k ball.
+*Proof.* It is Vasya's turn, and a merge removes exactly one present cut and adds
+none. Let c be the single cut Vasya removes. For each i, Wᵢ remains a live window
+(both endpoints present, exactly one interior cut present) **unless** the removed
+cut c is one of the three present cuts attached to Wᵢ — an endpoint aᵢ, an endpoint
+aᵢ+k, or the lone interior cut uᵢ — because removing any other cut leaves aᵢ, aᵢ+k,
+uᵢ all present and adds nothing inside. We case on c.
 
-Removing the single cut c affects the windows only as follows. For each i, the
-window Wᵢ survives as a live window unless the removed cut c is one of the three
-present cuts attached to Wᵢ, namely an endpoint aᵢ, an endpoint aᵢ+k, or the lone
-interior cut uᵢ. Consider the disposition of c.
-
-- **Case 1: c = u₁.** Then removing u₁ leaves the k-window [a₁, a₁+k] with interior
-  count 0 — Vasya has himself created a mass-k ball, and Petya has already won (in
-  fact the game ends in Petya's favor at this very moment). Symmetrically if c = u₂.
-- **Case 2: c is an endpoint of W₁ (c = a₁ or c = a₁+k) but c is not attached to
-  W₂.** "Not attached to W₂" means c ∉ {a₂, a₂+k, u₂}. Then W₁ is destroyed (one of
-  its endpoints is gone, so the pair at distance k no longer both present), but W₂
-  is untouched: a₂, a₂+k, u₂ are all still present, and no new cut appeared, so W₂
-  still has exactly its one interior cut u₂. Thus W₂ remains live. Petya removes u₂,
-  creating a mass-k ball at [a₂, a₂+k].
-- **Case 3: symmetric to Case 2 with the roles of W₁, W₂ exchanged** (c attached to
-  W₂ as an endpoint but not attached to W₁): W₁ remains live; Petya removes u₁.
-- **Case 4: c attached to both W₁ and W₂.** We rule this out. By condition (i)
-  u₁ ≠ u₂, and c is a single cut, so c cannot be both u₁ and u₂; and Cases 1 handle
-  c = u₁ or c = u₂. The only remaining way for c to be attached to both is for c to
-  be an endpoint of W₁ *and* an endpoint of W₂, i.e.
-  c ∈ {a₁, a₁+k} ∩ {a₂, a₂+k}. But c is an interior cut Vasya removed, hence
-  removable, and condition (ii) says no removable cut lies in
-  {a₁, a₁+k} ∩ {a₂, a₂+k}. Contradiction. So Case 4 is empty.
-- **Case 5: c attached to neither window** (c ∉ {a₁,a₁+k,u₁} and
-  c ∉ {a₂,a₂+k,u₂}). Then both W₁ and W₂ remain live; Petya removes u₁.
+- **Case 1: c = u₁ (or c = u₂).** Then removing u₁ leaves window [a₁, a₁+k] with
+  interior count 0 — Vasya has himself created a mass-k ball, and Petya has won at
+  that moment. Symmetric for c = u₂.
+- **Case 2: c is an endpoint of W₁ but c is not attached to W₂** (c ∉ {a₂, a₂+k,
+  u₂}). Then W₁ is destroyed, but W₂ keeps a₂, a₂+k, u₂ all present and gains no
+  interior cut, so W₂ is still live. Petya removes u₂, creating a mass-k ball at
+  [a₂, a₂+k].
+- **Case 3: symmetric to Case 2** with W₁, W₂ exchanged: W₁ stays live; Petya
+  removes u₁.
+- **Case 4: c attached to both W₁ and W₂.** Ruled out. By (i) u₁ ≠ u₂, and c is a
+  single cut, so c is not both u₁ and u₂; Case 1 handles c ∈ {u₁, u₂}. The only
+  remaining way to be attached to both is c ∈ {a₁, a₁+k} ∩ {a₂, a₂+k}. But c is an
+  interior cut Vasya removed (hence removable), and condition (ii) says no
+  removable cut lies in {a₁, a₁+k} ∩ {a₂, a₂+k}. Contradiction.
+- **Case 5: c attached to neither window.** Both W₁, W₂ remain live; Petya removes
+  u₁.
 
 In every case some live window survives Vasya's move (or Vasya has already lost),
-and Petya then removes its lone interior cut, producing a mass-k ball. Hence a
-trapped position is a Petya win. ∎
+and Petya removes its lone interior cut, producing a mass-k ball. ∎
 
-*Verification (mechanism, not substitute for proof).* The above case analysis was
-checked exhaustively: over all 901 trapped positions for m = 3..6 (every k),
-for **every** Vasya reply Petya has a completing move — 0 exceptions
-(/tmp/b1_verify.py). The written proof stands on its own.
+**Scaffolding facts (proved/verified).**
+- Petya makes his moves on odd cut-counts: exactly **m** merges total. At k=m+1
+  the optimal game lasts 2m−1 merges and Petya makes m of them — zero slack, so at
+  k=m+1 every Petya move must make progress (verified m=4..7).
+- For k ≤ m every Petya first move wins (slack); at k=m+1 the **unique** winning
+  first move is the centre cut m (verified m=3..6, /tmp/partb_check.py). So the
+  binding case is k = m+1, and no end-anchored greedy can be correct there.
 
 **Lemma B2 (Petya forces a trapped position from the start) — OPEN GAP.**
 
-What is established: define the certificate set G of Petya-turn positions from which
-Petya can, in one move, reach (a) a mass-k ball, (b) a trapped position, or (c) a
-Vasya-turn position all of whose replies lie in G. Backward induction computes G;
-the start position lies in G for **every** k ≤ m+1 and m = 4..7, and lies outside G
-for k = m+2 (/tmp/b2_fixpoint.py). Combined with Lemma B1 this *correctly* decides
-the game for those m. But:
+Target geometry: an interval [L, L+k+1] whose present cuts are exactly
+{L, L+1, L+k, L+k+1}. Then W₁ = [L, L+k] (lone interior L+1) and W₂ = [L+1, L+k+1]
+(lone interior L+k) are live with distinct interiors and no shared removable
+endpoint — a trapped position. To build it Petya must clear the k−2 "shared
+interior" cuts {L+2,…,L+k−1} while the 4 frame cuts survive; that is k−2 Petya
+merges, with k−2 Vasya merges interleaved trying to break a frame.
 
-1. **The forcing depth grows linearly in m** (≈ m−1 Petya moves for k near m+1), so
-   the m ≤ 7 fixpoint computation proves nothing for m > 100. An m-uniform argument
-   is required.
-2. **No simple greedy realizes G.** As recorded under "Approaches tried", five
-   natural describable strategies all fail for k near m+1, because the unique
-   winning first move at k = m+1 is the centre merge and the start has no winning
-   end-move; the real strategy must maintain two interior blocks straddling the
-   centre, chosen dynamically. We could not write down and prove such an
-   m-uniform strategy this round.
+What is established: a backward-induction certificate set (positions from which
+Petya forces a trapped position or a mass-k ball) equals the true Petya-win set for
+all k ≤ m+1 and m = 4..7, and the start lies in it (it lies outside for k = m+2).
+Combined with Lemma B1 this *correctly* decides the game for those m. But (1) the
+forcing depth grows linearly in m, so the m ≤ 7 fixpoint proves nothing for
+m > 100; and (2) no fixed describable greedy realizes the certificate set (five
+natural greedy strategies all fail for k near m+1 — prior rounds). The intended
+engine — "maintain a family of overlapping targets straddling the centre; when
+Vasya breaks one frame, shift the target one step the other way, reusing the
+already-cleared shared interior (adjacent targets share k−2 interior cuts)" — is
+plausible but we could NOT turn it into an explicit m-uniform potential or pairing
+argument checked against all Vasya replies. **This is the genuine open step; we do
+not paper over it.**
 
-Therefore **the Petya direction is reduced to Lemma B2 but not completed.** We do
-NOT claim Part B as solved. The reduction (cut language + Lemma B1) and the verified
-correctness of the certificate set are the rigorous progress; the explicit
-m-uniform forcing strategy is the remaining work.
-
----
-
-### Part A (k ≥ m+2, Vasya wins) — OPEN
-
-Vasya's direction is unsolved. The natural invariant I = "no mass-k ball and no live
-k-window" is the correct *necessary* feature of safe positions but is **not** a
-self-maintaining static set: there are Petya-turn I-positions (e.g. precursors of
-(1,1,4,1,1) at m=4, k=6) from which every Vasya reply breaches I, yet which are
-genuine Petya-win positions — so the safe set is strictly smaller than I. The
-round-6 outline's proposed maintenance lemma (Lemma A1) targets a two-window
-obstruction, but the actual obstruction is a "half-built central" configuration, so
-the mechanism is aimed at the wrong target. A genuinely stronger, explicitly
-characterized invariant J ⊊ I, provably Vasya-restorable uniformly in m, is needed
-and is not yet available. (See the round-6 outline review for the brute-force
-disproof of I's maintainability.) Part A therefore remains open.
-
+================================================================================
 ### Final answer
 
-The characterization is **Petya wins iff k ≤ m+1, Vasya wins iff k ≥ m+2** (boundary
-k = m+1 is a Petya win, k = m+2 a Vasya win), matching the full minimax for
-m = 3..7 and all 1 < k < 2m. The Petya direction is reduced to Lemma B2 (an open
-forcing step) with the certificate Lemma B1 fully proven; the Vasya direction is
-open. Status: partial.
+The characterization is **Petya wins iff k ≤ m+1, Vasya wins iff k ≥ m+2**
+(boundary k = m+1 a Petya win, k = m+2 a Vasya win), matching the full minimax for
+m = 3..7 and all 1 < k < 2m. Proved this round in full and m-uniformly: the cut
+reformulation with correct parity, Lemma A0, the core safety fact (Petya cannot win
+out of a no-live position), and Lemma B1 (trapped ⇒ Petya wins). Open: a
+self-maintaining Vasya invariant for k ≥ m+2 (J′ shown necessary but NOT
+self-maintaining, with an explicit counterexample), and Petya's m-uniform forcing
+Lemma B2 for k ≤ m+1. Status: **partial.**
 
-Scripts in /tmp/ reproduce every numeric claim: b2_explore.py (threshold in cut
-language), a0.py (Lemma A0), b1_verify.py (Lemma B1 over all trapped positions),
-b2_fixpoint.py (certificate set = win set, m=4..7), and b2_greedy/two/central/adapt/
-think.py (the failures of describable greedy strategies).
+Scripts in /tmp/ reproduce every numeric claim: partb_check.py (threshold, slack,
+unique centre move), a_verify.py (Vasya strategy wins on its reachable set,
+m=3..7), Jprime_general.py + note_check.py (J′ not self-maintaining;
+{0,1,2,3,6,8} counterexample), distinguish.py + findinv.py (J′ necessary but no
+clean safe-set characterization).
 
 ## Full proof
-(absent — Status is partial; Lemma B2's m-uniform forcing strategy and the entire
-Vasya direction remain unproven.)
+(absent — Status is partial. Proved in full: Lemma A0, the core safety fact, and
+Lemma B1. The two remaining gaps are a self-maintaining Vasya invariant for
+k ≥ m+2 and Petya's forcing Lemma B2 for k ≤ m+1.)
