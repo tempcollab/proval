@@ -2,10 +2,11 @@
 solved
 
 ## Approaches tried
+- **Round 2 fix:** closed the one reviewer-flagged gap — well-definedness of ᾱ (that A(n) depends only on n mod p) was previously asserted as "part of" A being a function of the CRT pair, which is a logical non-sequitur. Replaced with a genuine proof (Lemma 1(b), Steps A–B) derived directly from (⋆): the n=1 pivot forces a≡1 on one full class W; the pivot w₀=CRT(W,1) (unit mod p−1) with equation (B) m^{E(s)} ≡ a(mw₀) and full mod-(p−1) coverage of mw₀ forces A single-valued on every class rW. Uses only (⋆), Lemma 1(a), Fermat — no circular dependence on bijectivity/linearity. Verified the mechanism (Steps A, B, equation (B), single-valuedness, edge case r=W) by pure-Python integer arithmetic on family members for p=11, λ∈{2,3,5,7} (QR and non-QR).
 - CRT decomposition Z/p(p-1)Z ≅ Z/pZ × Z/(p-1)Z (CRT), Fermat to reduce exponents mod p-1, an **E-free** specialization m ≡ ᾱ(x)⁻¹ (mod p) that collapses the FE to ᾱ(ᾱ(x)⁻¹x)=1 and forces linearity ᾱ(x)=λx without any prior knowledge of the exponent E, then a quadratic-character-sum bound to force E(n)≡n (mod p-1) off the multiples of p, and a QR/order analysis at the multiples of p — **worked, complete**. Final count (p-1)/2·(1+2^{p-1}), stated and verified for p=11 (=5125) by exhaustive search.
 
 ## Current best
-Complete solution (below). The dependency chain is acyclic: Lemma 1 (well-definedness + ᾱ a bijection) → Lemma 2 (ᾱ(x)=λx, proved by an E-FREE specialization, so it does **not** use Lemma 3) → Lemma 3 (E(n)≡n mod p-1 for p∤n, uses only Lemma 2) → Lemma 4 (the multiples-of-p freedom) → Sufficiency → Count.
+Complete solution (below). The dependency chain is acyclic: Lemma 1(a) (A(n)=0 ⟺ p|n, from (⋆)) → Lemma 1(b) (**A(n) depends only on n mod p**, proved from (⋆) by the n=1 pivot [Step A] and the w₀=CRT(W,1) pivot with full mod-(p−1) coverage [Step B], using only (⋆), 1(a) and Fermat — no bijectivity, no exponent info) → Lemma 1(c) (ᾱ a bijection, from surjectivity hypothesis) → Lemma 2 (ᾱ(x)=λx, proved by an E-FREE specialization, so it does **not** use Lemma 3) → Lemma 3 (E(n)≡n mod p-1 for p∤n, uses only Lemma 2) → Lemma 4 (the multiples-of-p freedom) → Sufficiency → Count. The earlier exposition gap (well-definedness of ᾱ asserted as "part of" A being a CRT-pair function) is now closed by Lemma 1(b)'s Steps A–B.
 
 ## Full proof
 
@@ -33,7 +34,7 @@ exponent e ≥ 1 we have t^e ≡ 0. All f-values lie in S_p = {1,…,N}, hence e
 appearing in (⋆) is an integer ≥ 1, so the rule "base ≡ 0 ⇒ power ≡ 0" is always valid
 (we never form 0⁰).
 
-### Lemma 1 (Well-definedness of the CRT coordinates; A(kp)=0; ᾱ a bijection of (Z/pZ)\*)
+### Lemma 1 (A(kp)=0; A depends only on n mod p; ᾱ a bijection of (Z/pZ)\*)
 
 Define A(n) := f(n) mod p ∈ {0,…,p−1} and E(n) := f(n) mod (p−1). By CRT the pair
 (A(n), E(n)) determines f(n) ∈ S_p uniquely, and conversely. Because the domain of f is
@@ -50,10 +51,51 @@ m coprime to p: then mn ≡ 0 (mod p), so the right side f(mn)^n ≡ 0 (mod p). 
 with the left side, (m f(n))^{f(shift)} ≡ 0, and since m ≢ 0 this forces f(n) ≡ 0
 (mod p), i.e. **A(kp) = 0**. So A(n) = 0 precisely on the multiples of p.
 
-**(b) Induced map on Z/pZ.** Define ᾱ : Z/pZ → Z/pZ by ᾱ(x) := A(n) for any n with
-n ≡ x (mod p); this is well-defined by Lemma 1's first paragraph (A depends only on the
-coordinate pair, but we will only ever use that A depends on n mod p — which is part of
-that statement). By (a), ᾱ(0) = 0 and ᾱ(x) ≠ 0 for x ≠ 0.
+**(b) A(n) depends only on n mod p; the induced map ᾱ on Z/pZ.** This is the crux and is
+proved here in full from (⋆) — it is *not* a free consequence of A being a function of the
+CRT pair (being a function of (n mod p, n mod p−1) does **not** by itself make A independent
+of the (p−1)-coordinate). For p∤n write a(n) := A(n) ∈ (Z/pZ)\* (a unit by (a)); we prove
+a(n) depends only on n mod p, and that A(kp)=0 already gives the multiples of p. The argument
+uses only (⋆), part (a), and Fermat — no bijectivity and no information about exponents — so it
+introduces no circular dependence on Lemmas 2–4.
+
+*Step A: a ≡ 1 on one full residue class.* Apply (⋆) with n = 1 and any m with
+m ≡ a(1)⁻¹ (mod p), m otherwise arbitrary (its residue mod p−1 is free). The left base is
+m·f(1) ≡ a(1)⁻¹·a(1) = 1 (mod p), so the left side is 1^{f(1+(p−1)m)} = 1 (the exponent is
+≥ 1). The right side is f(m·1)^1 = f(m), i.e. ≡ a(m) (mod p). Hence
+$$ a(m) \equiv 1 \pmod p \qquad\text{for every } m \text{ with } m \equiv a(1)^{-1}\!\!\pmod p. $$
+Set W := a(1)⁻¹ ∈ (Z/pZ)\*. Then **a is single-valued and equal to 1 on the entire class W**,
+i.e. A(z) = 1 for every z ≡ W (mod p).
+
+*Step B: every class is single-valued.* Fix the pivot element w₀ := CRT(W, 1) ∈ S_p, the unique
+element with w₀ ≡ W (mod p) and w₀ ≡ 1 (mod p−1); since W ≠ 0, p∤w₀, and by Step A, a(w₀) = 1.
+Apply (⋆) with this n = w₀ and an arbitrary m with p∤m:
+$$ (m\,f(w_0))^{\,f(w_0+(p-1)m)} \equiv f(m w_0)^{\,w_0} \pmod p. $$
+The left base is m·a(w₀) ≡ m (mod p). On the right, w₀ ≡ 1 (mod p−1), so by Fermat
+f(m w₀)^{w₀} ≡ a(m w₀)^{w₀} ≡ a(m w₀) (mod p) — note m w₀ is coprime to p, so a(m w₀) is a unit,
+and the exponent reduction is legitimate. Let s := w₀ + (p−1)m be the shift argument; by (0),
+$$ s \equiv w_0 - m \pmod p, \qquad s \equiv w_0 \equiv 1 \pmod{p-1}. $$
+Thus E(s) := f(s) mod (p−1) is a well-defined integer (whether or not s is a multiple of p — if
+p|s then f(s) is one of the f(kp) values, still an integer ≥ 1). The equation becomes
+$$ m^{\,E(s)} \equiv a(m w_0) \pmod p. \tag{B}$$
+Now **fix the residue r := m mod p** and let m vary over the p−1 elements with m ≡ r (mod p)
+(its residue mod p−1 free). Two things happen:
+- The shift s has s mod p = w₀ − r and s mod (p−1) = 1 **both fixed**, so by CRT s is a *single
+  fixed element* of S_p, independent of which such m we took. Hence E(s) is a fixed integer and
+  the left side m^{E(s)} ≡ r^{E(s)} (Fermat, m ≡ r a unit) is a **fixed value depending only on r**.
+- The product m w₀ has m w₀ ≡ r·W (mod p) fixed, while (m w₀) mod (p−1) = (m mod p−1)·1 ranges
+  over **all** residues mod (p−1) as m varies (w₀ ≡ 1 is a unit mod p−1). By CRT, m w₀ ranges over
+  the **entire residue class r·W (mod p)**.
+
+Combining, (B) forces A(z) ≡ r^{E(s)} (mod p) for **every** z in the class r·W (mod p). That is,
+**A is single-valued on the class rW**, with common value r^{E(s)}. As r ranges over (Z/pZ)\*,
+the product rW ranges over all of (Z/pZ)\* (W is a unit), so A is single-valued on every nonzero
+class. By (a), A ≡ 0 on the class 0. Therefore **A(n) depends only on n mod p**, for all n.
+
+This justifies defining ᾱ : Z/pZ → Z/pZ by ᾱ(x) := A(n) for any (equivalently, every) n with
+n ≡ x (mod p): the value is independent of the representative, exactly by the single-valuedness
+just proved. By (a), ᾱ(0) = 0 and ᾱ(x) ≠ 0 for x ≠ 0. (We do not yet claim ᾱ is multiplicative
+or linear; that is Lemma 2, which may now legitimately treat ᾱ as a genuine function.)
 
 **(c) ᾱ is a bijection of (Z/pZ)\*.** The hypothesis "for every c ∈ {0,…,p−1} there is
 a ∈ S_p with f(a) ≡ c (mod p)" says A is surjective onto {0,…,p−1}, i.e. ᾱ : Z/pZ → Z/pZ
@@ -68,8 +110,9 @@ $$ m \equiv \bar\alpha(x)^{-1} \pmod p $$
 left base of (⋆) is m f(n) ≡ ᾱ(x)^{-1}·ᾱ(x) = 1 (mod p), so the **left side equals 1^{·} = 1**
 regardless of the (unknown) exponent f(n+(p−1)m) (which is ≥ 1). Therefore (⋆) becomes
 $$ \bar\alpha(mn) \equiv \text{(right base)} ,\qquad \bar\alpha(mn)^{\,n} \equiv 1 \pmod p, \tag{2.1}$$
-since mn ≡ x·ᾱ(x)^{-1} =: w (mod p) is coprime to p (so A(mn)=ᾱ(w)) — note **the value
-w = x·ᾱ(x)^{-1} is independent of which representatives m, n we picked**.
+since mn ≡ x·ᾱ(x)^{-1} =: w (mod p) is coprime to p, so A(mn) = ᾱ(w) **by Lemma 1(b)** (A
+depends only on the residue mod p, now established): the value A(mn) is the single number ᾱ(w),
+independent of which representatives m, n we picked. (Indeed w = x·ᾱ(x)⁻¹ depends only on x.)
 
 Now keep x fixed and vary n over all elements of S_p with n ≡ x (mod p). As n ranges over
 this set, n mod (p−1) takes **every** residue mod (p−1): writing n = x + p·t, we have
