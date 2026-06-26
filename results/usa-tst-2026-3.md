@@ -92,6 +92,60 @@ partial
   $>w/r$ (an unserved direction)" could not be made airtight. — DEAD END as written;
   the corrected chord estimate is recorded so the slip is not repeated.
 
+- **Bounded-aspect compactification to a FINITE blocking set.** Restricting the
+  candidate rectangle's aspect ratio to $w\in[1/2,2]$ forces every candidate (of
+  area $1$, centered anywhere it could matter) into a fixed bounded disk, so only
+  $S$-points in a bounded annulus $\{r\le|q|\le\rho_*\}$ ($\rho_*<1.04$) can block any
+  candidate; that set is FINITE by Lemma B. This converts the open core of Lemma C
+  from an infinite-region density problem into a problem over a *finite* blocking set
+  — eliminating the unbounded-region / density-$1$ wall structurally. — WORKED as a
+  rigorous reduction; recorded below under *Current best → Lemma C, Reduction R
+  (bounded-aspect finite blocking set)*. This is the new established progress this
+  round.
+
+- **Centered $(\theta,w)$-box covering argument (Sub-lemmas C/M/S of the round-1
+  outline): BROKEN.** The plan fixed the rectangle CENTER at $0$, searched the
+  $2$-parameter box $(\theta,w)\in[0,\pi)\times[1/2,2]$, and tried to bound the total
+  blocked measure $\sum_i|B_i|<\pi\cdot\tfrac32$ via an overlap-multiplicity bound
+  $\le N$. **DEAD END — disproved by an explicit counterexample, do not retry.**
+  Take $S$ to be $\approx 2000$ concyclic points equally spaced on the circle of
+  radius $\rho\approx 0.695$, with empty ball $B(0,0.69)$. This $S$ satisfies every
+  hypothesis of the open core: it is finite (hence locally finite, closed, discrete);
+  a line meets a circle in $\le 2$ points so every line carries $\le 2\le 2025$
+  points; the empty ball $B(0,0.69)$ has $r=0.69<1/\sqrt2$. A scan over the full
+  aspect box $w\in[1/2,2]$ (and the narrow warm-up window $w\in[0.9,1.1]$) shows that
+  **no rectangle centered at $0$ is $S$-empty** — the ring blocks every centered
+  candidate. An $S$-empty area-$1$ rectangle does exist for this $S$, but **only with
+  a TRANSLATED (nonzero) center.** Hence any argument that fixes the rectangle center
+  at $0$ is doomed: translation freedom is mandatory, not optional. The
+  $(\theta,w,t)$-enlargement the outline filed as a "fallback" is in fact load-bearing.
+
+- **Sub-lemma M ($|B_i|\to0$): FALSE near the inner edge $\rho=r$.** The claim that
+  the per-point blocked measure $|B_i|$ is uniformly small was only true near the
+  OUTER edge $\rho\approx\rho_*$. At the inner edge a single point at $\rho\approx0.60$
+  blocks measure $\approx1.64$ of the box (total box measure $\pi\cdot\tfrac32\approx
+  4.712$): $\rho{=}0.60\!\to\!1.644$, $\rho{=}0.65\!\to\!1.261$, $\rho{=}0.70\!\to\!
+  0.893$, $\rho{=}1/\sqrt2\!\to\!0.843$, $\rho{=}1.00\!\to\!0.014$, $\rho{=}1.031\!\to\!
+  0$. Three inner points already exceed the entire budget, so $\sum_i|B_i|<\pi\cdot
+  \tfrac32$ is unattainable since the annulus holds unboundedly many points. — DEAD END.
+
+- **Sub-lemma S (overlap-multiplicity $\le N$ $\Rightarrow$ sub-critical sum):
+  quantitatively impossible.** The bound $\sum_i|B_i|\le N\cdot(\text{union of bands})
+  \le N\cdot\pi\tfrac32\approx 9540$ is $\sim2000\times$ above the target $\pi\tfrac32$;
+  closing it would need average band measure $<(\pi\tfrac32)/N\approx0.0023$, yet a
+  single inner point has band $\approx1.64$ (a factor $\sim700$ too big). It inherits
+  the falsity of Sub-lemma M. This is the SAME density-$1$ wall relocated from
+  $(u,w,\text{position})$ to $(\theta,w)$; the concyclic $\le2$-per-line ring defeats
+  it. — DEAD END.
+
+- **$r$-near-$1/\sqrt2$ warm-up: also fails.** The claimed "numerically-verified
+  rotation averaging" base case conflates the *candidate* circumradius ($\approx
+  1/\sqrt2$ for $w\approx1$) with the *annulus* radius (full box gives $\rho_*\approx
+  1.031$, not $1/\sqrt2$). Even restricting to the thin shell $w\in[0.9,1.1]$, the
+  concyclic ring at $\rho=0.695$ ($\le2$ per line) blocks every centered narrow-$w$
+  rectangle, so the $\sum<\text{box}$ argument fails exactly as in the general case.
+  — DEAD END; the warm-up is NOT a valid base case.
+
 ## Current best
 
 Set $N=2025$ throughout (the argument is uniform in $N\ge 1$). For a unit vector
@@ -266,7 +320,85 @@ The reduction statement is the restatement: "$S\cap\Sigma_u$ has projection
 $\{\operatorname{par}_u(q):q\in S\cap\Sigma_u\}$ omitting the open interval $(X,X+\tfrac1w)$
 of length $\tfrac1w$" is exactly the hypothesis. $\square$
 
-**Where the crux now stands.** By A1 we may assume $r<1/\sqrt2$. By A2 it suffices to
+#### Lemma C, Reduction R (bounded-aspect ⇒ FINITE blocking set). DONE.
+
+This is the new established reduction this round. It does **not** close the open core,
+but it converts it from an infinite-region (density-$1$) problem into a problem over a
+*finite* set of obstructing points — removing the unbounded-region obstruction
+structurally. The closure on top of it remains open (see the dead ends in
+*Approaches tried* for why the centered-box covering attempt on this finite set fails).
+
+**Setup.** Among area-$1$ rectangles, parametrize the aspect by the width $w>0$ (length
+$1/w$). Restrict attention to the **bounded-aspect window** $w\in[1/2,2]$. (Restricting
+the search can only make the conclusion harder to reach; it never produces a *false*
+empty rectangle, since any rectangle we exhibit with $w\in[1/2,2]$ is a genuine area-$1$
+rectangle. The point of the restriction is the finiteness it buys, recorded below.)
+
+**Claim R1 (bounded circumradius).** Every area-$1$ rectangle $R$ with width
+$w\in[1/2,2]$ has circumradius
+$$\operatorname{circ}(R)=\tfrac12\sqrt{w^2+\tfrac1{w^2}}\ \le\ \rho_*:=\tfrac12\sqrt{4+\tfrac14}
+   =\tfrac{\sqrt{17}}4=1.0307\ldots<1.04 .$$
+Hence the strict interior of any such $R$ is contained in the open disk of radius
+$\rho_*$ about its own center: $R\subseteq B(\operatorname{center}(R),\rho_*)$.
+
+*Proof.* A rectangle with sides $\ell=1/w$ and $w$ has half-diagonal
+$\tfrac12\sqrt{\ell^2+w^2}=\tfrac12\sqrt{w^2+1/w^2}$; every interior point is at distance
+$<\tfrac12\sqrt{w^2+1/w^2}$ from the center (the diagonal's endpoints are the farthest
+*corners*, on the closed boundary, at distance exactly the half-diagonal; interior points
+are strictly closer). The function $f(w)=w^2+1/w^2$ has derivative
+$f'(w)=2w-2/w^3=2w^{-3}(w^4-1)$, which is $<0$ on $(0,1)$ and $>0$ on $(1,\infty)$; so on
+the compact interval $[1/2,2]$ the maximum of $f$ is attained at an endpoint. At $w=2$,
+$f=4+\tfrac14=\tfrac{17}4$; at $w=\tfrac12$, $f=\tfrac14+4=\tfrac{17}4$ (the two endpoints
+are symmetric under $w\mapsto1/w$, which fixes $f$). Thus $\max_{[1/2,2]}f=\tfrac{17}4$ and
+$\operatorname{circ}(R)\le\tfrac12\sqrt{17}/2=\tfrac{\sqrt{17}}4=\rho_*$. $\square$
+
+**Claim R2 (only a bounded annulus can block; that annulus carries finitely many
+points).** It suffices to search among bounded-aspect area-$1$ rectangles whose interior
+meets the empty ball $B(0,r)$: indeed, the empty ball $B(0,r)$ is itself $S$-empty and
+nonempty, so if any $S$-empty area-$1$ rectangle exists at all (which is what we are
+trying to establish), we are free to look for one that overlaps the empty ball, and a
+candidate whose interior is disjoint from $B(0,r)$ is irrelevant to closing the central
+gap. Restrict, then, to candidates $R=R(c,\theta,w)$ with $w\in[1/2,2]$ whose interior
+meets $B(0,r)$. By R1, $R\subseteq B(c,\rho_*)$, so $R$ meeting $B(0,r)$ forces
+$|c|<\rho_*+r$ (the disks $B(c,\rho_*)$ and $B(0,r)$ overlap). Now if a point $q\in S$
+lies in the strict interior of such an $R$, then by R1 again $|q-c|<\rho_*$, hence
+$$|q|\le|q-c|+|c|<\rho_*+(\rho_*+r)=2\rho_*+r ,$$
+and also $|q|\ge r$ since $q\notin B(0,r)$ (the empty ball contains no point of $S$).
+Therefore the only points of $S$ that can block any bounded-aspect candidate meeting the
+empty ball lie in the bounded annulus
+$$A=\{q:\ r\le|q|<2\rho_*+r\}\qquad(2\rho_*+r<2.062+r<2.77).$$
+By **Lemma B** (local finiteness: every bounded subset of $\mathbb{R}^2$ meets $S$ in
+finitely many points), the annulus $A$ being bounded gives
+$$A\cap S=\{q_1,\dots,q_m\}\quad\text{a finite set.}$$
+
+**Consequence (the reduction).** Restricted to the bounded-aspect window $w\in[1/2,2]$
+and to candidates meeting the empty ball, the question "is there an $S$-empty area-$1$
+rectangle?" depends on $S$ only through the **finite** set $A\cap S$ of $m$ points.
+Concretely, for any center $c$ with $|c|<\rho_*+r$, orientation $\theta$, and width
+$w\in[1/2,2]$, the candidate $R(c,\theta,w)$ is $S$-empty iff **none** of
+$q_1,\dots,q_m$ lies in its strict interior. Reason: any point $q\in S\setminus A$ has
+either $|q|<r$ (so $q\notin S$, impossible — these points are not in $S$) or
+$|q|\ge2\rho_*+r$; in the latter case $|q-c|\ge|q|-|c|>2\rho_*+r-(\rho_*+r)=\rho_*$, so
+$q\notin B(c,\rho_*)\supseteq R$ by R1, i.e. $q$ does not block $R$. Thus only the finite
+set $\{q_1,\dots,q_m\}$ can block, as claimed.
+
+This is a genuine advance: the open core no longer involves an infinite point set in an
+unbounded region (the source of the density-$1$ wall in every earlier attempt). It is now
+a problem about a **finite** configuration $\{q_1,\dots,q_m\}$ in a bounded annulus,
+subject to the per-line bound (2) (each line carries $\le2025$ of the $q_i$) — modulo the
+remaining combinatorial closure, which is still open.
+
+**What this reduction does NOT give.** It does **not** let us fix the center at $0$. As
+the concyclic counterexample in *Approaches tried* shows, $m$ can be of order $2000$ with
+$\le2$ points per line, and these can block every rectangle centered at $0$ over the whole
+window $w\in[1/2,2]$; the $S$-empty rectangle then exists only at a nonzero center. So the
+remaining argument must search over the center $c$ as well (translation freedom), and must
+survive the concyclic $\le2$-per-line configuration. The reduction makes the set of
+obstructions finite; it does not by itself produce the empty rectangle.
+
+#### Where the crux now stands.
+
+By A1 we may assume $r<1/\sqrt2$. By A2 it suffices to
 produce, in some direction $u$, a width-$w$ slab whose restricted parallel projection
 has a gap of length $1/w$. The empty ball $B(0,r)$ already gives, in *every* direction
 $u$ and for every width $w<2r$, a central gap: the slab $\Sigma_u$ contains no point
@@ -369,9 +501,27 @@ $r<1/\sqrt2$, find one direction $u$ and width $w$ whose width-$w$ slab has a
 length-$1/w$ gap in its parallel projection* (equivalently, produce one empty
 area-$1$ rectangle).
 
+**State of the open core after this round.** The new **Reduction R** (bounded-aspect
+$w\in[1/2,2]$ $\Rightarrow$ finite blocking set $\{q_1,\dots,q_m\}=A\cap S$ in the bounded
+annulus $\{r\le|q|<2\rho_*+r\}$, $\rho_*=\tfrac{\sqrt{17}}4<1.04$) is now established and
+rigorous. It removes the unbounded-region / infinite-area obstruction described above:
+within the bounded-aspect window the open core is a **finite** configuration problem,
+governed by the $m$ points $q_i$ and the per-line bound (2). What remains open is the
+combinatorial closure on this finite set, and the round-1 outline's attempt at it (a
+covering bound $\sum_i|B_i|<\pi\cdot\tfrac32$ for rectangles **centered at $0$**) is a
+**dead end** — see *Approaches tried*. The decisive lesson, proved by the explicit
+$\approx2000$-point concyclic ring at radius $0.695$ (empty ball $0.69$, $\le2$ points per
+line): an $S$-empty area-$1$ rectangle can be forced to have a **nonzero center**, so the
+closing argument must vary the center $c$ (translation freedom), not just $(\theta,w)$, and
+must survive the concyclic $\le2$-per-line configuration. The remaining gap is therefore a
+**translation-aware, deficiency/combinatorial** argument over the finite set
+$\{q_1,\dots,q_m\}$ — not a centered measure/averaging bound. This gap is still OPEN.
+
 ## Full proof
 
 (Not present: Status is `partial`. Cases 1, A, B, C0 and Lemma C sub-cases A1/A2 are
-complete and rigorous; the sole remaining gap is the open core of Lemma C — the
-sub-case $r<1/\sqrt2$, equivalently producing one width-$w$ slab gap of length $1/w$
-in some direction. See *Current best*.)
+complete and rigorous, as is the new bounded-aspect finite-blocking-set Reduction R. The
+sole remaining gap is the open core of Lemma C — the sub-case $r<1/\sqrt2$: a
+translation-aware combinatorial closure over the finite blocking set $A\cap S$ that
+survives the concyclic $\le2$-per-line configuration. The centered $(\theta,w)$-box
+covering attempt is a recorded dead end. See *Current best* and *Approaches tried*.)

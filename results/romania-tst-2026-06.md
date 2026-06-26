@@ -3,6 +3,45 @@ partial
 
 ## Approaches tried
 
+- **Congruence-aware propagation `C_k ⇒ C_{k+1}` (round 4, the B2/B3 reroute) — DEAD END for
+  the reroute; everything else stands.** The descent framework (predicate `C_k`, indexing
+  `n+1−k`, termination at `k=n`, size recursion `g(n) ≤ n·(n(n−1))^n < 2^{n^3}`) is correct
+  and the propagation's Case A (`S = T'∪{b'}` not bad) and Case B1 (inherited shift with both
+  endpoints in `T'`) close cleanly. The single open subcase is **B2/B3**: in the bad-`S` branch,
+  `C_k` may return a shift `x | b_i + z` (`i ≤ k`, an *old* accumulated base `b_i`) with one
+  endpoint equal to the new base `b'` — B2: `b' | b_i + z`, `z ∈ T'`; B3: `x | b_i + b'`,
+  `x ∈ T'`. The outline's proposed fix was the **congruence lever** "`b' ≡ z (mod b)` (both in
+  the depth-`k` fiber `Q`), hence `b | b' − z`, reroute into `T'`." I worked this out in full
+  and it **does not close the reroute**, for a structural reason that is now pinned down:
+  - The only valid bridge is the **merge identity**: from B2's `b' | b_i + z` and the fiber
+    relation `b' | z + c'` (`z ∈ Q' = Q_{b',c'}`) one gets `b' | b_i − c'`, hence
+    `b' | b_i + w` for **every** `w ∈ Q'` (so for all of `T'`). This is valid pure modular
+    arithmetic (the review's "Claim A", confirmed valid).
+  - But every such relation has the **old base `b_i` as a summand**, and `b_i ∉ Q` (it is an
+    ancestor base, external to the current fiber). To satisfy `C_{k+1}` we need an *inner triple
+    of `T'`* or a shift `x | b_j + z` with **both** endpoints in `T'`. The merge identity never
+    removes the external `b_i`: for `w_1, w_2 ∈ T'` it only yields `b' | w_1 − w_2` (already
+    known, both `≡ −c' (mod b')`), and one checks `b' ∤ w_1 + w_2` (else `b' | 2c' ⇒ b' | c'`,
+    antichain-false). So **no `S`-internal triple and no in-`T'` shift is produced** — B2/B3 are
+    not rerouted, and `S` is not forced good. The congruence `b | b' − z` the outline relied on
+    is true but irrelevant: it relates `b'` to `z` modulo the *parent* base `b`, while the
+    obstruction is the summand `b_i`, which it leaves untouched.
+  - The greedy structure of `B'` does not help either: `B'` is built inside `Q` and never
+    "sees" the relation `b' | b_i + z` (it involves `b_i ∉ Q`), so greedy cannot have caught a
+    triple. Lemma 0 on the genuine divisor-triple `(b', b_i, z)` gives only `b' < max(b_i, z)`,
+    with no control over which of `b_i, z` is larger.
+  - **Empirics are vacuous (confirmed exhaustively, matching the v1 review).** Over *all*
+    P(3)-antichains with elements ≤ 65 (499 of them), the descent produced **zero** secondary
+    fibers reaching the test size `n−1`; the "`S` bad" branch was entered **0** times, and
+    B2/B3 **0** times. Random P(4)/P(5) searches likewise reached the branch 0 times. So "0
+    B2/B3 violations" tests nothing — it is consistent with the reroute being false. The branch
+    is reachable in principle (the size-2 secondary fiber `Q_{17,11}={23,125}` exists in the
+    P(5)-antichain `{3,7,11,17,23,65,73,109,125}`, with `C_2` holding there *vacuously* because
+    the test size `n+1−2 = 4 > 2`), but a *bad* `T'` triggering B2/B3 was never realized.
+  Net: the propagation `C_k ⇒ C_{k+1}` is **unproven**; the obstruction (old-base summand `b_i`
+  is external to the fiber and survives every available identity) is genuine, not a presentation
+  gap. Do NOT retry the congruence-lever reroute as written.
+
 - **Induction on n via an extremal "maximal bad set" + fiber decomposition (this round).**
   The framing is solid and yields a rigorous reduction (recorded in *Current best*):
   every outside element is a "Case I" divisor (small) or a "Case II" summand lying in a
@@ -148,11 +187,31 @@ For `n = 1`, P(1) says every 2-subset contains a divisor-triple, impossible for 
 - The conditional arithmetic `n + n(n-1)·2^{(n-1)^3} < 2^{n^3}` (n = 2..8): correct, but only
   usable if the fiber bound holds.
 
-### The open gap
-Bound `|Q_{b,c}|` (conjecturally `≤ n`) and bound `#(Case I)`. Equivalently, upgrade Lemma 3's
-in-fiber *pair* to an in-fiber *triple* (or otherwise bound the fiber size). The false Key
-Claim "`Q_{b,c}` satisfies `P(n-1)`" must NOT be used. Until this is closed, the result is a
-rigorous reduction, not a full proof.
+### The open gap (updated round 4)
+The descent framework is the right line and is **almost** complete. Define, for `Q ⊆ A` and an
+ordered tuple of accumulated bases `(b_1,...,b_k)` (each `b_i ∈ A`):
+
+> **C_k(Q; b_1,...,b_k):** every `T ⊆ Q` with `|T| = n+1−k` either contains an inner
+> divisor-triple, or has distinct `x, z ∈ T` with `x | b_i + z` for some `i ≤ k`.
+
+`C_0 = P(n)` (proved), `C_1` = Lemma 3 (proved). Termination `C_n ⇒ Q = ∅` is proved (a
+`1`-subset shift `x | b_i + x` forces `x | b_i`, antichain-banned). The size recursion
+`h(k) ≤ n + n(n−1)·h(k+1)`, `h(n)=0`, gives `|A| ≤ h(0) ≤ n·(n(n−1))^n < 2^{n^3}` (arithmetic
+verified, `n ≥ 2`; `n=1` by the base case). **The one missing step is the propagation
+`C_k ⇒ C_{k+1}` along realizable fibers** — specifically its B2/B3 subcase, which the round-4
+analysis (recorded above) shows is *not* closed by the congruence lever: the obstruction is an
+old accumulated base `b_i` appearing as an external summand `x | b_i + z` that no in-fiber
+identity can internalize. The previously-flagged need to bound `|Q_{b,c}|`/`#(Case I)` is
+subsumed by this (Case I is empty under greedy-from-below `B`; the fiber bound is exactly the
+propagation). Until the B2/B3 reroute is closed — or the predicate `C_k` is redesigned so that
+old-base summands cannot leak in while *preserving* the termination lemma (any new clause must
+remain unsatisfiable at the `1`-subset level) — the result is a rigorous reduction plus a
+verified descent skeleton, not a full proof.
+
+The earlier-stated open gap (bound `|Q_{b,c}|`, conjecturally `≤ n`; bound `#(Case I)`) is
+retained for reference but is now folded into the propagation step above. The false Key Claim
+"`Q_{b,c}` satisfies `P(n-1)`" and the false claim "`|Q'| ≤ 1`" must NOT be used (both refuted;
+explicit counterexamples recorded).
 
 ## Proof outline (round 3 — full solution plan)
 
