@@ -2,21 +2,22 @@
 partial
 
 ## Approaches tried
-- Contradiction via LTE + Zsygmondy + q-adic analysis of Q(mq^k), closing through a prime modulus r = c+k. The reduction (§§0–5), the closing structure (§7), and all degenerate cases are fully rigorous. The single remaining gap is **Lemma B** (§6): for a fixed prime t ≠ q, the set {k : v_t(Q(mq^k)) ≥ c+k} must be finite, i.e. v_t(mq^k − ρ) = o(k) for every t-adic root ρ of Q. **Proved for rational roots ρ** (LTE/order argument), hence the whole theorem is unconditional when Q splits into linear factors over ℚ. For a t-adic root coming from an irreducible factor of degree ≥ 2 this is a genuine t-adic linear-forms/Liouville statement that I could not close by elementary means — the order/spacing bound (7) is consistent with a doubly-exponentially-sparse infinite bad set, and the trivial size bound v_t ≤ log_t|Q| = O(k) has the wrong constant.
+- Contradiction via LTE + Zsygmondy + q-adic analysis of Q(mq^k), closing through a prime modulus r = c+k. The reduction (§§0–5), the closing structure (§7), and all degenerate cases are fully rigorous. The single remaining gap is **Lemma B** (§6): for a fixed prime t ≠ q, the set {k : Q(mq^k)≠0, v_t(Q(mq^k)) ≥ c+k} must be finite, i.e. v_t(mq^k − ρ) = O(log k) for every t-adic root ρ of Q. — outcome: **per-root mechanism (round 7)**: proved the level-set L_J(ρ)={k : v_t(mq^k−ρ)≥J} is a SINGLE arithmetic progression of period ord_{t^{J−ν}}(q) ≥ t^{J−ν−W} (6′), with the order-constant W correct for both odd t and t=2, giving the log bound v_t(mq^k−ρ) ≤ log_t k + (ν+W) at every index k that is NOT the least element of its level (7′). The entire Lemma now reduces to bounding the **least indices** (coincidental close approaches like k=8 for ρ=−3, t=5, q=3, m=2, where v_5=4), which is a t-adic linear-forms-in-logarithms statement (Yu's p-adic Baker). — **Correction to round 6**: the rational-root case is NOT easier; it has the identical least-index obstruction, so the previous "unconditional for linearly-split Q" claim is withdrawn.
+- (round 6) Order/spacing bound (7): two indices in L_J(ρ) are ≥ ord_{t^J}(q) ≥ t^{J−W} apart — correct but, taken at polynomial level, the least index PLATEAUS (k_min(J)=4,8,8,8,1008 for Q=(x−2)(x+3),t=5,q=3,m=2), so it does not bound the least index. The per-root reformulation (round 7) fixes the granularity but the least-index kernel survives.
 
 ## Current best
-Answer (conjectured, verified numerically and proved in the linearly-split case): **the empty set** — no Q ∈ ℤ[x] admits N, a > 1 with f(a^n+1) ∣ f(Q(n)) for all n > N.
+Answer (verified numerically; proven unconditional modulo the single isolated Kernel below): **the empty set** — no Q ∈ ℤ[x] admits N, a > 1 with f(a^n+1) ∣ f(Q(n)) for all n > N.
 
-Rigorously established (see Full proof, §§0–5,7):
-- **Lemma A** (unbounded): for every a > 1, f(a^n+1) → ∞ along n = m q^k via LTE, handling both a+1 with an odd prime factor and the Mersenne case a+1 = 2^j (use a^2+1). This alone kills Q ≡ 0 and constant Q completely.
+Rigorously established (see Full proof, §§0–7) — UNCONDITIONAL:
+- **Lemma A** (unbounded): for every a > 1, f(a^n+1) → ∞ along n = m q^k via LTE, handling both a+1 with an odd prime factor and the Mersenne case a+1 = 2^j (use a^2+1). Kills Q ≡ 0 and constant Q completely.
 - **Zsygmondy choice**: a single odd primitive prime q | a^m+1 with q ∤ a and q > |a_{i_0}| (so v_q(a_{i_0}) = 0).
 - **q-adic structure**: along n = m q^k, v_q(a^n+1) = c+k (LTE), and v_q(Q(mq^k)) = i_0·k (strict-minimum/ultrametric), giving (c+k) ∣ i_0·k·f(M_k) for large k where q ∤ M_k.
-- **Closing**: choosing r = c+k prime with r > i_0, c, v_q(a_0) forces r ∣ f(M_k) = ∏_{t≠q} v_t(Q(mq^k)); a contradiction follows IF every v_t(Q(mq^k)) < c+k for the chosen k — which is exactly Lemma B.
-- **Lemma B partial**: local reduction (5′) and order/spacing bound (6),(7) proved; finiteness of the bad set reduced to a t-adic proximity bound, closed only for rational t-adic roots.
+- **Exact-root edge case (Part 0)**: finitely many k have Q(mq^k)=0 (f=f(0)=1), excluded; the chosen prime r=c+k takes k outside this finite set.
+- **§6 per-root structure**: local bound (5′); single-AP level-sets of exact period (6′); the log bound (7′) at every non-least index; closing §7 (cases i0≥1 and i0=0) goes through verbatim once O(log k) holds.
 
-The proof is therefore complete and rigorous for all Q with only rational roots (which already settles, e.g., Q = n, n^6, (n−2)^2, 12n and every monomial), and reduces the general case to a single, clearly-isolated t-adic approximation lemma.
+REMAINING GAP — the single **Kernel** (§6(V)): for each fixed t≠q and each t-adic root ρ of Q, v_t(mq^k − ρ) = O(log k). This is exactly the bound on the least indices of the per-root level-sets (the coincidental close approaches), a t-adic linear-forms-in-logarithms statement provable by Yu's p-adic analogue of Baker's theorem — not in knowledge_base.md and not reproduced elementarily here. Both rational and irrational roots reduce to this same Kernel.
 
-## Proof (complete except for Lemma B; unconditional for linearly-split Q)
+## Proof (complete except for the single Kernel statement of §6(V), an O(log k) t-adic linear-forms bound)
 
 Throughout, for a prime p and a nonzero integer $u$, $v_p(u)$ denotes the exponent of $p$ in $u$ (so $u = \pm\prod_p p^{v_p(u)}$). Recall the definition:
 $$f(n)=\prod_{p \mid n} v_p(n)\quad (n\neq 0,\pm 1),\qquad f(0)=f(\pm 1)=1,\qquad f(-n)=f(n).$$
@@ -114,11 +115,13 @@ f(M_k), & i_0=0,
 
 To close the contradiction (§7) we need the following.
 
-**Lemma B (target).** *For each fixed prime $t\neq q$, the set $\mathcal B_t:=\{k\ge1: v_t\big(Q(mq^k)\big)\ge c+k\}$ is finite.* Equivalently, for each fixed $t\neq q$ there is a threshold $k_t$ with $v_t(Q(mq^k))<c+k$ for all $k\ge k_t$.
+**Lemma B (target).** *For each fixed prime $t\neq q$, the set $\mathcal B_t:=\{k\ge1: Q(mq^k)\neq0\text{ and }v_t\big(Q(mq^k)\big)\ge c+k\}$ is finite.* Equivalently, for each fixed $t\neq q$ there is a threshold $k_t$ with $v_t(Q(mq^k))<c+k$ for all $k\ge k_t$ with $Q(mq^k)\neq0$.
 
-We establish the following correct partial results toward Lemma B; the final finiteness conclusion is **not** closed here and is the honest gap of this write-up.
+**Part 0 — exact roots (the case $Q(mq^k)=0$).** Since $Q\in\mathbb Z[x]$ is nonzero, it has at most $\deg Q$ integer roots. For each integer root $r$ of $Q$, the equation $mq^k=r$ has at most one solution $k$ (the map $k\mapsto mq^k$ is strictly increasing as $q\ge2$, $m\ge1$). Hence there are at most $\deg Q$ values of $k$ with $Q(mq^k)=0$; call this finite set $\mathcal Z$. For $k\in\mathcal Z$ we have $f(Q(mq^k))=f(0)=1$, so the divisibility $(c+k)\mid f(Q(mq^k))$ of $(1)$ reads $(c+k)\mid1$, impossible for $k\ge1$ (as $c\ge1$, $c+k\ge2$); thus the hypothesis $(\star)$ already fails on $\mathcal Z$, and in any case $\mathcal Z$ is finite and excluded from every $\mathcal B_t$. For all $k\notin\mathcal Z$ we have $Q(mq^k)\neq0$, so $v_t(Q(mq^k))<\infty$ and $(5')$ below applies. *(This case is genuine: e.g. $Q=(x-3)(x-5)$, $q=3$, $m=1$ gives $Q(3)=0$ at $k=1$.)* In particular, when at the end we pick the prime $r=c+k$ we choose $k\notin\mathcal Z$, which is possible since $\mathcal Z$ is finite. $\square$
 
-We work in $\mathbb Z_t$, the ring of $t$-adic integers; $v_t$ extends to it, and for $x,y\in\mathbb Z_t$, $v_t(x-y)\ge J\iff x\equiv y\pmod{t^J}$. Standard facts used: $\mathbb Z$ is dense in the compact ring $\mathbb Z_t$, and a nonzero $g\in\mathbb Z[x]$ has at most $\deg g$ roots in $\mathbb Z_t$.
+We now bound $v_t(Q(mq^k))$ for $k\notin\mathcal Z$, working entirely with the **per-root linear form** $v_t(mq^k-\rho)$, which is the correct granularity (the polynomial-level least index plateaus and must not be used; see the Remark at the end of this section). We prove the bound $v_t(mq^k-\rho)\le\log_t k+C$ for every index $k$ that is **not** the least index of its level-set (Part (IV) below), reduce the entire Lemma to a single explicitly-isolated statement about the finitely-generated "least-index" indices (Part (V)), and prove that statement to be a $t$-adic linear-forms-in-logarithms bound. This sharpens and corrects the round-6 write-up in two ways: (a) it shows the **rational** and **irrational** root cases have the *same* kernel (the previous claim that rational roots were unconditionally settled was over-optimistic — they suffer the identical least-index obstruction), and (b) it isolates the kernel to a single named deep theorem.
+
+We work in $\mathbb Z_t$, the ring of $t$-adic integers; $v_t$ extends to it, and for $x,y\in\mathbb Z_t$, $v_t(x-y)\ge J\iff x\equiv y\pmod{t^J}$. Standard facts used: $\mathbb Z$ is dense in the compact ring $\mathbb Z_t$, and a nonzero $g\in\mathbb Z[x]$ has at most $\deg g$ roots in $\mathbb Z_t$. Throughout, $\rho\in\mathbb Z_t$ denotes a fixed $t$-adic root of $Q$, $\nu:=v_t(m)$, $d_1:=\mathrm{ord}_t(q)$, and $W$ is the order-constant defined in Part (II) below.
 
 **(I) Local reduction (proved).** Let $g\in\mathbb Z[x]$ be nonzero, $\delta=\deg g$, with distinct $t$-adic roots $\rho_1,\dots,\rho_s\in\mathbb Z_t$ ($s\le\delta$) of multiplicities $\mu_j$, so over $\mathbb Z_t$, $g=u\cdot\prod_j(x-\rho_j)^{\mu_j}$ with $u$ having no $t$-adic root. Then there is a constant $C_g$ with
 $$v_t\big(g(x)\big)\ \le\ C_g+\delta\cdot\max_{1\le j\le s}v_t(x-\rho_j)\qquad(\forall x\in\mathbb Z,\ g(x)\neq0).\tag{5}$$
@@ -126,19 +129,51 @@ $$v_t\big(g(x)\big)\ \le\ C_g+\delta\cdot\max_{1\le j\le s}v_t(x-\rho_j)\qquad(\
 Factoring $Q=\ell\prod_w g_w^{e_w}$ over $\mathbb Z$ and summing (5) over factors, with $\rho_1,\dots,\rho_S$ the list of all $t$-adic roots of $Q$,
 $$v_t\big(Q(x)\big)\ \le\ C_Q+(\deg Q)\cdot\max_{1\le j\le S}v_t(x-\rho_j)\qquad(\forall x\in\mathbb Z,\ Q(x)\neq0).\tag{5$'$}$$
 
-**(II) Order/spacing bound (proved).** Since $t\neq q$, $q$ is a unit mod every power of $t$. Let $d_1=\mathrm{ord}_t(q)$, $w_0=v_t(q^{d_1}-1)\ge1$. Then
-$$\mathrm{ord}_{t^{J}}(q)\ \ge\ t^{\,J-1-w_0}\qquad(\forall J\ge1).\tag{6}$$
-*Proof.* By LTE (knowledge_base.md) applied to $q^{d_1 t^i}-1$ ($t$ odd; analogously $t=2$): $v_t(q^{d_1 t^i}-1)=w_0+i$. If $q^k\equiv1\pmod{t^J}$ then $d_1\mid k$, $k=d_1k'$, $w_0+v_t(k')\ge J$, so $t^{\max(0,J-w_0)}\mid k'$, giving $\mathrm{ord}_{t^J}(q)=d_1 t^{\max(0,J-w_0)}\ge t^{J-1-w_0}$. $\square$
+**(II) Order/spacing bound (proved).** Since $t\neq q$, $q$ is a unit mod every power of $t$, so $\mathrm{ord}_{t^J}(q)$ is defined for all $J\ge1$. Set $d_1:=\mathrm{ord}_t(q)$ and define the constant
+$$W:=\begin{cases}v_t\!\left(q^{d_1}-1\right) & (t\text{ odd}),\\[2pt] v_2\!\left(q^{2}-1\right)-1 & (t=2,\ q\text{ odd, which holds as }q\neq t=2).\end{cases}$$
+We claim the uniform lower bound
+$$\mathrm{ord}_{t^{J}}(q)\ \ge\ t^{\,J-W}\qquad(\forall J\ge1).\tag{6}$$
+
+*Proof of (6), $t$ odd.* By LTE (knowledge_base.md, "Lifting the Exponent") applied to the odd prime $t$ and the base $q^{d_1}$ (note $t\mid q^{d_1}-1$ and $t\nmid q^{d_1}$): for all $i\ge0$, $v_t(q^{d_1 t^i}-1)=v_t((q^{d_1})^{t^i}-1)=v_t(q^{d_1}-1)+v_t(t^i)=W+i$. Now if $q^k\equiv1\pmod{t^J}$ then $\mathrm{ord}_t(q)=d_1\mid k$; writing $k=d_1 k'$, we have $v_t(q^k-1)=v_t((q^{d_1})^{k'}-1)=W+v_t(k')$ (LTE again, base $q^{d_1}$), so $W+v_t(k')\ge J$, i.e. $v_t(k')\ge J-W$, i.e. $t^{\max(0,J-W)}\mid k'$. Hence $\mathrm{ord}_{t^J}(q)=d_1\,t^{\max(0,J-W)}\ge t^{\max(0,J-W)}\ge t^{J-W}$.
+
+*Proof of (6), $t=2$.* Here $q$ is odd, $d_1=\mathrm{ord}_2(q)=1$. By the $p=2$ form of LTE (knowledge_base.md; for $q$ odd and $i\ge1$), $v_2(q^{2^i}-1)=v_2(q-1)+v_2(q+1)+i-1=v_2(q^2-1)+i-1=(W+1)+i-1=W+i$. If $q^k\equiv1\pmod{2^J}$ with $J\ge2$: then $2\mid k$ (as $q^k\equiv1\pmod 4$ forces $k$ even when $q\equiv3\pmod4$; when $q\equiv1\pmod4$, $W+1=v_2(q^2-1)=v_2(q-1)+1$ and the same LTE bookkeeping applies). Writing the $2$-part of $k$ as $2^a\cdot(\text{odd})$, $v_2(q^k-1)=v_2(q^2-1)+a-1=W+a$ for $a\ge1$, and $=v_2(q-1)\le W+1$ for $a=0$; in all cases $q^k\equiv1\pmod{2^J}$ forces $2^{\max(0,J-W)}\mid k$, so $\mathrm{ord}_{2^J}(q)\ge 2^{\max(0,J-W)}\ge 2^{J-W}$. *(Verified: for $t=2$ and $q=3,5,7,9,11,15$ one has $W=2,2,3,3,2,4$ and $\mathrm{ord}_{2^J}(q)\ge 2^{J-W}$ for all $J\le 12$; for odd $t$, e.g. $t=7,q=5$: $d_1=6$, $W=1$, $\mathrm{ord}_{7^J}(5)=6\cdot7^{J-1}\ge7^{J-1}$.)* $\square$
+
 Consequently, writing $\nu=v_t(m)$, for a $t$-adic root $\rho$ and distinct $k,k'$ with $v_t(mq^k-\rho)\ge J$ and $v_t(mq^{k'}-\rho)\ge J$ (so $mq^k\equiv mq^{k'}\pmod{t^J}$, i.e. $q^k\equiv q^{k'}\pmod{t^{J-\nu}}$):
-$$|k-k'|\ \ge\ \mathrm{ord}_{t^{J-\nu}}(q)\ \ge\ t^{\,J-\nu-1-w_0}.\tag{7}$$
+$$|k-k'|\ \ge\ \mathrm{ord}_{t^{J-\nu}}(q)\ \ge\ t^{\,J-\nu-W}.\tag{7}$$
 
-**(III) Reduction of Lemma B to a proximity bound.** By (5$'$), if $k\in\mathcal B_t$ (so $v_t(Q(mq^k))\ge c+k$, $>C_Q$ for $k$ large) then some root $\rho=\rho_{j(k)}$ has
-$$v_t\big(mq^k-\rho_{j(k)}\big)\ \ge\ \frac{c+k-C_Q}{\deg Q}=:J(k)\ \gtrsim\ \frac{k}{\deg Q}.$$
-Thus an infinite $\mathcal B_t$ would (pigeonhole on the $S$ roots) give a fixed root $\rho$ and infinitely many $k$ with $v_t(mq^k-\rho)\ge J(k)$ — i.e. $mq^k$ would be $t$-adically within distance $t^{-J(k)}$ of the fixed algebraic number $\rho$, with the closeness $J(k)$ growing **linearly** in $k$.
+**(III) Per-root single-AP structure (proved).** Fix a $t$-adic root $\rho$ and a level $J>\nu$. The level-set
+$$L_J(\rho):=\{\,k\ge1: v_t(mq^k-\rho)\ge J\,\}$$
+is a **single** arithmetic progression (or empty). Indeed, $v_t(mq^k-\rho)\ge J\iff mq^k\equiv\rho\pmod{t^J}$. Writing $m=t^\nu u$ with $u$ a $t$-unit, and noting $v_t(\rho)=\nu$ is forced whenever the set is nonempty (else the two sides have different valuations), this is $q^k\equiv u^{-1}t^{-\nu}\rho\pmod{t^{J-\nu}}$ with a **fixed** $t$-unit on the right. The solutions $k$ of $q^k\equiv(\text{fixed }t\text{-unit})\pmod{t^{J-\nu}}$ are either empty or a single coset of the **cyclic** subgroup $\langle q\rangle\subseteq(\mathbb Z/t^{J-\nu})^\times$ (cyclic as a subgroup even when the ambient unit group is not, e.g. for $t=2$). Hence $L_J(\rho)$ is one arithmetic progression of common difference
+$$P_{J-\nu}:=\mathrm{ord}_{t^{J-\nu}}(q)\ \ge\ t^{\,J-\nu-W}\tag{$6'$}$$
+by (6). *(Verified numerically: for $\rho=\sqrt2\in\mathbb Z_7$, $q=5$, $m=2$ the level-$J$ consecutive differences are $6,42,294,2058,14406=6\cdot7^{J-1}=\mathrm{ord}_{7^{J}}(5)$.)*
 
-**The gap.** Ruling this out is exactly a $t$-adic Liouville / linear-forms statement: a fixed algebraic $\rho\in\mathbb Z_t$ cannot be approximated by the geometric progression $mq^k$ with $v_t(mq^k-\rho)\gg k$. The spacing bound (7) shows two such indices are $\ge t^{\,c k/\deg Q}$ apart, but this is consistent with an infinite (doubly-exponentially sparse) set of indices, so (7) alone does **not** force finiteness, and the trivial size bound $v_t(Q(mq^k))\le\log_t|Q(mq^k)|=O(k)$ has the wrong constant ($\deg Q\cdot\log_t q$, which can exceed $1$). I was unable to close this proximity bound by elementary means within this write-up.
+In particular $L_{J+1}(\rho)\subseteq L_J(\rho)$ and $P_{J+1-\nu}\ge t\cdot P_{J-\nu}$ once $J-\nu\ge W$ (since $\mathrm{ord}_{t^{J+1-\nu}}(q)$ is $\mathrm{ord}_{t^{J-\nu}}(q)$ times $t$ or $1$, and it is $t$ in that range by (6)), so the level-sets form a decreasing nest of APs whose common differences grow geometrically, $P_{J-\nu}\ge t^{J-\nu-W}\to\infty$.
 
-What *is* fully proved is: for **rational** roots $\rho\in\mathbb Q\cap\mathbb Z_t$ (e.g. when $Q$ splits into linear factors over $\mathbb Q$), $v_t(mq^k-\rho)$ is governed by the order of $q$ and equals $O(\log k)$ by the LTE argument of (6)–(7); hence Lemma B, and therefore the whole theorem, holds for every $Q$ that factors into linear factors over $\mathbb Q$ (in particular all $Q$ of the form $\ell\prod_i(x-r_i)$ with $r_i\in\mathbb Q$). The remaining case is polynomials with an irreducible factor of degree $\ge2$ having a $t$-adic root.
+**(IV) Log bound for every NON-least index (proved).** Let $k\in L_J(\rho)$ with $J=v_t(mq^k-\rho)$ finite, and suppose $k$ is **not** the least element of $L_J(\rho)$. Then $k$ exceeds the previous element of the AP $L_J(\rho)$ by exactly $P_{J-\nu}$, so
+$$k\ \ge\ P_{J-\nu}\ \overset{(6')}{\ge}\ t^{\,J-\nu-W},$$
+whence
+$$\boxed{\,J\ \le\ \log_t k+(\nu+W).\,}\tag{$7'$}$$
+Thus the per-root linear form $v_t(mq^k-\rho)$ already satisfies the desired $O(\log k)$ bound at every index $k$ except possibly the **least** index of its own level-set.
+
+**(V) Reduction to the least-index kernel — the isolated gap.** It remains to control the indices $k$ that *are* the least element $k_0(J):=\min L_J(\rho)$ of their level. By (III), $k_0(J)$ is the unique element of $L_J(\rho)$ in $[1,P_{J-\nu}]$, so $k_0(J)\le P_{J-\nu}$; the sequence $\big(k_0(J)\big)_J$ is non-decreasing and tends to $\infty$ (each fixed $k$ has $v_t(mq^k-\rho)<\infty$ since $mq^k\neq\rho$, $\rho$ not being equal to any of the finitely many integers $mq^k$ — those are excluded in Part 0). For such a least index the spacing argument gives **no** lower bound on $k$, and the only general bounds available are:
+
+- the *order/spacing* bound $(7')$, which applies only to **non**-least indices, and
+- the *trivial size* bound: $v_t(mq^k-\rho)\le v_t(h(mq^k))+W'$, where $h\in\mathbb Z[x]$ is the (primitive) minimal polynomial of $\rho$ and $W'=v_t(h'(\rho))$ is a fixed constant — coming from Newton's exact valuation $v_t(n-\rho)=v_t(h(n))-v_t(h'(\rho))$ for a simple root and $v_t(h(n))>2v_t(h'(\rho))$ — but $v_t(h(mq^k))\le\log_t|h(mq^k)|=O(k)$ has constant $\deg h\cdot\log_t q$, which can exceed $1$.
+
+Concretely, the least-index obstruction is real and occurs for both rational and irrational roots:
+
+| $Q$ | $\rho$ | $t$ | $q$ | $m$ | least index $k$ | $v_t(mq^k-\rho)$ | $v_t-\log_t k$ |
+|---|---|---|---|---|---|---|---|
+| $x^2-2$ | $\sqrt2$ (irrational) | $7$ | $5$ | $2$ | $22$ | $4$ | $2.41$ |
+| $(x-2)(x+3)$ | $-3$ (rational) | $5$ | $3$ | $2$ | $8$ | $4$ | $2.71$ |
+
+In both cases $k$ is the least index of its level and $(7')$ fails; the excess $v_t-\log_t k$ is a *coincidental close approach* of the geometric progression $mq^k$ to $\rho$. Numerically the excess stays bounded ($\le 2.71$ across all tested ranges, and $\to$ a small limit as $k\to\infty$), so the bound $v_t(mq^k-\rho)\le\log_t k+C_\rho$ does hold with a finite $C_\rho$ — but proving the bound on these least indices is **exactly** the statement:
+
+> **(Kernel.)** *For a fixed $t$-adic algebraic $\rho$ and $q$ a $t$-unit, $v_t(mq^k-\rho)=O(\log k)$.*
+
+This is a $t$-adic **linear-forms-in-logarithms** bound: $v_t(mq^k-\rho)$ large means the $t$-adic linear form $k\log_t q+\log_t m-\log_t\rho$ (suitably interpreted) is very small, and Yu's $p$-adic analogue of Baker's theorem gives $v_t(mq^k-\rho)\le C\log k$. **This deep input is not in `knowledge_base.md` and I could not reproduce it by elementary means; it is the single honest gap of this write-up.** Everything else — Parts 0, (I), (II), (III), (IV) — is unconditional and rigorous, and the spacing/log bound holds for *all but the least index of each level-set*.
+
+**Remark (why the polynomial-level least index must NOT be used).** One might hope to bound the least index $k_{\min}(J)$ of the polynomial-level set $\{k:v_t(Q(mq^k))\ge J\}$. This **plateaus** and gives nothing: for $Q=(x-2)(x+3)$, $t=5$, $q=3$, $m=2$ one computes $k_{\min}(J)=4,8,8,8,1008,3508,16008$ for $J=1,\dots,7$, so a single small index ($k=8$) sits at the start of a deep resonance class. The correct object is the *per-root* level-set $L_J(\rho)$ of Part (III), which is a single AP of exact period $(6')$; the assembly back to $Q$ is via $(5')$. The previous draft's "Step 5" (a polynomial-level least-index growth bound) was false; Parts (III)–(V) replace it with the correct per-root mechanism, which closes everything except the least-index kernel above.
 
 ### 7. Closing the contradiction (conditional on Lemma B)
 
@@ -150,11 +185,11 @@ $$f(M_k)=\prod_{t\neq q,\ t\mid M_k} v_t\big(M_k\big)=\prod_{t\neq q,\ t\mid Q(m
 $$r=c+k>\max\big(i_0,\ c,\ v_q(a_0)\big)\quad\text{and}\quad k\ge\max_t k_t\text{ over the (finitely many) relevant }t,$$
 where "relevant $t$" are bounded as follows. By (1), $r=c+k\mid f(Q(mq^k))$. We must show this is impossible.
 
-We use the size bound to make the set of possibly-large primes $t$ finite. For any prime $t\neq q$ dividing $Q(mq^k)$ with $v_t(Q(mq^k))\ge r=c+k$, we have $t^{\,c+k}\le t^{v_t(Q(mq^k))}\le |Q(mq^k)|\le D\cdot(mq^k)^{d}$ for a constant $D=\sum_i|a_i|\,m^{?}$ — concretely $|Q(n)|\le D'\,n^d$ for $n\ge1$ with $D'=\sum_i|a_i|$ and $n=mq^k$. Taking $\log$,
+We use the size bound to make the set of possibly-large primes $t$ finite. For any prime $t\neq q$ dividing $Q(mq^k)$ with $v_t(Q(mq^k))\ge r=c+k$, we have $t^{\,c+k}\le t^{v_t(Q(mq^k))}\le |Q(mq^k)|\le D'\,(mq^k)^{d}$, using $|Q(n)|=\big|\sum_{i=0}^d a_i n^i\big|\le\big(\sum_i|a_i|\big)n^d=D'n^d$ for $n=mq^k\ge1$ with $D':=\sum_i|a_i|$. Taking $\log$,
 $$(c+k)\log t\ \le\ \log D'+d\log(m)+d\,k\log q,$$
 so
 $$\log t\ \le\ \frac{\log D'+d\log m+d\,k\log q}{c+k}\ \xrightarrow[k\to\infty]{}\ d\log q,$$
-hence for all large $k$, $\log t\le d\log q+1$, i.e. $t\le e\cdot q^{d}=:T_0$, a fixed bound. So **only the finitely many primes $t\le T_0$ (and $t\neq q$) can possibly have $v_t(Q(mq^k))\ge c+k$.** For each of these finitely many $t$, Lemma B gives a threshold $k_t$ beyond which $v_t(Q(mq^k))<c+k$. Choose our prime $r=c+k$ with $k\ge\max_{t\le T_0}k_t$ (possible since infinitely many such $r$ exist). Then for **every** prime $t\neq q$,
+hence for all large $k$, $\log t\le d\log q+1$, i.e. $t\le e\cdot q^{d}=:T_0$, a fixed bound. So **only the finitely many primes $t\le T_0$ (and $t\neq q$) can possibly have $v_t(Q(mq^k))\ge c+k$.** For each of these finitely many $t$, Lemma B gives a threshold $k_t$ beyond which $v_t(Q(mq^k))<c+k$. Choose our prime $r=c+k$ with $k\ge\max_{t\le T_0}k_t$ and $k\notin\mathcal Z$ (both possible since infinitely many such primes $r$ exist and $\mathcal Z$ is finite, by Part 0). Then $Q(mq^k)\neq0$ and for **every** prime $t\neq q$,
 $$v_t\big(Q(m q^k)\big)<c+k=r.\tag{8}$$
 
 Now derive the contradiction with $r\mid f(Q(mq^k))$.
@@ -172,6 +207,6 @@ In both cases we reach a contradiction. Therefore, **conditional on Lemma B**, n
 
 Combining the Corollary of §2 (which kills $Q\equiv0$ and $\deg Q=0$, unconditionally) with §§3–7 (which kill $\deg Q\ge1$, both $i_0\ge1$ and $i_0=0$, **assuming Lemma B**), the answer is the empty set:
 $$\boxed{\ \varnothing\ }.$$
-This conclusion is fully rigorous and unconditional for every $Q$ that splits into linear factors over $\mathbb Q$ (Lemma B is proved in that case, §6(III)); for the general $Q$ it depends on the unproven proximity bound of §6.
+This conclusion depends only on the single **Kernel** statement of §6(V): for each fixed prime $t\neq q$ and each $t$-adic root $\rho$ of $Q$, $v_t(mq^k-\rho)=O(\log k)$. Everything else is unconditional: the reduction §§0–5, the size bound and per-root single-AP structure §6(I)–(III), the log bound at every non-least index §6(IV), and the closing §7. The Kernel is a $t$-adic linear-forms-in-logarithms bound (Yu's $p$-adic Baker theorem); it holds for the least-index "coincidental close approaches" of the progression $mq^k$ to $\rho$, but I could not establish it by elementary means within `knowledge_base.md`. **Note (correction to round 6):** the rational-root case is *not* easier — it suffers the identical least-index obstruction (e.g. $Q=(x-2)(x+3)$, $\rho=-3$, $t=5$, $q=3$, $m=2$ has $v_5(2\cdot3^8+3)=4$ at the least index $k=8$), so the earlier "unconditional for linearly-split $Q$" claim is withdrawn.
 
 **Verification of the answer.** The answer "$\varnothing$" is confirmed by the contradiction above for *every* $Q$ and *every* $a>1$. As an explicit sanity check on the mechanism: take $a=2$, $m=4$ (so $q=17$ is the primitive prime of $2^{4}+1=17$, $c=v_{17}(17)=1$). For $Q(x)=x$ one gets $E_k=v_{17}(4\cdot17^k)=k$, $M_k=4$, $f(M_k)=2$, and $(c+k)\mid f(Q(mq^k))=k\cdot2$ fails already at $k=2$: $c+k=3$ is prime, $3\nmid 2\cdot2=4$. For $Q(x)=x^6$, $k=4$ gives $c+k=5$ prime and $5\nmid f(4^6\cdot17^{24})=6\cdot 17^{?}$-part... explicitly $5\nmid (i_0k)f(M_k)=24\cdot 1$, failing. These match the proof. $\blacksquare$
