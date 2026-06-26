@@ -4,7 +4,7 @@
     "type": "explore",
     "description": "Explores an Olympiad problem: reads the statement, the knowledge base, and the problem's existing results file; reports what has been tried, what worked, what failed and why, and which techniques look promising. Call at the start of each round before any proof attempt. Does NOT attempt the proof.",
     "model": "sonnet",
-    "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
+    "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"],
     "prompt_file": ".autofyn/subagents/math-explorer.md",
     "needs_run_state": true
   },
@@ -13,7 +13,7 @@
     "type": "plan",
     "description": "Outlines a proof strategy for one problem: the technique/theorem to use, the proof skeleton, and the key lemmas. Produces a plan with the hard steps identified, not a finished proof. Marks 'Spec review: required' when the outline is non-trivial. Call after the explorer, once per problem per round.",
     "model": "opus",
-    "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
+    "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"],
     "prompt_file": ".autofyn/subagents/proof-outliner.md",
     "needs_run_state": true
   },
@@ -22,7 +22,7 @@
     "type": "review",
     "description": "Reviews a proof outline BEFORE the details are filled in. Checks for the wrong technique, unjustified leaps, missing cases, and circular reasoning. Call on every outline the proof-outliner marks 'Spec review: required'.",
     "model": "opus",
-    "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
+    "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"],
     "prompt_file": ".autofyn/subagents/outline-reviewer.md",
     "needs_run_state": true
   },
@@ -40,7 +40,7 @@
     "type": "review",
     "description": "Adversarially judges a candidate proof for correctness, rigor, and progress. Hunts for gaps, unproven claims, and skipped cases; decides solved/partial/unsolved and returns an APPROVE / CHANGES REQUESTED / RETHINK verdict. Call after every proof-builder attempt.",
     "model": "opus",
-    "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
+    "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"],
     "prompt_file": ".autofyn/subagents/proof-reviewer.md",
     "needs_run_state": true
   }
