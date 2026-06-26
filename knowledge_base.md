@@ -43,6 +43,14 @@ not by problem domain — many problems mix areas.
 - **Order of an element, Fermat/Euler**: periodicity of `aⁿ mod m`; eventual
   periodicity of products of a sequence mod `m`.
 - **Lifting the Exponent (LTE)**: exact power of `p` dividing `aⁿ ± bⁿ`.
+- **Zsygmondy's theorem (primitive prime divisors)**: for coprime integers
+  `a > b ≥ 1` and `n ≥ 1`, `aⁿ − bⁿ` has a *primitive* prime divisor `r` (a prime
+  `r ∣ aⁿ − bⁿ` with `r ∤ aᵏ − bᵏ` for all `1 ≤ k < n`), EXCEPT in the cases:
+  (i) `n = 1` and `a − b = 1`; (ii) `n = 2` and `a + b` is a power of `2`; and
+  (iii) `(a,b,n) = (2,1,6)`. A primitive prime divisor `r` of `aⁿ − bⁿ` satisfies
+  `ord_r(a/b) = n` in `(ℤ/rℤ)*`; in particular, with `b = 1`, `ord_r(a) = n`.
+- **Dirichlet's theorem on primes in arithmetic progressions**: if `gcd(a, q) = 1`
+  then the arithmetic progression `{a + kq : k ≥ 0}` contains infinitely many primes.
 - **Linear recurrences**: characteristic equation → closed form; inhomogeneous
   term handled by a particular solution; sequences are eventually periodic mod `m`.
 - **Diophantine / parametric families**: fix one symmetric quantity (e.g. `s = m+n`),
