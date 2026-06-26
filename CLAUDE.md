@@ -63,6 +63,11 @@ than one problem at a time. For each problem, run this loop:
 Then repeat. If a problem is **solved**, record the proof and mark it in run state
 so it is not attempted again.
 
+**Don't get stuck.** The objective is to maximize the *total* number solved. If a
+problem makes no real progress over 2+ rounds, take a break from it (keep its `results/`
+file) and spend the next rounds on fresh unsolved problems; come back to it later
+if rounds remain.
+
 ## The `results/<problem_id>.md` contract
 
 Every problem file MUST have these sections (agents read and update them):

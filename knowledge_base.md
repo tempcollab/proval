@@ -43,14 +43,13 @@ not by problem domain — many problems mix areas.
 - **Order of an element, Fermat/Euler**: periodicity of `aⁿ mod m`; eventual
   periodicity of products of a sequence mod `m`.
 - **Lifting the Exponent (LTE)**: exact power of `p` dividing `aⁿ ± bⁿ`.
-- **Zsygmondy's theorem (primitive prime divisors)**: for coprime integers
-  `a > b ≥ 1` and `n ≥ 1`, `aⁿ − bⁿ` has a *primitive* prime divisor `r` (a prime
-  `r ∣ aⁿ − bⁿ` with `r ∤ aᵏ − bᵏ` for all `1 ≤ k < n`), EXCEPT in the cases:
-  (i) `n = 1` and `a − b = 1`; (ii) `n = 2` and `a + b` is a power of `2`; and
-  (iii) `(a,b,n) = (2,1,6)`. A primitive prime divisor `r` of `aⁿ − bⁿ` satisfies
-  `ord_r(a/b) = n` in `(ℤ/rℤ)*`; in particular, with `b = 1`, `ord_r(a) = n`.
-- **Dirichlet's theorem on primes in arithmetic progressions**: if `gcd(a, q) = 1`
-  then the arithmetic progression `{a + kq : k ≥ 0}` contains infinitely many primes.
+- **Zsigmondy's theorem**: for coprime `a > b > 0`, `aⁿ − bⁿ` has a *primitive*
+  prime (dividing no `aᵏ − bᵏ`, `k < n`) except `n=1` with `a−b=1`, `n=2` with
+  `a+b` a power of 2, and `(a,b,n)=(2,1,6)`; for `aⁿ + bⁿ` except `2³+1³`. Forces
+  distinct primes across a family, or bounds exponents.
+- **Dirichlet's theorem (primes in AP)**: for `gcd(a,d)=1`, `a, a+d, a+2d, …` has
+  infinitely many primes — pick a prime in a chosen residue class (e.g. `p≡1 mod m`
+  for an element of order `m`).
 - **Linear recurrences**: characteristic equation → closed form; inhomogeneous
   term handled by a particular solution; sequences are eventually periodic mod `m`.
 - **Diophantine / parametric families**: fix one symmetric quantity (e.g. `s = m+n`),
@@ -80,8 +79,14 @@ not by problem domain — many problems mix areas.
 
 ## Geometry (synthetic & analytic)
 
-- **Synthetic toolkit**: angle chasing, power of a point, radical axes, similar
-  triangles, trig cevians (Ceva/Menelaus), inversion, projective ideas.
+- **Synthetic toolkit**: angle chasing, power of a point (and its concyclicity
+  converse `PA·PB=PC·PD`), radical axes & radical center, similar triangles, trig
+  cevians (Ceva/Menelaus), inversion, spiral similarity, projective ideas.
+- **Circle/triangle configuration facts**: Ptolemy (`AC·BD=AB·CD+AD·BC`, with the
+  `≤` inequality for any four points); Brahmagupta area; Simson line (feet from
+  `P` collinear iff `P` on circumcircle); Miquel point of a complete quadrilateral;
+  incircle/excircle tangency (equal tangents, touch-point reflection, homothety
+  at a tangency point mapping incircle ↔ excircle).
 - **Coordinates / complex / barycentric**: place coordinates to exploit symmetry;
   rotate axes to align with a key line (e.g. a tangent line `x+y=0`).
 - **Conics**: a parabola tangent to a line at its vertex is `(perp. distance)² ∝
