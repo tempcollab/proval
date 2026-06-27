@@ -93,6 +93,10 @@ not by problem domain — many problems mix areas.
   distinctness of partial sums in `ℤ/nℤ`.
 - **Multiset partitions & power-sum matching** (Prouhet–Tarry–Escott flavor): split
   a set into parts with equal power sums up to some order.
+- **Hall's marriage theorem / SDR**: a bipartite graph with parts `X, Y` has a
+  matching saturating `X` (equivalently, a system of distinct representatives for
+  the family `{N(x)}_{x∈X}`) if and only if Hall's condition holds: for every
+  subset `S ⊆ X`, `|N(S)| ≥ |S|`. Consequence: `|Y| ≥ |X|` when `X` is saturated.
 
 ## Geometry (synthetic & analytic)
 
