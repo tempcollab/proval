@@ -136,6 +136,31 @@ not by problem domain — many problems mix areas.
 - **Constructive vs. existence**: "find all / largest n" needs an upper bound **and** a
   matching construction; "infinitely many" needs an explicit one-parameter family.
 
+## Monotone Subsequences: Erdős–Szekeres, Dilworth, Patience Sort
+
+For a sequence `a = (a_1, …, a_n)` of distinct reals, attach to each index `p` the pair
+`(I_p, D_p)`, where `I_p` = length of the longest strictly increasing subsequence ending
+at `p`, and `D_p` = length of the longest strictly decreasing subsequence ending at `p`.
+
+- **(C1) Injectivity (Dilworth/ES coordinates).** The map `p ↦ (I_p, D_p)` is injective.
+  *Proof:* if `p < q`, then `a_p < a_q ⟹ I_q ≥ I_p + 1`, and `a_p > a_q ⟹ D_q ≥ D_p + 1`;
+  either way `(I_p,D_p) ≠ (I_q,D_q)`. (Distinctness of values makes the dichotomy
+  exhaustive.)
+- **(C2) Extremes are the global lengths.** `max_p I_p = LIS(a)` (length of longest
+  increasing subsequence) and `max_p D_p = LDS(a)`.
+- **(ES) Erdős–Szekeres.** Any sequence of more than `rs` distinct reals contains an
+  increasing subsequence of length `r+1` or a decreasing subsequence of length `s+1`.
+  *Proof:* by (C1) the `> rs` pairs `(I_p,D_p)` are distinct; if `LIS ≤ r` and `LDS ≤ s`
+  they would all lie in `{1..r}×{1..s}`, only `rs` cells — pigeonhole contradiction.
+  In particular `n = k²+1 > k²` forces `LIS ≥ k+1` or `LDS ≥ k+1`.
+- **Reading `LDS` as a layer count (patience sort).** Greedily partition `1..n` into
+  "increasing runs": index `p` joins layer `D_p`. Each layer is a decreasing subsequence;
+  the number of layers equals `LDS`. Dually for `LIS`.
+- **Use.** To force `LIS = m` and `LDS ≤ s` simultaneously, design the sequence so all
+  `(I_p,D_p)` lie in `{1..m}×{1..s}` with a unique index of `I = m` cell — controlling
+  both monotone directions at once. This is the standard tool for "unique long monotone
+  subsequence" constructions.
+
 ## Problem-Solving Heuristics (Pólya)
 
 - **Solve a simpler / special case first**: try small `n`, a symmetric case, or drop a
