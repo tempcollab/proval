@@ -31,6 +31,15 @@ not by problem domain — many problems mix areas.
   eigenvalues. `A²` is PSD; `Σ Aᵢ²` singular ⟺ the `Aᵢ` share a common null vector.
 - **Rank / image / kernel**: `det(Σ Aᵢ Bᵢ) = 0 ∀Bᵢ` ⟺ the `Aᵢ` have a common
   nonzero vector in `∩ ker` (or images miss a direction) — argue via shared kernel.
+- **Extreme value theorem / Lagrange multipliers on a compact manifold**: a
+  continuous function on a compact set attains its min and max; if the set is a
+  smooth closed manifold (e.g. `O(n) = {MᵀM=I}`, compact, no boundary) the
+  extremum is a *critical point* of the constrained problem, where the gradient
+  is orthogonal to the tangent space `T_M O(n) = {MB : B skew}`. For `f=Σf(M_ij)`
+  this gives `Mᵀ∇f` symmetric. Combine with **ideal saturation** (Rabinowitsch
+  trick `y·Π−1` to impose `Π≠0`) to restrict a polynomial stationarity ideal to
+  an open stratum, then test consequences by **Gröbner-basis ideal membership**
+  (normal form `= 0`): a terminating reduction is a rigorous certificate.
 
 ## Number Theory
 

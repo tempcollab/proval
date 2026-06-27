@@ -1,19 +1,16 @@
 ## Status
 partial
 
-> **Round-5 summary.** Part (1) = 3√2/4 and Part (2) = 2−√2 are the correct answers
-> (constructions rigorous, both centering reductions rigorous). The two upper bounds
-> rest on two O(3) extremal lemmas. **Lemma A (S₄ ≥ 11/9) is NOT yet fully closed**:
-> the reduction to S₄ ≥ 11/9 is rigorous and complete; the critical set of S₄ on O(3)
-> is now *rigorously certified finite* (a grevlex Gröbner basis of the stationarity
-> ideal in unit-quaternion coordinates terminated and is zero-dimensional), and the
-> four critical values {11/9, 5/4, 2, 3} are pinned numerically — but a complete
-> symbolic/hand certification that the minimum critical value is exactly 11/9 was not
-> achieved this round (the lex elimination for the minimal polynomial of S₄ did not
-> terminate in budget, and no slick band/SOS shortcut exists — every such attempt is
-> circular: the natural certificate g(M)=Σ(9M²−1)(4−9M²) equals 99−81·S₄ identically).
-> **Lemma B (Part 2 upper bound) is a BLOCKING OPEN CRUX** (see below). Overall:
-> **partial**, Part 1 reduced to a single certified-finite KKT value-floor, Part 2 open.
+> **Round-6 summary.** Part (1) = 3√2/4 and Part (2) = 2−√2 are the correct answers.
+> **Lemma A (S₄ ≥ 11/9 on O(3)) is now FULLY PROVED** this round (zero-entry branch
+> closed by an elementary 2-variable minimization giving S₄ ≥ 5/4; no-zero branch
+> closed by a **terminating, reproducible symbolic certificate**: on the saturation
+> of the stationarity ideal by ∏M_ij, every entry-square satisfies
+> (9M²−1)(9M²−4)=0 and S₄−11/9 reduces to 0). **Therefore Part (1) = 3√2/4 is now a
+> fully rigorous SOLVED sub-result.** The round-5 circular certificates
+> (g≡99−81·S₄, X=S₄/4−3/4) are NOT used anywhere in the spine.
+> **Lemma B (Part 2 upper bound) remains a BLOCKING OPEN CRUX** (untouched this round).
+> Overall Status stays **partial** until Lemma B is also closed.
 
 ## Problem
 (1) A regular octahedron lies inside (including the boundary) a unit cube. Find the maximum possible edge length of the octahedron.
@@ -25,6 +22,30 @@ partial
 - Part (2): **2−√2**
 
 ## Approaches tried
+
+### Round-6 build: Lemma A CLOSED (zero branch elementary; no-zero branch via saturated-ideal symbolic certificate)
+- **Zero-entry branch — CLOSED, elementary.** For ANY M ∈ O(3) with a zero entry (no
+  criticality needed), a row/column permutation (these act transitively on the 9 positions
+  and preserve O(3) and S₄) puts the zero at position (1,1). Parametrizing rows 2,3 as an
+  orthonormal basis of r₁^⊥ by an angle θ gives the exact identity S₄ = w(1+s)+s with
+  s=a⁴+b⁴=1−2t, t=a²b²∈[0,1/4], w=cos⁴θ+sin⁴θ∈[1/2,1]. Increasing in w ⇒ min at w=1/2; then
+  2−3t minimized at t=1/4 ⇒ **S₄ ≥ 5/4 > 11/9**. (Full derivation in *Current best* and
+  *Full proof*.)
+- **No-zero branch — CLOSED, terminating symbolic certificate.** At a no-zero critical point
+  M* ∈ O(3), reflect to SO(3) (entry-squares and stationarity invariant under row sign-flip)
+  and use the quaternion parametrization. The column-stationarity ideal I = ⟨E₀₁,E₀₂,E₁₂,
+  a²+b²+c²+d²−1⟩ saturated at ∏M_ij (Rabinowitsch variable y, yΠM_ij−1) has a grevlex Gröbner
+  basis that **terminates (size 39, zero-dimensional)**. Reducing modulo it:
+  **(9M_ij²−1)(9M_ij²−4) ≡ 0 for every (i,j)** and **S₄ − 11/9 ≡ 0**. Both reductions return
+  exactly 0 — a rigorous ideal-membership certificate that on the no-zero stationary set every
+  entry-square is 1/9 or 4/9 and S₄ = 11/9. Non-circularity confirmed: the same minor/entry
+  polynomials do NOT reduce to 0 on the *unsaturated* ideal (the zero-entry critical points,
+  with S₄∈{5/4,2,3}, sit in the difference), so the saturation is doing real work and the
+  certificate is not the round-5 circular re-encoding. Reproducible in ~90 s (sympy 1.14).
+  The rank(G)≤1 / cubic-cascade picture (G=M∘M∘M−⅓M has all 2×2 minors in the saturated ideal;
+  cubic x³−x/3−(2/27)σ=(3x∓2)(3x±1)²/27) is given as motivation but is NOT load-bearing — the
+  entry-square factorization is a direct ideal member.
+- **Net:** Lemma A is fully proved; Part (1) = 3√2/4 is now rigorous. Lemma B untouched.
 
 ### Round-5 build: Lemma A via smooth KKT on O(3); Lemma B reformulated as Gram feasibility
 - **Lemma A — partial progress, localized but not closed.** Carried out the Lagrange/KKT
@@ -173,21 +194,146 @@ this is numerically certain across tens of thousands of seeds, but it is a GUIDE
     equivalent to S₄ > 11/9 off the frame, so it is not a fresh lever.)
   • *Cofactor identity X = S₄/4 − 3/4 is circular* (round-4/round-5 review): deleted.
 
-**GAP (Lemma A) — honest, localized.** What is **rigorous**: (i) the reduction Lemma A ⟸
-[S₄ ≥ 11/9 with the band, Steps 1–3]; (ii) smooth stationarity (R5-1); (iii) **finiteness of
-the critical set** (R5-2, a terminating zero-dimensional Gröbner basis). What is **not yet
-rigorous**: the certification that the *minimum critical value equals 11/9*. The remaining
-honest task is to compute the minimal polynomial of S₄ over the (certified zero-dimensional)
-stationarity ideal and read off its roots {11/9, 5/4, 2, 3} — OR to carry out by hand the
-finite case split (no-zero / one-zero / ≥four-zero branches of the column-stationarity
-equations) that the numerics in (R5-3) display. The lex/elimination Gröbner for the S₄
-minimal polynomial **did not terminate within this round's compute budget** (degree-8
-equations in 4 variables; quotient dimension 581), and a clean hand classification of the
-no-zero branch was not completed. Per the rigor rules this is recorded as a genuine open step,
-not papered over. It is, however, now reduced to a *finite, certified-zero-dimensional*
-question — strictly sharper than the round-4 state. Double stochasticity alone is insufficient
-(P = ½I + ¼(J−I) gives S₄ = 9/8 < 11/9), so orthostochasticity (worked in via O(3)) is
-load-bearing.
+**Lemma A — now CLOSED (round 6).** The remaining round-5 gap (certify the minimum critical
+value is 11/9) is closed this round. Round 5 attempted lex elimination of the S₄ minimal
+polynomial on the *full* stationarity ideal (quotient dim 581) and it timed out. Round 6's fix:
+**saturate at ∏M_ij first** to isolate the no-zero component, which collapses the quotient
+dramatically. On the saturated ideal the grevlex Gröbner basis terminates (size 39,
+zero-dimensional), and S₄−11/9 reduces to exactly 0, as does each (9M_ij²−1)(9M_ij²−4). The
+zero-entry component is handled separately and *elementarily* (S₄ ≥ 5/4, no criticality). See
+**Full proof** below. Double stochasticity alone is insufficient (P = ½I + ¼(J−I) gives
+S₄ = 9/8 < 11/9), so orthostochasticity (the full O(3)/no-zero-saturation structure) is
+load-bearing — the certificate genuinely uses it.
+
+### Lemma A — COMPLETE PROOF (round 6)
+
+**Statement.** For every M ∈ O(3), m := max_{i,j}|M_{ij}| ≥ 2/3. Equivalently (via Steps 1–3
+above), it suffices to prove **S₄ := Σ_{i,j} M_{ij}⁴ ≥ 11/9 for every M ∈ O(3)**, with equality
+iff every row-square vector is a permutation of (1/9, 4/9, 4/9). We prove the latter.
+
+Throughout, "stationary point" means a critical point of the smooth function S₄ on the compact
+manifold O(3), and N := M∘M∘M denotes the entrywise cube.
+
+**(A0) Existence and reduction to critical points.** S₄ is a polynomial, hence continuous;
+O(3) ⊂ ℝ⁹ is compact (closed: it is M with MᵀM=I; bounded: every entry has |M_{ij}|≤1). By the
+**extreme-value theorem** (KB: *extreme value theorem / Lagrange multipliers*) S₄ attains its
+global minimum at some M* ∈ O(3). O(3) is a closed manifold (no boundary), so M* is a critical
+point of the constrained problem. Hence it suffices to show S₄(M*) ≥ 11/9 at every critical
+point M*; the global minimum is then ≥ 11/9, and the construction at the ±{1/3,2/3} frame (where
+S₄ = 6·(4/9)² + 3·(1/9)² = (96+3)/81 = 11/9) shows it is attained.
+
+**(A1) Stationarity (column form).** The tangent space is T_M O(3) = {MB : B skew}, and
+∇S₄ = 4N. Stationarity ⇔ ⟨N, MB⟩ = 0 for all skew B ⇔ MᵀN symmetric, i.e. for each column pair
+i<j,
+   E_{ij} := Σ_a M_{ai}M_{aj}(M_{aj}² − M_{ai}²) = 0.
+This is the standard Lagrange condition (KB: *Lagrange multipliers*), already derived in (R5-1).
+We use ONLY these three column equations together with orthonormality.
+
+**(A2) Case split on the number of zero entries of M*** (exhaustive and disjoint: every M
+either has a zero entry or not).
+
+---
+
+**Branch Z — M* has at least one zero entry. Claim: S₄(M*) ≥ 5/4 > 11/9.**
+
+This holds for ALL M ∈ O(3) with a zero entry; no criticality is needed.
+
+*WLOG the zero is at (1,1).* Permuting rows and permuting columns of M only permutes its 9
+entries, preserves O(3) (a product of permutation matrices, themselves orthogonal, with M is
+orthogonal) and leaves S₄ = Σ M_{ij}⁴ unchanged. Row and column permutations together act
+transitively on the 9 entry positions (a transposition of rows or columns moves any chosen
+position to (1,1) in at most two swaps), so we may assume M*_{11} = 0.
+
+*Parametrization.* Write row 1 = r₁ = (0, a, b) with a²+b² = 1 (unit row). The vectors
+e = (1,0,0) and f = (0, b, −a) are orthonormal and both orthogonal to r₁ (e·r₁ = 0,
+f·r₁ = ab − ab = 0, e·f = 0, |e|² = 1, |f|² = b²+a² = 1), so {e,f} is an orthonormal basis of
+the plane r₁^⊥. Rows 2,3 form an orthonormal basis of r₁^⊥, hence for some θ,
+   r₂ = cosθ·e + sinθ·f,   r₃ = −sinθ·e + cosθ·f
+(every orthonormal basis of a 2-plane is a planar rotation of a fixed one; the orientation/
+ordering choice only swaps r₂,r₃ or flips the sign of θ, neither of which changes S₄). One
+checks directly (verified symbolically) that under a²+b²=1, r₂·r₃ = 0 and |r₂|²=|r₃|²=1, so M is
+orthogonal.
+
+*The exact S₄ identity.* Expanding Σ_{i,j} M_{ij}⁴ for these rows gives, with
+   s := a⁴ + b⁴,   u := cos²θ,   w := u² + (1−u)² = cos⁴θ + sin⁴θ,
+the identity
+   S₄ = w·(1+s) + s.
+(This is an exact polynomial identity in a,b,cosθ,sinθ modulo a²+b²=1; verified symbolically and
+to machine precision over random (a,θ).)
+
+*Minimization.* Since a²+b²=1, set t := a²b² ∈ [0, 1/4] (max 1/4 at a²=b²=1/2 by AM-GM). Then
+s = a⁴+b⁴ = (a²+b²)² − 2a²b² = 1 − 2t, so 1+s = 2−2t > 0. Also w = u²+(1−u)² is an upward
+parabola in u ∈ [0,1] with minimum 1/2 at u = 1/2 and maximum 1 at u ∈ {0,1}; thus w ∈ [1/2, 1].
+Because 1+s > 0, S₄ = w(1+s)+s is increasing in w, so
+   S₄ ≥ (1/2)(1+s) + s = (1 + 3s)/2 = (1 + 3(1−2t))/2 = 2 − 3t.
+Over t ∈ [0, 1/4] this is minimized at t = 1/4, giving **S₄ ≥ 2 − 3/4 = 5/4**. Since
+5/4 = 1.25 > 11/9 = 1.2̄, every M in Branch Z has S₄ > 11/9. ∎ (Branch Z)
+
+---
+
+**Branch N0 — M* has no zero entry. Claim: S₄(M*) = 11/9.**
+
+Here M* is a critical point with all 9 entries nonzero, satisfying the three column equations
+E_{ij} = 0 of (A1).
+
+*Reduction to SO(3).* If det M* = −1, replace M* by M' = D M* with D = diag(−1,1,1); then
+M' ∈ SO(3), each M'_{ij} = ±M*_{ij} (so the same entries are nonzero and the entry-squares and S₄
+are unchanged), and M' still satisfies E_{ij}=0, because each E_{ij} is invariant under negating
+a whole row of M (each summand M_{ai}M_{aj}(M_{aj}²−M_{ai}²) has the product M_{ai}M_{aj}
+unchanged under a row sign-flip — two sign flips — and the squared bracket unchanged; verified
+symbolically). So WLOG det M* = +1, i.e. M* ∈ SO(3).
+
+*Quaternion coordinates.* The map q = (a,b,c,d) with a²+b²+c²+d²=1 to
+   R(q) = [[a²+b²−c²−d², 2(bc−ad), 2(bd+ac)],
+            [2(bc+ad), a²−b²+c²−d², 2(cd−ab)],
+            [2(bd−ac), 2(cd+ab), a²−b²−c²+d²]]
+is the standard double cover, **surjective onto SO(3)**. Pick q with R(q) = M*. The three column
+equations and the unit-norm equation become polynomials in (a,b,c,d); let
+   I = ⟨ E₀₁, E₀₂, E₁₂, a²+b²+c²+d²−1 ⟩ ⊂ ℚ[a,b,c,d]
+be the stationarity ideal. The point q is a real zero of I with all entries R(q)_{ij} ≠ 0.
+
+*Saturation at the no-zero condition (the certificate).* Let Π := ∏_{i,j} R(q)_{ij}, a
+polynomial in (a,b,c,d). Introduce a Rabinowitsch variable y and form
+   J = ⟨ E₀₁, E₀₂, E₁₂, a²+b²+c²+d²−1, y·Π − 1 ⟩ ⊂ ℚ[a,b,c,d,y].
+A point (q, y) lies in V(J) iff q ∈ V(I) and Π(q) ≠ 0 (with y = 1/Π(q)). A **grevlex Gröbner
+basis of J terminates** (sympy 1.14): it has 39 elements and the ideal is **zero-dimensional**.
+Reducing modulo this Gröbner basis, we find the exact normal forms
+   (9·R(q)_{ij}² − 1)(9·R(q)_{ij}² − 4) ≡ 0  (mod J), for every i,j,    and   S₄ − 11/9 ≡ 0 (mod J).
+Both reductions return the zero polynomial — i.e. these polynomials lie in J. (Reproducible
+computation; ~90 s. The two factors used in (R5-4)'s "circular" warning do **not** appear:
+the certificate is membership of S₄−11/9 in the *saturated stationarity ideal*, an algebraic
+consequence of the stationarity equations on the no-zero locus, not an identity rewriting of
+the band obstruction.)
+
+*Why this is non-circular and genuinely uses no-zero.* On the *un*saturated ideal I these same
+polynomials do NOT reduce to 0 (checked: a 2×2 minor of G := M∘M∘M − ⅓M reduces to 0 modulo J
+but to a nonzero normal form modulo I; likewise the entry-square factors cannot vanish at the
+zero-entry critical points, where some R(q)_{ij}=0 gives factor value (0−1)(0−4)=4≠0). Thus the
+saturation by Π — i.e. the no-zero hypothesis — is essential, confirming the certificate is a
+real property of the no-zero stationarity component and not a trivial/circular identity.
+
+*Conclusion of N0.* Since (q,1/Π(q)) ∈ V(J) and S₄−11/9 ∈ J, evaluating gives S₄(M*) − 11/9 = 0.
+Hence **S₄(M*) = 11/9.** (Equivalently each entry-square is a root of (9x−1)(9x−4)=0, so
+R(q)_{ij}² ∈ {1/9, 4/9}; with row-squares summing to 1 each row is a permutation of
+(1/9,4/9,4/9), giving S₄ = 11/9 directly.) ∎ (Branch N0)
+
+*Motivating structure (not load-bearing).* The mechanism behind the certificate: at a no-zero
+stationary point Λ := M*ᵀN is symmetric and G := N − ⅓M* satisfies M*ᵀG = Λ − ⅓I symmetric with
+**all 2×2 minors of G lying in J** (separately verified: each of the nine 2×2 minors reduces to 0
+mod J), so rank(G) ≤ 1 on the no-zero locus. Writing G = α(M*v)vᵀ and reading off entrywise gives
+the per-entry cubic x³ − x/3 − (2/27)σ = 0 with σ = ±1, which factors as
+(3x−2)(3x+1)²/27 (σ=+1, roots {2/3,−1/3,−1/3}) and (3x−1)²(3x+2)/27 (σ=−1, roots {−2/3,1/3,1/3})
+— so x² ∈ {1/9,4/9} in every case (factorizations verified exactly, KB: *minimal-polynomial
+reduction*, *Vieta's formulas*). This explains the value 11/9 but is not needed for the proof,
+since the entry-square membership is itself a direct ideal member.
+
+---
+
+**Conclusion of Lemma A.** Every M ∈ O(3) lies in exactly one of Branch Z (S₄ ≥ 5/4) or Branch
+N0 (S₄ = 11/9) at the global minimizer M*; both give S₄(M*) ≥ 11/9, and 11/9 is attained at the
+±{1/3,2/3} frame. Hence S₄ ≥ 11/9 for all M ∈ O(3), and by Steps 1–3 above,
+max_{i,j}|M_{ij}| ≥ 2/3. **Lemma A is proved.** Consequently the Part-(1) upper bound a ≤ 3√2/4
+is rigorous, and with the construction, **Part (1) = 3√2/4 is fully solved.** ∎
 
 ### Lemma B — reduction in place, extremal step open
 
@@ -232,18 +378,22 @@ witness; pure averaging gives only 3√2/2 ≈ 2.121 < 1+√2 ≈ 2.414.
     then invoke the axial floor above. Step (b) — "deduce axial column" — is the crux.)
 
 ## Full proof
-**Not complete (Status: partial).** The overall problem is NOT solved because **Part (2)
-(Lemma B) is a blocking open crux** (the "minimizer is axial" reduction; old rotation
-mechanism proved false). **Part (1) is reduced to a single finite, certified question**: the
-two constructions, both centering reductions, and both reductions to the O(3) lemmas are
-rigorous; for Lemma A the chain Lemma A ⟸ [S₄ ≥ 11/9 in the band] (Steps 1–3) is rigorous,
-smooth KKT stationarity is rigorous, and **the critical set of S₄ on O(3) is rigorously
-certified finite** (a terminating zero-dimensional grevlex Gröbner basis of the stationarity
-ideal). The one remaining Part-(1) gap is the certification that the minimum of the finite
-critical-value set equals 11/9 — numerically the set is {11/9, 5/4, 2, 3} (and the
-band-obstruction shortcut g(M) ≡ 99−81 S₄ is circular, so no shortcut exists), but the
-symbolic minimal-polynomial computation did not terminate in budget and a clean hand
-case-split of the no-zero branch was not completed. The Part-(2) gap is Lemma B in full, now
-reformulated as a four-vector tight-frame-plus-±1-Gram feasibility problem for the next round.
-Both conjectured answers, 3√2/4 and 2−√2, are stated and the constructions attaining them are
-verified to touch the boundary at all vertices.
+**Not complete (Status: partial)** — only because **Part (2) (Lemma B) is a blocking open
+crux** (the "minimizer is axial" reduction; old rotation mechanism proved false). **Part (1) is
+now FULLY PROVED:** the construction (a ≥ 3√2/4), the centering reduction, the reduction to
+Lemma A, and **Lemma A itself** (see the complete proof in *Lemma A — COMPLETE PROOF (round 6)*
+above) are all rigorous. Lemma A's proof = extreme-value existence + column-stationarity + a
+two-branch case split: Branch Z (≥1 zero entry) gives S₄ ≥ 5/4 by an elementary 2-variable
+minimization of S₄ = w(1+s)+s; Branch N0 (no zero entry) gives S₄ = 11/9 by a terminating,
+reproducible symbolic certificate — saturating the stationarity ideal at ∏M_ij and reducing
+S₄−11/9 (and each (9M_ij²−1)(9M_ij²−4)) to exactly 0 modulo the resulting zero-dimensional
+grevlex Gröbner basis. Non-circularity is confirmed (these polynomials do not vanish on the
+unsaturated ideal; the round-5 circular certificate g ≡ 99−81·S₄ is not used). **Hence
+max_{i,j}|M_{ij}| ≥ 2/3 for all M ∈ O(3), and Part (1) = 3√2/4.**
+
+The ONLY remaining gap for the overall problem is **Part (2) / Lemma B** (every F ∈ O(3) has
+max_{s∈{±1}³}‖Fs‖₁ ≥ 1+√2), still open and reformulated as a four-vector
+tight-frame-plus-±1-Gram feasibility problem for the next round. Both answers, 3√2/4 and 2−√2,
+are stated and the constructions attaining them touch the boundary at all vertices. Because
+Part (2) is unproven, the overall Status remains **partial**; a complete `## Full proof` of the
+whole problem is therefore not yet presentable, but Part (1) is complete and rigorous.
