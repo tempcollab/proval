@@ -59,6 +59,23 @@ not by problem domain — many problems mix areas.
   square; force/forbid squareness by growth rate or by a parametric construction.
 - **Divisor analysis**: `d(n)`, gcd structure, consecutive-integer coprimality
   (`gcd(k, k+1)=1`), bounding a finite search by size.
+- **Three-gap / Steinhaus theorem** (1957, also Słomczyński/van Ravenstein; proved
+  by Świerczkowski, Surányi). Fix irrational `α` and `m ≥ 1`; place the `m` points
+  `{α}, {2α}, …, {mα}` on the circle `ℝ/ℤ`. Let `η_m = min_{1≤k≤m}{kα}` (smallest
+  forward residue) and `ζ_m = min_{1≤k≤m}(1 − {kα})` (smallest backward residue).
+  Then: (i) the `m` arcs between cyclically consecutive points take **at most three
+  distinct lengths**, namely `η_m`, `ζ_m`, and `η_m + ζ_m`; (ii) the **largest** arc
+  has length `η_m + ζ_m`; (iii) **insertion corollary**: passing from `T_m` to
+  `T_{m+1}` by adding `{(m+1)α}`, the new point lands strictly inside one of the
+  longest arcs (an `η_m + ζ_m` arc) and splits it into one arc of length `η_m` and
+  one of length `ζ_m`; hence the largest gap `G(m)` is non-increasing in `m`. Use to
+  analyze extremal/gap problems for the Kronecker sequence `{kα}`. The `η_m, ζ_m`
+  are governed by the continued-fraction convergents of `α` (for `α=√2`, the Pell
+  denominators `q_j` with `‖q_jα‖ = (√2−1)^{j+1}`), giving an explicit piecewise
+  description of `G(m)`.
+- **Kronecker / Weyl equidistribution**: for irrational `α`, the sequence `({kα})_{k≥1}`
+  is dense (indeed equidistributed) in `[0,1)`. Lets one realize any target phase as
+  `{aα}` up to arbitrary precision for some integer `a`.
 
 ## Combinatorics
 
