@@ -37,6 +37,28 @@ partial
   and by a minimal-infeasible-LP check; outline-review independently confirmed soundness
   and minimality. **Coverage caveat (review):** this closes ONLY the 2B geometry, not
   c2≥3; see open frontier (G1 ≥3-LOW, G2 mass, G3 c2≥4, G4 empty-LOW).
+- **Round 12: general covering-triple criterion + general single-type CS lever +
+  anti-block SUM identity + Branch-C/Branch-S complementarity + closed-form all-low
+  squeeze** — **WORKED as new rigorous lemmas (C.9–C.13 below).** These (i) prove the
+  general (any c1) covering-triple criterion and the exact Branch-C ⟺ obstruction ≤ 1
+  complementarity; (ii) prove the general single-type CS lever (legal at k = 1, any c1);
+  (iii) prove the anti-block SUM identity Σ A_ij = (c1−1)(c2−1)n; and (iv) fully close,
+  in rigorous prose for **every c2 ≥ 3**, the **distinct-label all-blue-pure Branch-S**
+  sub-case (every cell of the two-row grid blue-pure, labels distinct in each row) via the
+  clean closed-form squeeze. This subsumes KL5 (the 2B geometry) and extends it to the
+  whole distinct-label all-blue-pure family. (Repeated-label all-blue-pure grids — e.g.
+  [B0,B0,B1,B1] rows — are NOT covered by the closed form; they are LP-infeasible but fall
+  in the residual.)
+  **What did NOT close in prose:** the general MIXED Branch-S patterns (HIGH + blue-pure
+  + empty together, requiring the intricate joint blue-mass bookkeeping that the naive
+  per-row and crude global bounds provably miss — see "WHY MIXED BRANCH-S IS HARD"), and
+  Case A with c1 ≥ 3 in full generality. Both are **LP-certified** infeasible — an
+  exhaustive/heavy LP sweep (`/tmp/probe5.py`, `/tmp/probe16.py`, `/tmp/probe19.py`)
+  found **0 of 16482+ no-covering Case-A configs unbounded in n** across c1 ∈ {2,3,4},
+  c2 ≤ 6 (c1=2,c2=3 exhaustive with labels ≤ 3: 5776 configs, 0 unbounded; the 34
+  relaxed-feasible c1=3,c2=3 "dangerous" configs all become infeasible once the −2/−1
+  integrality slack is restored) — but LP-infeasibility is **evidence, not a prose
+  proof**, so these remain honestly open. Status stays **partial**.
 - **Residual KL4 (Case A — a low cell — with c2 ≥ 3), the GENERAL routes** — **OPEN; both
   earlier proposed routes are DEAD ENDS.**
   - *Route (a): re-grid on (color-1, blue) axes to make all cells "high" and force a
@@ -83,6 +105,24 @@ cells (G1/G2)**, the **empty-low sub-cases (G4)**, and the **c2 ≥ 4** profiles
 None of these is closed; in particular 3-LOW was never systematically analyzed (an
 earlier claim that it was, is retracted). Precisely located under "THE REMAINING GAP."
 Status: **partial**.
+
+**Round-12 update (general machinery + distinct-label all-blue-pure closure).** The new
+lemmas C.9–C.13 (below) add, with full rigorous proofs: the anti-block SUM identity
+Σ A_{ij} = (c1−1)(c2−1)n (C.9); the **general single-type CS lever** valid for any c1
+(C.10); the **general covering-triple criterion** (C.11); the exact **Branch-C / Branch-S
+complementarity** (C.12); and — the substantive new closure — **C.13: every
+distinct-label all-blue-pure Branch-S coloring on the 2 × c2 grid is impossible for every
+c2 ≥ 3**, via the clean closed-form squeeze (3c2 − 8)/4 · n ≤ −2c2 < 0. C.13 subsumes the
+2B geometry (KL5) and the distinct-label all-low family. The residual is now sharply
+three-fold and LP-certified (16482+ no-cover Case-A configs across c1 ∈ {2,3,4}, c2 ≤ 6,
+all bounded in n; exhaustive for c1 = 2, c2 = 3): (0) **repeated-label all-blue-pure**
+grids (the closed form goes vacuous); (i) **mixed Branch-S** patterns at c1 = 2
+(HIGH + blue-pure + empty
+together), where the closed form and all per-row bounds provably fail and only the full
+joint blue-mass bookkeeping (the LP) closes them; (ii) **Case A with c1 ≥ 3**. Both are
+infeasible in the sharp LP but not yet turned into prose. Status remains **partial** —
+the answer α = 7/8 is overwhelmingly corroborated but the upper bound is not yet a
+complete prose proof beyond the closed sub-classes.
 
 Throughout, fix a graph G on n vertices and a 3-coloring of its edges with colors
 {R, Y, B} (red, yellow, blue). For a color c and a vertex v, let `C_c(v)` denote the
@@ -508,6 +548,161 @@ minimally infeasible — dropping any one of the eight inequalities used (the th
 bounds, (A′), (B′), s_{12} + t_{12} ≤ a_{12}, and the two disjointness inequalities
 s_{11} ≤ a_{11}, t_{10} ≤ a_{10}) restores feasibility, so each is genuinely needed.)*
 
+**C.9 (Anti-block SUM identity — the global engine).** *On the c1 × c2 grid,*
+  Σ_{i=1}^{c1} Σ_{j=1}^{c2} A_{ij} = (c1 − 1)(c2 − 1)·n.
+
+*Proof.* Using A_{ij} = n − R_i − C_j + a_{ij} (C.2) and summing over all c1·c2 cells,
+  Σ_{i,j} A_{ij} = c1·c2·n − c2·Σ_i R_i − c1·Σ_j C_j + Σ_{i,j} a_{ij}
+                 = c1·c2·n − c2·n − c1·n + n = (c1 − 1)(c2 − 1)·n,
+since Σ_i R_i = Σ_j C_j = Σ_{i,j} a_{ij} = n, each row weight summed once per column
+(c2 times) and each column weight once per row (c1 times). ∎ (Verified for random grids
+at (c1,c2) ∈ {(2,3),(2,4),(3,3),(3,5),(4,4),(5,2)}, `/tmp/probe2.py`.) In particular for
+c1 = 2 this reads **Σ_{i,j} A_{ij} = (c2 − 1)n**.
+
+*(Reach check: if every cell were HIGH, summing KL1 gives (c1−1)(c2−1)n = Σ A_{ij} ≤
+c1·c2·(n/4 − 2), which fails — i.e. (c1−1)(c2−1) > c1·c2/4 — for every (c1,c2) with
+c1,c2 ≥ 2 except (2,2) and (2,3). This **re-derives the reach of C.4** (Case B
+impossible) from one identity, consistent with KL2. Verified `/tmp/probe2.py`.)*
+
+**C.10 (General single-type CS lever — legal at k = 1 for any c1).** *Let P_{ij} be a
+blue-pure cell (k_{ij} = 1) with blue component B_s, and v ∈ P_{ij} any vertex (B_s ≠ ∅
+so v exists). Then*
+  |CS(v)| = A_{ij} − |B_s ∩ AB_{ij}|,  hence  A_{ij} − |B_s ∩ AB_{ij}| ≤ n/8 − 1.
+
+*Proof.* By definition (Part B), u is completely separated from v iff C_1(u) ≠ R_i,
+C_2(u) ≠ Y_j, and C_3(u) ≠ B_s (every vertex of P_{ij} has C_3 = B_s as the cell is
+blue-pure). The vertices with C_1(u) ≠ R_i and C_2(u) ≠ Y_j are exactly the anti-block
+AB_{ij} = ⋃_{i'≠i, j'≠j} P_{i'j'}; among them the completely-separated ones are those with
+C_3(u) ≠ B_s, i.e. AB_{ij} minus the B_s-part. So CS(v) = AB_{ij} ∖ B_s and
+|CS(v)| = A_{ij} − |B_s ∩ AB_{ij}|. By L2, |CS(v)| ≤ |M(v)| ≤ n/8 − 1. This uses **one
+realized vertex of one realized type** — no summation over blue values, no m/(m−1)
+averaging — so it is legal at k = 1, for **every** c1 (the anti-block is the full
+(c1−1)(c2−1) block; no two-row assumption is made). ∎
+
+**C.11 (General covering-triple criterion).** *Pick a row a, a column b, and a blue
+component B. The triple (R_a, Y_b, B) covers V iff every cell P_{ij} with i ≠ a and
+j ≠ b is **absorbable into B** — i.e. either empty or blue-pure with blue component B.*
+
+*Proof.* Partition V by the cells. R_a covers every cell of row a; Y_b covers every cell
+of column b; together these cover all cells except those off both row a and column b,
+which is precisely the anti-block AB_{ab} = ⋃_{i≠a, j≠b} P_{ij}. A cell P_{ij} in AB_{ab}
+is covered by the triple iff it is covered by B (it is not in R_a or Y_b), i.e. iff every
+vertex of P_{ij} lies in B — which holds exactly when P_{ij} is empty (vacuous) or
+blue-pure with that single blue component equal to B. So the triple covers V iff each
+off-cell is absorbable into B. (A blue component B exists since c_3 ≥ 2 by C.1.) ∎
+
+**C.12 (Branch-C / Branch-S complementarity — the exact dichotomy).** *Define a cell to
+be an **obstruction** if it is HIGH (k ≥ 2) or blue-pure (k = 1); empty cells are never
+obstructions. For a row a define its **obstruction profile** by, for each candidate blue
+component B and column b, counting the off-(a,b) cells not absorbable into B. Say row a
+**triggers Branch C** if there exist a column b and a blue component B such that every
+cell P_{ij} with i ≠ a, j ≠ b is absorbable into B. Then a covering triple exists iff
+some row triggers Branch C; and (for c1 = 2) row a triggers Branch C iff the unique other
+row 1−a has, after one column is deleted and after merging same-blue-label blue-pure cells,
+at most one residual obstruction. Equivalently:*
+
+  **Branch C** (covering triple exists) — *the coloring is not bad; contradiction.*
+  **Branch S** (no row triggers Branch C) — *every row's off-(a,b) anti-block contains, for
+  every (b, B), an obstruction not absorbable into B: a HIGH cell, or two blue-pure cells
+  with distinct blue labels.*
+
+*Proof.* "Covering triple exists ⟺ some row triggers Branch C" is C.11 (the row a is the
+red component R_a). For c1 = 2: deleting row a leaves the single row 1−a; the triple
+(R_a, Y_b, B) covers iff every cell of row 1−a except column b is absorbable into B. The
+cells of row 1−a outside column b are absorbable into one common B iff, after grouping the
+blue-pure cells by label (same-label cells are jointly absorbable into that label) and
+ignoring empties, at most one obstruction (HIGH cell, or a blue label) remains outside
+some column b — i.e. the row has ≤ 1 "obstruction" once one column is allowed to be the
+chosen Y_b. Negating: Branch S holds iff for every b and B some unabsorbable cell remains,
+i.e. each row carries ≥ 2 obstructions that cannot be jointly absorbed. The two branches
+are exhaustive and mutually exclusive by construction (a row either does or does not
+trigger Branch C). ∎ (The c1 = 2 row-level biconditional "triggers Branch C ⟺ obstruction
+count ≤ 1" was independently confirmed with 0 violations over all 5^{c2} rows for
+c2 = 3,4,5, outline review; and the dichotomy is exhaustive — over all 1369 no-covering
+c1=2,c2=3 configs with blue-labels ≤ 2 every one routes to Branch C or to an
+LP-infeasible Branch S, `/tmp/probe12.py`.)
+
+**C.13 (Distinct-label all-blue-pure Branch-S is impossible — the closed-form squeeze,
+every c2 ≥ 3).** *Suppose c1 = 2 and the coloring is bad with **every** cell of the
+2 × c2 grid blue-pure (k = 1), all 2c2 cells nonempty, **and with the blue labels in each
+row pairwise distinct** (equivalently: no two cells of one row share a blue component). We
+derive a contradiction; hence no such bad coloring exists.*
+
+*(Scope note — load-bearing, do not overclaim. The distinct-label hypothesis is genuinely
+needed: it is exactly what makes the telescoping Σ_j |B_{s_j} ∩ otherrow| ≤ R_otherrow
+valid. There **do** exist all-blue-pure Branch-S grids with repeated labels in a row —
+e.g. row 0 = [B0,B0,B1,B1], row 1 = [B2,B2,B3,B3] at c2 = 4, which has no covering triple
+(`/tmp/verify_c13_repeat.py`). Those are NOT closed by the closed-form squeeze below
+(it goes vacuous when only 2 distinct labels appear in a row); they are LP-infeasible
+but fall under the mixed/residual frontier. C.13 covers precisely the distinct-label
+all-blue-pure family, which includes the 2B geometry (KL5/C.8: row 0 = [B_s, B_p],
+distinct).)*
+
+Index the rows 0, 1. For a blue-pure cell P_{0,j} = B_{s_j} (row 0), C.10 with the
+two-row anti-block AB_{0,j} = ⋃_{j'≠j} P_{1,j'} (row 1 minus column j) gives
+  A_{0,j} − |B_{s_j} ∩ AB_{0,j}| ≤ n/8 − 1, where A_{0,j} = R_1 − a_{1,j}.
+Since |B_{s_j} ∩ AB_{0,j}| = |B_{s_j} ∩ row 1| − |B_{s_j} ∩ P_{1,j}| ≤ |B_{s_j} ∩ row 1|,
+  R_1 − a_{1,j} − |B_{s_j} ∩ row 1| ≤ n/8 − 1.   (CS_{0,j})
+Sum (CS_{0,j}) over the c2 columns j of row 0. Because the labels s_j of row 0 are
+**distinct**, the sets B_{s_j} are distinct blue components, hence pairwise disjoint, so
+Σ_j |B_{s_j} ∩ row 1| ≤ |row 1| = R_1. Also Σ_j a_{1,j} = R_1. Therefore
+  c2·R_1 − R_1 − R_1 ≤ Σ_j (n/8 − 1) = c2(n/8 − 1),  i.e.  (c2 − 2)R_1 ≤ c2(n/8 − 1).
+By the symmetric computation on row 1 (its labels distinct, anti-blocks in row 0),
+  (c2 − 2)R_0 ≤ c2(n/8 − 1).
+Adding the two and using R_0 + R_1 = n,
+  (c2 − 2)·n ≤ 2c2(n/8 − 1) = (c2/4)n − 2c2,  i.e.  (c2 − 2 − c2/4)·n ≤ −2c2,
+  ((3c2 − 8)/4)·n ≤ −2c2.
+For c2 ≥ 3 the coefficient (3c2 − 8)/4 ≥ 1/4 > 0, so the left side is ≥ n/4 > 0 while the
+right side −2c2 < 0 — a contradiction for every n ≥ 1 and every c2 ≥ 3. Hence **no bad
+distinct-label all-blue-pure coloring exists** on the 2 × c2 grid, for every c2 ≥ 3. ∎
+
+*(This subsumes the 2B geometry (KL5/C.8: row 0 = [B_s, B_p] with B_s ≠ B_p, distinct)
+and the distinct-label all-low/all-blue-pure family. It does **not** cover repeated-label
+all-blue-pure grids (scope note above). The slack is large and grows in c2: with c2 = 3,
+((1)/4)n ≤ −6 is already absurd; the per-c2 closed-form margin was tabulated for
+c2 = 3..20, `/tmp/probe13.py`. The two load-bearing facts are: (i) C.10's single-type CS
+bound (legal at k = 1), and (ii) the **hypothesis** of distinct labels per row, which makes
+Σ_j |B_{s_j} ∩ otherrow| ≤ R_{otherrow} by disjointness. Fact (ii) is a hypothesis, NOT a
+consequence of Branch S — repeated-label Branch-S grids exist (scope note) and are not
+covered here.)*
+
+**WHY MIXED BRANCH-S IS HARD (the honest residual at c1 = 2).** When a row mixes HIGH,
+blue-pure, and empty cells, the clean closed-form squeeze of C.13 does **not** suffice,
+and neither does any per-row bound. Concretely: a per-row inequality cleanly bounds
+R_{1−i} only when the row has two HIGH cells (then 2R_{1−i} − (a + a') ≤ n/2 − 4 with
+a + a' ≤ R_{1−i} gives R_{1−i} ≤ n/2 − 4); for a mixed pair (one HIGH, one blue-pure) or
+two distinct blue-pure cells, the per-row bound becomes vacuous because the term
+|B_s ∩ row(1−i)| can be as large as R_{1−i} (`/tmp/probe14.py`). And the crude global
+two-inequality system fails on the pattern "each row = two blue-pure + the rest empty"
+(`/tmp/probe15.py`). The genuine closure of these mixed patterns needs the full joint
+blue-mass bookkeeping across **both** rows (the KL5 cross-coupling generalized), tracking
+the |B_s ∩ P_{1−i,j}| terms exactly rather than dropping them. The full sharp LP (which
+encodes exactly KL1 on highs, C.10 on blue-pures, disjointness, the empties = 0 / blue-pure
+mass-pinning, and Σ a = n) is **infeasible** on every such pattern tested — exhaustively
+for c1 = 2, c2 = 3 (5776 no-cover configs, blue-labels ≤ 3, **0 unbounded**), and broadly
+for c2 = 4, 5 — so no bad mixed Branch-S coloring exists on large n; but turning that LP
+certificate into airtight prose for **all** mixed patterns is not done here. This, together
+with c1 ≥ 3 below, is the precise open frontier.
+
+**WHY c1 ≥ 3 IS STILL OPEN (and what is known).** All of C.10 (general CS lever), C.11
+(general covering criterion), C.9 (general anti-block sum) hold for **any** c1, so the
+machinery is set up. The obstruction is the same as the mixed case, amplified: for c1 ≥ 3
+the anti-block of a low cell is a (c1−1)(c2−1) block, so the distinct-blue disjointness no
+longer telescopes into a single "other row," and the covering criterion's off-(a,b) block
+is two-dimensional. The two outline routes to **force** c1 = 2 both fail (recorded under
+"Approaches tried", confirmed by the outline review): Route B-min only fires at a HIGH
+min-cell (a low cell there blocks it), and the anti-block SUM on an all-HIGH grid only
+re-derives C.4 (Case B impossible), saying nothing about Case A. The sharp LP certifies
+closure here too: over 4000 sampled c1 = 3, c2 = 3 Case-A configs, the 34 that are feasible
+under the **relaxed** bounds (n/4, n/8) all become **infeasible** once the sharp −2/−1
+integrality slack is restored, and a heavy sweep of 16482 no-covering configs across
+c1 ∈ {2,3,4}, c2 ≤ 6 found **0** unbounded in n (`/tmp/probe5.py`, `/tmp/probe6.py`,
+`/tmp/probe19.py`). So α = 7/8 is overwhelmingly corroborated and the mechanism evidently
+extends, but a complete prose closure of c1 ≥ 3 is **not** written. The integrality slack
+(−2 in KL1, −1 in C.10) is **load-bearing**: at the relaxed bounds 482/4000 (resp. 34/3462)
+c1 = 3 configs survive, and the Part-A construction attains the relaxed equalities — so the
+contradiction genuinely lives in the −2/−1 (Watch-out #5).
+
 **C.7 (Conclusion of Part C — what is and is not proven).** Combining C.1–C.6: in a bad
 coloring at δ ≥ ⌈7n/8⌉, every color has ≥ 2 components (C.1), Case B is impossible for
 every profile (C.4), and **if the two smallest color-component counts are both 2
@@ -516,21 +711,27 @@ every profile (C.4), and **if the two smallest color-component counts are both 2
 c1 = c2 = 2**, which **includes the extremal/sharp configurations** (profile (2,2,4),
 two smallest counts 2 and 2). This is the full sharp content of the threshold 7/8.
 
-In addition (C.8 / KL5) one specific geometry of the next profile c1 = 2, c2 = 3 — the
-**2B configuration** (two same-row blue-pure low cells with distinct blue components,
-the other four cells high) — is closed by the low-cell single-type CS lever. This is a
-genuine advance into the c2 ≥ 3 regime, but it is **not** a closure of c2 ≥ 3: the
-remaining low-cell geometries are open, as detailed honestly in "THE REMAINING GAP"
-below.
+In addition, the round-12 lemmas C.9–C.13 establish the general machinery and close a
+substantial new sub-class of Case A with c2 ≥ 3:
+- **C.9** anti-block SUM identity Σ A_{ij} = (c1−1)(c2−1)n (re-derives C.4's reach);
+- **C.10** the general single-type CS lever (legal at k = 1, any c1);
+- **C.11** the general covering-triple criterion;
+- **C.12** the exact Branch-C / Branch-S complementarity (dichotomy);
+- **C.13** **every distinct-label all-blue-pure Branch-S coloring on the 2 × c2 grid is
+  impossible, for every c2 ≥ 3** — the clean closed-form squeeze, which subsumes the 2B
+  geometry (KL5) and the distinct-label all-low / all-blue-pure family.
 
-The general residual is still **Case A with c2 ≥ 3** (the two smallest counts are not
-both 2): Case B is impossible (C.4), so a low cell exists (C.5), but the single
-opposite-quadrant triple of C.6 no longer covers, because the anti-block of the low cell
-is a (c1 − 1)(c2 − 1) block of cells rather than one cell (round reports
-`check15O.py`). The σ-engine cannot directly control low cells (its factor 1/(k − 1)
-diverges at k = 1); KL5 shows that for **some** low-cell geometries a per-type CS
-identity at k = 1 plus KL1 on the high cells suffices, but it does not yet handle every
-geometry. This residual is **open**.
+**The residual now stands precisely at three places, all LP-certified but not yet prose:**
+(0) **repeated-label all-blue-pure** grids (e.g. [B0,B0,B1,B1] rows), where the closed-form
+squeeze of C.13 goes vacuous; (i) **mixed Branch-S patterns** on the 2 × c2 grid (HIGH +
+blue-pure + empty together) — the closed-form squeeze and every per-row bound provably fail
+there ("WHY MIXED BRANCH-S IS HARD"); and (ii) **Case A with c1 ≥ 3** — the covering
+criterion's off-block is two-dimensional and the distinct-blue disjointness no longer
+telescopes ("WHY c1 ≥ 3 IS STILL OPEN"). All are infeasible under the sharp LP across every
+tested
+configuration (exhaustive for c1 = 2, c2 = 3; heavy sweeps up to c1 = 4, c2 = 6; 0
+unbounded over 16482+ configs), strongly corroborating α = 7/8, but LP-infeasibility is
+evidence, not a prose proof. This residual is **open**.
 
 ---
 
@@ -709,21 +910,34 @@ in either branch, the structural reason being that a k ≤ 1 cell is uncontrolle
 σ-count (factor 1/(k − 1) diverges at k = 1). KL5 shows that for *some* k = 1 geometries
 a per-type CS identity rescues this; extending it to G1, G3, G4 needs further work.
 
-**Status of the answer.** The lower bound α ≥ 7/8 is proven (Part A). The upper bound
-α ≤ 7/8 is proven for all bad-coloring profiles with c1 = c2 = 2 — including the sharp
-configurations — via the per-cell σ-bound double count (Part C); Case B is impossible
-for every profile (C.4). Inside the next profile c1 = 2, c2 = 3, the 2B geometry is now
-also closed (KL5 / C.8). The residual open frontier is, precisely: low-cell geometries
-with **≥ 3 low cells (G1/G2)**, the **empty-low sub-cases (G4)**, and the **c2 ≥ 4**
-profiles (G3). We record α = 7/8 as the answer with a proven lower bound and an upper
-bound proven on the c1 = c2 = 2 sub-class plus the 2B geometry of (2,3). Status:
-**partial**.
+**Status of the answer (the answer is α = 7/8).** The lower bound **α ≥ 7/8 is proven**
+(Part A: an explicit construction on n = 8m vertices with δ = 7n/8 − 1 and no covering
+triple, verified by enumeration over the 8 atoms). For the upper bound **α ≤ 7/8**: it is
+**proven** for all bad-coloring profiles with c1 = c2 = 2 — including the sharp profile
+(2,2,4) (Part C); Case B is impossible for every profile (C.4); and inside Case A with
+c2 ≥ 3 the **distinct-label all-blue-pure Branch-S family on the 2 × c2 grid is now closed
+for every c2 ≥ 3** (C.13, subsuming the 2B geometry C.8/KL5), using the general machinery
+C.9–C.12 (anti-block SUM identity, general single-type CS lever, general covering-triple
+criterion, exact Branch-C/Branch-S dichotomy), all proven for any c1. The **three remaining
+open pieces** of the upper bound are, precisely: (0) **repeated-label all-blue-pure** grids
+at c1 = 2 (closed form vacuous); (i) **mixed Branch-S patterns** at c1 = 2 (HIGH +
+blue-pure + empty cells together); and (ii) **Case A with c1 ≥ 3**. All are **LP-certified
+infeasible** (no bad coloring on large n) across every configuration tested — exhaustively
+for c1 = 2, c2 = 3 (5776 no-cover configs, 0 unbounded) and over 16482+ no-cover Case-A
+configs for c1 ∈ {2,3,4}, c2 ≤ 6 (0 unbounded), so α = 7/8 is overwhelmingly corroborated
+— but LP-infeasibility is evidence, not a complete prose proof. Status: **partial** (the
+answer α = 7/8 with a proven lower bound and an upper bound proven on c1 = c2 = 2 plus the
+distinct-label all-blue-pure Branch-S family of c1 = 2).
 
 ## Full proof
 (Not present — Status is `partial`. Part A is a complete rigorous proof of the lower
 bound α ≥ 7/8; L1–L3 are complete; Part C (C.1–C.6) is a complete rigorous proof of the
 upper bound α ≤ 7/8 for every bad coloring with two smallest component counts = 2,
-including the sharp profile (2,2,4); C.8 (KL5) additionally closes the 2B low-cell
-geometry of the profile c1 = 2, c2 = 3. The residual Case A with c2 ≥ 3 remains open —
-specifically the ≥ 3-low-cell geometries (G1/G2), the empty-low sub-cases (G4), and the
-c2 ≥ 4 profiles (G3), as stated in "THE REMAINING GAP.")
+including the sharp profile (2,2,4). C.9–C.12 prove the general machinery (anti-block SUM
+identity; general single-type CS lever; general covering-triple criterion; exact
+Branch-C/Branch-S dichotomy), and C.8 (KL5) + **C.13** close, in full rigorous prose, the
+2B geometry and the distinct-label all-blue-pure Branch-S family of the 2 × c2 grid for
+every c2 ≥ 3. The residual Case A is open in exactly three precisely-stated places:
+**repeated-label all-blue-pure** grids (closed form vacuous), the **mixed Branch-S**
+patterns at c1 = 2 ("WHY MIXED BRANCH-S IS HARD"), and **Case A with c1 ≥ 3**
+("WHY c1 ≥ 3 IS STILL OPEN") — both LP-certified infeasible but not yet prose-proven.)

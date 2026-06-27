@@ -20,6 +20,55 @@ partial
   values)** — OPEN CRUX. Every elementary lever provably falls below S^{0.98} in this regime
   (their max tops out at ~S^{2/3}). See "The crux" below.
 
+- **(Round 12) Additive-energy / Balog–Szemerédi–Gowers (BSG) route — DEAD END.** Tried to
+  attack Case 4 by additive energy: the `d` distinct window-values `A ⊂ [W,2W)` have energy
+  `E(A) = #{(a,b,c,e)∈A⁴ : a+b=c+e} ≥ |A|⁴/|A+A| ≥ d⁴/(4W)`, which is large in Case 4, and
+  BSG + Plünnecke–Ruzsa extracts a small-doubling subset `A'` with `|A'| ≳ d²/(... )` whose
+  sumset is structured (close to a generalized AP). **This does not help, for a structural
+  reason:** additive energy counts *overlapping* equal-sum quadruples/tuples — the SAME element
+  may appear in arbitrarily many counted tuples — whereas the problem demands a family of
+  **pairwise disjoint** equal-sum k-subsets (a matching, each coin used once). Passing to the
+  structured subset `A'` only re-imposes near-AP geometry, on which the best *disjoint* equal-sum
+  matching is again the k=2 figure `≈ d²μ/2` (Lemma P / Case-3 lever), i.e. no gain over the
+  elementary count. Energy/structure controls collision *counts*, not the *disjointness* the
+  matching requires. So BSG is a confirmed dead end and should not be retried. (Verdict from the
+  round-12 outline + outline-review; no KB entry needed — energy and BSG are standard.)
+
+- **(Round 12) Fractional-transportation / LP reformulation of the k-matching — useful
+  reframing, but RELOCATES the difficulty, does not isolate it.** The maximum disjoint packing of
+  equal-sum k-subsets at a fixed sum `s` is exactly the (fractional, then rounded) transportation
+  LP: with `t₁,…,t_r` the equal-sum k-subset *patterns* (k-multisets of window-values summing to
+  `s`), maximize `Σᵢ xᵢ` subject to the per-value capacity `Σᵢ (mult of v in tᵢ)·xᵢ ≤ μ_v` for
+  every value `v`, `xᵢ ≥ 0`; integrality loss in rounding is `≤ r ≤ kW`, negligible against the
+  window mass `M ≈ S/log S` since `k ≤ 100`. This is a clean *statement* of the target and names
+  the obstruction (an LP/Hall-type stock deficit: a value-subset `U` whose total stock
+  `Σ_{v∈U} μ_v` is too small for the demand the popular patterns place on `U`). **But it is not a
+  lone open crack:** proving the popular patterns spread their demand across `Ω(d)` values — so no
+  such deficit exists — is itself essentially the whole difficulty, the same disjointness obstacle
+  as k=2. The LP reframing relocates the hard step (into "no Hall bottleneck in the wide-window
+  regime"); it does not reduce it to something independently provable. Recorded as a useful
+  reformulation, not progress on the crux.
+
+- **(Round 12) RE-EXAMINED and CONFIRMED: the `D²·μ/2 ≈ S^{0.9}` elementary-matching ceiling is
+  CORRECT.** A round-12 outline asserted the file's S^{0.9} k=2 ceiling was a "counting error" and
+  that the true k=2 lever captures a constant fraction `n_w/2 ≈ M` of the window mass. **This is
+  false and was rejected by outline review; the file's figure stands.** The correct k=2 disjoint-
+  pair value at a fixed sum `s` is `P(s) = Σ_{a<b, a+b=s} min(μ_a, μ_b) + ⌊μ_{s/2}/2⌋` (each
+  value-pair `{a, s−a}` yields `min(μ_a, μ_{s−a})` vertex-disjoint pairs; disjoint across pairs
+  since a coin has one value — this formula is correct, and ≤ `n_w/2` trivially). But reaching
+  `P(s) ≈ n_w/2` at one sum needs `≈ d/2` value-pairs `{a, s−a}` to coexist at that `s`, i.e. a
+  value set **symmetric about `s/2`** (an AP / dense window) — a *best-case* the adversary, who
+  picks the value set, avoids. In the adversary regime `W = S^{0.5} ≫ D = S^{0.4}`, the best sum is
+  realized by only the pigeonhole count `≈ C(d,2)/(2W) = d²/(4W)` value-pairs; the captured
+  *fraction* of mass is `≈ (d²/W)/d = d/W = S^{-0.1} → 0`, so k=2 captures `≈ S^{0.9}` absolute — a
+  *vanishing* fraction of `M ≈ S` — exactly the file's S^{0.9}. The outline conflated guaranteed
+  (pigeonhole) value with best-case (symmetric set) value. Likewise the outline's "the adversary is
+  a Sidon (B₂) set" is geometrically wrong: a Sidon set inside one window `[W,2W)` has size
+  `d ≤ √(2W) = √2·S^{0.25} < S^{0.4}`, below the Case-4 distinct-value count, so the genuine
+  adversary is a controlled-collision (sub-maximal) set, not a pure single-window Sidon set.
+  **Conclusion: no future round should chase the "constant-fraction k=2 correction" — it does not
+  exist; the S^{0.9} elementary ceiling for Case 4 is confirmed.**
+
 ## Current best
 A complete, gap-free case partition with Cases 1, 2, 3 fully and rigorously closed (proof
 text below in this section). The single missing piece is Case 4, isolated precisely as a
@@ -238,6 +287,18 @@ the following bounds is below `S^{0.98}` throughout Case 4:
 So **no single elementary lever, nor the maximum over all of them, reaches `S^{0.98}` in Case 4**;
 the ceiling of the elementary toolkit is `~S^{2/3}`.
 
+**(Round 12 re-examination — confirmed.)** The multiplicity-aware k=2 lever was re-derived in full:
+its guaranteed value at a fixed sum is `s · P(s)` with `P(s) = Σ_{a<b,a+b=s} min(μ_a,μ_b) +
+⌊μ_{s/2}/2⌋`. In the adversary regime `W = S^{0.5} ≫ D = S^{0.4}, μ = S^{0.1}` this is the
+pigeonhole value `≈ (d²/(4W))·μ·s ≈ S^{0.9}` — confirming, not correcting, the `D²μ/2 ≈ S^{0.9}`
+ceiling above. The `≈ M` (constant-fraction) value holds only for value sets symmetric about `s/2`
+(AP / dense window with `W ≈ d`), which the adversary avoids. A pure Sidon (B₂) set inside one
+window has `d ≤ √(2W) = √2·S^{0.25} < S^{0.4}`, so it is *not* the Case-4 adversary; the real
+adversary is a controlled-collision set with `W ≫ d`. The BSG/additive-energy route is a confirmed
+dead end (counts overlapping tuples, not the disjoint matching needed), and the LP/transportation
+reframing relocates the difficulty into a Hall-type stock-deficit exclusion rather than isolating
+an independently provable step. (Details under *Approaches tried*, round 12.)
+
 **Adversarial configuration that simultaneously defeats every named lever.** Take coins with
 `B ≈ S^{0.5}`, `D ≈ S^{0.4}` distinct large values, each with multiplicity `≈ S^{0.1}` (so the
 total is `≈ S^{0.4}·S^{0.5}·S^{0.1} = S`). Then `S/D ≈ S^{0.6}`, `S/B ≈ S^{0.5}`,
@@ -249,7 +310,10 @@ which is exactly why the missing packing sub-lemma is needed.
 matching is required — plausibly via Olson/Davenport-constant or EGZ-type iterated zero-sum
 arguments, or a Sárközy-style "subset-sums contain a long arithmetic progression" mechanism, to
 extract `≫ d/k²` disjoint equal-sum `k`-subsets. This sub-lemma is **not established here**, and
-the problem is therefore **not solved**.
+the problem is therefore **not solved**. (Round 12: the BSG/additive-energy and
+LP/transportation routes were examined and do not close it — see *Approaches tried*. The S^{0.9}
+elementary ceiling is confirmed correct, so the crux is genuinely a structured-matching lemma,
+not a missed elementary count.)
 
 ---
 
