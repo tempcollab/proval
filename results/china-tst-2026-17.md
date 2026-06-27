@@ -1,6 +1,25 @@
 ## Status
 partial
 
+> **Round-9 summary (with the round-9 fix to (C1)).** Part (1) SOLVED (unchanged). For Lemma B the
+> round-9 work established rigorously: **(C1) the equality stratum αβγ=0 (the t=0 line) is now
+> correctly proven** T(0,ψ) ≥ 4√2 for all ψ. *(Correction: the first round-9 build used a FALSE
+> unified formula `max(u,2√2√(1−u²))+2√2√(1+u)+u` that mismatches the true T by ±0.61 and wrongly
+> placed equality at u=0. The CORRECTED derivation, verified against an independent direct
+> computation to 3.6·10⁻¹⁵, gives `T(0,ψ) = 2·max(√(2−8p²),p) + 2p + 2√2·√(1+2p)` with
+> p=|(sin2ψ)/6 + (√2/3)cos2ψ| ∈ [0,1/2]; its minimum is 4√2 at p=0, an INTERIOR ψ with tan2ψ=−2√2,
+> ψ≈0.9553. The bound is proven by a clean regime split and a decreasing-linear lower bound β(p) ≥
+> √3+√6−4 > 0.)* **(C2) the "Regime 2" half-plane {|sin2ψ| ≥ u*=2√2/3} is fully proven for ALL t**
+> via a one-line row-0 norm bound (‖w₀‖₁ = √3·√(1+|sin2ψ|) ≥ 1+√2). The H1 transitivity (reduce
+> Case 1 to the t=0 line via the stratum-preserving group S₃×{±I}, fundamental domain t∈[0,π/6]) is
+> rigorous. **REMAINING GAP:** the region {t ∈ (0, π/6], |sin2ψ| < u*} (the Case-2 interior of
+> Regime 1). Numerically min_ψ T there is ≥ 5.6657 > 4√2 (interior local minima exactly {5.828, 6.0},
+> both > 4√2), and the stratum minimum 4√2 lives entirely on the t=0 boundary — but a symbolic
+> floor-certificate (per-sector saturated Gröbner, the Lemma-A lever) for this interior was not
+> completed in budget. The closure argument (compactness ⟹ min attained; if not on the t=0 boundary
+> then an interior stationary point with T > 4√2) is structurally correct but still needs that
+> symbolic interior floor. Status stays **partial**; the honest remaining gap is recorded.
+
 > **Round-8 summary.** Part (1) = 3√2/4 and Part (2) = 2−√2 are the correct answers.
 > **Part (1) is fully proved** (Lemma A, round 6). **Lemma B** (Part-2 upper bound) is
 > ADVANCED but NOT yet closed. This round established rigorously: (B0) the reduction
@@ -30,6 +49,62 @@ partial
 - Part (2): **2−√2**
 
 ## Approaches tried
+
+### Round-9 build: Lemma B residual (B3-GAP) — two of three pieces CLOSED, gap narrowed to one region
+The residual is: T(F) ≥ 4√2 on the stratum S = {F∈O(3) : c_x ⊥ (1,1,1)}. Parametrize S by an angle
+t (c_x in n⊥, n=(1,1,1)/√3, basis e₁=(1,−1,0)/√2, e₂=(1,1,−2)/√6) and an angle ψ (rotating c_y,c_z
+inside c_x⊥). A clean exact computation (verified symbolically) gives the orthonormal triple
+(c_x, a₀=dc_x/dt, b₀=c_x×a₀) and, writing the three coordinates of M's k-th row in this basis as
+(V_x[k], Wa[k], Wb[k]) (so V_x[k]²+Wa[k]²+Wb[k]²=3),
+   **V_x = (0, 2√6 sin t/3, 2√6 cos(t+π/6)/3, −2√6 sin(t+π/3)/3),**
+   **Wa = (0, 2√6 cos t/3, −2√6 sin(t+π/6)/3, −2√6 cos(t+π/3)/3),**
+   **Wb = (√3, 1/√3, 1/√3, 1/√3)   [constant in t — key simplification],**
+and W_{k,x}=V_x[k], W_{k,y}=cosψ·Wa[k]+sinψ·Wb[k], W_{k,z}=−sinψ·Wa[k]+cosψ·Wb[k]. The αβγ
+identity αβγ = −(4√6/9) sin 3t was verified exactly, so Case 1 (αβγ=0) ⟺ t∈{0,π/3,2π/3,π} (mod π/3).
+
+- **(C1) Case 1 (αβγ=0, the t=0 line) — CLOSED, fully rigorous (CORRECTED in round-9 fix).**
+  Reduced to the t=0 line by H1 (below). *The first round-9 build used a FALSE unified formula
+  `max(u,2√2√(1−u²))+2√2√(1+u)+u` (u=|sin2ψ|) that differs from the true T by ±0.61 pointwise and
+  wrongly placed equality at u=0; it is replaced below.* From the explicit W-rows at t=0 (w₀,w₁
+  have x=0; w₂,w₃ have x=±√2 and share their (y,z) entries), with σ=sin2ψ, ω=cos2ψ: row 0 =
+  (3/2)|σ|; row 1 = |Q| with Q:=(7/6)σ−(2√2/3)ω; rows 2,3 each = √2√(1+2|P|)+|P| using the EXACT
+  identities y₂²+z₂²=1 and y₂z₂=−P with P:=(σ)/6+(√2/3)ω. So **T(0,ψ) = (3/2)|σ| + |Q| + 2|P| +
+  2√2√(1+2|P|)**. Two exact identities, Q+2P=(3/2)σ and (Q+P)²=2−8P², give |Q+2P|+|Q| =
+  |E+P|+|E−P| = 2max(|E|,|P|) with E=Q+P=±√(2−8P²), collapsing T to a 1-variable form:
+     **T(0,ψ) = 2·max(√(2−8p²), p) + 2p + 2√2·√(1+2p),  p:=|P| ∈ [0,1/2]** (matches direct T to
+  3.6·10⁻¹⁵). Minimum 4√2 at **p=0** (interior ψ, tan2ψ=−2√2, ψ≈0.9553), NOT u=0. Bound (regime
+  boundary p*=√2/3): **Regime B (p≥p*):** T=4p+2√2√(1+2p), increasing, ≥T(p*)≈5.828. **Regime A
+  (p≤p*):** T−4√2 = 2p·β(p), β(p)=1+2√2/(√(1+2p)+1)−8p/(√(2−8p²)+√2) (identity verified
+  symbolically); a decreasing-linear lower bound (√(1+2p)+1 increasing; √(2−8p²)≥√2/3 on [0,p*],
+  so the third term ≤3√2 p) gives β(p) ≥ 2√6/(1+√2+√3)−1 = √3+√6−4 > 0 (since 8√3>13 ⟺ 192>169).
+  So T(0,ψ) ≥ 4√2 on the whole t=0 line, equality only at p=0. All identities/bounds verified
+  symbolically and numerically; the OLD formula's residual really does span [−0.61,+0.61].
+- **(H1) Reduce Case 1 to t=0 — RIGOROUS.** Stratum-preserving, T-preserving group: row permutations
+  of F (coordinate permutations S₃ of c_x; they fix (1,1,1), so preserve S) and the overall sign −I.
+  This is S₃ × {±I} (NOT the full Z₂³ — general row sign-flips move c_x out of S, per review). The
+  S₃-orbit of c_x(t=0)=(1,−1,0)/√2 is exactly the 6 unit vectors of n⊥ with a zero coordinate =
+  {±(1,−1,0),±(1,0,−1),±(0,1,−1)}/√2, which are precisely the four special-t c_x on [0,π] and their
+  negatives (verified). So every Case-1 frame maps to the t=0 line by a T- and S-preserving row
+  permutation. The same group action on t (mod π) is the dihedral group ⟨t↦−t, t↦π/3−t⟩, fundamental
+  domain **t ∈ [0, π/6]** (verified: e.g. t↦π/3−t via the (x,z)-swap).
+- **(C2) Regime 2 for ALL t (|sin2ψ| ≥ u*) — CLOSED, one line.** Row 0 has w₀=(0, √3 sinψ, √3 cosψ),
+  so ‖w₀‖₁ = √3(|sinψ|+|cosψ|) = √3·√(1+|sin2ψ|) (since (|sinψ|+|cosψ|)²=1+|sin2ψ|). When
+  |sin2ψ| ≥ u* = (1+√2)²/3 − 1, this gives ‖w₀‖₁ ≥ √3·√(1+u*) = √3·(1+√2)/√3 = 1+√2, hence by (B0)
+  (‖w_k‖₁² ≤ 3+T/2 averaging, OR directly max_k‖w_k‖₁ ≥ 1+√2 ⟹ Lemma B on S ⟺ T ≥ 4√2) we get
+  **T(t,ψ) ≥ 4√2 for ALL t whenever |sin2ψ| ≥ u*.** (This is the t-uniform analog of Case-1 Regime 2.)
+- **(GAP, narrowed) Regime 1 with t > 0 — NOT closed.** Only the region {t∈(0,π/6], |sin2ψ| < u*}
+  remains. Numerically min_ψ T there is ≥ 5.6657 (→4√2 only as t→0+, i.e. the Case-1 boundary), and
+  every interior local minimum of T over S has value exactly 5.828 (=2√2√(1+u*)+2u* = 4√2/3 +
+  (2√2+4)/√3, value² ≈ 33.97 > 32) or 6.0 — both > 4√2 (verified over 5000 starts). The clean
+  closure is: T continuous on the compact stratum S ⟹ min attained (extreme value theorem); by (B1)
+  the (y,z)-smoothing puts any interior minimum at a breakpoint with a zero (y/z)-column W-entry, a
+  finite union of explicit 1-variable curves in t; on each, T(t) is explicit and its minimum >4√2.
+  Computing/certifying those branch minima symbolically (or the per-sector saturated Gröbner floor
+  T²>32, the Lemma-A lever, over the ~149 sign-sectors) was **not completed in budget.** So the
+  global stratum minimum is 4√2 *if* no interior stationary point dips below — which holds
+  numerically (interior floor 5.828) but lacks the symbolic certificate. **This single region is the
+  honest remaining gap.** It is much smaller than round 8's "whole 2-D stratum / ~230 sectors": the
+  equality stratum and the entire Regime-2 half are now rigorous.
 
 ### Round-8 build: Lemma B ADVANCED to a single 2-variable stratum inequality (NOT closed)
 - **(B0) Reduction to a T-inequality — RIGOROUS (implication direction only).** With M the 4×3
@@ -585,14 +660,149 @@ Equality holds iff m = 1/√2, i.e. |cosθ|=|sinθ|=1/√2, i.e. θ ∈ {45°,13
 axial frame. (Both the closed form and the minimum 4√2 verified symbolically and numerically.) ∎
 (B3-final)
 
-**Conclusion of Lemma B — PARTIAL (one gap open).** The rigorous chain is: (B0) T(F) ≥ 4√2 ⟹
-h(F) ≥ 1+√2 = Lemma B; (B1)+(B2) a global minimizer of T over O(3) may be taken in the zero-entry
-stratum {c_x ⊥ (1,1,1)}; (B3-final) on the axial family T = 8m²+8m−4 ≥ 4√2 with equality at the 45°
-frame, matching the numerical global minimum. The **single missing step** is (B3-GAP): that the
-minimum of T over the 2-D zero-entry stratum equals the axial value 4√2 (true numerically to 13
-digits but not yet proven, due to ≈230 sign-sectors and the failure of the iterate-to-axial
-route). Until (B3-GAP) is closed, Lemma B — and hence the Part-(2) upper bound — remains open.
-**Lemma B is NOT yet proved.**
+### Lemma B — ROUND-9 closure of (B3-GAP): two of three pieces now RIGOROUS
+
+The residual (B3-GAP) is: **T(F) ≥ 4√2 on the stratum S = {F∈O(3) : c_x⊥(1,1,1)}.** Parametrize S
+by t (c_x = cos t·e₁ + sin t·e₂, n⊥-basis e₁=(1,−1,0)/√2, e₂=(1,1,−2)/√6) and ψ (rotation of c_y,c_z
+inside c_x⊥, using the orthonormal frame (c_x, a₀=dc_x/dt, b₀=c_x×a₀)). Writing M's k-th row in this
+frame as (V_x[k], Wa[k], Wb[k]) — coordinates summing in square to ‖row‖²=3 — a direct (symbolically
+verified) computation gives
+   V_x = (0, 2√6 sin t/3, 2√6 cos(t+π/6)/3, −2√6 sin(t+π/3)/3),
+   Wa  = (0, 2√6 cos t/3, −2√6 sin(t+π/6)/3, −2√6 cos(t+π/3)/3),
+   **Wb  = (√3, 1/√3, 1/√3, 1/√3)   (constant in t)**,
+and W_{k,x}=V_x[k], W_{k,y}=cosψ·Wa[k]+sinψ·Wb[k], W_{k,z}=−sinψ·Wa[k]+cosψ·Wb[k]. One verifies
+αβγ = −(4√6/9) sin 3t exactly (and V_x[0]=0, α+β+γ=0, α²+β²+γ²=4). The case split αβγ=0 vs αβγ≠0 is
+exhaustive and disjoint; αβγ=0 ⟺ t∈{0,π/3,2π/3,π} (mod π/3).
+
+**(C2 / Regime 2) For ALL t with |sin 2ψ| ≥ u* := 2√2/3: T ≥ 4√2. RIGOROUS, one line.**
+Row 0 is w₀ = (0, √3 sinψ, √3 cosψ), so ‖w₀‖₁ = √3(|sinψ|+|cosψ|) = √3·√(1+|sin 2ψ|) (using
+(|sinψ|+|cosψ|)² = 1+|sin 2ψ|). When |sin 2ψ| ≥ u* = (1+√2)²/3 − 1, this is ≥ √3·√(1+u*) =
+√3·(1+√2)/√3 = 1+√2 (since 1+u* = (1+√2)²/3). By (B0) — the identity max_k‖w_k‖₁² ≤ 3+T/2 forces
+T ≥ 2(‖w₀‖₁²−3) ≥ 2((1+√2)²−3) = 4√2 — we get **T ≥ 4√2 for every t whenever |sin 2ψ| ≥ u*.** ∎ (C2)
+
+**(H1) Reduction of Case 1 (αβγ=0) to the t=0 line. RIGOROUS.** The operations preserving BOTH T
+(by (B2)) AND the stratum S are: row permutations of F (these permute the coordinates of c_x and fix
+(1,1,1), so keep c_x⊥(1,1,1)) and the overall sign −I — i.e. the group S₃ × {±I} (NOT the full
+Z₂³: a single row sign-flip moves c_x out of S). The S₃-orbit of c_x(t=0) = (1,−1,0)/√2 is exactly
+the six unit vectors of n⊥ with a zero coordinate, {±(1,−1,0),±(1,0,−1),±(0,1,−1)}/√2, which are
+precisely the four special-t c_x on [0,π] and their negatives. Hence every Case-1 frame maps to the
+t=0 line by a T- and S-preserving row permutation. (The induced action on t mod π is the dihedral
+group ⟨t↦−t, t↦π/3−t⟩; fundamental domain t∈[0,π/6].) ∎ (H1)
+
+**(C1) Case 1 (t=0 line): T(0,ψ) ≥ 4√2 for all ψ. RIGOROUS (CORRECTED in round 9-fix).**
+
+> *Round-9 correction note.* The first round-9 build asserted a unified formula
+> `T(0,ψ) = max(u,2√2√(1−u²)) + 2√2√(1+u) + u` with `u=|sin2ψ|` and claimed equality at u=0.
+> **That formula is FALSE** — measured against an independent direct evaluation of T from the
+> explicit W-rows it differs by up to ±0.61 pointwise (neither an upper nor a lower bound), and the
+> true minimizer is at an *interior* ψ≈0.9553, NOT u=0. The β-decomposition was internally correct
+> but bounded the wrong function. Below is the corrected, verified derivation. The CORRECT closed
+> form matches the direct T to 3.6·10⁻¹⁵; the OLD formula's residual really does range over
+> [−0.61,+0.61].
+
+*The exact W-rows at t=0.* With c_x = e₁ = (1,−1,0)/√2, a₀ = e₂ = (1,1,−2)/√6, b₀ = c_x×a₀ =
+(1,1,1)/√3, and (c_y,c_z) = (cosψ·a₀+sinψ·b₀, −sinψ·a₀+cosψ·b₀), the four rows of W = M·[c_x|c_y|c_z]
+are (verified symbolically):
+   w₀ = (0,  √3 sinψ,  √3 cosψ),
+   w₁ = (0,  (√3 sinψ)/3 + (2√6 cosψ)/3,  −(2√6 sinψ)/3 + (√3 cosψ)/3),
+   w₂ = ( √2, (√3 sinψ)/3 − (√6 cosψ)/3,  (√6 sinψ)/3 + (√3 cosψ)/3),
+   w₃ = (−√2, (√3 sinψ)/3 − (√6 cosψ)/3,  (√6 sinψ)/3 + (√3 cosψ)/3).
+Note w₀, w₁ have x-entry 0; w₂, w₃ share the SAME (y,z) entries and x-entry ±√2.
+
+*Per-row contributions to T = Σ_k f(w_k), with σ := sin2ψ, ω := cos2ψ.*
+ - **Row 0** (x=0): f(w₀) = |w₀ᵧ w₀_z| = |√3 sinψ · √3 cosψ| = 3|sinψ cosψ| = (3/2)|σ|.
+ - **Row 1** (x=0): f(w₁) = |w₁ᵧ w₁_z|. A direct expansion gives w₁ᵧ w₁_z = −(7/6)σ + (2√2/3)ω, so
+   f(w₁) = |(7/6)σ − (2√2/3)ω|.
+ - **Rows 2,3** (x=±√2): for each, f = |x|·|y| + |x|·|z| + |y z| = √2(|y₂|+|z₂|) + |y₂ z₂|, where
+   y₂ = (√3 sinψ−√6 cosψ)/3, z₂ = (√6 sinψ+√3 cosψ)/3. A direct computation gives the two exact
+   identities **y₂²+z₂² = 1** and **y₂ z₂ = −(1/6)σ − (√2/3)ω**. Hence (|y₂|+|z₂|)² = (y₂²+z₂²) +
+   2|y₂z₂| = 1 + 2|y₂z₂|, so |y₂|+|z₂| = √(1+2|y₂z₂|), and rows 2,3 each contribute
+   √2·√(1+2|y₂z₂|) + |y₂z₂|.
+
+*Two clean auxiliary quantities.* Put **P := (σ)/6 + (√2/3)ω** and **Q := (7/6)σ − (2√2/3)ω**.
+Then y₂z₂ = −P (so |y₂z₂| = |P|), row 1 = |Q|, and row 0 = (3/2)|σ|. Adding,
+   **T(0,ψ) = (3/2)|σ| + |Q| + 2|P| + 2√2·√(1+2|P|).**   (♦)
+Both P and Q are sinusoids in θ:=2ψ; their amplitudes are exactly **|P|_amp = 1/2** (from
+√(1/36+2/9)=1/2) and **|Q|_amp = 3/2** (from √(49/36+8/9)=3/2). Two algebraic identities hold
+(verified symbolically):
+   **(i) Q + 2P = (3/2)σ**   (so (3/2)|σ| = |Q+2P|), and
+   **(ii) (Q+P)² = 2 − 8P².**
+[Proof of (ii): expand in θ. Q+P = (4 sinθ − √2 cosθ)/3 and 2√2·P = (√2 sinθ + 4 cosθ)/3 (direct).
+Their (sin θ, cos θ)-coefficient vectors are (4, −√2)/3 and (√2, 4)/3 — each of length √(16+2)/3 =
+√2, and orthogonal (4·√2 + (−√2)·4 = 0). Hence A := Q+P and B := 2√2·P are quadrature sinusoids of
+common amplitude √2, so A² + B² = 2 (a fixed sum, since cos²+sin² collapses), i.e.
+**(Q+P)² + 8P² = 2.** Verified symbolically (sympy: A²+B² simplifies to 2) and to 10⁻¹⁶.]
+
+*Reduction to a single variable p := |P| ∈ [0, 1/2].* By (i), the first two summands of (♦) are
+|Q+2P| + |Q|. By (ii), Q+P = ±√(2−8P²); write E := Q+P, so |E| = √(2−8P²) and Q = E − P,
+Q+2P = E + P. Then
+   |Q+2P| + |Q| = |E+P| + |E−P| = 2·max(|E|, |P|) = 2·max(√(2−8P²), |P|)
+(using the elementary identity |a+b|+|a−b| = 2max(|a|,|b|); this is sign-independent in E).
+Therefore (♦) becomes a function of p = |P| alone:
+   **T(0,ψ) = 2·max(√(2−8p²), p) + 2p + 2√2·√(1+2p),   p = |P| ∈ [0, 1/2].**   (♣)
+This corrected closed form matches the direct T to 3.6·10⁻¹⁵ over 5·10⁵ samples of ψ. The minimum
+of (♣) is **4√2, attained at p=0**, i.e. P = (σ)/6 + (√2/3)ω = 0 ⟺ tan2ψ = −2√2, an *interior*
+ψ≈0.9553 (consistent with the true minimizer), NOT u=0. At p=0: row 0 = (3/2)|σ| = √2 (since
+P=0 ⟹ Q=(3/2)σ and amplitude forces |Q|=√2, σ=2√2/3), |Q|=√2, rows 2,3 give 2√2·1+0 = 2√2; total
+4√2. (At p=0 the rows 2,3 acquire y₂=0 — the "zero entry" predicted by the (B1) smoothing.)
+
+*The bound T(0,ψ) ≥ 4√2.* Set p* := √2/3 (the regime boundary √(2−8p²)=p ⟺ 9p²=2). Split [0,1/2].
+
+ • **Regime B (p ∈ [p*, 1/2]):** there √(2−8p²) ≤ p, so max = p and
+   T_B(p) = 2p + 2p + 2√2√(1+2p) = 4p + 2√2√(1+2p). Its derivative 4 + 2√2/√(1+2p) > 0, so T_B is
+   increasing, and its minimum on [p*,1/2] is T_B(p*) = (4√2)/3 + 2√(18+12√2)/3 ≈ 5.828 > 4√2.
+
+ • **Regime A (p ∈ [0, p*]):** there √(2−8p²) ≥ p, so max = √(2−8p²) and
+   T_A(p) = 2√(2−8p²) + 2p + 2√2√(1+2p). Since T_A(0) = 2√2 + 0 + 2√2 = 4√2, rationalize the two
+   radicals against their p=0 values: √(2−8p²)−√2 = −8p²/(√(2−8p²)+√2) and √(1+2p)−1 =
+   2p/(√(1+2p)+1). Hence (identity verified symbolically)
+      **T_A(p) − 4√2 = 2p·β(p),  β(p) := 1 + 2√2/(√(1+2p)+1) − 8p/(√(2−8p²)+√2).**
+   We bound β below on (0,p*] by a DECREASING linear function (β itself is not monotone, but the
+   linear bound is). Two component bounds:
+   — √(1+2p)+1 is increasing in p, so 2√2/(√(1+2p)+1) ≥ 2√2/(√(1+2p*)+1) on [0,p*].
+   — On [0,p*], 2−8p² ≥ 2−8p*² = 2 − 8·(2/9) = 2/9, so √(2−8p²) ≥ √2/3 and the denominator
+     √(2−8p²)+√2 ≥ √2/3+√2 = 4√2/3; hence 8p/(√(2−8p²)+√2) ≤ 8p/(4√2/3) = 6p/√2 = 3√2·p.
+   Combining,
+      β(p) ≥ 1 + 2√2/(√(1+2p*)+1) − 3√2·p   on [0,p*],
+   a decreasing linear function of p, minimized at p = p*. Using 1+2p* = 1+2√2/3 = (3+2√2)/3 =
+   (1+√2)²/3 (so √(1+2p*) = (1+√2)/√3) and (3√2)·p* = (3√2)(√2/3) = 2,
+      β(p) ≥ 1 + 2√2/((1+√2)/√3 + 1) − 2 = 2√6/(1+√2+√3) − 1 = √3 + √6 − 4.
+   This floor is **> 0**: √3+√6 > 4 ⟺ √6 > 4−√3 ⟺ 6 > 19−8√3 ⟺ 8√3 > 13 ⟺ 192 > 169, true.
+   (Numerically √3+√6−4 ≈ 0.1815; and min over [0,p*] of (β − linear bound) = 0, tight at p*,
+   confirming the linear bound is valid.) Therefore β(p) > 0 on (0,p*], and T_A(p) − 4√2 = 2p·β(p)
+   ≥ 0 with equality only at p=0.
+
+ Both regimes give T(0,ψ) ≥ 4√2, with equality only at p=0 (the interior ψ with tan2ψ=−2√2 and its
+ dihedral images). **So T(0,ψ) ≥ 4√2 on the entire t=0 line.** ∎ (C1)
+
+By (H1), (C1) gives **T ≥ 4√2 on the entire Case-1 stratum (αβγ=0).** Combined with (C2),
+**T ≥ 4√2 holds on all of {αβγ=0} ∪ {|sin 2ψ| ≥ u*}.**
+
+**(B3-GAP, narrowed) — REMAINING GAP: the region {t∈(0,π/6], |sin 2ψ| < u*} (Case-2 interior of
+Regime 1).** Here neither (C1) (which needs t=0) nor (C2) (which needs |sin 2ψ|≥u*) applies. The
+proof is NOT yet closed on this region. Rigorous facts toward it: T is continuous on the compact
+stratum S, so its minimum is attained (extreme value theorem, KB); by (B1) the (y,z)-smoothing
+puts any interior minimum at a breakpoint where some y- or z-column W-entry vanishes — a finite
+union of explicit 1-variable curves in t, on each of which T is an explicit sum of |sinusoid(t)|
+terms whose minimum can in principle be computed. Numerically the minimum over this region is
+≥ 5.6657 (approaching 4√2 only as t→0+, i.e. the Case-1 boundary), and EVERY interior local
+minimum of T over S has value exactly 5.828 = 2√2√(1+u*)+2u* (value² ≈ 33.97 > 32) or 6.0, both
+> 4√2 (5000 random Nelder-Mead starts). So the stratum minimum 4√2 lives entirely on the t=0
+(Case-1) boundary and no interior point dips below — but the SYMBOLIC interior floor (per-sector
+saturated-Gröbner certificate T²>32 over the ~149 sign-sectors, the Lemma-A lever; or symbolic
+minimization of the finite breakpoint branch-functions) was not completed in budget. **This single
+region is the honest remaining gap.** It is much smaller than round 8's "whole 2-D stratum (~230
+sectors)": the equality stratum (Case 1) and the entire Regime-2 half-plane are now rigorous.
+
+**Conclusion of Lemma B — PARTIAL (gap narrowed).** Rigorous chain: (B0) T ≥ 4√2 ⟹ Lemma B;
+(B1)+(B2) a global minimizer of T may be taken with c_x⊥(1,1,1) (the stratum S); (B3-final) the
+axial floor; and now (C1)+(H1) the full Case-1 (αβγ=0) stratum T ≥ 4√2 (on the t=0 line equality
+holds only at the interior ψ with tan2ψ=−2√2, ψ≈0.9553, where T = 4√2), plus (C2) T ≥ 4√2 on all
+of {|sin 2ψ| ≥ u*} for every t. The ONLY
+remaining region is {t∈(0,π/6], |sin 2ψ| < u*}, where T > 4√2 numerically (region min ≥ 5.6657,
+interior local minima exactly {5.828, 6.0}) but lacks a symbolic certificate. Until that region is certified, Lemma B — and the Part-(2) upper
+bound — remains open. **Lemma B is NOT yet fully proved**, but the gap is now a single bounded
+sub-region rather than the whole stratum.
 
 ## Full proof
 **Not complete (Status: partial)** — only because **Part (2) (Lemma B) is a blocking open

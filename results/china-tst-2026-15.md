@@ -14,19 +14,55 @@ partial
   L2 (the only misses are completely-separated non-neighbors, and there are < n/8 of
   them), L3 (common neighbors of a separated pair receive distinct colors, and a
   separated pair has ≥ 3n/4 common neighbors). All three proven below.
-- Upper-bound crux L4 (turn "δ ≥ 7n/8" into a covering triple via a double count
-  sharp at 7/8) — **OPEN**. The reduction L1–L3 is in hand but the closing inequality
-  that is violated at δ ≥ 7n/8 yet satisfiable at δ = 7n/8 − 1 has not been produced.
-  Gap stated explicitly below.
+- **Type-grid + per-cell σ-bound double count (Part C)** — **WORKED for a large
+  sub-class**: building the (color-1, color-2) component grid on the two smallest
+  color-component counts, the per-cell σ-bound (KL1: a cell with ≥ 2 blue components
+  present has anti-block weight ≤ n/4 − 2) **rules out Case B (every cell ≥ 2 blue
+  comps) for EVERY profile (c1,c2)** (KL2), and **closes the main case c1 = c2 = 2
+  completely** (KL3, including the sharp (2,2,4) extremal configuration). This proves
+  the upper bound α ≤ 7/8 for every bad coloring whose two smallest color-component
+  counts are both 2 — which includes the sharp/extremal colorings. Built rigorously
+  below (Part C). Arithmetic of KL2 verified (`/tmp/check15e.py`, `check15f.py`,
+  `check15g.py`); KL3 verified (`check15b.py`); sharpness/load-bearing −2 slack
+  verified (`check15k.py`).
+- **Residual KL4 (Case A — a low cell — with c2 ≥ 3)** — **OPEN; both proposed
+  routes are DEAD ENDS.**
+  - *Route (a): re-grid on (color-1, blue) axes to make all cells "high" and force a
+    Case-B contradiction (equivalently "force c1 = c2 = 2").* **Dead end — it
+    contradicts the very theorem it invokes.** KL2 proves Case B impossible for
+    *every* axis pair, so a bad coloring must ALSO have a low cell in the
+    (color-1, blue) grid; that grid is therefore provably NOT all-high, the opposite
+    of what route (a) requires. And "force c1 = c2 = 2" is unsupported: the extremal
+    construction itself has a 4-component color, so ≥ 3-component colors are not
+    excludable — they merely cannot be the two smallest axes, and nothing forces the
+    two smallest to both be 2. No merge map is produced. (Confirmed in round reports'
+    `check15O.py`: the opposite-quadrant triple provably fails for c2 ≥ 3.)
+  - *Route (b): empty-cell-vs-blue-pure split with induction on c2 (L3-iteration).*
+    **Dead end — no working mechanism for either branch.** For an empty low cell, the
+    asserted "merge two color-2 components, reducing c2 by 1" has no merge map and the
+    complement is not forced single-blue (`check15S.py`). For a blue-pure low cell
+    P_{i0,j0} = B_s, the triple (R_{i0}, Y_{j0}, B_s) misses exactly the rainbow
+    partners CS*, with |CS*| ≤ n/8 − 1 — small but **nonempty** (`check15M.py`), so
+    not a covering triple; the L3(b) iteration ("each miss shares ≥ 3n/4 common
+    neighbors, force a second low cell, iterate") never yields a contradiction
+    (`check15R.py`). Structurally, the σ-count's factor 1/(k−1) blows up at k = 1, so
+    low cells are genuinely uncontrolled by the engine. Needs a NEW idea.
 
 ## Current best
 
-**Answer (conjectured, lower bound proven): α = 7/8.**
+**Answer (conjectured, lower bound proven; upper bound proven for all profiles with
+two smallest component-counts = 2): α = 7/8.**
 
-We have a complete rigorous proof of the lower bound **α ≥ 7/8** (Part A), and a
-complete rigorous proof of the reduction lemmas **L1, L2, L3** that frame the upper
-bound. The upper bound **α ≤ 7/8** is reduced to a single open inequality (L4),
-stated precisely at the end.
+We have a complete rigorous proof of the lower bound **α ≥ 7/8** (Part A), a complete
+rigorous proof of the reduction lemmas **L1, L2, L3**, and (Part C) a complete
+rigorous proof of the **upper bound α ≤ 7/8 for every bad coloring whose two smallest
+color-component counts are both 2** — including the sharp/extremal configurations
+(profile (2,2,4)). Concretely Part C proves: (i) every color has ≥ 2 components;
+(ii) the per-cell σ-bound KL1; (iii) **Case B (every grid cell has ≥ 2 blue
+components) is impossible for EVERY profile (c1,c2)**; (iv) the **main case
+c1 = c2 = 2 is fully closed**. The ONLY remaining gap to a full solve is the residual
+case **c2 ≥ 3 with a low cell (KL4)**, which is precisely located and recorded as
+open below. Status: **partial**.
 
 Throughout, fix a graph G on n vertices and a 3-coloring of its edges with colors
 {R, Y, B} (red, yellow, blue). For a color c and a vertex v, let `C_c(v)` denote the
@@ -195,51 +231,213 @@ class. This is the obstruction the upper bound must overcome.
 
 ---
 
-### THE REMAINING GAP (upper bound crux, L4) — OPEN, stated honestly
+---
 
-To prove α ≤ 7/8 it remains to show:
+### Part C — Upper bound α ≤ 7/8 for two-smallest-counts-= 2 (COMPLETE for that sub-class)
 
-> **(L4)** If δ(G) ≥ ⌈7n/8⌉, then every 3-coloring of E(G) admits a covering triple.
+Throughout Part C assume **δ(G) ≥ ⌈7n/8⌉** and that the 3-coloring is **bad** (no
+covering triple); we derive a contradiction in the relevant configurations. The engine
+is **Double counting** (knowledge_base.md, "Double counting") combined with the
+**Pigeonhole / extremal principle** (knowledge_base.md, "Pigeonhole / extremal") for
+choosing a minimum-weight row/column. The load-bearing analytic input is L2's bound
+**|M(v)| ≤ n − 1 − ⌈7n/8⌉ ≤ n/8 − 1** (the −1 is integrality and is sharp; dropping it
+collapses the proof exactly where the Part A construction lives).
 
-What L1–L3 reduce this to: a bad 3-coloring (no covering triple) requires CS(v) ≠ ∅ for
-**every** vertex v (else T(v) covers), with CS(v) ⊆ M(v), |M(v)| < n/8, and every
-separated pair sharing ≥ 3n/4 common neighbors split into two colors (L3). We must
-derive a contradiction from this at δ ≥ 7n/8, and the contradiction must be **sharp**:
-it must fail at δ = 7n/8 − 1 (where the Part A construction is a genuine bad coloring).
+**C.1 (Every color has ≥ 2 components.)** Suppose some color c has exactly one
+component, i.e. the c-edge subgraph is connected, so C_c(v) = V for any vertex v. Pick
+any v. By L1 the triple T(v) = (C_R(v), C_Y(v), C_B(v)) covers N[v]; and since
+C_c(v) = V, the union C_R(v) ∪ C_Y(v) ∪ C_B(v) ⊇ C_c(v) = V already. So T(v) is a
+covering triple, contradicting badness. Hence each color has ≥ 2 components. Write the
+three component counts as a profile (c_R, c_Y, c_B) with all coordinates ≥ 2.
 
-**Why this is genuinely open, and what is needed.** Two precise obstacles remain:
+**C.2 (Choose axes by color symmetry.)** The property "a covering triple exists" is
+symmetric under permuting the three colors (it asks for one component per color whose
+union is V; permuting the names of the colors permutes the choices but not the union).
+Relabel the colors so the counts satisfy c1 ≤ c2 ≤ c3, where c1, c2, c3 are the counts
+of colors 1, 2, 3 respectively, all ≥ 2. Call color 1 "rows," color 2 "columns," color
+3 "blue." Enumerate the color-1 components R_1, …, R_{c1} (rows) and the color-2
+components Y_1, …, Y_{c2} (columns). Every vertex lies in exactly one row and exactly
+one column, so the **cells**
+  P_{ij} := {v : C_1(v) = R_i and C_2(v) = Y_j}, 1 ≤ i ≤ c1, 1 ≤ j ≤ c2,
+partition V. Let a_{ij} = |P_{ij}|, the **row weight** Ri := Σ_j a_{ij} = |R_i|, the
+**column weight** Cj := Σ_i a_{ij} = |Y_j|; then Σ_i Ri = Σ_j Cj = n. For a cell P_{ij}
+let k_{ij} := the number of distinct blue (color-3) components that contain at least
+one vertex of P_{ij}.
 
-1. *Single-anchor framing is insufficient.* L1–L3 are all phrased relative to one
-   vertex v and its own triple T(v). But "bad coloring" means **no** triple covers —
-   including triples not anchored at any single vertex (one may pick C_R(v₁), C_Y(v₂),
-   C_B(v₃) with v₁,v₂,v₃ distinct). In the Part A construction at δ = 7n/8 − 1, for
-   *every* anchor v the triple T(v) misses exactly the antipodal atom, and that miss
-   is **not** absorbable by re-choosing any single component — there really is no
-   covering triple. So any valid L4 argument must distinguish δ ≥ 7n/8 from
-   7n/8 − 1 on the strength of a single unit of degree; it cannot rely only on
-   T(v)-style single-anchor reasoning. (Confirmed in the round reports'
-   `/tmp/l4_gap.py`, `/tmp/l4_test.py`: the L4(a) "absorption" premise is fully
-   realized in the extremal graph with no contradiction.)
+For a cell P_{ij} define its **anti-block**
+  AB_{ij} := ⋃_{i' ≠ i, j' ≠ j} P_{i'j'}, A_{ij} := |AB_{ij}| = Σ_{i'≠i, j'≠j} a_{i'j'}
+           = n − Ri − Cj + a_{ij}
+(by inclusion–exclusion: the full grid minus row i minus column j double-subtracts
+P_{ij}).
 
-2. *No sharp closing inequality has been produced.* The needed step is an explicit
-   double count. The natural candidate, not yet carried through, is: sum over all
-   completely-separated pairs {u, w} the L3 incidence "each of the ≥ 3n/4 common
-   neighbors x splits color(xu) ≠ color(xw)," and weigh it against the global slack
-   that each vertex has < n/8 non-neighbors (L2). One must extract from this an
-   inequality I(δ) that is **violated** when δ ≥ 7n/8 (forcing CS(v) = ∅ for some v,
-   hence a covering triple) but **satisfiable** at δ = 7n/8 − 1 (matching the
-   construction, whose per-atom incidence pattern — a miss adjacent via "wrong" colors
-   to 3 vertices of C_R, 3 of C_Y, 1 of C_B in the n = 8 case — is the equality case
-   the inequality must permit). Producing this inequality, with the constant 7/8 (not
-   3/4, not 13/16) emerging from the count, is the open work. The brute-force evidence
-   that the threshold is correct — zero bad colorings at δ ≥ ⌈7n/8⌉ for n = 8, 16, 24
-   (round reports `/tmp/probe_upper.py`) — is evidence, not a proof.
+**C.3 (KL1 — the per-cell σ-bound).** *For any cell P_{ij} with k_{ij} ≥ 2 we have*
+  A_{ij} ≤ n/4 − 2,  equivalently  Ri + Cj − a_{ij} ≥ 3n/4 + 2.
 
-**Status of the answer.** The lower bound α ≥ 7/8 is proven. The upper bound α ≤ 7/8
-is reduced (via L1–L3) to the single sharp counting inequality L4, which is not yet
-established. We therefore record α = 7/8 as the conjectured answer with a proven lower
-bound and an open, precisely-located upper-bound gap. Status: **partial**.
+*Proof.* Fix the cell P_{ij}. For a vertex v ∈ P_{ij} with blue component
+C_3(v) = B_k, consider which vertices are **completely separated** from v (notation of
+Part B: type(u) and type(v) differ in all three colors). Such a u must have
+C_1(u) ≠ R_i (different row), C_2(u) ≠ Y_j (different column), and C_3(u) ≠ B_k
+(different blue). The vertices with different row AND different column are exactly the
+anti-block AB_{ij}; among them, completely separated from v are those whose blue
+component is not B_k. Thus
+  CS(v) = { u ∈ AB_{ij} : C_3(u) ≠ B_k }.
+(Every such u is completely separated from v; and conversely every completely separated
+u lies in AB_{ij} with C_3(u) ≠ B_k. This depends only on the **type** of v, i.e. on
+the triple (R_i, Y_j, B_k), not on the individual vertex v — two vertices of the same
+type have the same CS-set.) By L2, CS(v) ⊆ M(v) and so
+  |CS(v)| ≤ |M(v)| ≤ n/8 − 1.   (∗)
+
+Now let the distinct blue components appearing in P_{ij} be B_{k_1}, …, B_{k_m} with
+m = k_{ij} ≥ 2, and for each present blue value k_t let
+  c_t := |{ u ∈ AB_{ij} : C_3(u) = B_{k_t} }|
+be the number of anti-block vertices whose blue component equals B_{k_t}. The sets
+indexed by distinct blue values are disjoint subsets of AB_{ij}, so
+  Σ_{t=1}^{m} c_t ≤ A_{ij}.   (†)
+Because k_{ij} = m ≥ 2, each present blue value k_t is the blue component of an
+**actual vertex** v_t ∈ P_{ij}; applying (∗) to v_t and noting
+CS(v_t) = { u ∈ AB_{ij} : C_3(u) ≠ B_{k_t} }, which has size A_{ij} − c_t, gives
+  A_{ij} − c_t ≤ n/8 − 1  for each t = 1, …, m.   (‡)
+Sum (‡) over the m present blue values:
+  m·A_{ij} − Σ_t c_t ≤ m(n/8 − 1).
+By (†), Σ_t c_t ≤ A_{ij}, so m·A_{ij} − A_{ij} ≤ m·A_{ij} − Σ_t c_t ≤ m(n/8 − 1), i.e.
+  (m − 1)·A_{ij} ≤ m(n/8 − 1),  A_{ij} ≤ (m/(m−1))(n/8 − 1).
+Since m ≥ 2, m/(m−1) ≤ 2, hence A_{ij} ≤ 2(n/8 − 1) = n/4 − 2. The equivalent form
+follows from A_{ij} = n − Ri − Cj + a_{ij}:
+  n − Ri − Cj + a_{ij} ≤ n/4 − 2 ⟺ Ri + Cj − a_{ij} ≥ 3n/4 + 2. ∎
+
+*(Load-bearing remarks.* The factor m/(m−1) ≤ 2 **requires m = k_{ij} ≥ 2** — this is
+exactly why low cells, k ≤ 1, are excluded from the count: at k = 1 the factor is ∞.
+The "−2" comes from the "−1" in (∗), i.e. from |M(v)| ≤ n/8 − 1, which is integrality.
+At δ = 7n/8 − 1 one would only have |M(v)| ≤ n/8, weakening KL1 to A_{ij} ≤ n/4, and
+the Part-A construction attains equality A_{ij} = n/4 — so the −2 is sharp and must be
+kept.)*
+
+**C.4 (KL2 — Case B is impossible for EVERY profile (c1,c2)).** *Call the coloring in
+**Case B** if every cell P_{ij} (1 ≤ i ≤ c1, 1 ≤ j ≤ c2) has k_{ij} ≥ 2. We show Case
+B cannot occur, for any c1 ≤ c2 (both ≥ 2).*
+
+Two routes partition all profiles.
+
+**Route B-min (kills every profile with 1/c1 + 1/c2 ≤ 3/4).** By the extremal
+principle, the average row weight is n/c1, so some row i* has Ri* ≤ n/c1; likewise some
+column j* has Cj* ≤ n/c2. The cell P_{i*j*} is in Case B, so k_{i*j*} ≥ 2 and KL1
+applies:
+  3n/4 + 2 ≤ Ri* + Cj* − a_{i*j*} ≤ Ri* + Cj* ≤ n/c1 + n/c2 = n(1/c1 + 1/c2).
+(The middle step drops a_{i*j*} ≥ 0.) If 1/c1 + 1/c2 ≤ 3/4 this gives
+3n/4 + 2 ≤ 3n/4, i.e. 2 ≤ 0 — contradiction. So Route B-min eliminates every profile
+with 1/c1 + 1/c2 ≤ 3/4. The profiles with c1 ≤ c2, both ≥ 2, that **survive**
+(1/c1 + 1/c2 > 3/4) are exactly
+  (c1, c2) ∈ { (2, 2), (2, 3) }
+— a finite check: 1/2 + 1/3 = 5/6 > 3/4, 1/2 + 1/4 = 3/4 (NOT surviving — killed by
+B-min, since the inequality is ≤ 3/4), and any c1 ≥ 3 gives 1/c1 + 1/c2 ≤ 2/3 < 3/4,
+while (2, c2) with c2 ≥ 4 gives ≤ 1/2 + 1/4 = 3/4. Both survivors have c1 = 2.
+(Arithmetic verified: `/tmp/check15e.py`, `/tmp/check15g.py`.)
+
+**Route B-two (kills c1 = 2, hence both survivors).** Suppose c1 = 2, so there are
+exactly two rows R_0, R_1 with R0 + R1 = n. (We index rows 0,1 for clarity.) Since
+c2 ≥ c1 = 2 there are at least two columns; pick any two distinct columns j, j′. Apply
+KL1 to the four Case-B cells (0,j), (0,j′), (1,j), (1,j′) and add the four inequalities
+"Ri + Cj − a_{ij} ≥ 3n/4 + 2":
+  [R0 + Cj − a_{0j}] + [R0 + Cj′ − a_{0j′}] + [R1 + Cj − a_{1j}] + [R1 + Cj′ − a_{1j′}]
+      ≥ 4·(3n/4 + 2) = 3n + 8.
+Group the left side:
+  LHS = 2(R0 + R1) + 2(Cj + Cj′) − (a_{0j} + a_{1j} + a_{0j′} + a_{1j′}).
+Because there are **exactly two rows**, the column weight of column j is the sum over
+those two rows: Cj = a_{0j} + a_{1j}, and similarly Cj′ = a_{0j′} + a_{1j′}. Hence
+  a_{0j} + a_{1j} + a_{0j′} + a_{1j′} = Cj + Cj′,
+and using R0 + R1 = n,
+  LHS = 2n + 2(Cj + Cj′) − (Cj + Cj′) = 2n + (Cj + Cj′).
+Therefore 2n + (Cj + Cj′) ≥ 3n + 8, i.e. Cj + Cj′ ≥ n + 8. But Cj + Cj′ is a sum of two
+of the (nonnegative) column weights, so Cj + Cj′ ≤ Σ_l Cl = n. Thus n ≥ n + 8 — a
+contradiction. (This collapse of the 4-cell a-sum to Cj + Cj′ uses **exactly two rows**;
+with ≥ 3 rows it fails, which is why Route B-two is invoked only when the smaller axis
+has 2 components. Arithmetic verified: `/tmp/check15f.py`.) By color symmetry the same
+argument with rows/columns interchanged kills c2 = 2.
+
+The two survivors of Route B-min, (2,2) and (2,3), both have c1 = 2 and are killed by
+Route B-two; every other profile is killed by Route B-min. **Hence Case B is impossible
+for every profile (c1, c2).** ∎ (KL2)
+
+*(Sharpness check.* The Part-A extremal coloring has profile (R,Y,B) = (2,2,4), so its
+two smallest counts are 2 and 2, axes c1 = c2 = 2, and **every** (R,Y) cell contains
+2 blue components (k_{ij} = 2 throughout) — it is a Case-B configuration. There
+A_{ij} = n/4 exactly and |M(v)| = n/8 at δ = 7n/8 − 1, so KL1 weakens to A_{ij} ≤ n/4
+and B-two reads 2n + (Cj + Cj′) ≥ 3n with Cj + Cj′ = n, an **equality** — no
+contradiction. At δ ≥ 7n/8 the −2 reappears and the same B-two inequality becomes
+2n + n ≥ 3n + 8, a contradiction. So the proof's sharp content lives precisely in
+Case B with c1 = c2 = 2, and the −2 slack is exactly what separates δ ≥ 7n/8 from the
+construction. Verified: `/tmp/check15k.py`.)*
+
+**C.5 (A low cell exists in a bad coloring.)** By KL2, in a bad coloring Case B does
+not hold, so there is at least one cell P_{i0,j0} with k_{i0,j0} ≤ 1: it is either
+**empty** (a_{i0,j0} = 0, k = 0) or **blue-pure** (all its vertices lie in a single
+blue component B_s, k = 1). Call such a cell **low**.
+
+**C.6 (KL3 — main case c1 = c2 = 2 is closed via a low cell).** *Suppose c1 = c2 = 2.
+We exhibit a covering triple, contradicting badness; combined with C.4 this closes the
+case c1 = c2 = 2 entirely.*
+
+There are two rows R_0, R_1 and two columns Y_0, Y_1, and by C.5 a low cell P_{i0,j0}.
+Let i1 := 1 − i0 (the opposite row) and j1 := 1 − j0 (the opposite column). Consider
+the triple
+  (R_{i1}, Y_{j1}, B_s),
+where B_s is the single blue component of P_{i0,j0} if it is blue-pure, or any blue
+component at all if P_{i0,j0} is empty (its choice is irrelevant in the empty case). We
+claim this covers V. The four cells partition V; check each:
+- P_{i1,j1}: every vertex here has C_1 = R_{i1}, so it lies in R_{i1}. Covered.
+- P_{i1,j0}: every vertex has C_1 = R_{i1}, so in R_{i1}. Covered.
+- P_{i0,j1}: every vertex has C_2 = Y_{j1}, so in Y_{j1}. Covered.
+- P_{i0,j0} (the low cell): if empty there is nothing to cover; if blue-pure, every
+  vertex has C_3 = B_s, so in B_s. Covered.
+Thus R_{i1} ∪ Y_{j1} ∪ B_s = V: a covering triple. This contradicts badness. (Verified:
+`/tmp/check15b.py`.) Together with C.4 (Case B impossible), there is **no bad coloring
+with c1 = c2 = 2**. ∎ (KL3)
+
+**C.7 (Conclusion of Part C — what is and is not proven).** Combining C.1–C.6: in a bad
+coloring at δ ≥ ⌈7n/8⌉, every color has ≥ 2 components (C.1), Case B is impossible for
+every profile (C.4), and **if the two smallest color-component counts are both 2
+(c1 = c2 = 2) the coloring cannot be bad** (C.6). In particular the upper bound
+**α ≤ 7/8 holds for every graph/coloring whose bad-coloring profile would have
+c1 = c2 = 2**, which **includes the extremal/sharp configurations** (profile (2,2,4),
+two smallest counts 2 and 2). This is the full sharp content of the threshold 7/8.
+
+The remaining configurations are **Case A with c2 ≥ 3** (the two smallest counts are
+not both 2): Case B is still impossible (C.4), so a low cell exists (C.5), but the
+single opposite-quadrant triple of C.6 no longer covers, because the anti-block of the
+low cell is a (c1 − 1)(c2 − 1) block of cells rather than one cell — provably a single
+opposite-row/column/blue pick cannot cover it (round reports `check15O.py`). This
+residual (KL4) is **open**; see the dead-end analysis under "Approaches tried." It is a
+"needs a new idea" gap (a way to control or eliminate low cells with k ≤ 1, which the
+σ-engine cannot do because its factor 1/(k−1) diverges at k = 1), not a tightening.
+
+---
+
+### THE REMAINING GAP (upper bound residual, KL4) — OPEN, stated honestly
+
+To finish α ≤ 7/8 it remains to settle, in a bad coloring at δ ≥ ⌈7n/8⌉:
+
+> **(KL4)** the case **c2 ≥ 3** (two smallest color-component counts not both 2). By
+> C.4–C.5 a low cell P_{i0,j0} exists; produce a covering triple (contradiction) or a
+> structural contradiction.
+
+Both mechanisms proposed by the outline are dead ends (recorded fully under "Approaches
+tried"): route (a) [re-grid on (color-1, blue) to make all cells high / "force
+c1=c2=2"] **contradicts C.4**, which forces a low cell on the (color-1, blue) grid too,
+so that grid is provably not all-high; route (b) [empty-cell merge / L3(b) iteration]
+produces no contradiction in either the empty or blue-pure branch, the structural
+reason being that a k ≤ 1 cell is uncontrolled by the σ-count (factor 1/(k−1) diverges
+at k = 1). Closing KL4 needs a genuinely new lever for low cells when c2 ≥ 3.
+
+**Status of the answer.** The lower bound α ≥ 7/8 is proven (Part A). The upper bound
+α ≤ 7/8 is proven for all bad-coloring profiles with c1 = c2 = 2 — including the sharp
+configurations — via the per-cell σ-bound double count (Part C); Case B is impossible
+for every profile. The single residual is Case A with c2 ≥ 3 (KL4), open and precisely
+located. We record α = 7/8 as the answer with a proven lower bound and an upper bound
+proven on the sharp sub-class. Status: **partial**.
 
 ## Full proof
-(Not present — Status is `partial`. Part A above is a complete rigorous proof of the
-lower bound α ≥ 7/8, and L1–L3 are complete; the upper bound L4 remains open as stated.)
+(Not present — Status is `partial`. Part A is a complete rigorous proof of the lower
+bound α ≥ 7/8; L1–L3 are complete; Part C (C.1–C.6) is a complete rigorous proof of the
+upper bound α ≤ 7/8 for every bad coloring with two smallest component counts = 2,
+including the sharp profile (2,2,4). The residual KL4 (Case A, c2 ≥ 3) remains open as
+stated.)
