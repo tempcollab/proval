@@ -17,6 +17,19 @@ not by problem domain — many problems mix areas.
 - **Sum of squares (SOS) / completing the square**: prove a real inequality by
   rewriting `LHS − RHS` as a sum of squares; equivalently a positive-semidefinite
   quadratic form.
+- **Piecewise-concavity smoothing**: to minimize a function `g(φ)` that is a finite
+  sum of terms each of the form `|single sinusoid|` (i.e. `|A cos(kφ)+B sin(kφ)|`),
+  note each such term is concave on every interval between two consecutive zeros of
+  its argument (an identically-zero term is constant, hence concave). A finite sum of
+  functions concave on a common subinterval is concave there. Partitioning the circle
+  by the (finitely many) zeros of all arguments gives a piecewise-concave `g`; a
+  concave function on a closed interval attains its min at an endpoint, so the global
+  min of `g` is at a breakpoint, where some sinusoid argument vanishes. If the term is
+  a product `|x_φ · y|`, vanishing forces a factor to vanish — a "zero entry."
+  Moreover, if `φ=0` is already a global minimizer and lies in the interior of a
+  concavity interval, concavity forces `g` constant on that interval, so its endpoints
+  are also global minimizers carrying an extra zero entry. Used to drive a minimizer to
+  a sparse (axial) configuration without raising the objective.
 - **Standard inequalities**: AM-GM, Cauchy-Schwarz, QM-AM, Schur. Equality cases
   pin down the extremal configuration.
 - **Functional equations**: test special values, check injectivity/surjectivity.
