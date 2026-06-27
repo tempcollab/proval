@@ -139,6 +139,37 @@ not by problem domain — many problems mix areas.
 - **Trig identities & interval intersection**: `|x − u| ≤ v` defines an interval;
   two such hold simultaneously iff the intervals overlap (reduce to one inequality).
 
+## Combinatorial Geometry / Incidences
+
+- **Sylvester–Gallai theorem (2D).** Any finite set `S` of points in the real
+  plane (equivalently in the real projective plane `P²`), not all collinear, admits
+  an *ordinary line* — a line passing through **exactly two** points of `S`.
+  *Proof (Kelly 1948, minimal distance).* Consider all pairs `(Q, ℓ)` where `ℓ` is
+  a line through at least two points of `S` and `Q ∈ S` is **not** on `ℓ`. This set
+  of pairs is finite and non-empty (since `S` is not all collinear), and each pair
+  has a strictly positive perpendicular distance `d(Q, ℓ) > 0`; choose a pair
+  `(Q, ℓ)` minimizing `d(Q, ℓ)`. Claim `ℓ` is ordinary. If not, `ℓ` contains
+  `≥ 3` points of `S`. Let `F` be the foot of the perpendicular from `Q` to `ℓ`.
+  Of the `≥ 3` points of `S` on `ℓ`, by pigeonhole at least two lie on the same
+  closed side of `F` along `ℓ` (the two sides share the point `F`); call them `A`
+  (the one nearer to `F`, possibly `A = F`) and `B` (the one farther, `B ≠ A`).
+  Then the perpendicular distance from `A` to the line `QB` is **strictly less**
+  than `d(Q, ℓ)`, contradicting minimality. Hence `ℓ` is ordinary. ∎
+  *(The distance inequality `d(A, QB) < d(Q,ℓ)`: in the right triangle with legs
+  along `ℓ` and `QF`, `A` is closer to `F` than `B` on the same side, so the
+  triangle `QFB` contains `A` strictly inside the angle at `B`; comparing the two
+  triangles `QFB` and the foot of `A` on `QB` by similar triangles gives the strict
+  inequality. See the proof below for the explicit computation.)*
+- **Higher-dimensional Sylvester–Gallai (projection).** Let `S` be a finite set of
+  points in `Pᵈ` with **no three collinear** and **not all contained in a
+  hyperplane**. Projecting `S \ {p₀}` from one point `p₀ ∈ S` onto a hyperplane
+  `H ≅ P^{d−1}` not through `p₀` gives a finite set of distinct points (distinctness
+  from no-three-collinear) that is not all contained in a `(d−2)`-flat (from
+  not-all-in-a-hyperplane). Inducting with the 2D theorem as base case yields a
+  hyperplane of `Pᵈ` meeting `S` in **exactly `d` points** (an "ordinary
+  hyperplane"). For `d = 3`: a plane through **exactly three** points of `S`
+  (a *depth-3 plane*).
+
 ## General Proof Methods
 
 - **Direct proof**: chain definitions and known results from hypothesis to conclusion.

@@ -25,8 +25,20 @@ partial
   below (Part C). Arithmetic of KL2 verified (`/tmp/check15e.py`, `check15f.py`,
   `check15g.py`); KL3 verified (`check15b.py`); sharpness/load-bearing −2 slack
   verified (`check15k.py`).
-- **Residual KL4 (Case A — a low cell — with c2 ≥ 3)** — **OPEN; both proposed
-  routes are DEAD ENDS.**
+- **Sub-case 2B of the c1=2, c2=3 grid (low-cell single-type CS lever)** — **WORKED**;
+  built as KL5 / C.8. Two same-row blue-pure low cells P_{i0,j0}=B_s, P_{i0,j1}=B_p
+  (B_s≠B_p), other four cells high. Apply L2's CS identity to one realized vertex of
+  each low cell (legal at k=1 — it is the C.3 per-type identity, NOT the k≥2
+  m/(m−1)-averaging) to get (A′) a12−s12≤n/8−1 and (B′) a12−t12≤n/8−1; with the
+  disjointness inequalities s11≤a11, t10≤a10 (used to drop nonneg terms) and
+  s12+t12≤a12 (needs B_s≠B_p) ⟹ a12≤n/4−2; then KL1 on the four high cells gives
+  R_{i0}≥n/2+4 AND R_{i0}≤n/2−5, the n-independent contradiction 4≤−5. Subsumes the
+  earlier "Case I / Case II (exceptional B_r)" split uniformly. Verified symbolically
+  and by a minimal-infeasible-LP check; outline-review independently confirmed soundness
+  and minimality. **Coverage caveat (review):** this closes ONLY the 2B geometry, not
+  c2≥3; see open frontier (G1 ≥3-LOW, G2 mass, G3 c2≥4, G4 empty-LOW).
+- **Residual KL4 (Case A — a low cell — with c2 ≥ 3), the GENERAL routes** — **OPEN; both
+  earlier proposed routes are DEAD ENDS.**
   - *Route (a): re-grid on (color-1, blue) axes to make all cells "high" and force a
     Case-B contradiction (equivalently "force c1 = c2 = 2").* **Dead end — it
     contradicts the very theorem it invokes.** KL2 proves Case B impossible for
@@ -51,7 +63,7 @@ partial
 ## Current best
 
 **Answer (conjectured, lower bound proven; upper bound proven for all profiles with
-two smallest component-counts = 2): α = 7/8.**
+two smallest component-counts = 2, plus the 2B geometry of (2,3)): α = 7/8.**
 
 We have a complete rigorous proof of the lower bound **α ≥ 7/8** (Part A), a complete
 rigorous proof of the reduction lemmas **L1, L2, L3**, and (Part C) a complete
@@ -60,9 +72,17 @@ color-component counts are both 2** — including the sharp/extremal configurati
 (profile (2,2,4)). Concretely Part C proves: (i) every color has ≥ 2 components;
 (ii) the per-cell σ-bound KL1; (iii) **Case B (every grid cell has ≥ 2 blue
 components) is impossible for EVERY profile (c1,c2)**; (iv) the **main case
-c1 = c2 = 2 is fully closed**. The ONLY remaining gap to a full solve is the residual
-case **c2 ≥ 3 with a low cell (KL4)**, which is precisely located and recorded as
-open below. Status: **partial**.
+c1 = c2 = 2 is fully closed**; and (v, new — KL5/C.8) inside the next profile
+**c1 = 2, c2 = 3, the 2B low-cell geometry** (two same-row blue-pure low cells with
+distinct blue components, the other four cells high) is closed by the low-cell
+single-type CS lever, uniformly subsuming the prior Case I / Case II split.
+
+This is a genuine advance into the c2 ≥ 3 regime but does **not** finish it. The honest
+remaining gap is the rest of **Case A with c2 ≥ 3**: low-cell geometries with **≥ 3 low
+cells (G1/G2)**, the **empty-low sub-cases (G4)**, and the **c2 ≥ 4** profiles (G3).
+None of these is closed; in particular 3-LOW was never systematically analyzed (an
+earlier claim that it was, is retracted). Precisely located under "THE REMAINING GAP."
+Status: **partial**.
 
 Throughout, fix a graph G on n vertices and a 3-coloring of its edges with colors
 {R, Y, B} (red, yellow, blue). For a color c and a vertex v, let `C_c(v)` denote the
@@ -393,6 +413,101 @@ Thus R_{i1} ∪ Y_{j1} ∪ B_s = V: a covering triple. This contradicts badness.
 `/tmp/check15b.py`.) Together with C.4 (Case B impossible), there is **no bad coloring
 with c1 = c2 = 2**. ∎ (KL3)
 
+**C.8 (KL5 — sub-case 2B of the c1 = 2, c2 = 3 grid is closed).** *Suppose c1 = 2,
+c2 = 3, and the low-cell geometry is the following* ***2B configuration****: the two
+low cells lie in the same row i0 and are both **blue-pure**, namely
+P_{i0,j0} = B_s and P_{i0,j1} = B_p with B_s ≠ B_p two distinct blue components, and
+the four other cells P_{i0,j2}, P_{i1,j0}, P_{i1,j1}, P_{i1,j2} are all **high**
+(k ≥ 2). Then the coloring cannot be bad.*
+
+Write the two rows as i0, i1 = 1 − i0 (so c1 = 2 means there are exactly these two
+rows) and the three columns as j0, j1, j2. Abbreviate the six cell sizes
+a_{00} = |P_{i0,j0}|, …, a_{12} = |P_{i1,j2}| (first index = row, second = column,
+listing columns as 0,1,2 for j0,j1,j2). Then R_{i0} = a_{00} + a_{01} + a_{02},
+R_{i1} = a_{10} + a_{11} + a_{12}, and R_{i0} + R_{i1} = n. Set
+  s_{12} = |B_s ∩ P_{i1,j2}|, s_{11} = |B_s ∩ P_{i1,j1}|,
+  t_{12} = |B_p ∩ P_{i1,j2}|, t_{10} = |B_p ∩ P_{i1,j0}|.
+
+*Step 1 — the low-cell single-type CS identity (legal at k = 1).* The cell
+P_{i0,j0} is blue-pure, hence **nonempty**: fix any vertex v ∈ P_{i0,j0}. Its type is
+(R_{i0}, Y_{j0}, B_s) — every vertex of the cell has C_3 = B_s. We compute CS(v)
+exactly as in C.3, but for this **single realized type** (no summation over blue
+values, no m/(m−1) averaging — that averaging is the *only* place k ≥ 2 was used). By
+definition u is completely separated from v iff C_1(u) ≠ R_{i0}, C_2(u) ≠ Y_{j0}, and
+C_3(u) ≠ B_s. Because **c1 = 2**, "C_1(u) ≠ R_{i0}" means C_1(u) = R_{i1}: the other
+row is the single row i1. And "C_2(u) ≠ Y_{j0}" means the column of u is j1 or j2.
+Hence the vertices with different row and different column from v are exactly
+P_{i1,j1} ∪ P_{i1,j2}, and among them the completely separated ones are those whose
+blue component is not B_s. Therefore
+  CS(v) = (P_{i1,j1} ∖ B_s) ∪ (P_{i1,j2} ∖ B_s),
+  |CS(v)| = (a_{11} − s_{11}) + (a_{12} − s_{12}).
+By L2, |CS(v)| ≤ |M(v)| ≤ n/8 − 1, so
+  (a_{11} − s_{11}) + (a_{12} − s_{12}) ≤ n/8 − 1.
+This is exactly the C.3 identity (∗) for one vertex of one realized type; it requires
+only that the cell be nonempty (k ≥ 1), which holds because P_{i0,j0} is blue-pure.
+
+*Step 2 — (A′).* Since s_{11} = |B_s ∩ P_{i1,j1}| ≤ |P_{i1,j1}| = a_{11}, the term
+(a_{11} − s_{11}) ≥ 0. Dropping it from the Step-1 inequality gives
+  **(A′)** a_{12} − s_{12} ≤ n/8 − 1.
+(The disjointness inequality s_{11} ≤ a_{11} is used here and must be stated: without
+it the inequality cannot be relaxed to (A′).)
+
+*Step 3 — (B′), the symmetric cell.* The cell P_{i0,j1} = B_p is also blue-pure, hence
+nonempty; fix w ∈ P_{i0,j1}, type (R_{i0}, Y_{j1}, B_p). The identical computation
+(c1 = 2 makes the other row i1 unique; the other columns are j0, j2) gives
+  CS(w) = (P_{i1,j0} ∖ B_p) ∪ (P_{i1,j2} ∖ B_p),
+  |CS(w)| = (a_{10} − t_{10}) + (a_{12} − t_{12}) ≤ n/8 − 1,
+by L2. Using t_{10} = |B_p ∩ P_{i1,j0}| ≤ |P_{i1,j0}| = a_{10}, so (a_{10} − t_{10}) ≥ 0,
+drop that term:
+  **(B′)** a_{12} − t_{12} ≤ n/8 − 1.
+(Again the disjointness inequality t_{10} ≤ a_{10} is what licenses the drop.)
+
+*Step 4 — a_{12} ≤ n/4 − 2.* The sets B_s ∩ P_{i1,j2} and B_p ∩ P_{i1,j2} are disjoint
+subsets of P_{i1,j2}, because B_s ≠ B_p are distinct blue components (a vertex lies in
+exactly one blue component) — **this is the only place the hypothesis B_s ≠ B_p is
+used.** Hence
+  s_{12} + t_{12} ≤ a_{12}.
+Add (A′) + (B′):
+  2a_{12} − (s_{12} + t_{12}) ≤ n/4 − 2,
+so 2a_{12} ≤ n/4 − 2 + (s_{12} + t_{12}) ≤ n/4 − 2 + a_{12}, giving
+  **a_{12} ≤ n/4 − 2.**
+
+*Step 5 — squeeze R_{i0} from below.* The cell P_{i0,j2} is high (k ≥ 2), so KL1 (C.3)
+applies to it. Its anti-block is AB_{i0,j2} = ⋃_{i'≠i0, j'≠j2} P_{i'j'} = P_{i1,j0} ∪
+P_{i1,j1}, so A_{i0,j2} = a_{10} + a_{11} ≤ n/4 − 2. With Step 4,
+  R_{i1} = a_{10} + a_{11} + a_{12} ≤ (n/4 − 2) + (n/4 − 2) = n/2 − 4,
+hence
+  R_{i0} = n − R_{i1} ≥ n/2 + 4.
+
+*Step 6 — squeeze R_{i0} from above.* The cells P_{i1,j0} and P_{i1,j1} are high, so
+KL1 applies to both. Their anti-blocks are AB_{i1,j0} = P_{i0,j1} ∪ P_{i0,j2} (rows
+≠ i1 ⟹ row i0; columns ≠ j0 ⟹ j1, j2), giving a_{01} + a_{02} ≤ n/4 − 2; and
+AB_{i1,j1} = P_{i0,j0} ∪ P_{i0,j2}, giving a_{00} + a_{02} ≤ n/4 − 2. Adding,
+  a_{00} + a_{01} + 2a_{02} ≤ n/2 − 4,
+i.e. (a_{00} + a_{01} + a_{02}) + a_{02} = R_{i0} + a_{02} ≤ n/2 − 4, so
+  R_{i0} ≤ n/2 − 4 − a_{02}.
+Because P_{i0,j2} is high (k ≥ 2 means it contains at least two vertices), a_{02} ≥ 2,
+so in particular a_{02} ≥ 1 and
+  R_{i0} ≤ n/2 − 5.
+
+*Step 7 — contradiction.* Steps 5 and 6 give
+  n/2 + 4 ≤ R_{i0} ≤ n/2 − 5, i.e. 4 ≤ −5,
+which is false (an n-independent contradiction). Hence no bad coloring has the 2B
+geometry. ∎ (KL5)
+
+*(Robustness and scope. The contradiction has slack 9; even a_{02} ≥ 0 would already
+give n/2 + 4 ≤ n/2 − 4, i.e. 8 ≤ 0, so the high-cell floor a_{02} ≥ 1 is not
+load-bearing. The argument uses **only** the defining 2B data — B_s, B_p blue-pure with
+B_s ≠ B_p, and the four named high cells — and never references any vertex/blue
+component inside P_{i1,j2}. In particular it subsumes uniformly both the "Case I" and
+the "Case II" subdivisions an earlier analysis made according to whether P_{i1,j2}
+contains an exceptional blue component B_r distinct from B_s, B_p: that distinction is
+never used. Arithmetic of the chain verified symbolically (anti-block identities;
+2a_{12} ≤ n/4 − 2 + a_{12}; R_{i0} ≥ n/2 + 4 and ≤ n/2 − 5); the constraint set is
+minimally infeasible — dropping any one of the eight inequalities used (the three KL1
+bounds, (A′), (B′), s_{12} + t_{12} ≤ a_{12}, and the two disjointness inequalities
+s_{11} ≤ a_{11}, t_{10} ≤ a_{10}) restores feasibility, so each is genuinely needed.)*
+
 **C.7 (Conclusion of Part C — what is and is not proven).** Combining C.1–C.6: in a bad
 coloring at δ ≥ ⌈7n/8⌉, every color has ≥ 2 components (C.1), Case B is impossible for
 every profile (C.4), and **if the two smallest color-component counts are both 2
@@ -401,43 +516,214 @@ every profile (C.4), and **if the two smallest color-component counts are both 2
 c1 = c2 = 2**, which **includes the extremal/sharp configurations** (profile (2,2,4),
 two smallest counts 2 and 2). This is the full sharp content of the threshold 7/8.
 
-The remaining configurations are **Case A with c2 ≥ 3** (the two smallest counts are
-not both 2): Case B is still impossible (C.4), so a low cell exists (C.5), but the
-single opposite-quadrant triple of C.6 no longer covers, because the anti-block of the
-low cell is a (c1 − 1)(c2 − 1) block of cells rather than one cell — provably a single
-opposite-row/column/blue pick cannot cover it (round reports `check15O.py`). This
-residual (KL4) is **open**; see the dead-end analysis under "Approaches tried." It is a
-"needs a new idea" gap (a way to control or eliminate low cells with k ≤ 1, which the
-σ-engine cannot do because its factor 1/(k−1) diverges at k = 1), not a tightening.
+In addition (C.8 / KL5) one specific geometry of the next profile c1 = 2, c2 = 3 — the
+**2B configuration** (two same-row blue-pure low cells with distinct blue components,
+the other four cells high) — is closed by the low-cell single-type CS lever. This is a
+genuine advance into the c2 ≥ 3 regime, but it is **not** a closure of c2 ≥ 3: the
+remaining low-cell geometries are open, as detailed honestly in "THE REMAINING GAP"
+below.
+
+The general residual is still **Case A with c2 ≥ 3** (the two smallest counts are not
+both 2): Case B is impossible (C.4), so a low cell exists (C.5), but the single
+opposite-quadrant triple of C.6 no longer covers, because the anti-block of the low cell
+is a (c1 − 1)(c2 − 1) block of cells rather than one cell (round reports
+`check15O.py`). The σ-engine cannot directly control low cells (its factor 1/(k − 1)
+diverges at k = 1); KL5 shows that for **some** low-cell geometries a per-type CS
+identity at k = 1 plus KL1 on the high cells suffices, but it does not yet handle every
+geometry. This residual is **open**.
+
+---
+
+### NOTE (round 11) — sub-case 2B BUILT and closed; coverage claims corrected
+
+The round-11 outline proposed closing sub-case 2B by the low-cell single-type CS
+lever. **That lever is correct and the 2B contradiction has now been built in full as
+C.8 / KL5 above** (verified symbolically and by a minimal-infeasible-LP check). The
+outline-review (`/tmp/round-11/outline-review-china-15.md`) independently confirmed the
+2B contradiction is sound and minimal, but flagged that the outline's *coverage* claims
+were overclaims. Those corrections are now reflected here:
+
+- **3-LOW is NOT closed.** The outline attributed "3-LOW variants" to the explorer's
+  closures; this is false. The explorer report explicitly says 3-LOW was "**not
+  systematically analyzed**." All 36 low-sets of the 2×3 grid with ≥ 3 low cells remain
+  **uncovered**: every 2-LOW / 1-LOW closure (including 2B) needs specific cells to be
+  HIGH so KL1 applies to them, and once ≥ 3 cells are low, the cells those arguments
+  need high are themselves low. (See "THE REMAINING GAP.")
+- **c2 ≥ 4 is NOT established.** Route B-min only fires at the min-row/min-col cell when
+  that cell is HIGH; a low cell sitting there blocks it. So c2 ≥ 4 reduces to the same
+  open low-cell problem on a larger grid, not to a solved case.
+- **The empty-low sub-cases of 2B's framing are NOT covered by KL5.** KL5 needs both
+  same-row low cells to be blue-pure (k = 1, nonempty) so that B_s, B_p and the parts
+  s_{12}, t_{12} are defined. If a same-row low cell is empty (k = 0) there is no vertex
+  v to feed L2, and Steps 1–3 do not apply. This is a real open sub-case.
+- **Case II is genuinely subsumed by KL5** (no exceptional-B_r split needed); this part
+  of the outline was correct, and the earlier tight-σ-chaining plan was unnecessary.
+
+The detailed (now-superseded) outline text is retained below for the record; read C.8
+above for the actual proof and "THE REMAINING GAP" below for the honest open frontier.
+
+---
+
+### OUTLINE (round 11) — closing sub-case 2B (same-row two-LOW), incl. Case II
+
+**Spec review: required.**
+
+**Context.** By the round-11 explorer's case analysis of the residual c1=2, c2=3
+grid (KL4), every scenario is closed EXCEPT sub-case **2B**: two LOW cells in the
+same row i0, namely `[i0,j0]=B_s` and `[i0,j1]=B_p` (blue-pure, `B_s ≠ B_p`), with
+the four remaining cells `[i0,j2],[i1,j0],[i1,j1],[i1,j2]` all HIGH (k≥2). The
+explorer closed Case I-a and left "Case II" (an exceptional `B_r ≠ B_s,B_p` in
+`[i1,j2]`) open, recommending a chain of tight σ-bounds.
+
+**Finding (this outline): the explorer's chaining mechanism is the WRONG lever, and
+a simpler lever closes ALL of 2B (Case I and Case II together) — no exceptional-vertex
+split, no tight-bound (C) needed.** The reason chaining tight anti-block σ-bounds
+fails: the variable `a12=|[i1,j2]|` lies in NO anti-block of a HIGH cell — the only
+anti-blocks containing `[i1,j2]` belong to the two LOW cells, to which KL1 (k≥2) does
+not apply. So no amount of KL1/tight-anti-block bounding constrains `a12` from above,
+and the LP stays feasible with `a12` huge (verified: `/tmp/check_caseII6.py`). The
+correct lever is the **single-type CS bound (L2) applied to the LOW cells themselves**
+— legal at k=1 because it uses one realized vertex-type, not the KL1 averaging that
+needs the m/(m−1) factor.
+
+**Technique.** Double counting (per-type CS = anti-block-minus-own-blue, the C.3
+identity) + L2 (`|CS(v)| ≤ n/8−1`), specialized to the two LOW vertex-types; combined
+with KL1 on the four HIGH cells. Pure arithmetic contradiction.
+
+**Notation (cell sizes).** `a00=|[i0,j0]|,…,a12=|[i1,j2]|`; `R_{i0}=a00+a01+a02`,
+`R_{i1}=a10+a11+a12`, `R_{i0}+R_{i1}=n`. Let `s12=|B_s∩[i1,j2]|`,
+`s11=|B_s∩[i1,j1]|`, `t12=|B_p∩[i1,j2]|`, `t10=|B_p∩[i1,j0]|`.
+
+**Skeleton (each step verified in `/tmp/check_caseII8.py`–`/tmp/check_unify.py`):**
+
+1. *(LOW-cell CS identity, the crux.)* For a vertex `v∈[i0,j0]` (type `(R_{i0},Y_{j0},B_s)`),
+   the completely-separated set is `CS(v)={u : C1(u)≠R_{i0}, C2(u)≠Y_{j0}, C3(u)≠B_s}`.
+   Since **c1=2**, "other row" = row i1 uniquely; "other column" = `{j1,j2}`. Hence
+   `CS(v)=([i1,j1]∪[i1,j2])` minus its B_s-part `= (a11−s11)+(a12−s12)`. By L2,
+   `(a11−s11)+(a12−s12) ≤ n/8−1`. — **This is exactly the C.3 computation applied to
+   ONE realized type; it needs only k≥1 (the LOW cell is nonempty), NOT k≥2.**
+2. Drop the nonnegative term `(a11−s11)≥0`: **(A′)** `a12 − s12 ≤ n/8−1`.
+3. *(Same for the other LOW cell.)* For `v∈[i0,j1]=B_p`: `CS(v)=(a10−t10)+(a12−t12)≤n/8−1`,
+   drop `(a10−t10)≥0`: **(B′)** `a12 − t12 ≤ n/8−1`.
+4. `s12` and `t12` are sizes of the disjoint `B_s`- and `B_p`-parts of `[i1,j2]`, so
+   `s12+t12 ≤ a12`. Add (A′)+(B′): `2a12−(s12+t12) ≤ n/4−2`, hence
+   `2a12 ≤ n/4−2+(s12+t12) ≤ n/4−2+a12`, giving **`a12 ≤ n/4−2`**.
+5. KL1 on HIGH cell `[i0,j2]`: `A_{i0,j2}=a10+a11 ≤ n/4−2`. With step 4,
+   `R_{i1}=a10+a11+a12 ≤ n/2−4`, so **`R_{i0}=n−R_{i1} ≥ n/2+4`**.
+6. KL1 on HIGH cells `[i1,j0]` and `[i1,j1]`: `a01+a02 ≤ n/4−2` and `a00+a02 ≤ n/4−2`.
+   Add: `a00+a01+2a02 ≤ n/2−4`, i.e. `R_{i0}+a02 ≤ n/2−4`, so `R_{i0} ≤ n/2−4−a02`.
+   Since `[i0,j2]` is HIGH, `a02 ≥ 1` (in fact ≥2), giving **`R_{i0} ≤ n/2−5`**.
+7. **Contradiction:** `n/2+4 ≤ R_{i0} ≤ n/2−5`, i.e. `4 ≤ −5`, impossible for every n. ∎
+
+**Key lemmas (claim + mechanism):**
+- *LOW-cell single-type CS bound* — for the realized blue-pure type `B_s` of a nonempty
+  LOW cell, `CS(v)` equals the cell's anti-block minus the `B_s`-part, and is `≤ n/8−1`
+  by L2. The k≥2 restriction of KL1 is irrelevant here: it came only from the σ-averaging,
+  not from the per-type CS identity, which holds for any one realized type (k≥1).
+- *`a12 ≤ n/4−2`* — because (A′)+(B′) bound `2a12` by `n/4−2` plus the (disjoint)
+  `B_s,B_p` overlap `s12+t12 ≤ a12`; the overlap is exactly enough to leave `a12 ≤ n/4−2`.
+- *Row-weight squeeze* — KL1 on `[i0,j2]` caps `R_{i1}` from above (forcing `R_{i0}` large),
+  while KL1 on `[i1,j0],[i1,j1]` caps `R_{i0}` from above; the two caps are incompatible.
+
+**Why this also kills Case II:** Case II's hypothesis (an exceptional `B_r` in `[i1,j2]`)
+is never used — the argument depends only on the defining 2B data (`B_s,B_p` LOW, the four
+HIGH cells). So Case I-a and Case II are subsumed by one uniform contradiction. The
+explorer's Case I-a derivation remains correct but is now redundant.
+
+**Cases to cover (within KL4, c2=3):** the explorer already closed 1-LOW, 2A (same
+column), 2C (diagonal), and 3-LOW variants; this outline closes 2B. The builder must
+also confirm **c2 ≥ 4** is subsumed: the same LOW-cell CS lever applies whenever a LOW
+cell exists with c1=2 (the "other row" is still unique), and the L-SHAPE/2A/2B/2C
+dissection generalizes since c1=2 forces exactly two rows. The builder should state the
+c2≥4 reduction explicitly rather than only handling c2=3, OR show c2≥4 is already killed
+by Route B-min/the existing C.4 machinery (1/2+1/c2 ≤ 3/4 for c2≥4, so B-min applies and
+the LOW cell + this lever still closes it). **This c2≥4 generality is the one step that
+needs an explicit check, not the 2B contradiction itself.**
+
+**Watch out for:**
+- The legality of steps 1–3 at k=1 is the single point a reviewer will probe. Spell out
+  that L2 applies to the actual vertex `v` of the LOW cell, that the CS-set identity is
+  the C.3 computation for the single type `B_s` (no summation, no `m/(m−1)`), and that
+  `c1=2` is what makes "the other row" unique (this is where the 2-row structure is used).
+- `s12+t12 ≤ a12` needs `B_s ≠ B_p` (disjoint parts) — true by the 2B hypothesis.
+- `a02 ≥ 1`: justify from `[i0,j2]` HIGH (k≥2 ⇒ ≥2 vertices). The contradiction has slack
+  (`4 ≤ −5`) so even `a02 ≥ 0` would suffice — note this for robustness.
+- Do NOT reintroduce the exceptional-vertex / tight-(C) / chaining apparatus; it is
+  unnecessary and risks the false impression that the closure is Case-II-specific.
+
+**Honest outcome assessment.** This genuinely CLOSES sub-case 2B (verified: minimal
+infeasible LP `/tmp/check_caseII9.py`, hand-derivation `/tmp/check_unify.py`,
+`/tmp/check_CS_identity.py`). Together with the explorer's closures of 1-LOW, 2A, 2C,
+3-LOW, this closes KL4 for c2=3. The remaining bookkeeping is the c2≥4 reduction (above),
+which is routine given c1=2 forces two rows. If the c2≥4 reduction holds as expected,
+KL4 is fully closed and the problem becomes **solved** (α=7/8, both bounds). If a gap
+surfaces in the c2≥4 generalization, the realistic status is still a large advance:
+2B closed, only the c2≥4 packaging open.
 
 ---
 
 ### THE REMAINING GAP (upper bound residual, KL4) — OPEN, stated honestly
 
-To finish α ≤ 7/8 it remains to settle, in a bad coloring at δ ≥ ⌈7n/8⌉:
+To finish α ≤ 7/8 it remains to settle, in a bad coloring at δ ≥ ⌈7n/8⌉, the residual
+**Case A with c2 ≥ 3** (two smallest color-component counts not both 2). By C.4–C.5
+Case B is impossible and a low cell exists, but the single opposite-quadrant triple of
+C.6 no longer covers. What is now closed inside this residual, and what is genuinely
+open:
 
-> **(KL4)** the case **c2 ≥ 3** (two smallest color-component counts not both 2). By
-> C.4–C.5 a low cell P_{i0,j0} exists; produce a covering triple (contradiction) or a
-> structural contradiction.
+**Closed:** in the profile c1 = 2, c2 = 3, the **2B geometry** — two same-row blue-pure
+low cells with distinct blue components, the other four cells high — is closed by KL5
+(C.8). The lever is the low-cell single-type CS identity (legal at k = 1) plus KL1 on
+the high cells.
 
-Both mechanisms proposed by the outline are dead ends (recorded fully under "Approaches
-tried"): route (a) [re-grid on (color-1, blue) to make all cells high / "force
-c1=c2=2"] **contradicts C.4**, which forces a low cell on the (color-1, blue) grid too,
-so that grid is provably not all-high; route (b) [empty-cell merge / L3(b) iteration]
-produces no contradiction in either the empty or blue-pure branch, the structural
-reason being that a k ≤ 1 cell is uncontrolled by the σ-count (factor 1/(k−1) diverges
-at k = 1). Closing KL4 needs a genuinely new lever for low cells when c2 ≥ 3.
+**Open (the honest frontier):**
+
+- **(G1) ≥ 3 low cells.** The 2×3 grid has 36 low-sets with three or more low cells
+  (e.g. an entire low row {(i,j0),(i,j1),(i,j2)}, or three cells in an L), and **none of
+  them is closed.** Every 1-LOW / 2-LOW closure proven so far (including KL5) requires
+  specific cells to be HIGH so that KL1 can be applied to them; once ≥ 3 cells are low,
+  the cells those arguments need high are themselves low, and no existing closure fires.
+  3-LOW was **not** systematically analyzed in any prior round (correcting an earlier
+  false attribution that the explorer had closed "3-LOW variants" — it had not).
+
+- **(G2) all-low / many-low total mass.** A naive dismissal "all-low total
+  ≤ 6(n/8 − 1) < n" is **invalid**: a low cell's *size* is not bounded by n/8 − 1; only
+  its anti-block CS is. A blue-pure low cell can be arbitrarily large. Any ≥ 3-low
+  closure must avoid assuming low cells are small.
+
+- **(G3) c2 ≥ 4.** Not established. Route B-min eliminates the cell at the
+  min-row/min-col position only if that cell is HIGH; if a low cell sits there, B-min
+  does not fire, and KL2 already gives only "Case B impossible." So c2 ≥ 4 reduces to
+  the same open low-cell problem on a 2×c2 grid with even more low-set geometries — it
+  is **not** subsumed by the existing machinery, contrary to an earlier outline claim.
+
+- **(G4) empty-low sub-cases of the 2B framing.** KL5 needs both same-row low cells to
+  be **blue-pure (k = 1, nonempty)** so that B_s, B_p, s_{12}, t_{12} are defined. If a
+  same-row low cell is **empty (k = 0)**, there is no vertex to feed L2 and Steps 1–3 of
+  KL5 fail. The empty-cell variant must be handled separately and is **open**.
+
+Both mechanisms proposed in earlier rounds for the general residual are dead ends
+(recorded under "Approaches tried"): route (a) [re-grid on (color-1, blue) to make all
+cells high / "force c1=c2=2"] **contradicts C.4**, which forces a low cell on every
+axis-pair grid; route (b) [empty-cell merge / L3(b) iteration] produces no contradiction
+in either branch, the structural reason being that a k ≤ 1 cell is uncontrolled by the
+σ-count (factor 1/(k − 1) diverges at k = 1). KL5 shows that for *some* k = 1 geometries
+a per-type CS identity rescues this; extending it to G1, G3, G4 needs further work.
 
 **Status of the answer.** The lower bound α ≥ 7/8 is proven (Part A). The upper bound
 α ≤ 7/8 is proven for all bad-coloring profiles with c1 = c2 = 2 — including the sharp
 configurations — via the per-cell σ-bound double count (Part C); Case B is impossible
-for every profile. The single residual is Case A with c2 ≥ 3 (KL4), open and precisely
-located. We record α = 7/8 as the answer with a proven lower bound and an upper bound
-proven on the sharp sub-class. Status: **partial**.
+for every profile (C.4). Inside the next profile c1 = 2, c2 = 3, the 2B geometry is now
+also closed (KL5 / C.8). The residual open frontier is, precisely: low-cell geometries
+with **≥ 3 low cells (G1/G2)**, the **empty-low sub-cases (G4)**, and the **c2 ≥ 4**
+profiles (G3). We record α = 7/8 as the answer with a proven lower bound and an upper
+bound proven on the c1 = c2 = 2 sub-class plus the 2B geometry of (2,3). Status:
+**partial**.
 
 ## Full proof
 (Not present — Status is `partial`. Part A is a complete rigorous proof of the lower
 bound α ≥ 7/8; L1–L3 are complete; Part C (C.1–C.6) is a complete rigorous proof of the
 upper bound α ≤ 7/8 for every bad coloring with two smallest component counts = 2,
-including the sharp profile (2,2,4). The residual KL4 (Case A, c2 ≥ 3) remains open as
-stated.)
+including the sharp profile (2,2,4); C.8 (KL5) additionally closes the 2B low-cell
+geometry of the profile c1 = 2, c2 = 3. The residual Case A with c2 ≥ 3 remains open —
+specifically the ≥ 3-low-cell geometries (G1/G2), the empty-low sub-cases (G4), and the
+c2 ≥ 4 profiles (G3), as stated in "THE REMAINING GAP.")
