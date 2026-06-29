@@ -43,6 +43,19 @@ partial
     length $1/w$ in some direction.** Still OPEN. The direction-averaging attempt
     (Part B) stalls at a density-$1$ borderline; recorded below as an open direction,
     NOT a proof.
+  - **Fixed outer-edge center + angular coverage (Round 1): DEAD END.** Idea: fix
+    the candidate's center distance at $d=\rho_*+r$ so only "outer" annulus points
+    ($|q|\ge\rho_*+r-1/2\approx1.22$) can block, then use the per-line bound (each
+    line $\le2025$ pts) to show outer points cannot block every direction $\alpha$.
+    DISPROVED numerically: an **outer concyclic ring** of $\sim$50 points at radius
+    $\rho\approx1.32$ satisfies all four hypotheses (locally finite, $\le2$ pts/line,
+    empty ball $B(0,0.69)$, every projection dense) yet blocks **100%** of directions
+    in the fixed-center unit-square subfamily $\{R(\alpha,d,1)\}$. The density-$1$
+    wall simply relocates from the origin to the outer edge. Also: the per-line
+    bound is still not consumed (different bands are blocked by points near
+    *different* lines, so the global blocker count is $2025\times(\#\text{lines})$,
+    unbounded). LESSON: the center MUST be a primary free search variable (not fixed
+    at $d\cdot u$); test any new strategy against the outer concyclic ring first.
 - **Earlier:** Attacked four ways, all failed at the same
   density-$1$ borderline; details recorded under *Current best → The open crux*.
   Specifically:

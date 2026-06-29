@@ -17,6 +17,19 @@ not by problem domain — many problems mix areas.
 - **Sum of squares (SOS) / completing the square**: prove a real inequality by
   rewriting `LHS − RHS` as a sum of squares; equivalently a positive-semidefinite
   quadratic form.
+- **Piecewise-concavity smoothing**: to minimize a function `g(φ)` that is a finite
+  sum of terms each of the form `|single sinusoid|` (i.e. `|A cos(kφ)+B sin(kφ)|`),
+  note each such term is concave on every interval between two consecutive zeros of
+  its argument (an identically-zero term is constant, hence concave). A finite sum of
+  functions concave on a common subinterval is concave there. Partitioning the circle
+  by the (finitely many) zeros of all arguments gives a piecewise-concave `g`; a
+  concave function on a closed interval attains its min at an endpoint, so the global
+  min of `g` is at a breakpoint, where some sinusoid argument vanishes. If the term is
+  a product `|x_φ · y|`, vanishing forces a factor to vanish — a "zero entry."
+  Moreover, if `φ=0` is already a global minimizer and lies in the interior of a
+  concavity interval, concavity forces `g` constant on that interval, so its endpoints
+  are also global minimizers carrying an extra zero entry. Used to drive a minimizer to
+  a sparse (axial) configuration without raising the objective.
 - **Standard inequalities**: AM-GM, Cauchy-Schwarz, QM-AM, Schur. Equality cases
   pin down the extremal configuration.
 - **Functional equations**: test special values, check injectivity/surjectivity.
@@ -31,6 +44,15 @@ not by problem domain — many problems mix areas.
   eigenvalues. `A²` is PSD; `Σ Aᵢ²` singular ⟺ the `Aᵢ` share a common null vector.
 - **Rank / image / kernel**: `det(Σ Aᵢ Bᵢ) = 0 ∀Bᵢ` ⟺ the `Aᵢ` have a common
   nonzero vector in `∩ ker` (or images miss a direction) — argue via shared kernel.
+- **Extreme value theorem / Lagrange multipliers on a compact manifold**: a
+  continuous function on a compact set attains its min and max; if the set is a
+  smooth closed manifold (e.g. `O(n) = {MᵀM=I}`, compact, no boundary) the
+  extremum is a *critical point* of the constrained problem, where the gradient
+  is orthogonal to the tangent space `T_M O(n) = {MB : B skew}`. For `f=Σf(M_ij)`
+  this gives `Mᵀ∇f` symmetric. Combine with **ideal saturation** (Rabinowitsch
+  trick `y·Π−1` to impose `Π≠0`) to restrict a polynomial stationarity ideal to
+  an open stratum, then test consequences by **Gröbner-basis ideal membership**
+  (normal form `= 0`): a terminating reduction is a rigorous certificate.
 
 ## Number Theory
 
@@ -59,6 +81,23 @@ not by problem domain — many problems mix areas.
   square; force/forbid squareness by growth rate or by a parametric construction.
 - **Divisor analysis**: `d(n)`, gcd structure, consecutive-integer coprimality
   (`gcd(k, k+1)=1`), bounding a finite search by size.
+- **Three-gap / Steinhaus theorem** (1957, also Słomczyński/van Ravenstein; proved
+  by Świerczkowski, Surányi). Fix irrational `α` and `m ≥ 1`; place the `m` points
+  `{α}, {2α}, …, {mα}` on the circle `ℝ/ℤ`. Let `η_m = min_{1≤k≤m}{kα}` (smallest
+  forward residue) and `ζ_m = min_{1≤k≤m}(1 − {kα})` (smallest backward residue).
+  Then: (i) the `m` arcs between cyclically consecutive points take **at most three
+  distinct lengths**, namely `η_m`, `ζ_m`, and `η_m + ζ_m`; (ii) the **largest** arc
+  has length `η_m + ζ_m`; (iii) **insertion corollary**: passing from `T_m` to
+  `T_{m+1}` by adding `{(m+1)α}`, the new point lands strictly inside one of the
+  longest arcs (an `η_m + ζ_m` arc) and splits it into one arc of length `η_m` and
+  one of length `ζ_m`; hence the largest gap `G(m)` is non-increasing in `m`. Use to
+  analyze extremal/gap problems for the Kronecker sequence `{kα}`. The `η_m, ζ_m`
+  are governed by the continued-fraction convergents of `α` (for `α=√2`, the Pell
+  denominators `q_j` with `‖q_jα‖ = (√2−1)^{j+1}`), giving an explicit piecewise
+  description of `G(m)`.
+- **Kronecker / Weyl equidistribution**: for irrational `α`, the sequence `({kα})_{k≥1}`
+  is dense (indeed equidistributed) in `[0,1)`. Lets one realize any target phase as
+  `{aα}` up to arbitrary precision for some integer `a`.
 
 ## Combinatorics
 
@@ -76,6 +115,10 @@ not by problem domain — many problems mix areas.
   distinctness of partial sums in `ℤ/nℤ`.
 - **Multiset partitions & power-sum matching** (Prouhet–Tarry–Escott flavor): split
   a set into parts with equal power sums up to some order.
+- **Hall's marriage theorem / SDR**: a bipartite graph with parts `X, Y` has a
+  matching saturating `X` (equivalently, a system of distinct representatives for
+  the family `{N(x)}_{x∈X}`) if and only if Hall's condition holds: for every
+  subset `S ⊆ X`, `|N(S)| ≥ |S|`. Consequence: `|Y| ≥ |X|` when `X` is saturated.
 
 ## Geometry (synthetic & analytic)
 
@@ -96,6 +139,37 @@ not by problem domain — many problems mix areas.
 - **Trig identities & interval intersection**: `|x − u| ≤ v` defines an interval;
   two such hold simultaneously iff the intervals overlap (reduce to one inequality).
 
+## Combinatorial Geometry / Incidences
+
+- **Sylvester–Gallai theorem (2D).** Any finite set `S` of points in the real
+  plane (equivalently in the real projective plane `P²`), not all collinear, admits
+  an *ordinary line* — a line passing through **exactly two** points of `S`.
+  *Proof (Kelly 1948, minimal distance).* Consider all pairs `(Q, ℓ)` where `ℓ` is
+  a line through at least two points of `S` and `Q ∈ S` is **not** on `ℓ`. This set
+  of pairs is finite and non-empty (since `S` is not all collinear), and each pair
+  has a strictly positive perpendicular distance `d(Q, ℓ) > 0`; choose a pair
+  `(Q, ℓ)` minimizing `d(Q, ℓ)`. Claim `ℓ` is ordinary. If not, `ℓ` contains
+  `≥ 3` points of `S`. Let `F` be the foot of the perpendicular from `Q` to `ℓ`.
+  Of the `≥ 3` points of `S` on `ℓ`, by pigeonhole at least two lie on the same
+  closed side of `F` along `ℓ` (the two sides share the point `F`); call them `A`
+  (the one nearer to `F`, possibly `A = F`) and `B` (the one farther, `B ≠ A`).
+  Then the perpendicular distance from `A` to the line `QB` is **strictly less**
+  than `d(Q, ℓ)`, contradicting minimality. Hence `ℓ` is ordinary. ∎
+  *(The distance inequality `d(A, QB) < d(Q,ℓ)`: in the right triangle with legs
+  along `ℓ` and `QF`, `A` is closer to `F` than `B` on the same side, so the
+  triangle `QFB` contains `A` strictly inside the angle at `B`; comparing the two
+  triangles `QFB` and the foot of `A` on `QB` by similar triangles gives the strict
+  inequality. See the proof below for the explicit computation.)*
+- **Higher-dimensional Sylvester–Gallai (projection).** Let `S` be a finite set of
+  points in `Pᵈ` with **no three collinear** and **not all contained in a
+  hyperplane**. Projecting `S \ {p₀}` from one point `p₀ ∈ S` onto a hyperplane
+  `H ≅ P^{d−1}` not through `p₀` gives a finite set of distinct points (distinctness
+  from no-three-collinear) that is not all contained in a `(d−2)`-flat (from
+  not-all-in-a-hyperplane). Inducting with the 2D theorem as base case yields a
+  hyperplane of `Pᵈ` meeting `S` in **exactly `d` points** (an "ordinary
+  hyperplane"). For `d = 3`: a plane through **exactly three** points of `S`
+  (a *depth-3 plane*).
+
 ## General Proof Methods
 
 - **Direct proof**: chain definitions and known results from hypothesis to conclusion.
@@ -114,6 +188,31 @@ not by problem domain — many problems mix areas.
   way) to prove reachability/unreachability or termination.
 - **Constructive vs. existence**: "find all / largest n" needs an upper bound **and** a
   matching construction; "infinitely many" needs an explicit one-parameter family.
+
+## Monotone Subsequences: Erdős–Szekeres, Dilworth, Patience Sort
+
+For a sequence `a = (a_1, …, a_n)` of distinct reals, attach to each index `p` the pair
+`(I_p, D_p)`, where `I_p` = length of the longest strictly increasing subsequence ending
+at `p`, and `D_p` = length of the longest strictly decreasing subsequence ending at `p`.
+
+- **(C1) Injectivity (Dilworth/ES coordinates).** The map `p ↦ (I_p, D_p)` is injective.
+  *Proof:* if `p < q`, then `a_p < a_q ⟹ I_q ≥ I_p + 1`, and `a_p > a_q ⟹ D_q ≥ D_p + 1`;
+  either way `(I_p,D_p) ≠ (I_q,D_q)`. (Distinctness of values makes the dichotomy
+  exhaustive.)
+- **(C2) Extremes are the global lengths.** `max_p I_p = LIS(a)` (length of longest
+  increasing subsequence) and `max_p D_p = LDS(a)`.
+- **(ES) Erdős–Szekeres.** Any sequence of more than `rs` distinct reals contains an
+  increasing subsequence of length `r+1` or a decreasing subsequence of length `s+1`.
+  *Proof:* by (C1) the `> rs` pairs `(I_p,D_p)` are distinct; if `LIS ≤ r` and `LDS ≤ s`
+  they would all lie in `{1..r}×{1..s}`, only `rs` cells — pigeonhole contradiction.
+  In particular `n = k²+1 > k²` forces `LIS ≥ k+1` or `LDS ≥ k+1`.
+- **Reading `LDS` as a layer count (patience sort).** Greedily partition `1..n` into
+  "increasing runs": index `p` joins layer `D_p`. Each layer is a decreasing subsequence;
+  the number of layers equals `LDS`. Dually for `LIS`.
+- **Use.** To force `LIS = m` and `LDS ≤ s` simultaneously, design the sequence so all
+  `(I_p,D_p)` lie in `{1..m}×{1..s}` with a unique index of `I = m` cell — controlling
+  both monotone directions at once. This is the standard tool for "unique long monotone
+  subsequence" constructions.
 
 ## Problem-Solving Heuristics (Pólya)
 

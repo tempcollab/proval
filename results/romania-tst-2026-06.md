@@ -68,6 +68,28 @@ partial
   avoids b as a divisor, but the number of classes is `< b`, which is unbounded, so it gives
   no recursive size bound. Dead end (recorded by the explorer).
 
+- **Route B: propagation C_k ⇒ C_{k+1} via greedy double-fiber + extremal base-value
+  descent (Round 1). DEAD END — structural obstruction confirmed.** The A/B1/B2/B3 case
+  split of the propagation step is exhaustive and disjoint, and L2 (`b'>x` via Lemma-0
+  parity), L3 (forced double-fiber membership) are sound. But the two endpoint cases cannot
+  be closed within the descent: **(B3)** re-firing `C_k` on `T'∪{b''}` fails because
+  `T'⊆Q_{b',c'}` not `Q_{b'',c''}`, so the new base `b''` has no residue control over `T'`
+  and re-enters as an *external* base one level down — the descent has nothing to descend on.
+  **(B2)** its whole content is the single congruence `b_i≡c' (mod b')` relating an
+  *external* ancestor base to the fiber; it contains no internal triple/shift (199/200
+  structured `|T'|=2` instances have no internal lever), and the only escape needs
+  `b_i∈Q`, generically false (the merge-identity-only fallback was already proven dead in
+  round 4). **Root cause:** the predicate `C_k` carries a clause `x|b_i+z` whose summand
+  `b_i` is an *external* accumulated base; whenever a firing puts the new base at an
+  endpoint, the surviving clause references something outside the fiber and no in-fiber
+  identity removes an external summand. The size monovariant forcing termination is exactly
+  what injects the leak, so B2 and B3 fail at the identical step. LESSON: do NOT reroute the
+  C_k descent again. Switch spine — most promising candidate is a **residue-tagged
+  predicate** (carry ancestor bases as intrinsic residue tags, since sub-fibers inherit all
+  ancestor congruences), which removes the leak by design but needs its termination
+  re-proved; second candidate is a direct `|Q_{b,c}| ≤ poly(n)` packing bound in the shared
+  residue class.
+
 ## Current best
 
 Throughout, `A` is a finite non-empty **antichain of positive odd integers** (no distinct
