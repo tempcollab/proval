@@ -46,7 +46,9 @@ def build() -> list[dict]:
             exemplars.append({
                 'problem_id': c.get('problem_id', ''),
                 'domain': c.get('domain', ''),
-                'technique': c.get('technique', ''),
+                # skim layer shows the terse one-move label (technique_short) when present;
+                # the full technique + how_used stay on the crux for tier-2 drill-down.
+                'technique': c.get('technique_short') or c.get('technique', ''),
                 'how_used': c.get('how_used', ''),
             })
         if not exemplars:
@@ -83,8 +85,9 @@ def render_md(cues: list[dict]) -> str:
         L.append(f'## {c["cue"]}')
         L.append(f'_{c["count"]} problem(s) · {doms}_{review}')
         L.append('')
+        # cue + technique only — the verbose how_used stays in cues.json / cruxes.json (tier 2)
         for e in c['exemplars']:
-            L.append(f'- `{e["problem_id"]}` — **{e["technique"]}** :: {e["how_used"]}')
+            L.append(f'- `{e["problem_id"]}` — {e["technique"]}')
         L.append('')
 
     L.append(f'## Recurring cues ({len(recurring)})')

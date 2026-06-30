@@ -2,798 +2,798 @@
 
 138 cues over 57 problems. Each cue is a recognition trigger; under it, the problems where it fired and how the move was used there. Recurring cues (>=2 problems) first; single-problem cues at the end.
 
-## Recurring cues (16)
+## Recurring cues (13)
 
-## a functional equation or inequality in two free variables where setting one variable to f (or an iterate f^k) of the other makes terms recombine
-_3 problem(s) · algebra, number_theory_
+## more collected items than a finite state set (residues, parity-vectors) admits
+_4 problem(s) · algebra, combinatorics, number_theory_
 
-- `aimo-0552` — **Manufacture a fresh instance of the predicate by substituting the inverse-image expression built from f itself, then apply the rigidity lemma to that engineered instance to pin the function value.** :: Setting x = 1/f(t) and using f(x) <= 1/x gives t f(1/f(t)) <= t f(t) <= 1, so (t, 1/f(t)) is a good pair; the lemma that good pairs are diagonal forces t = 1/f(t), i.e. f(t) = 1/t.
-- `aimo-0710` — **Substitute one variable to be f applied to the other so a two-variable inequality folds into a relation among consecutive iterates of f** :: Plugging x = f(y) into x(f(x)+f(y)) >= (f(f(x))+y)f(y) and cancelling the common positive f(y) yields the one-variable difference inequality f(y) - f^3(y) >= y - f^2(y); the earlier substitution y=x had given x >= f^2(x), establishing the gaps y-f^2(y) are nonnegative.
-- `aimo-0710` — **Replace the variable by an iterate f^{n-1} of itself to promote a single inequality into a chain showing the consecutive-iterate gaps are nondecreasing in n** :: Substituting y -> f^{n-1}(y) in f(y)-f^3(y) >= y-f^2(y) gives f^n(y)-f^{n+2}(y) >= f^{n-1}(y)-f^{n+1}(y), so each gap dominates the previous one and hence f^n(y)-f^{n+2}(y) >= y-f^2(y) >= 0 for all n.
-- `aimo-0730` — **Evaluate one quantity by two different substitutions whose common value is manifestly symmetric in the two free parameters, then equate the resulting two composition expressions.** :: Using P(f(a)-1,b) one gets f^{b f(f(a)-1)+1}(a) = f(a)f(b); since f(a)f(b) is symmetric in a,b, equating with the swapped version and cancelling one f by injectivity yields f^{b g(a)}(a) = f^{a g(b)}(b) where g(n)=f(f(n)-1). This converts the messy original FE into a clean symmetric iterate identity.
+- `aimo-0554` — count target values against available atomic differences to force a non-atomic gap
+- `aimo-0560` — pigeonhole the adversary's finite responses by repeating one attacker move
+- `aimo-0564` — pigeonhole on generator sign patterns to force a common-ratio inequality
+- `aimo-0580` — pigeonhole over the finitely many parity-vector classes of additive invariants
 
-## a line is tangent to a circle at a named point, given as hypothesis or required as the goal
+## a 2-variable functional equation where substituting f(·) for a variable recombines terms
+_3 problem(s) · algebra_
+
+- `aimo-0552` — substitute f's own inverse-image expression, then apply the rigidity lemma
+- `aimo-0555` — iterate the functional equation along an additive orbit to pin f(k·c)
+- `aimo-0710` — substitute one variable as f of the other to fold into consecutive-iterate relations
+
+## a line tangent to a circle at a named point
+_3 problem(s) · geometry_  ⚠️ REVIEW (topical): 'a line tangent to a circle at a named point' fires on nearly any circle problem; not discriminating.
+
+- `aimo-0569` — convert tangency to an angle equality by tangent-chord, then read off similarity
+- `aimo-0570` — prove tangency by the converse tangent-chord (alternate-segment) angle
+- `aimo-0573` — prove tangency by a directed-angle chase equating the chord angle to its inscribed angle
+
+## constant difference or ratio of distances to two fixed points or lines
 _3 problem(s) · geometry_
 
-- `aimo-0569` — **Convert a tangency hypothesis into an angle equality via the tangent-chord angle, then read off a triangle similarity.** :: AC tangent to circle ADQ gives the tangent-chord equality angle CAD = angle AQD; combined with the cyclic-quad equality angle DAQ = angle DCB (and inscribed angle CAD = angle CBD), this yields triangles ADQ and CDB similar (A<->C, Q<->B, D<->D), with the symmetric tangency BD to circle BCP playing the dual role.
-- `aimo-0570` — **Prove a line through a point of a circle is tangent there by the converse of the tangent-chord (alternate segment) theorem: show the angle the line makes with one chord equals the inscribed angle that chord subtends in the alternate segment.** :: Goal: DZ tangent to (AXY) at Z. With AZ ∥ BC and CDXZ cyclic, chase ∠AZD = ∠CDZ (alternate angles, AZ ∥ BC, D on line BC) = ∠CXZ (CDXZ cyclic) = ∠AYZ (C,X,A collinear and ∠AXZ+∠AYZ=180° in cyclic AXYZ). So ∠AZD = ∠AYZ, the angle between ZD and chord ZA equals the inscribed angle subtending ZA in (AXY); by the converse of the alternate segment theorem DZ is tangent to (AXY) at Z.
-- `aimo-0573` — **Prove a line is tangent to a circle at a given point by a directed-angle chase showing the angle the line makes with a chord through that point equals the inscribed angle that chord subtends.** :: Show line SD is tangent to Omega at D, so that N (on SD) has power ND^2 wrt Omega. Chase Var(SD,BC)=Var(OT,OM)=Var(B'C',MM'): T is the pole of SD so OT⊥SD, while OM⊥BC and OM'⊥B'C' make OMM'T cyclic. Then with the cyclic relation Var(BC,BB')=Var(CC',B'C') in BB'CC' and MM'∥AA' (supplied by the centroid-homothety crux), conclude Var(SD,BB')=Var(CC',AA'); since Omega is the circumcircle of the triangle cut by lines AA',BB',CC', this is exactly the tangent criterion for Omega at D.
+- `aimo-0572` — constant difference of distances to two fixed points means the point lies on a conic with those foci
+- `aimo-0721` — show a point lies on a fixed line through two lines' intersection via a constant distance-ratio
+- `aimo-0722` — recognize a constant distance-ratio locus as the Apollonius circle of the two fixed points
 
-## a moving point keeps a constant difference, or a constant ratio, of distances to two fixed points or lines
-_3 problem(s) · geometry_
+## a fixed stencil move applied uniformly on a board/cycle; reachability asked
+_2 problem(s) · combinatorics_
 
-- `aimo-0572` — **Recognize a point whose two distances to two fixed points keep a constant difference as moving on a conic having those points as foci.** :: The incircle of triangle BPC touches BC at H (forced by the on-AH condition), so its tangent-segment lengths from B and C are BH and CH, giving BP-CP = BH-CH, a quantity independent of the moving point P. Hence P traces one branch of a hyperbola with foci B, C and real-axis vertex H; this replaces the verbal moving-point condition by a clean conic, and the fixed point K is then sought on this same hyperbola (Solution 2 takes K as the second intersection of PQ with it).
-- `aimo-0721` — **To prove a moving point is collinear with the intersection of two fixed lines, equate that point's ratio of distances to the two lines (a point lies on a fixed line through the intersection iff this distance-ratio is fixed).** :: Set T = AD ∩ BC. Collinearity of T, P, M is recast as p_a:p_b = m_a:m_b, where p_a,p_b are the distances from P to lines TA(=AD) and TB(=BC), and m_a,m_b the distances from M to those same two lines — both P and M then lie on the same ray from T.
-- `aimo-0722` — **Recognize three points whose ratio of distances to two fixed points is constant as lying on the Apollonius circle of those two points, which forces that circle's center onto the line joining the two fixed points.** :: The similarity △A_1B_1C_1 ≈ △ABC sends T's orthocentre O_1 to H, giving O_1A_1/HA = O_1B_1/HB = O_1C_1/HC = λ; combined with HA=HA_1, HB=HB_1, HC=HC_1 from the previous crux, λ = O_1A_1/HA_1 = O_1B_1/HB_1 = O_1C_1/HC_1. Thus A_1,B_1,C_1 lie on the Apollonius circle of segment O_1H, and its center, which is T's circumcentre H_1, must lie on line O_1H, proving O_1, H_1, H collinear. (This fixes the official write-up's label slip: it is the orthocentre O_1, not circumcentre H_1, that corresponds to H under the similarity.)
+- `aimo-0561` — find a cell-weighting annihilated by the move's stencil for a mod invariant
+- `aimo-0561` — re-apply the conserved invariant to the near-terminal normal form
+- `aimo-0561` — weight sites linearly so the +1,-2,+1 stencil sums to zero (invariant mod n)
+- `aimo-0561` — weight sites linearly so the +1,-2,+1 stencil annihilates it (invariant mod n)
+- `aimo-0561` — conserve a position-index-weighted sum mod n as a reachability obstruction
+- `aimo-0714` — find a periodic residue-coloring where every move touches each color class equally
+- `aimo-0714` — double-count a balanced invariant against the move count for parity on class sizes
+- `aimo-0714` — realize the all-flipped target as an exact tiling of the board by move-shapes
+- `aimo-0714` — cover a blocked leftover region by overlapping move-shapes (parity cover, not exact cover)
+- `aimo-0714` — weight cells by a root of unity matching a per-class-one coloring, then reduce mod 2
+- `aimo-0714` — partition the board into independent local blocks and clear each with inside-only moves
 
-## a quantity provably ranges over a finite state set (parity-vectors, response maps, residues, bounded prefix sums) while you collect more items than there are states
-_3 problem(s) · combinatorics, number_theory_
-
-- `aimo-0560` — **Pigeonhole over the finite set of distinct responses the adversary can give to one repeated attacker move: repeating the same move enough times forces some single response pattern to recur a guaranteed number of times** :: On a fixed 3x3 subboard there are M = C(9,5) = 126 possible 'maps' (which 5 of the 9 trees net-increase under one play of the modified game). Playing that subboard M*l times forces some single map to be chosen at least l times; by the within-subboard monotonicity (no tree there ever decreases), the 5 trees of that recurring map gained +1 in each of its ≥ l occurrences and never lost height, so those 5 specific trees each reach height ≥ l.
-- `aimo-0580` — **Pigeonhole over the finitely many parity-vector classes of additive invariants: since the parity vector takes at most a fixed number of values, any set of more integers than classes contains two that agree.** :: The pair (p(k),q(k)) mod 2 has only 4 possible values, so among any 5 integers two share the same parity vector and are therefore friends; applied to each interesting 5-set to guarantee a friend pair inside it.
-- `aimo-0715` — **Choose signs online by a balancing rule (add when the running total is nonpositive, subtract when positive) so that every prefix sum stays inside a bounded interval.** :: For any sequence with terms <= n, this rule confines each prefix sum b_i to [-n+1, n], an interval of only 2n integers (proved by induction on the two cases). With L >= 2n there are >= 2n+1 prefix sums b_0,...,b_L, so two coincide by pigeonhole and their difference is a consecutive signed window summing to 0 — proving L <= 2n-1.
-
-## two circles meet at a second point, or two triangles share a vertex with proportional / reflected sides
-_3 problem(s) · geometry_
-
-- `aimo-0567` — **Establish an SSS congruence between two triangles sharing a vertex to transfer an apex-angle equality (equivalently, recognize a rotation about the shared vertex).** :: From the three given equalities BC=DE, CT=ET, TB=TD the triangles TBC and TDE are congruent (a rotation about T sending B->D, C->E), yielding the apex-angle equality angle BTC = angle DTE that drives everything else.
-- `aimo-0570` — **Treat the second common point of two circles through A as the center of the spiral similarity carrying one pair of corresponding chords to the other pair.** :: Z, the second intersection of circumcircles AXY and ABC (the Miquel point of lines AC, BC, BA, DY), is recognized as the center of the spiral similarity that maps segment BC to segment YX, with B,D,Z,Y and C,D,X,Y concyclic.
-- `aimo-0722` — **When two triangles share a vertex and are each inversely similar to a common reference triangle, they are related by a spiral similarity at the shared vertex; the meet of a pair of corresponding sides then subtends the two matched endpoints at the same directed angle as the vertex, so it lies on the circle through vertex and endpoints.** :: Triangles AA_bA_c and AB_aC_a are both oppositely similar to ABC sharing apex A, hence directly similar via a spiral similarity centered at A. This forces ∠A_cA_1A_b = ∠A_cAA_b for A_1 = ℓ_b∩ℓ_c, placing A_1 on circle ⊙AA_bA_c, whose center is H because HA = HA_b = HA_c. Symmetrically HA_1=HA, HB_1=HB, HC_1=HC, and the three angle equalities give △A_1B_1C_1 ≈ △ABC.
-
-## a point at which two products of signed collinear segments are equal, or that has equal power to two circles (often read off from given equal segments or parallels)
-_2 problem(s) · geometry_
-
-- `aimo-0567` — **Read a product-of-segments equality at the common intersection point of two lines as the converse power-of-a-point condition to conclude four points are concyclic.** :: Substituting TB=TD and TE=TC into TB/TQ = TE/TS gives TD*TS = TC*TQ; since T is the intersection of line CQ and line DS, this is exactly the power-of-a-point relation forcing C, D, Q, S concyclic, which then supplies the inscribed-angle equality angle DCQ = angle DSQ.
-- `aimo-0568` — **Recast a concyclicity claim as a radical-axis incidence by introducing the intersection of two connecting chords and demanding it have equal power to two auxiliary circles.** :: Set A'=BX∩CY; then B,C,X,Y concyclic is equivalent to A'B·A'X=A'C·A'Y, i.e. A' lying on the radical axis of the two circles ABDX and ACEY through which X and Y are already constrained (both passing through A).
-- `aimo-0568` — **Turn parallel-line conditions into an equal-power product equality by chasing the shared ratio they create into a product of collinear segment lengths.** :: PD∥AC and PE∥AB give FD/FC=FP/FA=FE/FB, so FD·FB=FE·FC, meaning the altitude foot F has equal power to circles ABDX and ACEY; together with the common point A this pins their radical axis as the altitude line AF, which passes through A'.
-
-## a point is defined only as an intersection, and you must prove it also satisfies a separate positional property
-_2 problem(s) · geometry_  ⚠️ REVIEW (topical): Too generic/topical: 'a point defined only as an intersection must satisfy a separate positional property' is the meta-setup of nearly every olympiad concurrence/collinearity/incidence problem. It is a question-type, not a discriminating structural trigger, and would fire on dozens of geometry problems.
-
-- `aimo-0569` — **Reduce a 'three lines concurrent' claim to producing one candidate point as the second intersection of a line with an auxiliary circle through key points, then verify each line passes through it.** :: Let K be the second meeting of line CD with circle ABR (R = midpoint CD); the inscribed-angle equality angle BAK = angle BRC = angle ANQ forces (by the converse tangent-chord criterion) AK to be tangent to circle ANQ, and the symmetric statement (via the swap A<->B, D<->C, Q<->P, N<->M that fixes R and circle ABR, hence K) gives BK tangent to circle BMP, so both tangents and CD concur at K.
-- `aimo-0570` — **To prove a constructed intersection point has a positional property, define a phantom point with that property by construction and prove it satisfies the original point's defining concyclicity condition, forcing coincidence.** :: Z is the second intersection of (AXY) and (ABC); a reversible angle chase (180°−∠DXZ = ∠ZXY = ∠ZAY = ∠ZCD via cyclic AXYZ, ABC, and D,X,Y / C,X,A collinear) shows CDXZ cyclic. To prove AZ ∥ BC, introduce Z′ on (ABC) with AZ′ ∥ BC; reflection across the ⊥-bisector of BC maps A↔Z′, and with B↔C, E↔D (crux 0) sends △BAE → △CZ′D, so ∠DZ′C = ∠BAE = ∠BAO = 90°−C = ∠DXC, making CDXZ′ cyclic; reversibility forces Z′ ≡ Z, i.e. AZ ∥ BC.
-
-## a point on a circle is equidistant from two others (equal chords), or is the second meeting of an angle bisector with the circumcircle
-_2 problem(s) · geometry_
-
-- `aimo-0568` — **Read an equal-chord vertex as the arc-midpoint, so the side through it bisects the inscribed angle and the new chord becomes the reflection of the old chord across that side.** :: DA=DX makes D the midpoint of arc AX in circle ABDX, so BC is the internal/external bisector of ∠ABX and BX is the reflection of BA in BC; symmetrically CY is the reflection of CA; intersecting the two reflected lines makes A'=BX∩CY the reflection of A in BC, hence collinear with A and the altitude foot F (A' on line AF).
-- `aimo-0574` — **Prove four points concyclic by exhibiting a chord through two of them that is antiparallel to the chord through the other two with respect to the two connecting lines.** :: Taking N, N' as the second meetings of bisectors BI, B'I' with the common circumcircle Ω, N and N' are the arc-midpoints of AC and A'C', so ON⊥AC, ON'⊥A'C', and ON=ON'=R. The isosceles triangle ONN' makes NN' perpendicular to the bisector of ∠NON', hence NN' is parallel to the bisector of lines AC, A'C'. Both tangency hypotheses (A'C' tangent to ω, AC tangent to ω') make I and I' equidistant from AC and A'C', so II' is exactly that bisector; thus II'∥NN'. Since B,B',N,N' lie on Ω, BB' and NN' are antiparallel w.r.t. lines BI, B'I', hence so are BB' and II', forcing B, I, I', B' concyclic.
-
-## a quantity is trapped between two bounds that coincide, or k copies each at least m sum to exactly k*m
-_2 problem(s) · algebra_
-
-- `aimo-0554` — **Pin a sequence of strictly decreasing integer gaps exactly by sandwiching their total between a forced minimal-gap lower bound and a range-derived upper bound that coincide, forcing equality throughout.** :: First rule out a unit smallest gap: if alpha_{n-2}-alpha_{n-3}=1 then r^{alpha_{n-3}}(r-1)=r^{alpha_{n-2}}-r^{alpha_{n-3}}=r^{b-(n-3)}-r^{b-(n-2)}=r^{b-(n-2)}(r-1), and injectivity of r^x forces alpha_{n-3}=b-(n-2)>b-(n-1)>=alpha_{n-2}, a contradiction; so every gap >=2. Strictly decreasing integer gaps each >=2 give alpha_{n-2}-alpha_1 >= 2+3+...+(n-2)=n(n-3)/2, while alpha_{n-2}<=b-(n-1) and alpha_1>=1 give alpha_{n-2}-alpha_1 <= b-n=n(n-3)/2; equality pins every alpha_i. Substituting two of the now-pinned splittings (i=n-2 and i=n-3) gives r^{n-1}=r+1 and r^{n+1}=r^4+1; the routine finish r^{n+1}=r^2 r^{n-1}=r^3+r^2 yields (r-1)(r^3-r-1)=0, so r^3=r+1=r^{n-1}, forcing n=4 against n>=5.
-- `aimo-0712` — **From a relation stating k times the minimum of a set equals a sum of k members each at least that minimum, force every member to equal the minimum and propagate the minimal value forward indefinitely.** :: Differencing the offset-sum relation gives a_{n+k+1}-a_{n+1}=k(a_{n+1}-a_n); setting d=min consecutive gap, kd=sum of k gaps each >=d forces all of them to equal d, so d recurs at all later indices, making P(x)=(x+d)(x+2d)...(x+kd) hold at infinitely many a_n hence identically, then backward induction extends the AP to all terms.
-
-## a relation given for every index n, built from a running sum or a sliding-window product, so consecutive instances overlap in all but their end terms
+## a for-all-n relation built from a running sum or sliding-window product
 _2 problem(s) · algebra, number_theory_
 
-- `aimo-0712` — **When the same fixed polynomial equals two index-shifted copies of a sliding product, divide the two relations so the shared factors cancel and the comparison collapses to a single pair of endpoint terms.** :: P(a_n)=a_{n+1}...a_{n+k} and P(a_{n+1})=a_{n+2}...a_{n+k+1} share the block a_{n+2}...a_{n+k}, so the sign of a_n - a_{n+1} equals the sign of a_{n+1} - a_{n+k+1}; this equivalence drives the non-decreasing/strictly-increasing argument (an attempted strict descent is parlayed into an infinite decreasing subsequence of positive integers).
-- `aimo-0712` — **Rewrite each factor of the sliding product as base-plus-offset, then pin the unknown offset-sum by matching the subleading (x^{k-1}) coefficient against the polynomial, justified by a uniform large-argument squeeze over the finitely many minimal offset-tuples.** :: Write a_{n+i}=a_n+(a_{n+i}-a_n); since P(x)-(x+c_1)...(x+c_k) has leading coefficient b-(c_1+...+c_k) in x^{k-1}, a common bound A (taken over all tuples summing to b+1, then monotone-extended) forces (a_{n+1}-a_n)+...+(a_{n+k}-a_n)=b for all large n.
-- `aimo-0727` — **Introduce the integer quotient of a running-sum divisibility condition, then subtract the relation at consecutive indices to cancel the sum and leave a purely multiplicative recurrence between successive quotients.** :: Set b_k = 2(a_1+...+a_{k-1})/a_k (a positive integer by hypothesis). Subtracting b_k a_k = 2(a_1+...+a_{k-1}) from b_{k+1} a_{k+1} = 2(a_1+...+a_k) cancels the sum and yields b_{k+1} a_{k+1} = (b_k+2) a_k.
+- `aimo-0712` — divide two index-shifted copies of a sliding-product relation so shared factors cancel
+- `aimo-0712` — write factors as base-plus-offset and pin the offset-sum from the subleading coefficient
+- `aimo-0727` — subtract a running-sum divisibility at consecutive indices to get a multiplicative quotient recurrence
 
-## a symmetric expression pairing a set's sum with its reciprocal-sum, or a two-term sum whose two summands multiply to a quantity already controlled
+## a point with equal power to two circles, or equal signed-segment products
+_2 problem(s) · geometry_
+
+- `aimo-0567` — conclude concyclicity by the converse power-of-a-point at the intersection
+- `aimo-0568` — recast concyclicity as a radical-axis incidence via equal powers
+- `aimo-0568` — turn parallel lines into an equal-power product via the shared ratio
+
+## a sum times its reciprocal-sum, or two summands with controlled product
 _2 problem(s) · algebra_
 
-- `aimo-0552` — **Bound a symmetric two-term sum below by AM-GM and regroup the radicand so the cross terms recombine into the diagonal quantities you already control.** :: x f(y) + y f(x) >= 2 sqrt(x f(y) * y f(x)) = 2 sqrt(x f(x) * y f(y)) > 2, where the product is regrouped as (x f(x))(y f(y)); combined with both diagonals > 1 this contradicts (x,y) being good, proving good pairs satisfy x=y and hence f(x) <= 1/x.
-- `aimo-0709` — **Expand a (sum)(reciprocal-sum) product over an old block plus a new block and AM-GM the two mixed cross-products, whose product equals the old times new block products, to recover twice the old block's value** :: Writing a_{n+2}^2 = (sum_{1..n+2} x)(sum_{1..n+2} 1/x), the first-n block reproduces a_n^2 and the two cross terms (x_1+..+x_n)(1/x_{n+1}+1/x_{n+2}) and (x_{n+1}+x_{n+2})(1/x_1+..+1/x_n) multiply to a_n^2*(x_{n+1}+x_{n+2})(1/x_{n+1}+1/x_{n+2}); AM-GM gives a_{n+2}^2 >= a_n^2 + P + 2 a_n sqrt(P) = (a_n+sqrt(P))^2 with P=(x_{n+1}+x_{n+2})(1/x_{n+1}+1/x_{n+2}).
+- `aimo-0552` — AM-GM a symmetric two-term sum, regroup the radicand into controlled diagonal terms
+- `aimo-0709` — expand (sum)(reciprocal-sum) over old+new blocks and AM-GM the mixed cross-products
 
-## an extremal construction required for every n whose target size or bound is logarithmic (~log2 n) or ~2^k
-_2 problem(s) · combinatorics_
+## coinciding upper and lower bounds, or k terms each ≥m summing to km
+_2 problem(s) · algebra_
 
-- `aimo-0716` — **Build the tightness construction by partitioning the index range into doubling-size blocks and placing each block's mark so that any monotone path can pick up at most one mark per block.** :: For row i = 2^a+b (0<=a<=N, 0<=b<2^a) color the (2b+1)-th circle. Across the rows {2^a,...,2^{a+1}-1} (the a-th block) consecutive colored circles shift right by exactly 2 per row, while a ninja-path shifts column by at most 1 per row, so the per-row reds sit in disjoint descending cones and a path meets at most one red per block; with N+1 blocks every ninja-path has at most N+1 = 1+floor(log2 n) reds, giving the upper bound on k.
-- `aimo-0720` — **Build a covering edge-coloring by splitting vertices into geometrically sized classes and coloring each edge with the class of its lower-indexed endpoint, so that avoiding a class would force an impossible alternation.** :: Color node i with min(floor(log2 i)+1, k) - giving exactly 2^{i-1} nodes of each color i<k and >n/2 nodes of the top color k - and color edge ij (i<j) with the color of the smaller node i. The top color is forced because >n/2 same-colored nodes must be adjacent somewhere on any Hamiltonian path; each lower color i is forced because a path avoiding it would have to alternate its 2^{i-1} color-i nodes with the only 2^{i-1}-1 strictly-lower nodes, leaving no room for higher colors.
-- `aimo-0720` — **To attain the extremal lower bound for a coloring in which every Hamiltonian path must meet every color, assign vertices to a chain of nested classes whose sizes grow geometrically and color each edge by its endpoint in the smaller (higher) class, so that no class can be fully separated along a path.** :: Lower-bound construction (Claim 1), the half neither proposed crux covered. With k = floor(log2 n), label nodes 1..n and give node i 'level' min(floor(log2 i)+1, k): level 1 = {1}, level 2 = {2,3}, level 3 = {4,5,6,7}, ..., level i = the 2^{i-1} nodes {2^{i-1},...,2^i-1}, and the top level k absorbs all remaining nodes (so level k has n-2^{k-1}+1 nodes). Color edge {i,j} (i<j) by the level of the smaller-indexed (lower-level) endpoint. Goodness splits in two: (a) top color k: its class has n-2^{k-1}+1 >= n/2+1 nodes (using n>=2^k), so by pigeonhole any Hamiltonian path on n vertices has two adjacent level-k nodes, giving a color-k edge. (b) For 1<=i<k: were color i missed, every level-i node could only be path-adjacent to strictly-lower-level nodes, but there are 2^{i-1} level-i nodes and only 2^{i-1}-1 nodes below level i, forcing the path to alternate (i)(<i)(i)...(i) with no slot for any higher-level node - impossible since higher levels exist. Hence the coloring is good, exhibiting k=floor(log2 n) colors.
+- `aimo-0554` — sandwich decreasing integer gaps between coinciding bounds to force equality
+- `aimo-0712` — from k*min = sum of k members each >= min, force every member equal and propagate forward
 
-## an operation adds a fixed increment pattern at a fixed set of relative cells (a stencil, e.g. +1,-2,+1), identical everywhere on a board or cycle, and you must decide reachability
-_2 problem(s) · combinatorics_
+## the prime valuation of a difference of like powers a^n-b^n
+_2 problem(s) · number_theory_
 
-- `aimo-0561` — **Find a linear weighting of cells whose value is annihilated by the move's local stencil, making a weighted sum a conserved invariant mod some modulus** :: A move turns c_{i-1},c_i,c_{i+1} into +1,-2,+1; weighting child i by its index i gives change (i-1)-2i+(i+1)=0, so S=sum i*c_i is invariant; the cyclic wrap (children labeled n and 1 adjacent) only changes S by a multiple of n, so S is conserved mod n. Comparing S of the start to the all-ones target gives the necessary condition sum i*c_i = n(n+1)/2 (mod n).
-- `aimo-0561` — **Translate a chip-pair across a symmetric run of identical cells without disturbing the interior, proven by induction on the run length** :: The 'long-passing' lemma: from a,1...1(k ones),b,1...1(k ones),c with b>=2 reach a+1,1...1,b-2,1...1,c+1. Base k=0,1 are direct firings; for k>=2 fire b, then its two neighbors, cascade the resulting 2's outward, and apply the induction hypothesis on the shorter symmetric block. This is the transport engine that lets the heavy child push single coins out to distant empty children.
-- `aimo-0561` — **Re-apply the conserved invariant to the reachable near-terminal normal form to rule out the unwanted terminal state, forcing the desired one** :: Once descent reaches irregularity M<=2, the only non-all-ones option is exactly one 0 (child k), one 2, rest ones. Placing the heavy child at index n, the invariant sum i*c_i = n(n+1)/2 (mod n) becomes n(n+1)/2 - k (mod n), forcing k = 0 (mod n); but no child other than n has index divisible by n, so the M=2 stall is impossible and all-ones is the only terminal state.
-- `aimo-0561` — **Reduce a single large surplus on a line of mostly-1 cells by a scripted 'transport' macro-move (a fixed sequence of legal fires that ships one unit across a block of 1's to a distant empty cell), applied repeatedly with a strictly decreasing run-length as the well-ordering monovariant.** :: First establish the transport ('long-pass') lemma by induction on the block length k: from a,1^k,b,1^k,c with b>=2 one can reach a+1,1^k,b-2,1^k,c+1 (k=0 is one raw fire; k>=2 fires b then its neighbors, sweeps the spawned 2's outward, and recurses). Now from a semi-uniform state with M>=3: total n forces >=2 empty children, so the arc between the two zeros nearest the heavy child reads 0,1^a,M,1^b,0. If a=b, long-pass one coin from M to each zero, dropping M by 2. If a>b, long-pass M out to distance b on each side: the short side reaches its zero, the long side deposits an interior 2, giving 0,1^alpha,2,1^beta,M-2. Repeatedly long-pass that interior 2 toward the nearer zero; the run-length between the 2 and that zero strictly decreases (the well-ordering measure), so eventually a balanced long-pass delivers one coin to the heavy child and one to a zero, lowering irregularity to M-1. Iterating drives M down to <=2.
-- `aimo-0561` — **Find a conserved quantity by weighting each site with a linear function of its position so the move's local +1,-2,+1 (discrete second-difference) stencil sums to zero; on a cyclic board the weight is only defined up to the number of sites, so the conserved value lives modulo n.** :: A move replaces c_i by c_i-2 and c_{i-1},c_{i+1} by +1 each — a discrete second difference. Weight child i by its index i: under one move S=sum_{i} i c_i changes by (i-1)-2i+(i+1)=0, so S is conserved, and since indices are cyclic this survives only mod n. The all-ones target has sum i*1 = n(n+1)/2, so reachability requires sum i c_i ≡ n(n+1)/2 (mod n) — the necessary condition, which is the final answer. The SAME invariant also closes the sufficiency direction once the construction is reduced to the unique possible non-uniform terminal (one child 0 at index k, one child 2 placed at index n, rest all 1): evaluating sum i c_i ≡ n(n+1)/2 - k (mod n) and equating to the preserved target forces k ≡ 0 (mod n), impossible for k in {1,...,n-1}, so that terminal is unreachable. (Polynomial view: state p(x) mod x^n-1; a move adds x^i(x-1)^2, so reachability needs p ≡ q mod the ideal (x^n-1,(x-1)^2)=(x-1)(n,(x-1)), i.e. p(1)=q(1) (n coins) and p'(1) ≡ q'(1) mod n — the same congruence.)
-- `aimo-0561` — **For a process built from a fixed local redistribution move on a cycle, find a conserved quantity by weighting each site with a linear function of its index, chosen so the move's symmetric +1,-2,+1 stencil (a discrete second difference) annihilates the weighting; the weighted total taken modulo the number of sites is then invariant.** :: With c_i coins at site i (indices mod n), one move does c_j->c_j-2 and c_{j-1},c_{j+1}->+1. Weight i: the change is (j-1)-2j+(j+1)=0, so S=Sum_i i*c_i is invariant mod n. The all-ones target has S=n(n+1)/2, giving the necessary condition Sum i*c_i ≡ n(n+1)/2 (mod n) — this is the answer, and the construction below makes it sufficient. The SAME invariant is the endgame obstruction: a near-uniform state with one 0 at site q, one 2 at site p, the rest 1, has S=n(n+1)/2+p-q, so the invariant forces p≡q (mod n), impossible for distinct sites. Hence the 'M=2' near-terminal is unreachable, and any descent that reaches irregularity M<=2 must in fact land on all-ones.
-- `aimo-0561` — **Manufacture a long-range transport — move one unit to a site a fixed distance k away while restoring every intermediate site to its original value — out of a purely local move, by induction on the transport distance k.** :: Lemma (long-passing): a string a,1^k,b,1^k,c with b>=2 can reach a+1,1^k,b-2,1^k,c+1, i.e. the pile b ships one coin to each site at distance k while the 2k intervening 1's are restored. Induct on k. k=0: the bare move. k=1: fire b, then fire both its neighbours, then fire b again. k>=2: fire b, then both neighbours, reaching ...,2,0,b,0,2,...; cascade each created 2 outward (each 2 fires, restoring the 1's and pushing a 0 inward) to reach a+1,0,1^{k-2},b,1^{k-2},0,c+1; then apply the induction hypothesis at distance k-1. This transport is exactly what lets a tall pile reach distant empty sites without disturbing the 1's between them.
-- `aimo-0561` — **On a cyclic process whose move subtracts 2 at one site and adds 1 at each immediate neighbour, weight each site by its position index and reduce the weighted total modulo the number of sites; the move's net contribution telescopes to zero, so this residue is conserved and serves as a reachability obstruction.** :: Number children 1..n with counts c_i. A step sends c_i -> c_i-2, c_{i-1},c_{i+1} -> +1, and since (i-1)-2i+(i+1)=0 (indices mod n, the seam contributing a multiple of n), W:=Sum_{i=1}^n i*c_i is invariant mod n. The all-ones target has W=n(n+1)/2, giving the necessary congruence Sum i*c_i = n(n+1)/2 (mod n) (the stated answer). The SAME invariant later closes the proof: the only non-all-ones terminal candidate is one 0 at some site k, one 2 placed at site n, all others 1, with W = n(n+1)/2 - k + n = n(n+1)/2 - k (mod n); equality with the target forces k = 0 (mod n), impossible for 1 <= k <= n-1, so the descent can never stall in that bad state.
-- `aimo-0561` — **Promote a purely local firing move into a long-range transfer by induction on distance: with a surplus pile flanked by two EQUAL runs of single-chip sites capped by empties, fire the pile and cascade through the runs so exactly one chip reaches each far empty site while the runs of singles are restored.** :: Long-passing lemma: from a,1^k,b,1^k,c with b>=2 one reaches a+1,1^k,b-2,1^k,c+1. Induct on k. k=0 is the bare move. k=1: fire b, fire both neighbours, fire b again. k>=2: fire b then fire both its (now 2-coin) neighbours to reach a,1^{k-2},2,0,b,0,2,1^{k-2},c, clear the interior 2's into their neighbours to reach a+1,0,1^{k-2},b,1^{k-2},0,c+1, then apply the induction hypothesis at gap k-2. This long-pass is the transport engine the descent runs on; the solver independently verified it (e.g. k=1 gives 0,1,M,1,0 -> 1,1,M-2,1,1).
-- `aimo-0561` — **When a transfer operation needs two EQUAL flanking gaps but they are unequal, deposit a mobile surplus of 2 on the longer side via a shorter transfer, then shuttle that mobile 2 inward toward the nearer empty site, using a strictly shrinking tracked sub-block as the termination monovariant, until the two gaps match and the transfer can complete.** :: Setup (descent framing): first FLATTEN to a semi-uniform state (z_1..z_{n-1},M), z_i in {0,1}, exactly M-1 zeros, by firing every pile>1 except a designated site n. NOTE the official monovariant Sum_{i<n} i^2 c_i is NOT monotone (firing site n-1 dumps a coin into the uncounted sink n and DECREASES it); use instead the FULL circular potential Sum_{i=1}^n i^2 c_i with weight = position^2: every legal fire of a site != n raises it by exactly 2 (boundary site 1 included), site n is never fired, and it is bounded above, so flattening halts. Then descend on M: while M>2 there are >=2 zeros; take the nearest two, giving 0,1^a,M,1^b,0. If a=b, long-pass M to both zeros (crux: the transport lemma) -> M-2, lowering irregularity. If a>b, long-pass M only to distance b on both sides, spawning a mobile 2 on the long side: 0,1^alpha,2,1^beta,M-2 (alpha=a-b-1, beta=b). Now SHUTTLE the 2: long-pass it toward the nearer empty (shrinking beta) until alpha>=beta; if alpha=beta long-pass the 2 to the M-pile and the 0, reaching irregularity M-1; if alpha<beta long-pass it to the M-pile and a 1, producing 0,1^x,2,1^y,0,1^z,M-1, then RECURSE on the strictly shorter substring 0,1^x,2,1^y,0 (its length is the shrinking monovariant) until the 2's far target is also a 0, giving irregularity M-1. Each round lowers M; combined with the invariant (crux 0) excluding M=2, the descent terminates at M=1 = all-ones, proving sufficiency.
-- `aimo-0714` — **Find a periodic residue-coloring of the board under which every allowed move touches each color class the same number of times.** :: Color cell (i,j) by (i+j) mod 3. A move flips the two main-diagonal cells TL=(i,j) and BR=(i+1,j+1), of colors s and s+2, plus an optional cell (TR or BL) both of color s+1 — so every move flips exactly one coin in each of the three residue classes mod 3, regardless of which optional cell is chosen.
-- `aimo-0714` — **Double-count an exactly-balanced invariant against the move count to extract a parity/divisibility on class sizes.** :: Each move flips exactly one coin per color class, so after M moves the total flips into class c equal M. All-heads forces every coin flipped an odd number of times, so the class-c flip total is also ≡ N_c (mod 2) where N_c=#cells of color c; hence M ≡ N_c (mod 2) for all c, forcing N_0 ≡ N_1 ≡ N_2 (mod 2). The three (i+j mod 3) class sizes share parity iff 3 | mn (when 3|m or 3|n the a_r or b_s row/col residue counts are balanced and N_0=N_1=N_2; otherwise the residue convolution makes them not all one parity), giving necessity.
-- `aimo-0714` — **Realize the all-cells-flipped target as an exact cover of the board by the move-shapes, each cell covered exactly once.** :: The A-shape triomino {(i,j),(i+1,j+1),(i,j+1)} and the B-shape triomino {(i,j),(i+1,j+1),(i+1,j)} together tile a 3×2 block, flipping its 6 cells once each. WLOG 3|m; for even n apply A(3k-2,2l-1) and B(3k-1,2l-1) over all blocks so the board is partitioned into such 3×2 blocks and every coin is flipped exactly once.
-- `aimo-0714` — **When an exact once-each tiling is blocked on a small leftover region, cover that region instead with overlapping copies of the move-shapes so every cell is flipped an odd number of times — a parity cover, not an exact cover.** :: Sufficiency with 3|m and n odd (n>=3): n-3 is even, so tile columns 1..n-3 by 3x2 blocks as in the even case (in each 3x2 block, A at TL corner flips {(1,1),(1,2),(2,2)} and B at the next corner flips {(2,1),(3,1),(3,2)} — disjoint, exact once-each), leaving a single 3x3 block in the last three columns. A 3x3 admits no exact L-tromino (A/B-shape) tiling, so instead flip it with five OVERLAPPING moves — A(1,1), A(1,2), B(1,2), B(2,1), A(2,2) (with the 2x2 top-left corners taken inside the block) — under which the four corner cells and (2,1),(3,2) are flipped once while (1,2),(2,2),(2,3) are flipped thrice: all nine cells flipped an odd number of times, and all five 2x2 squares stay inside the block (no spillover), so the 3x3 reaches all-heads and the whole board follows.
-- `aimo-0714` — **Find a fixed coloring of the board under which every legal move toggles exactly one cell of each color class, then weight the cells by a root of unity matching the coloring so each move's weighted toggle-sum vanishes identically; reducing the resulting exact identity modulo 2 turns 'every cell toggled an odd number of times' into a divisibility constraint.** :: Necessity half (all-heads reachable => 3|mn). Use the diagonal 3-coloring chi(i,j)=(i+j) mod 3: both move types A and B toggle three cells with residues s,s+1,s+2 — one per class. Encode by weight omega^(i+j), omega a primitive cube root of unity: each move contributes omega^s(1+omega+omega^2)=0, so the weighted toggle-total sum_{i,j} f(i,j) omega^(i+j) = 0 EXACTLY in Z[omega], where f(i,j) counts flips of cell (i,j). All-heads from all-tails needs every f(i,j) odd; reduce this integer identity mod 2 to get sum_{i,j} omega^(i+j) in 2*Z[omega]. Factor sum_{i,j} omega^(i+j) = (sum_{i=1}^m omega^i)(sum_{j=1}^n omega^j); the 1D sum is 0 iff 3|the length, else equals omega (length ≡1) or -1 (length ≡2). If neither factor vanishes the product is a unit of Z[omega] (norm 1), but 2 has norm 4, so a unit cannot lie in 2*Z[omega] — contradiction. Hence 3|m or 3|n, i.e. 3|mn.
-- `aimo-0714` — **To realize a target toggle-pattern that needs every cell flipped an odd number of times, partition the board into independent local blocks (forced by the divisibility hypothesis) and clear each block using only moves whose support stays inside it.** :: Sufficiency half (3|mn => all-heads reachable). Over GF(2), reaching all-heads from all-tails = writing the all-ones vector as a sum of move supports. A(i,j) toggles {(i,j),(i,j+1),(i+1,j+1)}, B(i,j) toggles {(i,j),(i+1,j),(i+1,j+1)}; the move set is transpose-symmetric (TR<->BL both legal), so WLOG 3|m. Split rows into m/3 bands of 3 rows; any A or B with top row in {3k-2,3k-1} stays in band k, so bands clear independently. n even: tile each band into 3x2 column-blocks, each cleared by A(top-left)+B(below it), flipping all 6 block cells exactly once. n odd: clear the first n-3 (even) columns with 3x2 blocks, then clear the trailing 3 columns of each band with a single 3x3 block via the five moves A(1,1),A(1,2),A(2,2),B(1,2),B(2,1) (local coords), which flip each of the 9 cells an ODD number of times (six cells once, three cells thrice). Since blocks partition columns and bands partition rows, every cell is toggled odd-many times by exactly one block => all heads. With the necessity direction the answer is exactly all (m,n) with 3|mn.
+- `aimo-0578` — apply lifting-the-exponent to p^n − 1 with even n for the exact 2-adic valuation
+- `aimo-0582` — rewrite a^n-b^n as a binary quadratic form and apply Thue's lemma
 
-## several circles for which two distinct points can each be shown to have equal power to all of them (a coaxial pencil), with the goal a positional fact about the circles (collinear centers, or the common radical axis crossing them)
+## two circles meeting again, or two triangles sharing a vertex with proportional sides
+_2 problem(s) · geometry_  ⚠️ REVIEW (topical): compound 'or' cue; 'two circles meeting again' plus proportional-side triangles are two unrelated generic situations.
+
+- `aimo-0570` — treat the second common point as the spiral-similarity center of two circles
+- `aimo-0722` — two triangles inversely similar to a common reference meet via a spiral similarity, forcing concyclicity
+
+## two figures with parallel corresponding sides, or shared circumcenter and orthocenter
+_2 problem(s) · geometry_  ⚠️ REVIEW (topical): compound 'or' cue mashing parallel-sided figures with shared center properties; vague, names no single configuration.
+
+- `aimo-0571` — spot homothetic triangles via parallel sides; the homothety center forces the third vertex-line through it
+- `aimo-0571` — rule out translation vs homothety by angle-chasing that the corresponding-point lines aren't parallel
+- `aimo-0571` — prove two circles tangent via a homothety whose center lies on both
+- `aimo-0573` — apply the centroid homothety of ratio -1/2 (orthocenter→circumcenter) to merge two triangles into one circle
+- `aimo-0573` — apply the centroid -1/2 homothety to transport data onto the medial triangle / nine-point circle
+
+## two independently-constructed points, argue whether they coincide
 _2 problem(s) · geometry_
 
-- `aimo-0573` — **Prove a set of circle centres are collinear by proving the circles are coaxial: produce two distinct points each having equal power with respect to all the circles, forcing their centres onto the common perpendicular radical line.** :: The target H, O, and centre of Omega being collinear is recast as: omega, Omega, and rho are coaxial. Since rho's centre is already on OH (crux 0), the common radical axis pins all three centres onto OH. Distinctness of the two needed equal-power points comes from each living on the tangent to Omega at a distinct diagonal vertex D, E, F, and three tangents to one circle at distinct points cannot concur.
-- `aimo-0723` — **Upgrade two distinct points of equal power to three circles into two genuine common points by certifying their shared radical axis is of intersecting type -- exhibit a point that lies strictly inside the circles.** :: Distinct X, Y with equal power to delta_A, delta_B, delta_C make all three coaxial, sharing the single radical axis line XY. Each apex angle exceeds 480 - 360 = 120 degrees (the other two are each < 180), so triangles BA1C, CB1A, AC1B have disjoint interiors and hexagon A1B2C1A2B1C2 is convex; its main diagonals meet with X on segment A1A2, a chord of delta_A, putting X strictly inside delta_A (and similarly inside delta_B, delta_C). The common radical axis XY therefore passes through an interior point of each circle and is a secant: it meets delta_A in two points P, Q, which lie on the radical axis and so have equal -- hence zero -- power to all three circles, putting P, Q on delta_A, delta_B, delta_C. These are the two common points.
+- `aimo-0572` — match two homothety-center division ratios via the identity r·r_a = (s-b)(s-c)
+- `aimo-0723` — prove two points distinct since coincidence would force a symmetry the scalene hypothesis forbids
 
-## three circles where each pair shares a center of similitude (mutually tangent or dilation-related), and the goal forces a fourth such center onto a known line or vertex
-_2 problem(s) · geometry_
+## Single-problem cues (125)
 
-- `aimo-0572` — **To force collinearity of several specially-constructed points, realize them as the pairwise homothety centers of a triple of auxiliary circles and apply the generalized Monge (d'Alembert) three-circle theorem.** :: Take K = intersection of the reflections of BC in AB and AC (the fixed-point candidate, depending only on triangle ABC), and I = incenter of triangle PBC = BE∩CF. Build ω_A=(A,AH), ω_I=(I,IH), ω_K = incircle of triangle KBC, ω_P = P-excircle of triangle PBC. Then ω_A,ω_I are internally tangent at H, so H is their external homothety center, and Q (=EF∩AH) is their internal homothety center (established in a SEPARATE crux via a complete-quadrangle harmonic). Since BA and CA are the external bisectors of angles KBC and KCB, ω_A is the K-excircle of triangle KBC, so K is the external homothety center of ω_A,ω_K; likewise P is the external homothety center of ω_I,ω_P. Generalized Monge on (ω_A,ω_I,ω_K) gives Q,S,K collinear and on (ω_A,ω_I,ω_P) gives Q,S,P collinear, where S is the internal homothety center lying on BC (shown common to both triples in a SEPARATE crux). Sharing Q and S, the two lines coincide, so P,Q,K are collinear and PQ passes through the fixed point K. Monge needs no mutual tangency of the circles.
-- `aimo-0572` — **To prove three points collinear, realize each as a homothety center within a family of mutually tangent circles and apply Monge's three-circle theorem to two circle-triples that share one common homothety center.** :: Circles: ω_A = (A,AH) and ω_K (K-excircle of KBC) from the auxiliary-triangle step; ω_I = (I,IH) the incircle of PBC and ω_P its P-excircle, with P the external homothety center of (ω_I,ω_P). Apply Monge to {ω_A,ω_I,ω_K}: Q is the internal HC of (ω_A,ω_I) [established in the harmonic-conjugate crux], K the external HC of (ω_A,ω_K), so the third center S' = internal HC of (ω_I,ω_K) lies on BC and Q,S',K are collinear. Apply Monge to {ω_A,ω_I,ω_P}: Q internal HC of (ω_A,ω_I), P external HC of (ω_I,ω_P), so S = internal HC of (ω_A,ω_P) lies on BC and Q,S,P collinear. The two lines through Q coincide because S = S': both lie on BC, and using the identity r·r_a = (s-b)(s-c) in triangles PBC (r_I·r_P = BH·CH) and KBC (r_A·r_K = CT·BT), together with the tangent-length symmetry BH = CT, BT = CH (which also forces ω_K and ω_P to touch BC at a common point T), one gets HS/ST = r_A/r_P = r_I/r_K = HS'/S'T, hence S = S'. Therefore Q, P, K are collinear, so PQ always passes through the fixed point K.
-- `aimo-0572` — **Apply Monge–d'Alembert's theorem to a triple of circles so that their three pairwise homothety centers (with internal/external parity consistent) are forced collinear, converting a 'variable line passes through a fixed point' claim into a collinearity of homothety centers.** :: Having Q as the internal homothety center of ω_A and ω_I (crux 0), introduce a third circle and read the variable point P and the target fixed point as the remaining two homothety centers. P is a homothety center of ω_I with the third circle, and the fixed point is the external homothety center of ω_A with that third circle — and it is FIXED because it depends only on ω_A (the apex of the second tangents from B and C to the fixed circle ω_A, equivalently the point K where the reflections of BC over AB and AC meet, with ω_A the K-excircle of triangle BKC). Choosing the third circle so the parity is two internal pairs and one external pair (in the official solution, ω_K = incircle of KBC and ω_P = P-excircle of PBC, shown tangent at a common BC point via BH = CT and the lemma r·r_a = (s−b)(s−c) giving the shared internal center S = S'), Monge forces Q, P, and the fixed point collinear, so PQ always passes through that fixed point.
-- `aimo-0574` — **Prove a quadrilateral is tangential by constructing a circle tangent to three of its sides and applying Monge's three-homothety-center theorem with a vertex as one dilation center to force tangency to the fourth side.** :: Construct Ω0 tangent to A'B', B'C', AB on ω''s side. Since Ω0 and ω' are both tangent to the two lines A'B', B'C' meeting at B', the vertex B' is the external dilation center of (ω',Ω0). Applying Monge to the triple (ω',Ω0,ω): the external center of (Ω0,ω) lies on the line through B' and the external center T of (ω',ω); by crux 2, T∈BB', so this line is BB'. But Ω0 and ω are both tangent to AB, so that external center also lies on AB; hence it equals AB∩BB'=B, so the homothety at B maps ω→Ω0, making Ω0 tangent to BC as well. Ω0 is then tangent to all four side-lines AB, BC, B'C', A'B', so XBYB' has an incircle.
-- `aimo-0574` — **Identify the external homothety center of two circles as a radical center of the circumcircle and two incenter-cyclic circles, so the Monge line of a circle-triple coincides with a radical axis and is thereby pinned onto a known line.** :: Introduce the third incircle ωc (center Ic) of triangle C'B'Z. The incenter half-angle formula gives ∠ZIC'=90°+½∠ZA'C'=90°+½∠ZB'C'=∠ZIcC' (using ∠ZA'C'=∠ZB'C' from the common arc ZC' of Ω), so Z,I,Ic,C' are concyclic; similarly B',I',Ic,C' are concyclic. Then the external dilation center ω→ωc (=IIc∩C'Z) is the radical center of Ω, circle(C'IcIZ), circle(II'Ic), and the external dilation center ω'→ωc (=I'Ic∩B'C') is the radical center of Ω, circle(B'I'IcC'), circle(II'Ic). Hence the Monge line of ω,ω',ωc equals the radical axis of Ω and circle(II'Ic), so the external center T of ω,ω' lies on that radical axis. Since B,I,I',B' are concyclic (a separate antiparallel step: NN'∥II' is antiparallel to BB' w.r.t. cevians BI,B'I'), BB'∩II' also has equal power to Ω and to circle(II'Ic), so it lies on the same radical axis — forcing T onto line BB'.
-- `aimo-0574` — **To finish that a quadrilateral is tangential, given the external homothety center of its two corner-incircles lies on the connecting diagonal, introduce an auxiliary circle tangent to three of the four sides and apply Monge's theorem to it and the two corner-incircles, pinning the remaining homothety center onto a vertex to force the fourth tangency.** :: From the T-on-BB' crux, T (external homothety center of ω=incircle(ABC) and ω'=incircle(A'B'C')) lies on BB'. Sides of XBYB' lie on AB,BC (tangents to ω) and A'B',B'C' (tangents to ω'). Construct Ω₀ tangent to A'B', B'C', AB on the same side as ω'. Then B' is the external homothety center of ω'→Ω₀ (both tangent to A'B' and B'C'). Apply Monge's theorem to the triple ω,ω',Ω₀: the three pairwise external homothety centers T(ω,ω'), B'(ω',Ω₀), and X₀(Ω₀,ω) are collinear; since T,B'∈BB', X₀∈BB'. But X₀ also lies on line AB (a common tangent of Ω₀ and ω), so X₀=AB∩BB'=B. Thus B is the homothety center ω→Ω₀, hence the second tangent from B to ω — namely line BC — is also tangent to Ω₀. Therefore Ω₀ touches all four lines AB(=XB), BC(=BY), A'B'(=B'X), B'C'(=YB'); the same-side choices make it the incircle (not an excircle) of XBYB'.
-- `aimo-0574` — **To force the external homothety center of two given circles onto a target line, introduce a well-chosen auxiliary third circle so that its two new pairwise homothety centers (with the original two) are radical centers of circle-triples; this identifies the Monge line with a radical axis whose incidence with the target line is already known, dragging the original homothety center onto that line.** :: Goal: T = external homothety center of ω→ω' lies on BB'. First build Z on Ω with I = incenter of △ZA'C': taking Γ₁=circle(N,NA=NC) and Γ₂=circle(M,MA'=MC') (M the antipode of N'), their radical axis passes through P=AC∩A'C' and is ⊥MN, forcing I∈Γ₂, and Z is the second meeting of MI with Ω (constructible via Poncelet's porism). Let ω_c be the incircle of △C'B'Z with center I_c. Angle chase: ∠ZIC' = 90°+½∠ZA'C' = 90°+½∠ZB'C' = ∠ZI_cC', so Z,I,I_c,C' concyclic; similarly B',I',I_c,C' concyclic. Now Monge on ω,ω',ω_c: the external center of ω→ω_c is D = II_c∩C'Z = radical center of {Ω, (C'I_cIZ), (II'I_c)}, and the external center of ω'→ω_c is D' = I'I_c∩B'C' = radical center of {Ω, (B'I'I_cC'), (II'I_c)}. Hence the Monge line DD' equals the radical axis of Ω and circle (II'I_c), and T(ω,ω') lies on it. By the concyclicity crux B,I,I',B' are concyclic, so BB'∩II' has equal power w.r.t. Ω and (II'I_c) and lies on that same radical axis; therefore T = BB'∩II', i.e. T∈BB'. This T∈BB' is precisely the input the finishing crux assumes.
-- `aimo-0574` — **To prove a quadrilateral has an incircle, construct the circle tangent to three of its four bounding lines, then apply Monge's three-circle theorem to that circle and two reference circles whose homothety centers with it are already pinned: two of the three external centers being known points forces the third onto the line through them, identifying it with the vertex that makes the fourth line tangent.** :: We must show XBYB' (bounded by lines AB, A'B', BC, B'C') is tangential. Construct Ω₀ tangent to the three lines A'B', B'C', AB on the same side of these lines as ω'. Since ω' (incircle △A'B'C') and Ω₀ are both tangent to A'B' and to B'C', their external homothety center is the vertex B' = A'B'∩B'C'. From the previous crux, T = external center of ω→ω' lies on line BB'. Apply Monge's theorem to the triple ω, ω', Ω₀: the three external homothety centers T(ω,ω'), B'(ω',Ω₀) and center(Ω₀,ω) are collinear; as T and B' both lie on BB', the center(Ω₀,ω) also lies on BB'. But ω (incircle △ABC) and Ω₀ are both tangent to AB, so their external homothety center lies on AB; hence center(Ω₀,ω) = AB∩BB' = B. The homothety centered at B taking Ω₀ to ω fixes line BC (it passes through B) and carries the tangent BC of ω to a tangent of Ω₀, namely BC itself, so Ω₀ is tangent to BC. Thus Ω₀ is tangent to all four lines AB, A'B', BC, B'C', and is the incircle of XBYB'.
-- `aimo-0574` — **Pin the external homothety center of two given circles onto a radical axis by exhibiting a third circle whose Monge line with them coincides with that radical axis (each pairwise external dilation center being a radical center of the relevant circle triple); a known concyclicity then locates the center on a named line.** :: Goal: place T = external homothety center of ω→ω' on the radical axis of Ω and circle II'I_c, then onto BB'. First build the auxiliary apex Z: with P = AC∩A'C' and M = antipode of N' on Ω, the circles Γ₁(center N, radius NA=NC) and Γ₂(center M, radius MA'=MC') have radical axis through P perpendicular to MN ∥ the bisector through I, so I lies on it and hence on Γ₂; letting Z be the second meet of MI with Ω makes I the incenter of △ZA'C'. Let ω_c (center I_c) be the incircle of △C'B'Z. The angle chase ∠ZIC' = 90°+½∠ZA'C' = 90°+½∠ZB'C' = ∠ZI_cC' gives Z,I,I_c,C' concyclic, and similarly B',I',I_c,C' concyclic. Now the external dilation center of ω→ω_c (= II_c∩C'Z) is the radical center of {Ω, circle C'I_cIZ, circle II'I_c}, and the external dilation center of ω'→ω_c (= I'I_c∩B'C') is the radical center of {Ω, circle B'I'I_cC', circle II'I_c}; hence the Monge line of ω,ω',ω_c coincides with the radical axis of Ω and circle II'I_c. Since T lies on that Monge line, T lies on this radical axis. Finally, using the concyclicity B,I,I',B' from the previous crux, T' = BB'∩II' also lies on the radical axis of Ω and circle II'I_c, so T' = T and T ∈ BB'.
-
-## two figures have respectively parallel corresponding sides, or two triangles share their circumcenter and orthocenter
-_2 problem(s) · geometry_
-
-- `aimo-0571` — **Recognize two triangles with respectively parallel corresponding sides as homothetic, and locate the homothety center as the intersection of two corresponding-vertex lines, forcing the third corresponding-vertex line through it.** :: The auxiliary triangles D_iY_iZ_i (i=1,2) have Y_iZ_i parallel (cut from the parallel lines ell_1, ell_2), D_iY_i both perpendicular to CA, and D_iZ_i both perpendicular to AB, hence are homothetic; the center is Y_1Y_2 cap Z_1Z_2 = A (Y_i on CA, Z_i on AB), so the connector D_1D_2 passes through A. Symmetrically E_1E_2 passes through B and F_1F_2 through C.
-- `aimo-0571` — **When two figures have parallel corresponding sides (so they are related by either a homothety or a translation), directed-angle-chase the lines joining two pairs of corresponding points to show they are not parallel, ruling out translation.** :: Delta_1 and Delta_2 have parallel corresponding sides (each perpendicular to the same side of ABC), so they are homothetic or translates. Using the concyclic quadruples (B,X_2,Z_2,E_2) and (C,X_2,Y_2,F_2) plus Z_2E_2 perp AB, Y_2F_2 perp AC, the chase gives angle(E_1E_2, F_1F_2) = angle(AB, AC) not equal to 0, so the connectors are not parallel; translation is excluded, leaving a homothety whose center H is D_1D_2 cap E_1E_2 cap F_1F_2.
-- `aimo-0573` — **Apply the homothety of ratio -1/2 centred at the centroid (sending each vertex to the opposite side's midpoint and the orthocentre to the circumcentre) to merge two triangles' data into one circle.** :: Because ABC and A'B'C' share circumcentre O and orthocentre H, this homothety forces them to share the SAME centroid G and the SAME nine-point circle rho through all six side-midpoints; rho's centre is the midpoint of OH, hence already lies on line OH. The same homothety also yields MM' parallel to AA' for the midpoints M, M' of BC, B'C' (and likewise for the other pairs), which is reused in every later angle chase.
-- `aimo-0573` — **Apply the homothety centred at a triangle's centroid with ratio −1/2 — the map carrying each vertex to the midpoint of the opposite side and the orthocentre to the circumcentre — to transport data onto the medial triangle / nine-point circle.** :: ABC and A'B'C' share circumcentre O and orthocentre H. Taking O as origin, H=A+B+C, so A+B+C=A'+B'+C' and the two triangles share the same centroid G. Apply h(G,−1/2): it sends A↦M=mid BC and H↦0=O. The image of ω is a circle ρ of radius R/2 centred at N=h(O)=mid(OH), which lies on line OH; because BOTH triangles share O,H,R it is the SAME ρ, so ρ passes through all six side-midpoints (mid BC, mid CA, mid AB, mid B'C', mid C'A', mid A'B'). Since h(A)=M and h(A')=M', the line MM' is h(AA'), giving MM'∥AA' (and analogously for the other pairs). These outputs reduce the goal: N=mid(OH)∈OH means 'O,H,O_Ω collinear' follows once the three circles ω, ρ, Ω are shown COAXIAL (then centres O,N,O_Ω are collinear, forcing O_Ω∈OH). The remaining work — proving coaxiality — is handled by the Brocard self-polar and Newton–Gauss cruxes; MM'∥AA' feeds the tangency computation there.
-
-## Single-problem cues (122)
-
-## N is square-free and every prime factor of N has been shown to divide a quantity X
-_1 problem(s) · number_theory_
-
-- `aimo-0729` — **Square-free modulus: if every prime factor of a square-free N divides X then N itself divides X** :: Assuming N=a+b+c+d square-free and having shown every prime factor of N divides a+b, square-freeness gives N | a+b; but a+b < a+b+c+d = N, a contradiction, so N cannot be square-free.
-
-## a Diophantine equation equating a prime power, its exponent growing in the unknown, to a polynomial in the same unknown
-_1 problem(s) · number_theory_
-
-- `aimo-0725` — **Bound an exponential-equals-polynomial equation by lower-bounding the exponent so the prime power outgrows the polynomial, collapsing to finitely many small cases.** :: In 2n^2+1 = p^{p^m n - 4m} (odd p), treat m as fixed: since p^m > 4m the exponent is positive and grows with n, so the prime power exceeds 2n^2+1 once n passes a small threshold (one verifies 3^{9(n-1)} > 2n^2+1 for n>=2 when m>=2, and analogous bounds for m=0,1 and for p>=5), forcing n in {1,2}. The finite check then forces 2n^2+1 in {3,9}, both powers of 3 — this kills p>=5 (contradiction with 2n^2+1 = p^{...}, p>=5) and PINS p=3; matching the exponent equation 3^m n - 4m to v across m=0,1,2 enumerates a = 1,2,6,9, all with p=3.
-
-## a bijection of the integer lattice whose pairwise value-comparisons are invariant under every unit-coordinate translation
-_1 problem(s) · combinatorics_
-
-- `aimo-0566` — **Realize a translation-invariant total order on the lattice as ranking points by a single linear form x + yα, taking the slope α as the infimum of the rational directions forced to be increasing.** :: Because f is a bijection its values are distinct, so the hypothesis upgrades to an iff: for each fixed shift (k,l), f(x+k,y+l)-f(x,y) has constant sign in (x,y). Call (k,l) a 'needle' when f increases in that direction and a positive rational k/l a 'grade' when (k,l) is a needle; needles are closed under addition and scaling, so grades are upward-closed. A grade exists (else f(1,0)>f(0,n) for all n, impossible for a bijection) and arbitrarily small ones fail, so α := inf{grades} ∈ (0,∞) is well-defined. Then x1+y1·α > x2+y2·α implies f(x1,y1)>f(x2,y2); since f is a bijection onto Z≥0 with finitely many predecessors, f must BE the rank function f(a,b)=#{(x,y)≥0 : x+yα < a+bα}. Bijectivity forces α irrational (a rational α would tie two lattice points). This hands cruxes downstream the counting-function form.
-- `aimo-0566` — **When a bijection of the integer lattice has all its value-comparisons invariant under translation in each coordinate, recover a hidden total order by ranking cells via a single linear form x+αy, where α is the threshold slope separating the lattice directions along which the map increases from those along which it decreases.** :: The shift hypotheses upgrade to equivalences f(x1,y1)>f(x2,y2) ⟺ f(x1+1,y1)>f(x2+1,y2) ⟺ f(x1,y1+1)>f(x2,y2+1), so f(x+k,y+l)−f(x,y) has constant sign in (x,y). Call (k,l) a 'needle' if f(x+k,y)>f(x,y+l) always, and k/l a 'grade' if (k,l) is a needle; needles close under addition and division, so grades form an up-closed set of positive rationals. A grade exists (else f(1,0)>f(0,n) for all n, impossible) and small grades fail, so let α be the infimum of the grades. One then shows x1+αy1>x2+αy2 ⟹ f(x1,y1)>f(x2,y2): f ranks cells by the linear form x+αy (ties, when α∈ℚ, broken by a coordinate), and perturbing α to irrational leaves f unchanged on the 100×100 region. This gives the closed formula f(a,b)=#{(x,y)≥0 : x+yα<a+bα}, the engine for BOTH the bound and the constructions.
-- `aimo-0566` — **When a bijection of a lattice has its order-comparisons invariant under every unit-coordinate shift, represent the induced total order as comparison of a single real-linear form x+αy, obtaining the weight α as the cutoff between the rational directions along which values increase and those along which they decrease.** :: The shift hypothesis upgrades to an equivalence, so f(x+k,y+l)-f(x,y) has constant sign for every fixed (k,l). Call (k,l) a 'needle' if f(x+k,y)-f(x,y+l)>0 for all x,y; needles are closed under addition and scaling, so whether a vector is a needle depends only on its rational slope k/l. The needle-slopes ('grades') are upward closed and bounded both below (some 1/n fails) and above-attaining (some n works), so they have an infimum α. One then proves the key property: x1+y1α>x2+y2α ⇒ f(x1,y1)>f(x2,y2), i.e. f ranks all points by sweeping the line x+αy upward. Choosing α irrational (which does not change f on the 100×100 window) removes ties and gives the closed form f(a,b)=#{(x,y)≥0 : x+yα<a+bα} used by every later step.
-
-## a coloring in which every Hamiltonian path must use all colors, where you want to recolor a single edge while preserving that property
-_1 problem(s) · combinatorics_
-
-- `aimo-0720` — **Bound how much local recoloring a Hamiltonian-path-covering coloring tolerates: assume a Hamiltonian path whose sole same-color edge is the target edge, and for every rotation of the path about each of its two endpoints deduce that some rotated boundary edge must carry that color; pairing these forced edges across the path's two arms lower-bounds the combined same-color degree of the two endpoints.** :: Lemma 1: if edge AB has color i and d_i(A)+d_i(B) <= n-1, recoloring AB to any other color keeps the coloring good. Contrapositive: suppose recoloring breaks goodness; then a Hamiltonian path A_s..A_0=A, B=B_0..B_t exists with AB its unique color-i edge. Re-attaching the A-arm beyond B_0 forces B_0 A_s to be color i; symmetrically A_0 B_t is color i; for each 0<=p<s at least one of {B_0 A_p, A_0 A_{p+1}} is color i, and for each 0<=q<t at least one of {A_0 B_q, B_0 B_{q+1}} is color i. Each edge at A_0 and each edge at B_0 is counted once, summing to d_i(A)+d_i(B) >= (s+1)+(t+1)=n, a contradiction.
-- `aimo-0720` — **Normalize an arbitrary valid configuration to a canonical ordered form via a max-degree monovariant: always act at the vertex maximizing its largest color-degree, recoloring its edges to that dominant color, using that per-vertex maximum (which the move makes monotone) to guarantee termination, then peel the saturated vertex and recurse.** :: Define m(v)=max_i d_i(v). Lemma 2: if m(A)>=m(B) and m(A)=d_i(A) for some i != color(AB)=j, recoloring AB to i is safe, since d_j(A)+d_j(B) <= (n-1-m(A))+m(B) <= n-1, so Lemma 1 applies. Lemma 3: for a node set S, take A in S with maximal m(A) and i with d_i(A)=m(A); recolor every edge from A into S to color i - each step raises m(A) by 1 (others by <=1), so A stays maximal and d_i(A)=m(A) persists, hence A becomes monochromatic. Apply to all n nodes to get A_1 with all incident edges color c_1; apply to the rest for A_2, etc., yielding the canonical coloring where edge {A_u,A_v} (u<v) has color c_u. This structured coloring is the input the upper-bound counting crux operates on.
-- `aimo-0720` — **When recoloring a single edge of a coloring that is required to meet every Hamiltonian path in all colors threatens to break that property, assume it does and rotate the witnessing Hamiltonian path around that edge as pivot, counting the same-color edges thereby forced at the edge's two endpoints.** :: The local exchange lemma (Lemma 1) that powers the normalization. For a good coloring let d_i(v) be the number of color-i edges at v. Claim: an edge AB of color i may be recolored to any other color and stay good whenever d_i(A)+d_i(B) <= n-1. Proof by contradiction: if recoloring breaks goodness, the only newly-bad Hamiltonian paths are ones where AB was the unique color-i edge; fix such a path A_s-...-A_1-A_0(=A)-B_0(=B)-B_1-...-B_t with s+t+2=n. Rotating the path about the pivot edge AB forces: (i) edge B_0A_s is color i (else the reroute A_0-A_1-...-A_s-B_0-...-B_t avoids color i); (ii) symmetrically A_0B_t is color i; (iii) for each 0<=p<s at least one of B_0A_p, A_0A_{p+1} is color i (else a rotation yields a color-i-free path); (iv) symmetric statement on the B side. Each edge A_0X and each edge B_0X is counted exactly once, summing to d_i(A)+d_i(B) >= (s+1)+(t+1) = n, contradicting d_i(A)+d_i(B) <= n-1. This local recolor-stability is the engine that lets an arbitrary good coloring be edited toward canonical form.
-- `aimo-0720` — **Given a local exchange lemma that recolors one edge while preserving an extremal property, normalize an arbitrary instance to a canonical representative by greedily monochromatizing and peeling off one vertex at a time, always acting at the vertex where a single color is currently most dominant.** :: Turns the local exchange lemma into the canonical lower-endpoint coloring that the prefix-majority counting needs. Set m(v)=max_i d_i(v). Lemma 2: if m(A)>=m(B) and m(A)=d_i(A) for some i different from j=color(AB), then d_j(A)+d_j(B) <= (n-1-m(A))+m(B) <= n-1, so the exchange lemma applies and AB may be recolored i keeping goodness. Lemma 3: for any vertex set S pick A in S maximizing m(A) and i with d_i(A)=m(A); recolor every edge AB (B in S) to color i one at a time - each recolor raises both m(A) and d_i(A) by 1, so A stays maximal with d_i(A)=m(A) and the step stays legal - leaving A's whole incident star monochromatic and the coloring still good. Apply Lemma 3 to all n nodes to make A_1's star color c_1, then to the remaining n-1 nodes to fix A_2's star (color c_2 on all but A_1A_2), and so on, peeling one vertex per round. The resulting labeling A_1,...,A_n satisfies: every edge {A_u,A_v} with u<v has color c_u - exactly the canonical vertex-ordered (lower-indexed-endpoint) good coloring on which the prefix-majority counting then runs.
-- `aimo-0720` — **Establish that a single edge of an extremal edge-coloring is freely recolorable unless both endpoints already carry many edges of that color, by taking a Hamiltonian path on which the edge is the unique one of its color and reversing each of its two arms about the endpoints to charge the obstruction to same-colored edges at each endpoint, yielding a same-color degree-sum threshold.** :: The keystone of the upper bound (Lemma 1) that powers the normalization. In a good coloring, for an edge AB of color i with incident same-color degrees d_i(A), d_i(B): if d_i(A)+d_i(B) <= n-1, then AB may be recolored to any other colour and the coloring stays good. By contradiction: if recoloring breaks goodness the only offending colour is i, so there is a Hamiltonian path through AB on which AB is the unique colour-i edge; write it A_s-...-A_1-A_0(=A)-B_0(=B)-B_1-...-B_t with s+t+2=n. Moving A_0 to an end (path A_0-A_1-...-A_s-B_0-...-B_t) must keep a colour-i edge, forcing B_0A_s to be colour i; symmetrically A_0B_t is colour i; and for each 0<=p<s, rerouting forces at least one of B_0A_p, A_0A_{p+1} to be colour i (else an i-free Hamiltonian path appears), symmetrically on the B side. Each edge A_0X and each B_0X is charged exactly once, so d_i(A)+d_i(B) >= (s+1)+(t+1) = n, contradicting the hypothesis.
-- `aimo-0720` — **Normalize an extremal edge-coloring to a canonical index-ordered form by driving one vertex monochromatic: greedily recolor that vertex's edges toward its own maximum-monochromatic-degree colour, choosing the globally maximal such vertex so the local-recolorability threshold stays satisfied at every step.** :: The reduction (Lemmas 2-3) turning an arbitrary good coloring into the index-ordered lower-endpoint form Claim 2 needs. Set m(v)=max_i d_i(v). Among a vertex set S pick A with m(A) maximal and i with d_i(A)=m(A); for any other B in S the edge AB (colour j) satisfies d_j(A)+d_j(B) <= (n-1-m(A))+m(B) <= n-1, so by the recolorability lemma it may be recolored to i. Recoloring all such edges makes every edge at A colour i (each step raises m(A) and any other m(B) by at most 1, so A stays the maximizer and d_i(A)=m(A) persists, allowing repetition). Apply to S = all n vertices to get a vertex A_1 with all edges one colour c_1; peel A_1 off and recurse on the rest to obtain A_2,A_3,..., giving the canonical configuration: vertices A_1,...,A_n with each edge A_uA_v (u<v) coloured c_u, still good. This is the lower-endpoint coloring on which the prefix-majority splice operates.
-
-## a complete quadrangle is present and a point lying on one of its diagonal lines must be identified as the harmonic conjugate of three known collinear points
+## a base-tangent circle viewed as an auxiliary triangle's in/excircle
 _1 problem(s) · geometry_
 
-- `aimo-0572` — **Read a harmonic range off a diagonal line of a complete quadrangle to pin a point as the harmonic conjugate of three already-known collinear points.** :: Here I = BE ∩ CF is the incenter of triangle PBC. From the complete quadrangle BCEF, the four collinear points A, I, Q, H on line AH satisfy (A,I;Q,H) = -1 (equivalently (H,Q;I,A) harmonic), which fixes Q as the harmonic conjugate of H with respect to A and I; this is the lever both solutions use to locate Q in the pencil along AH.
-- `aimo-0572` — **When a point is built as an intersection of chord/cevian lines, locate a complete quadrangle in the figure and read off the harmonic division its opposite sides cut on the line through two diagonal points, certifying the point as a harmonic conjugate.** :: Q must be identified as the internal homothety center of ω_A,ω_I, but it is only given as EF∩AH. View BCEF as a complete quadrangle (vertices B,C,E,F). Its diagonal points are A = BF∩CE and I = BE∩CF, so line AI is exactly the altitude AH; the third diagonal point is BC∩EF. The two sides through that third diagonal point are BC and EF, meeting line AI at H (=BC∩AH) and Q (=EF∩AH). The complete-quadrangle harmonic property then yields (A,I;Q,H)=-1. Since IH⊥BC and AH⊥BC, circles ω_A=(A,AH) and ω_I=(I,IH) are tangent at H, so H is their external homothety center; the harmonic conjugate of the external center w.r.t. the two centers is the internal center, so Q is the internal homothety center of ω_A,ω_I. This feeds Q into the Monge collinearity argument.
-- `aimo-0572` — **To identify a synthetically constructed point as the internal homothety center of two mutually tangent circles, prove it is the harmonic conjugate of their tangency point (which is the external homothety center) with respect to the two circle centers.** :: Set ω_A = (A, AH) and ω_I = (I, IH), where I = BE ∩ CF is the incenter of triangle PBC (so I lies on AH and IH ⊥ BC). Since AH ⊥ BC and IH ⊥ BC, both circles are tangent to BC at H, hence tangent to each other at H, so H is their external homothety center. From the complete quadrangle BCEF (E = k ∩ AC, F = ℓ ∩ AB) one reads the harmonic bundle (A, I; Q, H) = -1 on line AH, where Q = EF ∩ AH. Because the internal and external homothety centers of two circles are harmonic conjugates with respect to the two centers, Q — the harmonic conjugate of the external center H — is precisely the internal homothety center of ω_A and ω_I.
+- `aimo-0572` — rebuild a fixed circle as a tritangent circle so the fixed point is its homothety center
 
-## a connected multigraph that is a union of edge-disjoint cycles; lower-bound its number of edges
+## a board game with a fixed move-window and a per-turn opponent budget
 _1 problem(s) · combinatorics_
 
-- `aimo-0717` — **Lower-bound the edge count by deleting one edge from each of the edge-disjoint cycles—safe because a single cycle edge is never a bridge—leaving a connected spanning subgraph that must have at least (#vertices - 1) edges.** :: The n original pieces give n edge-disjoint cycles gamma_1,...,gamma_n; remove one edge from each to get a still-connected Gamma' on n vertices with >= n-1 edges, so Gamma has >= n + (n-1) = 2n-1 edges, i.e. at least 2n-1 pieces.
+- `aimo-0560` — fix a periodic coloring so each move-window's off-color cells fit the cleanup budget
+- `aimo-0560` — color the board so each move grows few cells of a class the minimizer zeroes
 
-## a cyclic quadrilateral whose diagonal triangle (the diagonal intersection together with the two opposite-side intersections) is invoked as self-polar to the circle
+## a circle point equidistant from two others, or a bisector's second circumcircle meeting
+_1 problem(s) · geometry_  ⚠️ REVIEW (topical): compound 'or' cue mixing equidistant circle point with bisector-circumcircle; no single recognition trigger.
+
+- `aimo-0568` — read an equal-chord vertex as arc-midpoint, making the side bisect the angle
+
+## a cofactor of one factored side divides the small additive constant
+_1 problem(s) · number_theory_
+
+- `aimo-0578` — divide out the known prime; the cofactor divides the small constant difference, bounding its size
+
+## a complete quadrangle's diagonal line carrying a harmonic range
 _1 problem(s) · geometry_
 
-- `aimo-0573` — **Compute the power of a point with respect to a circle by realizing that point as the midpoint of a self-polar segment, using that the inverse of a pole is its foot of perpendicular on the polar.** :: For the cyclic quadrilateral BB'CC' on omega, Brocard's theorem makes the diagonal triangle DST (D=BB'∩CC', S=BC'∩B'C, T=BC∩B'C') self-polar wrt omega. Since D is the pole of ST, its inverse D* is the foot of D on ST, so D* lies on the circle with diameter SD; computing the power of O wrt that circle, ON^2 − ND^2 = OD·OD* = R^2, rearranges to ND^2 = power of N wrt omega, where N is the midpoint of SD.
-- `aimo-0573` — **For a cyclic quadrilateral, invoke Brocard's theorem: the diagonal triangle — the meet of the diagonals together with the two intersection points of opposite-side pairs — is self-polar with respect to the circle, so each vertex is the pole of the opposite side.** :: Take the cyclic quadrilateral BB'CC' on ω and form D=BB'∩CC', S=BC'∩B'C, T=BC∩B'C'. Brocard makes triangle DST self-polar w.r.t. ω, exploited two ways. (i) D is the pole of ST, so the inverse D* of D in ω is the foot of the perpendicular from D to ST and lies on the circle with diameter SD; with N=mid SD and radius R, power of O w.r.t. that circle is ON²−ND²=OD·OD*=R², i.e. ND² = power of N w.r.t. ω. (ii) T is the pole of SD, so OT⊥SD; combined with OMM'T cyclic (OM⊥BC, OM'⊥B'C') and a directed-angle chase using MM'∥AA' (from the homothety reduction) and the cyclicity of BB'CC', this yields ∠(SD,BB')=∠(CC',AA'), proving Ω is tangent to line SD at D, so ND² is ALSO the power of N w.r.t. Ω. Hence N has equal power w.r.t. ω and Ω; repeating at the other two intersection vertices E,F supplies the points whose equal powers will force coaxiality of ω,Ω,ρ.
+- `aimo-0572` — read a harmonic range off a complete-quadrangle diagonal to pin a harmonic conjugate
+- `aimo-0572` — read a complete-quadrangle harmonic division to certify a point as harmonic conjugate
+- `aimo-0572` — identify an internal homothety center as the harmonic conjugate of the tangency point
 
-## a derived point lies on the extension of a side through a vertex, so an apex angle is replaced by its supplement
+## a configuration the operation merely permutes, never reaching the target
+_1 problem(s) · combinatorics_
+
+- `aimo-0559` — certify a bad pair via a periodic configuration tuned to the threshold parameter
+- `aimo-0559` — tune block sizes so the operation only permutes blocks, giving a periodic orbit
+
+## a connected union of edge-disjoint cycles; lower-bound its edges
+_1 problem(s) · combinatorics_
+
+- `aimo-0717` — delete one non-bridge edge per disjoint cycle, leaving a connected spanning subgraph
+
+## a count bounded by one plus the total of earlier classes
+_1 problem(s) · combinatorics_
+
+- `aimo-0716` — turn class-size <= topmost row index into geometric growth via earlier-class totals
+
+## a cyclic arrangement's uniqueness, with the largest element's neighbors forced
+_1 problem(s) · number_theory_
+
+- `aimo-0581` — induct by peeling the extremal element whose neighbors are forced, contracting to a smaller arrangement
+- `aimo-0581` — induct by deleting the largest element and merging its two neighbors into one adjacency
+
+## a distance-ratio where segments meet the lines at known equal angles
 _1 problem(s) · geometry_
 
-- `aimo-0567` — **When a derived point sits on the extension of a side through a fixed vertex, replace an apex angle by its supplement at that vertex to manufacture the second equal-angle pair needed for AA similarity.** :: Q lies on line CT and S on line DT, so angle QTB = 180-angle BTC = 180-angle DTE = angle ETS; combined with the hypothesis angle TBQ = angle SET (angle TBA = angle AET, with Q on ray BA and S on ray EA) this gives triangles TBQ ~ TES, hence TB/TQ = TE/TS and also the angle equality angle BQT = angle TSE used later.
-- `aimo-0567` — **Promote a congruence into a triangle similarity: when a congruence forces two angles at a shared vertex to be equal, their supplements — the apex angles of two new triangles built on that vertex — are equal too, so pairing that with one given equal base-angle yields the similarity by AA.** :: The data BC=DE, CT=ET, TB=TD give triangle TBC ≅ TDE (SSS), hence ∠BTC=∠DTE. Q lies on line CT and S on line DT, so the apex angles satisfy ∠QTB=180°−∠BTC=180°−∠DTE=∠ETS; combined with the hypothesis ∠TBA=∠AET (i.e. ∠TBQ=∠SET) this gives TBQ ~ TES (AA). Read off the two consequences used later: (a) ∠TSE=∠BQT (so ∠DSR relates to ∠BQT), and (b) the ratio TB/TQ=TE/TS, i.e. (using TB=TD, TE=TC) TD·TS=TC·TQ; since Q,C lie on one line through T and S,D on the other, the converse of power of a point puts C,D,Q,S on a circle, whence ∠DCQ=∠DSQ. The final concyclicity of P,Q,R,S then follows by a routine directed-angle chase using (a) and (b).
+- `aimo-0721` — rewrite distance-to-line as adjacent-segment times sine of the known angle to cancel equal angles
 
-## a digit-sum quantity compared at two related inputs, exploiting that multiplying by a power of the base (appending zeros) leaves the digit sum unchanged
-_1 problem(s) · algebra_
-
-- `aimo-0556` — **Compare the target quantity at two inputs forced to have equal digit sum by multiplying one fixed number by two different powers of 10.** :: Since s(10^m X) = s(X), take k = 10^alpha X and k = 10^{alpha-1} X, which share s(k)=s(X); the whole problem then reduces to showing s(P(10^alpha X)) and s(P(10^{alpha-1} X)) differ by an odd amount.
-
-## a divisibility condition imposed on consecutive entries of the increasing list of all divisors of n
+## a divisibility condition among consecutive divisors of n
 _1 problem(s) · number_theory_
 
-- `aimo-0724` — **Reflect a divisor relation through the complement involution d ↔ n/d, which reverses the divisor order so that a condition on three consecutive small divisors becomes a divisibility among the three complementary large divisors.** :: The hypothesis d_{k-j-1} | d_{k-j}+d_{k-j+1} is read on the reflected triple n/q, n/p^j, n/p^{j-1}, giving (n/q) | (n/p^j)(p+1), i.e. p^j | q(p+1); since gcd(p,q)=gcd(p,p+1)=1 this forces p^j=1, a contradiction.
-- `aimo-0724` — **Pin the smallest divisors of n as the consecutive powers of its least prime, up to the index where the second-smallest prime first enters the divisor list.** :: Assuming two primes p<q, every divisor below q has only p as a prime factor, so the bottom of the list is forced to be 1,p,...,p^{j-1},p^j,q, locating the small triple (p^{j-1},p^j,q) whose complement is then reflected to the top.
+- `aimo-0724` — apply the d ↔ n/d complement involution to convert small-divisor conditions into large-divisor ones
 
-## a finite set of distinct numbers in which each element (notably the smallest and largest) must equal a sum of a fixed number k of distinct other elements of the set
-_1 problem(s) · algebra_
-
-- `aimo-0551` — **Bound an extreme element by the sum of the k smallest (resp. largest) of the remaining elements it could be built from.** :: Since the minimum a_1 must equal a sum of k distinct other elements, the cheapest such sum is a_2+...+a_{k+1}, forcing a_1 >= a_2+...+a_{k+1}; symmetrically the maximum gives a_{n-k}+...+a_{n-1} >= a_n. These two inequalities drive every small-n contradiction (n=k+1, k+2, k+3).
-- `aimo-0551` — **Add the lower-bound inequality for the minimum and the upper-bound inequality for the maximum, then cancel the overlapping middle terms to expose a forced contradiction.** :: For n=k+3, adding a_1 >= a_2+...+a_{k+1} and a_3+...+a_{k+2} >= a_{k+3} cancels the shared block a_3,...,a_{k+1}, leaving a_1+a_{k+2} >= a_2+a_{k+3}, which contradicts a_1<a_2 and a_{k+2}<a_{k+3}.
-
-## a functional equation or inequality whose arguments are a sum x+y and a difference x-y of the two free variables
-_1 problem(s) · algebra_
-
-- `aimo-0708` — **Switch to sum/difference coordinates s=x+y, t=x-y to rewrite a product-of-shifted-arguments inequality as a symmetric two-variable relation in the original function** :: Setting s=x+y, t=x-y turns f(x+y)f(x-y) >= f(x)^2 - f(y)^2 into f(s)f(t) >= f((s+t)/2)^2 - f((s-t)/2)^2, so the product on the left now reads f(s)f(t) of f at two independent free variables and the right side becomes a difference of squares of f at the two averaged arguments.
-
-## a functional relation containing a part that flips sign under negating one of the free variables
-_1 problem(s) · algebra_
-
-- `aimo-0708` — **Add an inequality to the copy obtained by negating one variable so the antisymmetric part of the right-hand side cancels, leaving a clean sign condition** :: Replacing t by -t swaps the two squares f((s+t)/2)^2 and f((s-t)/2)^2, negating that difference; adding the original and the reflected inequality cancels the quadratic right side and yields f(s)(f(t)+f(-t)) >= 0 for all s,t. The summed inequality is strict at s=x0+y0, t=x0-y0, so f(t0)+f(-t0) != 0 for t0=x0-y0; f(s) times that fixed nonzero constant being >= 0 forces f to keep one sign.
-
-## a generating process closed under both addition and coordinatewise maximum, asked to reach a target tuple or bound the reachable count
-_1 problem(s) · combinatorics_
-
-- `aimo-0564` — **Realize a tuple that peaks at exactly one coordinate as a downward perfect-square in the index, assembled from generators whose coordinate-profiles span {1, index, index^2}.** :: Take generators a_i=-i^2, b_i=i, c=-1; the integer combination 2a+4j*b+(2j^2-1)c has i-th entry 1-2(i-j)^2, which equals 1 at i=j and is <=-1 elsewhere, giving a 'spike' d(j) at coordinate j. Coordinatewise max d(1) v ... v d(n) then yields the all-ones tuple, adding c gives 0, and d(j) v 0 isolates the basis vector e(j); combined with c this generates every tuple (after shifting positive by k copies of c so only nonnegative additive combinations are needed).
-- `aimo-0564` — **Identify a homogeneous two-coordinate linear inequality v_j >= a*v_k that is simultaneously preserved by coordinatewise addition and coordinatewise max, making it an invariant of the whole generation process.** :: For nonnegative a, addition keeps it by linearity; for m = v v w, m_j dominates both v_j >= a*v_k and w_j >= a*w_k while m_k equals one of v_k, w_k, so m_j >= a*m_k. Hence if all starting tuples satisfy such an inequality, every generated tuple does too, so a starting set trapped by one inequality cannot reach all integer tuples.
-- `aimo-0564` — **Pigeonhole on the per-coordinate sign patterns of the two generators to force two coordinates that fit a common ratio inequality.** :: With only 2 tuples and n>=3 coordinates: if some coordinate is same-signed in both, sign-preservation already blocks the opposite sign; otherwise every coordinate is oppositely signed across the two tuples, so among >=3 coordinates two indices j,k share a sign pattern (e.g. v_j,v_k>0 and w_j,w_k<0). Setting a=v_j/v_k and comparing to w_j/w_k yields either v_j>=a*v_k and w_j>=a*w_k or the reciprocal pair, instantiating the max-and-sum-invariant inequality and contradicting the assumption that 2 tuples suffice.
-
-## a grid function whose four corner-values on every unit square satisfy a fixed-constant mixed-second-difference identity, and you must count the cells of a prescribed parity
-_1 problem(s) · combinatorics_
-
-- `aimo-0566` — **Evaluate the mixed second difference of a lattice-point-counting function via a translation bijection between the two adjacent slanted strips it counts.** :: For f(a,b)=#{(x,y)≥0 : x+yα<a+bα} with α irrational, the mixed second difference f(x,y)+f(x+1,y+1)-f(x+1,y)-f(x,y+1) is computed by writing f(x+1,y+1)-f(x,y+1) as the count of lattice points in a unit-width slanted strip; splitting off the b=0 row and shifting it bijects that strip onto the lower strip f(x+1,y)-f(x,y) plus exactly one uncancelled point, giving the discrete parallelogram law f(x,y)+f(x+1,y+1)=f(x+1,y)+f(x,y+1)+1. (Checks numerically, e.g. α=φ: f(0,0)+f(1,1)=0+4=1+2+1.)
-- `aimo-0566` — **Reduce a discrete second-difference (parallelogram) recurrence modulo 2 to force a fixed-parity count of marked cells inside every 2×2 block, then sum the per-block bound over a tiling.** :: Reducing f(x,y)+f(x+1,y+1)=f(x+1,y)+f(x,y+1)+1 mod 2 gives f(x,y)+f(x+1,y+1)+f(x+1,y)+f(x,y+1)≡1, so every unit 2×2 square contains an ODD number (1 or 3) of cells where f is odd. The 100×100 region tiles into 2500 disjoint 2×2 blocks, each contributing 1 or 3 odd cells, so the total count N of odd cells satisfies 2500 ≤ N ≤ 7500. This is the bound only; both endpoints still require an explicit construction (separate crux).
-- `aimo-0566` — **Bound a parity-count on a grid by computing the discrete mixed second difference of the cell-value function and showing it equals a fixed nonzero constant, which pins the parity relation among the four corners of every unit square.** :: Using the rank formula f(a,b)=#{(x,y)≥0 : x+yα<a+bα}, a telescoping count of lattice points in the half-open value-window x+yα∈[·,·) shows the mixed second difference is constantly 1: f(x,y)+f(x+1,y+1)=f(x+1,y)+f(x,y+1)+1. Hence the two diagonal-pair sums of every unit square differ by 1 and so have opposite parity, forcing an ODD number — 1 or 3 — of odd values among the square's four cells. Tiling the 100×100 region A into 2500 disjoint 2×2 blocks and summing the per-block odd-counts gives 2500≤N≤7500. This is the optimality half; achievability of the two endpoints is the separate construction crux.
-- `aimo-0566` — **Compute the mixed second difference of a lattice-rank-by-linear-form function across a single unit cell by counting the lattice points lying in the half-open strip swept between two consecutive boundary lines.** :: Write f(x+1,y+1)-f(x,y+1) as #{(a,b)≥0 : x+(y+1)α ≤ a+bα < (x+1)+(y+1)α}; peel off the b=0 row, which contributes exactly one extra integer a in the interval [(x+1)+yα, (x+1)+(y+1)α), and match the b>0 remainder to f(x+1,y)-f(x,y). This yields the four-corner identity f(x,y)+f(x+1,y+1)=f(x+1,y)+f(x,y+1)+1; the constant +1 is precisely that off-by-one row. Routine finish: reduce mod 2, so the four corners of every unit square sum to 1; partition the 100×100 grid into 2500 disjoint 2×2 blocks, each forced to contain an odd number (1 or 3) of odd values, giving 2500 ≤ N ≤ 7500.
-
-## a list of products forming an arithmetic progression where consecutive products differ in exactly one factor
+## a factorial's prime valuation bounded below by a smaller factorial
 _1 problem(s) · number_theory_
 
-- `aimo-0731` — **Encode an arithmetic-progression condition as 'all consecutive differences equal', then factor each difference over its shared block to extract a local relation between adjacent indices.** :: The n+1 products differ in only one factor at each step, so the common difference D equals b_1...b_{i-1}(b_i-a_i)a_{i+1}...a_n for every i; cancelling the shared block from two adjacent expressions yields the per-index relation (b_i-a_i)a_{i+1}=b_i(b_{i+1}-a_{i+1}) for 1<=i<=n-1, and strict increase forces b_i>a_i.
+- `aimo-0578` — refute v_ℓ(N!) by lower-bounding via v_ℓ(m!) for a forced m ≤ N (Legendre)
 
-## a lower bound on the N-th term of a monotone integer sequence matching an average-rate target, met by a fixed minimal gain over each disjoint fixed-length window
-_1 problem(s) · algebra_
-
-- `aimo-0709` — **Reduce a global lower bound on a telescoping integer sequence to a fixed minimum increment over each disjoint window of fixed length** :: Noting 3034 is about (3/2)*2023, the target a_{2023}>=3034 is recast as needing the increasing integer sequence a_n to gain on average 3/2 per step; this is secured by proving a_{n+2}-a_n>=3 over each pair of steps (a +1 step cannot occur twice in a row), then summing 3 over 1011 disjoint windows plus a_1=1.
-
-## a maximizer raises every cell in a fixed-shape window while a minimizer deletes a fixed budget of cells per turn; cap the reachable count by a periodic coloring meeting at most that budget of one color class per window
+## a fill-minimum/lock game forcing an order inequality on the state
 _1 problem(s) · combinatorics_
 
-- `aimo-0560` — **For the defender's upper bound, fix a periodic coloring so that every move-window contains a constant number of off-color cells lying within the defender's per-turn cleanup budget, letting the defender reset all off-color cells to zero each turn and capping the count by the number of colored cells** :: Color every square that has at least one coordinate divisible by 3 (equivalently i≡0 or j≡0 mod 3); the colored count is 9N^2 − (2N)^2 = 5N^2. Any 3x3 gardener window spans 3 consecutive rows (one divisible by 3) and 3 consecutive columns (one divisible by 3), so it meets exactly one colored row + one colored column − their overlap = 3+3−1 = 5 colored, hence at most 4 uncolored. The lumberjack cuts exactly those ≤4 risen uncolored trees, keeping every uncolored tree at height 0 forever, so at most 5N^2 trees can ever exceed 0 — matching K=5N^2.
-- `aimo-0560` — **Cap how many cells the maximizer can keep elevated by coloring the board so every one of his moves grows at most (the minimizer's per-turn cutting budget) cells of one color class, letting the minimizer permanently hold every cell of that class at zero.** :: For the lumberjack's matching upper bound: color every cell having at least one coordinate divisible by 3. Each 3x3 region contains exactly 5 colored and 4 uncolored cells (one multiple of 3 among any 3 consecutive coordinates, so 2x2=4 cells avoid both multiples), so any gardener move (which grows a 3x3 neighborhood) raises at most 4 uncolored trees. The lumberjack's 4 cuts can therefore zero out every uncolored tree the gardener just grew, keeping all uncolored cells permanently at height 0. Hence only colored cells can ever be majestic, and there are exactly 5N^2 of them -- giving the matching upper bound K <= 5N^2 (= 5 * 2022^2/9 = 2271380), which together with the gardener construction pins K = 5N^2.
+- `aimo-0718` — convert the dynamics into a rank inequality from fill-fewest plus locking
 
-## a merge operation fuses two equal-size piles into one of double size, with a target pile count to reach
-_1 problem(s) · combinatorics_
-
-- `aimo-0563` — **Prove a move preserves divisibility by an odd integer by exploiting that the move's only newly created quantity is a doubling, so an odd divisor of the even result also divides its half.** :: A move sends piles a,b to a-c,b-c and creates a pile of 2c. If after the move every pile is divisible by an odd m, then m|2c, m|(a-c), m|(b-c); since m is odd, m|2c forces m|c, hence m|a and m|b, so divisibility by m holds before the move too. Thus the 'odd common divisor property' propagates backward through all moves. Since a non-power-of-two n has an odd divisor m>1 while the all-ones start has every pile divisible only by 1, a single pile of n is unreachable, giving the lower bound of 2.
-- `aimo-0563` — **Collapse many equal piles into one by repeatedly combining two piles of the same size into a single pile of double that size, halving the pile count each round.** :: Starting from 2^k unit piles, pair them into 2^{k-1} piles of 2, then 2^{k-2} piles of 4, and so on down to a single pile of 2^k pebbles, settling the power-of-two case (answer 1). The same doubling ladder is reused on the 2^{N-1} leftover two-piles in the non-power construction.
-- `aimo-0563` — **Reduce a chosen oversized pile to a prescribed size one pebble per move by repeatedly pairing it against a continually-regenerated small auxiliary pile, shedding the surplus without consuming any fresh piles.** :: For non-power n pick N with 2^N<n<2^{N+1} and set m=n-2^N (so 1<=m<=2^N-1). First build one large pile of 2^N by the doubling ladder, leaving the remaining units as single piles. Seed one pile of 2 by taking 1 from a single pile and 1 from the large pile (large -> 2^N-1). Then repeatedly take 1 from the large pile and 1 from the CURRENT 2-pile to form a fresh 2-pile: each such move lowers the large pile by exactly 1 and recycles the auxiliary (the old 2-pile drops to a single, the newly formed 2-pile is the next auxiliary), so NO additional single piles are consumed during the bleed. Continue until the large pile holds exactly m. At that point there is one large pile of m, one pile of 2, and 2^N-2 single piles; pair the singles into 2-piles and run the doubling ladder on all the 2-piles to fuse them into one pile of 2^N. Final state: exactly two piles, of sizes m and 2^N, summing to n.
-- `aimo-0563` — **Block a target configuration by an odd-modulus divisibility invariant: show the operation preserves the property that every pile is divisible by a fixed odd d>1 — the freshly formed pile has even size, so an odd common divisor of the move's outputs already divides each input — making 'all piles divisible by d' an invariant to compare the start against the goal.** :: Since n is NOT a power of two, n has an odd divisor d>1. Model a move as: from piles of sizes a and b take c<=min(a,b) from each and create a new pile of size 2c, so a->a-c, b->b-c plus a new pile 2c. Suppose AFTER the move every pile is divisible by d: then d|2c, d|a-c, d|b-c; because d is odd, d|2c forces d|c, hence d|a and d|b — so every pile was already divisible by d BEFORE the move. Thus 'all piles divisible by d' propagates backward through any finite sequence of moves. A final single pile of n is divisible by d, so the initial configuration would have to have every pile divisible by d; but the start is all 1-pebble piles (divisible only by 1) — contradiction. Hence one pile is impossible for non-powers, giving the lower bound 2 there (and the trivial 1 for powers of two).
-- `aimo-0563` — **Realize a matching upper bound in a pile/token-merging process by maintaining one oversized pile as a reservoir: draw an equal amount from it to inflate a smaller pile up to a partner's size, so any two piles become mergeable and the pile count can be driven down to the target.** :: Supplies the construction half (achievability). Powers of two collapse to a single pile by a plain doubling tournament: repeatedly pair two equal piles of size s into one pile of size 2s, halving the count each round (2^k unit piles -> 2^{k-1} twos -> ... -> 1 pile). For non-power n, leave exactly two piles via the reservoir trick (sol 2): write n in binary n = 2^{i_1}+...+2^{i_k} with i_1>...>i_k, build piles of those sizes, and keep the largest pile 2^{i_1} as a bank. Repeatedly take the two smallest piles; if equal, merge them; if not, use the bank to double the smaller pile up to the larger one's size, then merge. Each pass nets one fewer pile, ending with bank + one merged pile = exactly two piles. The bank never underflows because the cumulative draw stays below 2^{i_1} (total pebbles consumed ends at n - 2^{i_2+1} >= n - 2^{i_1} > 0). (Sol 1 gives an equivalent drain-the-large-pile route ending at {m, 2^N} with n = 2^N + m.) This pins the reachable count at 1 for powers of two and 2 otherwise.
-- `aimo-0563` — **To prove a target state of a token-merging process is unreachable, exhibit a divisibility invariant the move cannot create from nothing: divisibility of every pile size by a fixed ODD modulus is preserved, because forming a doubled pile of 2c from c pebbles taken off each of two piles lets any odd m with m | 2c recover m | c, so m divides all three changed pile sizes before exactly when it does after.** :: This is the lower-bound half that the construction crux does not supply (proving you cannot beat 1 for powers of two, nor 2 otherwise). The start is n piles of size 1, whose only odd common divisor is 1. Read the invariant in reverse: if after a move every pile size is divisible by an odd m, then so before. Suppose n is not a power of two, so it has an odd divisor m > 1. If a single pile of size n were reachable, that final pile is divisible by m, hence by descending invariance every earlier configuration including the all-singles start would have all sizes divisible by m -- impossible, since singletons have size 1. Therefore reaching one pile forces n to have no odd divisor > 1, i.e. n a power of two. So non-powers need at least 2 piles, which the construction attains, and powers of two reach 1. The decisive subtlety is choosing an ODD modulus: from m | 2c one can only conclude m | c when m is odd; an even modulus would not propagate backward.
-
-## a modulus divides a difference of odd powers a^n - b^n, rewritten so the modulus represents a binary quadratic form
+## a finite integer set where each pairwise difference divides both endpoints
 _1 problem(s) · number_theory_
 
-- `aimo-0582` — **When a modulus divides a difference of odd powers a^n - b^n with n=2k+1, rewrite it as a·(a^k)^2 - b·(b^k)^2 so the divisibility becomes the modulus representing a binary quadratic form, then apply Thue's lemma (pigeonhole on linear combinations over a sqrt(m)-sized grid) to force a small nonzero value of that form to be a multiple of m.** :: With m=2^n+65, n=2k+1, write 5^n-3^n = 5(5^k)^2 - 3(3^k)^2, so m represents 5a^2-3b^2. Pigeonhole on 5^{k+1}x+3^{k+1}y for 0<=x,y<=sqrt(m) gives nonzero (a,b) with |a|,|b|<=sqrt(m) and 5^{k+1}a+3^{k+1}b ≡ 0; multiplying by the conjugate 5^{k+1}a-3^{k+1}b yields 3^n(5a^2-3b^2) ≡ 0, so 0<|5a^2-3b^2|<=5m is a multiple of m.
+- `aimo-0580` — build a set where every pairwise difference divides both elements, giving consecutive integers on division
 
-## a number N is written as a sum of two parts, and a prime divides N together with one part
-_1 problem(s) · number_theory_
-
-- `aimo-0729` — **When N equals the sum of two terms, a prime dividing N and one term must divide the other term** :: After clearing denominators to (ab(c+d)+cd(a+b))·N = (a+b)²(c+d)² with N=a+b+c+d, any prime p|N divides (a+b)²(c+d)² hence divides a+b or c+d; since N=(a+b)+(c+d), p dividing one of these forces p to divide the other, so every prime factor of N divides a+b.
-
-## a partition of a grid into monotone lattice paths; grow a corner-to-corner path by splicing abutting paths (case analysis) to set up induction on the grid size
-_1 problem(s) · combinatorics_
-
-- `aimo-0719` — **Grow a corner-anchored monotone path until it reaches the opposite corner by splicing in the tail or sub-segment of each path it abuts, choosing the splice by a case analysis that keeps every remaining path monotone after the grown path is deleted and the halves are glued** :: The right-down path P at the upper-left corner is extended cell-by-cell into Q toward the lower-right corner; at the current end A, depending on whether the below-cell B / right-cell C lie in a right-down path or a right-up path (5 cases, e.g. absorbing a right-down path's tail, or a right-up path's column/row part, or two cells of a shared right-up path), Q absorbs exactly the piece that leaves each cut path still right-down or right-up. Removing Q and gluing the two remaining triangular pieces yields a valid (N-1) x (N-1) partition, enabling induction.
-
-## a permutation of a symmetric set of consecutive integers where a sum of adjacent absolute differences must be bounded, using each element's distance from the central value
+## a finite set where each element equals a sum of k distinct others
 _1 problem(s) · algebra_
 
-- `aimo-0711` — **Assign each value a potential equal to its distance from the central/median value, so the potentials form a fixed known multiset** :: Define score s(a)=|a-N| (here N=1012). Across all values 1..2N-1 these scores are exactly the multiset {0,1,1,2,2,...,N-1,N-1}, so their total is the fixed constant 2(1+2+...+(N-1))=N(N-1)=1011*1012, independent of the permutation. Centering at N also makes each potential the absolute deviation that bounds gaps through the center.
-- `aimo-0711` — **Upper-bound each path edge by the sum of its two endpoints' potentials (triangle inequality through the center), then sum along the path so every interior vertex's potential is counted twice and only the two path endpoints get weight one** :: From |a-b| <= |a-N|+|N-b| = s(a)+s(b), summing the 2N-2 consecutive gaps gives (sum of gaps) <= 2*(total score) - (s(a_1)+s(a_{2N-1})). Equating the gap-sum to its fixed value (N-1)(2N-1)=1011*2023 and the total score to N(N-1)=1011*1012 isolates the endpoints: s(a_1)+s(a_{2N-1}) <= N-1, hence a_1+a_{2N-1} >= N+1=1013; max >= 507 then follows by averaging.
+- `aimo-0551` — bound an extreme element by the sum of the k smallest/largest remaining elements
+- `aimo-0551` — add min lower-bound and max upper-bound, cancel middle terms to force a contradiction
 
-## a point equidistant from two given points (on a chord's perpendicular bisector); prove it is the circumcenter of a triangle erected on that chord
+## a fixed positive quantity bounded by a constant times every m
+_1 problem(s) · algebra_
+
+- `aimo-0710` — telescope m fixed-lower-bounded terms against a bounded total, then let m grow (Archimedean)
+
+## a functional equation whose exponents are iteration counts of f
+_1 problem(s) · number_theory_
+
+- `aimo-0730` — forbid periodic points by exhibiting one orbit attaining infinitely many values
+
+## a functional inequality in f(x+y) and f(x-y)
+_1 problem(s) · algebra_
+
+- `aimo-0708` — switch to sum/difference coordinates s=x+y, t=x-y to symmetrize the inequality
+- `aimo-0708` — add the variable-negated copy to cancel the antisymmetric part
+
+## a game needing a maximizer guarantee against an unwieldy adversary
+_1 problem(s) · combinatorics_  ⚠️ REVIEW (topical): Names a question-type (maximizer-vs-adversary game) with no specific structural noun; would fire on many unrelated game problems.
+
+- `aimo-0560` — prove the guarantee against a stronger uniform adversary, then transfer it back
+
+## a grid square partitioned into monotone paths
+_1 problem(s) · combinatorics_
+
+- `aimo-0719` — recast a partition-count bound as an area-deficit packing bound via a count-preserving bijection
+- `aimo-0719` — grow a corner-to-corner monotone path by splicing in tails of abutting paths
+
+## a grid vertex-set inducing a spanning tree with independent complement
+_1 problem(s) · combinatorics_
+
+- `aimo-0565` — translate edge-bound equality into a spanning-tree-plus-independent-set marking
+- `aimo-0565` — prove equality conditions sufficient via an explicit search-order labeling
+- `aimo-0565` — build an induced spanning tree with independent complement by a periodic comb
+- `aimo-0565` — attain a bound by building a spanning-tree/independent-set pattern for all sizes
+
+## a lattice bijection with order-comparisons invariant under coordinate shifts
+_1 problem(s) · combinatorics_
+
+- `aimo-0566` — realize a translation-invariant order by ranking via a linear form x+yα
+- `aimo-0566` — recover a hidden order from a shift-invariant bijection via a linear form x+αy
+- `aimo-0566` — represent a shift-invariant order as comparison of a linear form x+αy
+
+## a map adding a fixed step unless divisible, then dividing
+_1 problem(s) · number_theory_
+
+- `aimo-0577` — cap consecutive-addition run length: coprimality forces a division within each divisor-block
+- `aimo-0577` — the update is a bijection on a finite state set; trace its inverse back from the seed
+- `aimo-0577` — track residues to find the small representative, then let the additive phase climb onto the target
+
+## a merge fusing two equal piles into one double pile
+_1 problem(s) · combinatorics_
+
+- `aimo-0563` — preserve odd-divisibility since the move's only new quantity is a doubling
+- `aimo-0563` — halve pile count by merging two equal piles into one double-sized pile
+- `aimo-0563` — shed surplus one per move by pairing against a regenerated auxiliary pile
+- `aimo-0563` — block a target by an odd-modulus divisibility invariant
+- `aimo-0563` — maintain an oversized reservoir pile to make any two piles mergeable
+- `aimo-0563` — prove unreachability via an odd-modulus divisibility invariant
+
+## a minimal/extremal quantity reducible by dividing out a common factor
+_1 problem(s) · number_theory_
+
+- `aimo-0731` — justify coprimality WLOG by dividing out any common factor to shrink the minimized quantity
+
+## a near-symmetric count risks collapsing to one value
+_1 problem(s) · number_theory_
+
+- `aimo-0579` — decrement the threshold by one to delete an extremal contributor, splitting one case into two values
+
+## a one-variable inequality among consecutive f-iterates
+_1 problem(s) · algebra_
+
+- `aimo-0710` — replace the variable by an iterate f^{n-1} to chain the inequality across iterate gaps
+
+## a parity condition on a completely additive function of two arguments
+_1 problem(s) · number_theory_
+
+- `aimo-0580` — use f(m)+f(n)=f(m/d)+f(n/d)+2f(d) to show a parity condition invariant under common-divisor division
+
+## a per-n extremal construction with logarithmic (~log2 n) target size
+_1 problem(s) · combinatorics_
+
+- `aimo-0716` — partition indices into doubling blocks so any monotone path picks at most one mark per block
+
+## a periodic regime imposing a per-element inequality, with a conserved total
+_1 problem(s) · combinatorics_
+
+- `aimo-0559` — sum a forced per-element lower bound, divide by the total to contradict
+- `aimo-0559` — amortize the recurrence's inequalities over a period and substitute the conserved total
+
+## a permutation of integers symmetric about a central value
+_1 problem(s) · algebra_
+
+- `aimo-0711` — assign each value a potential equal to its distance from the median, a fixed multiset
+
+## a point equidistant from two vertices, tested as a triangle's circumcenter
 _1 problem(s) · geometry_
 
-- `aimo-0723` — **Identify a point lying on a chord's perpendicular bisector as the circumcenter of a triangle erected on that chord by checking that the angle it subtends on the chord equals twice the triangle's opposite inscribed angle.** :: Since BA1 = A1C, A1 lies on the perpendicular bisector of BC. Computing the apex angle at the intersection A2 of lines BC1, CB1 as angle BA2C = 60 deg + (1/2)((180 deg - angle AC1B) + (180 deg - angle CB1A)), then substituting the hypothesis angle BA1C + angle CB1A + angle AC1B = 480 deg gives angle BA2C = (1/2) angle BA1C. Hence A1 is equidistant from A2, B, C and is the circumcenter of triangle A2BC (radius A1B = A1C = A1A2); cyclically for B1 and C1.
-- `aimo-0723` — **Certify a point that is equidistant from two vertices as the circumcenter of a triangle built on them by checking the angle it subtends over those two vertices equals twice the angle the triangle's third vertex subtends over them (central-equals-twice-inscribed test).** :: A1 has BA1=A1C, so it lies on the perpendicular bisector of BC and inside triangle BA2C; it is the circumcenter of A2BC exactly when angle BA1C = 2 angle BA2C. Compute angle BA2C = angle A2BA + angle BAC + angle ACA2. Because C1 and B1 are apexes of inward isosceles triangles, angle A2BA = (180 - angle AC1B)/2 and angle ACA2 = (180 - angle CB1A)/2, and angle BAC = 60, giving angle BA2C = 240 - (1/2)(angle AC1B + angle CB1A) = 240 - (1/2)(480 - angle BA1C) = (1/2) angle BA1C, where the global hypothesis angle BA1C + angle CB1A + angle AC1B = 480 is precisely what makes the constants cancel. Hence A1 (and cyclically B1, C1) is the circumcenter of A2BC (resp. B2CA, C2AB), so A1A2=A1B=A1C etc. These equal radii feed a short isosceles-triangle angle chase showing B1C1B2C2, C1A1C2A2, A1B1A2B2 are cyclic, whose radical center is the first equal-power point X = A1A2 cap B1B2 cap C1C2.
+- `aimo-0723` — identify a circumcenter via the central-angle-equals-twice-inscribed-angle test on a chord
+- `aimo-0723` — certify a circumcenter by the central-equals-twice-inscribed angle test over two vertices
 
-## a point on the hypotenuse-line of a right triangle is equidistant from the right-angle vertex and one hypotenuse endpoint
+## a point on a side's extension beyond a vertex, supplementing an apex angle
 _1 problem(s) · geometry_
 
-- `aimo-0570` — **Recognize a point on the hypotenuse-line of a right triangle that is equidistant from the right-angle vertex and one endpoint as the midpoint of the hypotenuse (circumcenter), yielding equality to the third vertex as well.** :: Let E = AO ∩ BC. The line through D is ⊥BC and W lies on it, with E,D on BC and W,E,O collinear on AO, so △EDW is right-angled at D with hypotenuse EW along AO and O ∈ EW. OW = OD forces O to be the midpoint of EW (circumcentre of right △EDW), giving OD = OE. Since D,E lie on BC and O is equidistant from them, the foot M of ⊥ from O to BC is the midpoint of both BC and ED, so reflection across the ⊥-bisector of BC swaps B↔C and E↔D. This involution is the entire metric content of OW = OD.
+- `aimo-0567` — use the supplement at a vertex to manufacture the second AA-similarity angle
 
-## a point reflected across two lines that both pass through it (e.g. two cevians meeting at the vertex)
+## a point on the hypotenuse equidistant from the right-angle vertex
 _1 problem(s) · geometry_
 
-- `aimo-0722` — **Realize the reflections of a vertex across two cevians through that vertex as the images of the two cevian-feet under the homothety of ratio 2 centered at the vertex, transferring the foot-triangle's known similarity type to the reflection triangle.** :: A_b, A_c (reflections of A in lines BH and CH) are exactly the images of the feet P = BH∩AC and Q = CH∩AB under the dilation of factor 2 centered at A. Since the altitude-foot triangle APQ is well-known to be oppositely similar to ABC, the doubled triangle AA_bA_c is too; symmetrically at B and C. This also yields HA = HA_b = HA_c since A_b, A_c are reflections of A across lines through H.
+- `aimo-0570` — recognize an equidistant hypotenuse point as the midpoint (circumcenter)
 
-## a predicate on pairs where each element has exactly one partner satisfying it, so testing whether an element pairs with itself yields a strict inequality
+## a prescribed multiset of pairwise differences realized by points on a line
 _1 problem(s) · algebra_
 
-- `aimo-0552` — **Exploit a uniqueness hypothesis by feeding in the diagonal candidate: if every element has exactly one partner satisfying the predicate and a given element already has an off-diagonal partner, conclude the element paired with itself fails the predicate, yielding a strict inequality.** :: Assuming x != y with (x,y) good, uniqueness of the good partner of x forces (x,x) to be not good, i.e. 2 x f(x) > 2, so x f(x) > 1; symmetrically y f(y) > 1.
+- `aimo-0554` — place points as partial sums of powers of a root so power-blocks collapse
 
-## a prescribed per-row or per-position shift must be realized by cutting a strip into complementary-length blocks and transposing them
+## a prescribed per-position shift realized by transposing complementary-length blocks of a strip
 _1 problem(s) · combinatorics_
 
-- `aimo-0717` — **Attain the bound by splitting each unit into two complementary-length blocks and transposing the pair to realize the required per-row shift.** :: Cut the 1xn^2 strip as n, n-1, n-2, ... paired with 1, 2, ... (sizes summing to n), then swap each consecutive pair of strips that add to size n; this places labels so a_ij - (i+j-1) is divisible by n, using exactly 2n-1 pieces and matching the lower bound.
+- `aimo-0717` — split each unit into two complementary blocks and transpose to realize the row shift
 
-## a prescribed structured multiset of pairwise differences (e.g. consecutive powers) must be realized by points on a line
-_1 problem(s) · algebra_
-
-- `aimo-0554` — **Realize a prescribed geometric-power multiset of pairwise differences by placing the points as partial sums of powers of a root of a tailored low-degree polynomial, so each consecutive-power block-sum collapses to one higher power.** :: Take a_i = sum of r^1..r^{i-1} and choose r as the root >1 of x^{n-1}=x+1 (golden ratio x^2-x-1 for n=3, plastic-type x^3-x-1 for n=4). Then r^3=r+1 makes block sums equal single powers, e.g. for n=4: a_3-a_1=r+r^2=r^4, a_4-a_2=r^2+r^3=r^5, a_4-a_1=r+r^2+r^3=r^6, so the six differences are exactly r^1,...,r^6.
-
-## a prime divides a product of pairwise sums (or terms) of a bounded set, each factor confined to a short interval containing only one or two multiples of the prime
+## a prime divides a product of bounded pairwise sums
 _1 problem(s) · number_theory_
 
-- `aimo-0576` — **When a prime must divide a product of pairwise sums, pin the responsible factor by squeezing that sum strictly between 0 and twice the prime so the only available multiple forces the sum to equal the prime itself.** :: The largest prime p_m <= n divides n!, hence divides the product, hence divides some factor p_i+p_j; since 0 < p_i+p_j < p_m+p_m = 2p_m, equality p_m = p_i+p_j is forced, which (a sum of two distinct primes equal to an odd prime) requires p_i=2 and p_m = p_{m-1}+2, so the top two primes are twins (and m>=3).
-- `aimo-0576` — **Re-run the same divide-one-factor argument on the next element with a looser size window that now admits two multiples, then dispatch the extra multiple case to show it yields the same gap.** :: p_{m-1} divides some p_k+p_l with 0 < p_k+p_l <= p_m+p_{m-1} = 2p_{m-1}+2 < 3p_{m-1}, so p_{m-1} = p_k+p_l or 2p_{m-1} = p_k+p_l; the first gives p_{m-1}=p_{m-2}+2 as before, the second forces k=m so 2p_{m-1}=p_l+p_{m-1}+2 i.e. p_{m-1}=p_l+2=p_{m-2}+2; either way p_{m-1}=p_{m-2}+2, producing the AP p_{m-2}, p_{m-2}+2, p_{m-2}+4.
+- `aimo-0576` — squeeze a pairwise sum strictly between 0 and 2p so the only multiple of p forces it to equal p
+- `aimo-0576` — rerun the divide-a-factor argument with a looser window and dispatch the extra-multiple case
 
-## a process carries a bounded, monotone integer count or convex potential whose target is exactly a small extreme value of it
-_1 problem(s) · combinatorics_
-
-- `aimo-0561` — **Force a restricted process to halt by freezing one designated site as a permanent sink and exhibiting a strictly convex site-weight whose weighted total strictly increases on every allowed move and is bounded above by the fixed total mass.** :: Forbid child n from ever firing; allow any OTHER child with >=2 coins to fire. Use the strictly convex weight P = sum_{i=1}^{n} i^2 c_i over ALL children, INCLUDING the sink n. Every interior fire changes P by (i-1)^2+(i+1)^2-2i^2 = +2; a fire adjacent to the sink also strictly increases P (child n-1: (n-2)^2 + n^2 - 2(n-1)^2 = +2; child 1: dumps into the weight-n^2 sink, change = n^2+2 > 0). P is a strictly increasing integer bounded by n*n^2 = n^3, so the restricted process must halt at a semi-uniform state (z_1,...,z_{n-1},M) with every z_i in {0,1} and all surplus M piled on child n. CAUTION: weighting only children 1..n-1 (as some write-ups do) FAILS: child n-1 firing sends a coin into the unweighted sink, giving a NEGATIVE increment (e.g. -47 at n=7). The sink must carry weight n^2. This reaches SOME semi-uniform state but gives no bound on M; reducing M is a separate move.
-
-## a process settles into a cyclic regime where each part in turn is forced to satisfy the same inequality, so summing over a full period and substituting the conserved total yields an averaged parameter contradiction
-_1 problem(s) · combinatorics_
-
-- `aimo-0559` — **Sum a per-element lower bound that the persisting regime forces on each element in turn, then divide by the elements' known total to derive an averaged bound contradicting the hypothesis.** :: In the surviving regime (even c>=4 blocks, rightmost block moved every step), each block in turn becomes rightmost, and the moved block of size a_i must contain the k-th coin, forcing k>=2n+1-a_i. Summing over all c blocks and using sum a_i=2n gives ck>=2cn+c-2n, hence k>=2n+1-2n/c>=2n+1-2n/4=3n/2+1, contradicting k<=(3n+1)/2. So the block count must eventually drop, reaching 2 -- proving sufficiency.
-- `aimo-0559` — **Amortize a recurrence to a contradiction: write the necessary inequality each instance of the recurring operation imposes, sum it over all instances one full period visits, and substitute the conserved total of those instances to force a global parameter bound.** :: In the surviving regime the rightmost block (size a_i) is the one selected every step, so the k-th coin must lie in it: k >= 2n+1-a_i. Over one full period the rotation cycles every one of the c blocks into last position, so this inequality must hold for all i=1..c. Summing: ck >= sum_i (2n+1-a_i) = 2cn + c - sum_i a_i = 2cn + c - 2n, using the conserved total sum_i a_i = 2n. Hence k >= 2n + 1 - 2n/c. Since c>=4, 2n/c <= n/2, giving k >= 3n/2 + 1 > (3n+1)/2, contradicting the hypothesis k <= (3n+1)/2. So the no-drop regime cannot persist; the block count must eventually decrease, completing the sufficiency direction.
-
-## a product of positive quantities whose total sum is fixed, to be maximized or bounded
-_1 problem(s) · algebra_
-
-- `aimo-0557` — **Maximize a product of positive integers with a fixed sum by splitting the sum into parts of size 3, and read the resulting count off as that maximal product.** :: The number of small periodic sequences with offset r and period d equals g(x,d)=(p+1)^q p^{d-q} (x=k+1-r), the max product of d positive integers summing to x. Choosing d=floor((k+1)/3) makes every block size 3, so f(n)>g(k+1,floor((k+1)/3))>=3^{floor((k+1)/3)}>3^{n/6}-1, which is exactly the c_1 lambda^n lower bound with lambda=3^{1/6}.
-
-## a product of two factors in which one factor's sign and magnitude are already pinned while the other controls a neighboring quantity you want to compare
-_1 problem(s) · algebra_
-
-- `aimo-0550` — **Replace one factor of a product by a crude over-bound chosen so the product collapses into a neighbor's difference of squares.** :: With a middle term >1, the factored inequality forces 0<1-a_n<1<1+a_{n+2}, so replacing (1-a_n) by (1+a_{n+2}) gives (a_{n+1})^2-1 < (1+a_{n+2})(a_{n+2}-1) = (a_{n+2})^2-1.
-
-## a pure prime power expressed as a product of two positive factors (e.g. a difference of squares), forcing each factor to be a power of that prime
+## a prime dividing N where N is a sum of two terms
 _1 problem(s) · number_theory_
 
-- `aimo-0725` — **Write a prime power as a difference of two squares and conclude that each of the two factors is itself a pure power of that prime.** :: From p^a + a^4 = b^2 factor p^a = (b+a^2)(b-a^2); since the product is a prime power and both factors are positive, each factor is a power of p, say b-a^2 = p^x and b+a^2 = p^{a-x} with a-x > x, and subtracting gives 2a^2 = p^x(p^{a-2x} - 1).
+- `aimo-0729` — a prime dividing N and one of two summands must divide the other summand
 
-## a quantity bounded below by m times a fixed nonnegative constant yet bounded above independently of m, forcing that constant to be zero
+## a prime power equal to a product of two positive factors
+_1 problem(s) · number_theory_
+
+- `aimo-0725` — write a prime power as a difference of squares so each factor is a pure power of that prime
+
+## a process closed under addition and coordinatewise maximum, reaching a target tuple
+_1 problem(s) · combinatorics_
+
+- `aimo-0564` — realize a single-peaked tuple as a downward perfect-square via spanning generators
+- `aimo-0564` — find a two-coordinate linear inequality preserved by both addition and max
+
+## a product of positive quantities with fixed sum, maximized or bounded
 _1 problem(s) · algebra_
 
-- `aimo-0710` — **Telescope a sum of m terms each bounded below by a fixed nonnegative constant against a total that is bounded independently of m, then let m grow to force the constant to be zero (Archimedean)** :: y - f^{2m}(y) = sum_{i=0}^{m-1}(f^{2i}(y)-f^{2i+2}(y)) >= m(y-f^2(y)), while positivity of f gives y - f^{2m}(y) < y for all m; so m(y-f^2(y)) < y for every m forces y-f^2(y)=0, i.e. f^2(y)=y. The inequality then collapses to the symmetric x f(x) >= y f(y), so x f(x) is a constant c and f(x)=c/x.
+- `aimo-0557` — maximize a fixed-sum product by splitting into parts of size 3
 
-## a quantity obeys a multiplicative self-similar scaling identity g(kx,kd)=g(x,d)^k, usable to reduce a per-term bound to one rescaled instance
+## a purely local move needing to transport a unit far intact
+_1 problem(s) · combinatorics_
+
+- `aimo-0561` — translate a chip-pair across a symmetric run by induction on its length
+- `aimo-0561` — transport surplus across a block of 1's, decreasing run-length as a monovariant
+- `aimo-0561` — build a long-range transport from a local move by induction on distance
+- `aimo-0561` — promote a local firing into a long-range transfer by induction on distance
+- `aimo-0561` — match unequal flanking gaps by shuttling a mobile surplus of 2 inward
+
+## a quadratic relation that factors after subtracting a constant
 _1 problem(s) · algebra_
 
-- `aimo-0557` — **Amplify a quantity by its own multiplicative scaling identity g(kx,kd)=g(x,d)^k to turn an intractable per-term bound into a comparison of a single rescaled instance.** :: To prove sum_d g(x,d) <= c_3 3^{x/3}, cube via g(3x,3d)=g(x,d)^3 and bound g(3x,3d) by a single superadditively-concatenated partition g(15x-36d,4x-9d)=3^x 4^{3(x-3d)}, giving g(x,d)<=3^{x/3}(64/81)^{x/3-d} for d<=x/3 (and the symmetric 8/9 bound for d>=x/3); these geometric tails sum to O(3^{x/3}), yielding the c_2 lambda^n upper bound.
+- `aimo-0550` — subtract 1 to make a quadratic constraint factor as shifted linear terms
 
-## a ratio of perpendicular distances from points to two lines, where each point reaches its foot by a segment making a known (often equal) angle with the line
+## a quadrilateral whose sides are tangents to given circles, prove tangential
 _1 problem(s) · geometry_
 
-- `aimo-0721` — **Rewrite the perpendicular distance from a point to a line as an adjacent segment times the sine of the known angle the segment makes with that line, so that equal angles cancel and a distance-ratio collapses to a pure side-ratio.** :: Using ∠ADP = ∠PCB = ν and the arc-midpoint angles ∠MAD = ∠CBM = χ, write p_a = PD·sin ν, p_b = PC·sin ν, m_a = MA·sin χ, m_b = MB·sin χ. The sines cancel, turning p_a:p_b = m_a:m_b into the side condition PD:PC = MA:MB.
+- `aimo-0574` — prove tangential by a three-sided circle plus Monge's theorem with a vertex as dilation center
+- `aimo-0574` — finish tangentiality with an auxiliary three-sided circle and Monge pinning the center to a vertex
+- `aimo-0574` — construct a three-sided circle and apply Monge so two known centers pin the third to a vertex
 
-## a rearrangement process on a row of two symbols where the goal is a bounded number of monochromatic blocks and each move can only merge same-symbol runs, making block count a non-increasing monovariant
-_1 problem(s) · combinatorics_
-
-- `aimo-0559` — **Track the number of maximal monochromatic blocks as a non-increasing monovariant of the process, after recasting the target state as a fixed block count.** :: The goal 'at most one A adjacent to a C' is restated as 'the row consists of exactly two blocks (all A's then all C's, or vice versa)'. Each operation extracts one same-metal run and prepends it, which can only merge runs at the freed seams, so the block count never increases; the whole proof then studies when this count is forced to strictly drop until it reaches 2.
-- `aimo-0559` — **Show a non-increasing monovariant must eventually strictly decrease by classifying which operations preserve it and reducing to a single surviving operation.** :: Take the monovariant c = number of maximal monochromatic blocks; the target 'at most one A adjacent to a C' is exactly c<=2, so it suffices to force c to keep dropping until c<=2. For any configuration with c>=3, determine the only move that keeps c from dropping. The leftmost block can never be the one moved: since k>=n, if the k-th coin lay in it that block would already contain all n coins of its metal, forcing c=2; so the moved block always has a left neighbor. Moving any interior block deletes it and merges its two equal-metal neighbors, dropping c. Moving the rightmost block to the front leaves it adjacent to the old leftmost block; if c is odd those two are the same metal and merge, so c drops unless c is even. Hence c fails to drop only when c>=4 is even and the rightmost block is moved -- which is a pure cyclic rotation of the block sequence (last block to front, no merge). This isolates the single recurrent regime handed to the averaging crux.
-
-## a recurrence whose every branch equals a multiple of m plus an earlier term, so all terms stay within the starting residues mod m
-_1 problem(s) · number_theory_
-
-- `aimo-0728` — **Rewrite each recurrence branch as 3*(one step) plus an earlier term to expose that residues mod 3 can never leave the set of the two starting residues.** :: Writing a_{n+1}=3(a_n-a_{n-1})+a_{n-1} or 3(a_n-a_{n-1})+a_n gives a_{n+1} ≡ a_{n-1} or a_n (mod 3); since {a_0,a_1}={0,1}, every kawaii term is ≡ 0 or 1 (mod 3). Two consecutive positive kawaii integers m, m+1 both lie in {0,1} mod 3, which is only possible when m ≡ 0 (mod 3), proving 3 | m.
-
-## a relation defined through a completely additive arithmetic function, tested for invariance when both arguments are divided by a common factor
-_1 problem(s) · number_theory_
-
-- `aimo-0580` — **For a parity condition built from a completely additive function f (where f(ab)=f(a)+f(b)), use f(m)+f(n)=f(m/d)+f(n/d)+2f(d) to show the condition is invariant under dividing both arguments by a common divisor d.** :: With p(n)=total prime exponents and q(n)=exponents over Q, call m,n 'friends' when p(m)+p(n) and q(m)+q(n) are both even. The +2f(d) term is even, so m,n are friends iff m/d, n/d are friends. Thus a friend pair whose difference d divides both members becomes, after dividing by d, a pair of consecutive friends — exactly a special integer.
-
-## a second-order recurrence presented as a product of two linear factors set to zero (each step follows one of two branches)
-_1 problem(s) · number_theory_
-
-- `aimo-0728` — **Reparametrize a two-branch second-order recurrence by consecutive differences to turn each branch into a multiplicative ratio choice for the differences.** :: Setting b_n = a_n - a_{n-1}, the factored condition (a_{n+1}-3a_n+2a_{n-1})(a_{n+1}-4a_n+3a_{n-1})=0 becomes (b_{n+1}-2b_n)(b_{n+1}-3b_n)=0, i.e. b_{n+1}=2b_n or 3b_n with b_1=1. Hence every kawaii term is a_t = 1 + sum_{k=2..t} b_k where each b_n = 2^{r}3^{s} with r+s=n-1 and b_n | b_{n+1}; this product-of-2s-and-3s structure underlies all the modular and constructive arguments.
-
-## a sequence defined by a self-composed index relation (a_{a_i+a_j}=a_{i+j}), where an equality of two terms can be propagated to force periodicity
+## a quantity satisfying a multiplicative self-scaling identity
 _1 problem(s) · algebra_
 
-- `aimo-0557` — **Substitute an already-known equal pair back into the self-composed functional relation to propagate the equality one index forward, forcing the sequence to become periodic.** :: From the defining relation a_{a_i+a_j}=a_{i+j}, equality a_r=a_s yields a_{r+1}=a_{a_r+a_1}=a_{a_s+a_1}=a_{s+1}; iterating shows every non-identity n-sequence is eventually periodic with a minimal period d starting at an offset r (a_i=i for i<r), which is the backbone of the whole classification of n-sequences.
+- `aimo-0557` — use the multiplicative scaling identity g(kx,kd)=g(x,d)^k to rescale to one instance
 
-## a signed or alternating sum over a window of consecutive integers shown nonzero because exactly one term carries the maximal 2-adic valuation
+## a rearranging process whose goal is a fixed monochromatic-block count
 _1 problem(s) · combinatorics_
 
-- `aimo-0715` — **Use that any block of consecutive integers contains exactly one element of maximal 2-adic valuation to isolate a single non-divisible summand, then reduce the signed sum modulo the next power of two.** :: In any window i..j let v = max valuation; if two multiples of 2^v occurred one would be a multiple of 2^{v+1}, so there is a unique x with v_2(x)=v. Then a_x = 2^{k-v} is not divisible by 2^{k-v+1} while every other a_t is, so the signed sum is congruent to +/- a_x mod 2^{k-v+1}, hence nonzero.
+- `aimo-0559` — track the count of maximal monochromatic blocks as a non-increasing monovariant
+- `aimo-0559` — show a monovariant must strictly decrease by reducing to one surviving operation
 
-## a similarity between two triangles is in hand, and an angle must be transferred by matching their corresponding special points (midpoints or equal-ratio points)
+## a recurrence trapping every term into two residues mod 3
+_1 problem(s) · number_theory_
+
+- `aimo-0728` — rewrite each branch as 3·(step) plus an earlier term to fix residues mod 3 to the starting set
+
+## a redistribution process to be halted by freezing one site as a sink
+_1 problem(s) · combinatorics_
+
+- `aimo-0561` — freeze a sink and use a strictly convex bounded-above increasing site-weight
+
+## a second-order recurrence factoring into two linear branch choices
+_1 problem(s) · number_theory_
+
+- `aimo-0728` — reparametrize a two-branch recurrence by consecutive differences into a multiplicative ratio choice
+
+## a selection under a spacing constraint, each pick forcing an exclusion
+_1 problem(s) · combinatorics_
+
+- `aimo-0558` — greedily build the extremal subsequence, charging each minority pick to a forced skip
+- `aimo-0558` — alternate opposite equal blocks spaced so one sign can't be reached alone
+- `aimo-0558` — close the off-by-one by forcing use of a deficient boundary block
+
+## a self-similar multiset built from two half-size copies, constant per-block target
+_1 problem(s) · algebra_
+
+- `aimo-0713` — build a constant-column-sum arrangement by recursively shifting prior rows and appending forced blocks
+
+## a sequence in which infinitely many primes appear
+_1 problem(s) · number_theory_  ⚠️ REVIEW (topical): Names a goal/question-type ('infinitely many primes appear in a sequence'), not a structural condition; would fire on a dozen unrelated sequence problems.
+
+- `aimo-0727` — show a quantity is unbounded since boundedness would confine the prime factors to a finite set
+
+## a sequence whose subscripts are its own values
+_1 problem(s) · algebra_
+
+- `aimo-0557` — substitute a known equal pair into the self-composed relation to force periodicity
+
+## a shift-invariant strict inequality on overlapping consecutive triples
+_1 problem(s) · algebra_
+
+- `aimo-0550` — over-bound one factor so the product collapses to a neighbor's difference of squares
+- `aimo-0550` — reapply a shift-invariant strict inequality at the next index for a contradiction
+
+## a square-free integer each of whose prime factors divides X
+_1 problem(s) · number_theory_
+
+- `aimo-0729` — square-free N divides X if every prime factor of N divides X
+
+## a strict real bound on an integer-valued quantity
+_1 problem(s) · algebra_  ⚠️ REVIEW (topical): Too generic: 'a strict real bound on an integer-valued quantity' fires on almost any problem combining integrality with a non-integer bound; names a question-type, not a specific configuration.
+
+- `aimo-0709` — use the strict Cauchy-Schwarz gap from distinct entries, then round up by integrality
+
+## a sum of adjacent absolute differences along a path of values
+_1 problem(s) · algebra_
+
+- `aimo-0711` — bound each edge by its endpoints' potentials via the center, then sum along the path
+
+## a target represented with a prescribed number of distinct summands
+_1 problem(s) · algebra_
+
+- `aimo-0551` — hit a fixed-count distinct-sum target by padding with value-canceling zero-sum pairs
+
+## a triangle vertex reflected across two cevians through it
 _1 problem(s) · geometry_
 
-- `aimo-0569` — **Identify the midpoints (or equal-ratio points) of corresponding sides as corresponding points under an established similarity, so a cevian-foot angle transfers across the similarity.** :: Under similarity ADQ ~ CDB, the midpoint N of AD corresponds to the midpoint R of CD, so the cevian angle QNA equals BRC; this links the inscribed-angle data of circle ANQ at N to the auxiliary point R on CD.
+- `aimo-0722` — realize reflections across cevians as images of the feet under a ratio-2 homothety at the vertex
 
-## a single large value is written in several distinct ways as a two-term sum of available values, and you must control which summand is the large half and how the small halves are ordered
+## a value obtainable by two substitutions, symmetric in the parameters
+_1 problem(s) · number_theory_
+
+- `aimo-0730` — evaluate one quantity by two substitutions with a symmetric common value, then equate
+
+## a vertex-ordered edge-coloring; a color avoidable unless prefix-majority
+_1 problem(s) · combinatorics_
+
+- `aimo-0720` — force each color to be a prefix-majority by interleaving with earlier different-colored vertices
+- `aimo-0720` — prove a color is forced contrapositively by interleaving it with lower-indexed other-color vertices
+- `aimo-0720` — prove prefix-majority contrapositively via term-wise domination of one ordered class by the other
+
+## an edge-coloring forcing every Hamiltonian path to use all colors
+_1 problem(s) · combinatorics_
+
+- `aimo-0720` — color each edge by the geometric size-class of its lower-indexed endpoint
+- `aimo-0720` — assign vertices to geometrically nested classes, coloring each edge by its smaller-class endpoint
+
+## an equality of two fractions known to be in lowest terms
+_1 problem(s) · number_theory_
+
+- `aimo-0731` — equate two lowest-terms fractions and match numerators and denominators separately
+
+## an exponential-equals-polynomial equation bounded to finite cases
+_1 problem(s) · number_theory_
+
+- `aimo-0725` — lower-bound the exponent so the prime power outgrows the polynomial, leaving finite cases
+
+## an extremal sequence valued by the 2-adic valuation of its index
+_1 problem(s) · combinatorics_
+
+- `aimo-0715` — build the extremal sequence as a ruler: value from the 2-adic valuation of the index
+- `aimo-0715` — isolate the unique maximal-2-adic summand in a block, then reduce the signed sum mod 2^{k+1}
+
+## an inequality comparing an exponential term r^t against a linear quantity
 _1 problem(s) · algebra_
 
-- `aimo-0554` — **Use strict convexity of t -> r^t to lift a monotone ordering among differences r^{x_{k+1}}-r^{x_k} to the same monotone ordering of the underlying integer exponent gaps x_{k+1}-x_k.** :: From the n-2 splittings r^b = r^{b-i}+r^{alpha_i}, the strictly decreasing gaps r^{b-1}-r^{b-2}>...>r^{b-(n-3)}-r^{b-(n-2)} among the large powers force r^{alpha_2}-r^{alpha_1}>...>r^{alpha_{n-2}}-r^{alpha_{n-3}}; since each such gap equals r^{alpha_i}(r^{d_i}-1) with alpha_i increasing, the integer gaps d_i=alpha_{i+1}-alpha_i must themselves strictly decrease, giving alpha_2-alpha_1>alpha_3-alpha_2>...>alpha_{n-2}-alpha_{n-3}.
-- `aimo-0554` — **Pin the larger halves of the many two-term splittings of the maximal element to the top consecutive elements: a just-established threshold shows only that many elements exceed half the maximum, and distinctness across the splittings forces those large halves to be exactly the top elements.** :: The maximal difference is a_n-a_1=r^b with b=n(n-1)/2, and it splits in n-2 ways as (a_n-a_i)+(a_i-a_1) for i=2..n-1; in each splitting one summand is >= half. Since the lemma r^{n-1}>2 gives r^{b-(n-1)}=r^b/r^{n-1}<r^b/2, the ONLY powers exceeding half r^b are r^{b-1},...,r^{b-(n-2)} (r^b itself is already used). These n-2 distinct large summands across the n-2 splittings must therefore be exactly r^{b-1},...,r^{b-(n-2)}, yielding r^b=r^{b-i}+r^{alpha_i} with 1<=alpha_1<...<alpha_{n-2}<=b-(n-1).
+- `aimo-0553` — replace 2^t by its tangent-line (Bernoulli) bound 1+t to linearize
 
-## a spiral similarity centered at the second intersection of two circles carries a segment to a perpendicular one (its rotation angle is 90 degrees)
+## an inequality comparing sums of square roots of integers
+_1 problem(s) · algebra_
+
+- `aimo-0713` — replace each irrational by its nearest integer to get an exact integer constant-sum target
+
+## an inscribed-angle target at the crossing of two carrier lines
 _1 problem(s) · geometry_
 
-- `aimo-0570` — **When a spiral similarity at the common point of two circles has rotation angle 90 degrees, the two circles meet orthogonally, so a radius of one circle at that point is tangent to the other.** :: Z is the Miquel point of lines AC, BC, BA, DY, hence B, D, Z, Y and C, D, X, Y are concyclic and Z is the centre of the spiral similarity sending B → Y and C → X, i.e. mapping segment BC to segment YX. Because X and Y both lie on the line through D perpendicular to BC, chord YX ⊥ BC, so the rotation angle of the spiral is 90 degrees; hence circles (ABC) and (AXY) are orthogonal at Z, and the radius OZ of (ABC) is tangent to (AXY) at Z. This reduces the target 'DZ tangent to (AXY)' to showing D lies on line OZ.
+- `aimo-0567` — close concyclicity via the triangle exterior-angle theorem
 
-## a strict inequality comparing the same function at two consecutive indices is symmetric under shifting the index, so the configuration also yields its reverse
-_1 problem(s) · algebra_
-
-- `aimo-0550` — **Reapply a shift-invariant strict inequality at the next index to obtain the reversed inequality and a contradiction.** :: From (a_{n+1})^2-1 < (a_{n+2})^2-1, applying the same over-bound to the index-shifted (symmetry-swapped) overlapping triple yields (a_{n+2})^2-1 < (a_{n+1})^2-1, contradicting it; hence no two consecutive terms (past a_1,a_2) exceed 1, and a_2022>1 then forces 0 < (a_2022)^2-1 <= (1-a_2021)(a_2023-1) <= 0.
-
-## a strict real-valued inequality between two integer-valued quantities, sharpened to the next integer using integrality
-_1 problem(s) · algebra_
-
-- `aimo-0709` — **Use the strict Cauchy-Schwarz gap forced by distinct entries to push a real increment past 2, then round up via integrality of the sequence** :: Since x_{n+1} != x_{n+2}, the pair product P=(x_{n+1}+x_{n+2})(1/x_{n+1}+1/x_{n+2}) = 2 + x_{n+1}/x_{n+2} + x_{n+2}/x_{n+1} > 4, so sqrt(P)>2 and a_{n+2}^2 > (a_n+2)^2, i.e. a_{n+2} > a_n+2; because both a_{n+2}, a_n are positive integers this strictness rounds up to a_{n+2} >= a_n+3.
-
-## a sum of square roots to be bounded near an integer target, each root lying close to a specific integer
-_1 problem(s) · algebra_
-
-- `aimo-0713` — **Replace each irrational term by its nearest integer to convert an approximate-sum inequality into an exact integer constant-sum target.** :: Each sqrt(k) is rounded to the integer it is closest to; since sqrt(k^2-k+1),...,sqrt(k^2+k) all round to k (error <0.5), the values 1..N become the multiset {1_x2,2_x4,...,m_x2m}. Arranging the three permutations so the integer labels in each column sum to the constant 2m+1 then forces |sqrt(a)+sqrt(b)+sqrt(c)-(2m+1)|<1.5, and since 2*sqrt(N)=sqrt((2m+1)^2-1) is within 1 of 2m+1, the original inequality follows with bound <2.5.
-
-## a symmetric construction risks collapsing a tallied quantity to a single value; nudge the defining bound by one to split off one contributor
+## an integer's representability by a quadratic form
 _1 problem(s) · number_theory_
 
-- `aimo-0579` — **When a symmetric construction risks collapsing the count to a single value, decrement the threshold by one to delete exactly one extremal contributor and split off one digit's tally, converting a one-value case into a two-value case.** :: If #{d_i(10^k-1)} = 1, use T = 10^k-2 instead: since 10^k-1 (all nines) is itself a multiple of n, removing it leaves d_i(10^k-2)=d_i(10^k-1) for i in 1..8 but d_9(10^k-2) < d_9(10^k-1), so exactly two distinct values occur; thus T=10^k-1 or T=10^k-2 always works, and k arbitrarily large gives infinitely many T.
+- `aimo-0582` — Fermat descent across the genus of equivalent forms to force minimal value coprime to small primes
+- `aimo-0582` — rule out form-representability by checking residues mod small moduli (Jacobi-symbol reciprocity)
 
-## a target value must be represented using a fixed prescribed number of distinct summands
+## an intersection point that must also satisfy a separate positional property
+_1 problem(s) · geometry_  ⚠️ REVIEW (topical): 'an intersection point that must also satisfy a separate positional property' is a question-type, fires on dozens of configs.
+
+- `aimo-0570` — define a phantom point with the property and prove it satisfies the condition
+
+## an optimizer of a weighted quantity admitting a one-step-perturbed admissible candidate
 _1 problem(s) · algebra_
 
-- `aimo-0551` — **Realize a prescribed sum with a fixed count of distinct summands by padding it with value-canceling pairs that contribute zero to the total.** :: Build the k+4 set from sign-symmetric pairs A_i={-i,i} (each summing to 0): to express any target i you include whole pairs as free padding to reach exactly k summands, then add two leftover singletons (e.g. i+1 and -1, or for the top element l+2 use l+1 and 1) to fix the value; negation symmetry handles negative targets, and for odd k=2l+1 one adjoins 0 (with 0 itself written as 1+2-3 plus full pairs) to bump the summand count.
+- `aimo-0553` — compare an extremal weighted-product maximizer against a one-step index shift
 
-## a two-player process where one side greedily fills the current minimum while an adversary locks positions; derive an ordering inequality on the sorted state
+## an unbounded integer sequence with consecutive increments at most 1
+_1 problem(s) · number_theory_
+
+- `aimo-0727` — at the first index hitting a target, force the prior term to target-minus-one for an exact ratio
+
+## bound a factorial's size above to beat a perfect power
+_1 problem(s) · number_theory_
+
+- `aimo-0578` — upper-bound a factorial by AM-GM on symmetric factor pairs k and n−k
+
+## bounding an antichain in a triangular grid region
 _1 problem(s) · combinatorics_
 
-- `aimo-0718` — **Convert the adversary/agent dynamics into a rank inequality on the state: from the fill-the-fewest strategy plus the fairy's locking, deduce that any chest ranked above the current number of locked chests holds at least as many gems as the chest just filled.** :: The number of locked chests at end of day t equals t mod n; the just-filled chest has rank m(t). Elisa filling an unlocked minimum forces a_j^t >= a_{m(t)}^t for every j > (t mod n). In the induction step, at the minimal prefix k where majorisation would break, the failure conditions force t mod n <= k-1 and m(t) > k, so this inequality yields a_k^t = a_{k+1}^t = a_{m(t)}^t, which contradicts the strict reference gap a_k^t <= b_k^t < b_{k+1}^t, closing the invariant.
+- `aimo-0716` — cover the triangular region below a node by an apex subtriangle plus monotone chains
 
-## adjacency between elements is defined by a quadratic congruence (a product equals x^2+x+k); bound the number of neighbors of a fixed element
-_1 problem(s) · number_theory_
-
-- `aimo-0581` — **Cap the number of admissible neighbors of an element by counting the roots of its defining quadratic congruence modulo that element.** :: A prime p neighboring r satisfies pr = x^2+x+k, i.e. x^2+x+k ≡ 0 (mod r); a quadratic congruence has at most two roots mod the prime r, so r has at most two possible special partners x, hence at most two primes < r pairing specially with r. The size bound p<r forces x in [0,r-1], so each admissible root yields a unique smaller partner. Applied to the largest prime in a cycle (both neighbors smaller), this forces its two neighbors to be exactly determined by k and S alone.
-- `aimo-0581` — **Bound the number of elements adjacent to a fixed element by counting the roots of the congruence that defines adjacency.** :: Adjacency p ~ r means pr = x^2 + x + k for some integer x, i.e. x^2 + x + k ≡ 0 (mod r). A quadratic congruence has at most two roots mod r, and distinct smaller-prime partners of r correspond to distinct roots (since p = (x^2+x+k)/r is recovered from x), so r forms a special pair with at most two primes below it. Since r is the largest prime in S, all of its potential neighbors lie below it; as r has exactly two neighbors in the cycle, those two neighbors are uniquely determined, independent of the arrangement.
-
-## an additive-type functional equation f(x+f(y))=f(x)+f(y) where substituting a distinguished value and iterating builds an arithmetic orbit of forced values
-_1 problem(s) · algebra_
-
-- `aimo-0555` — **Iterate the functional equation along the additive orbit of a distinguished value to force f(k·c)=(k+1)·c.** :: With c=f(0): P(0,0) gives f(f(0))=2f(0), and induction via P(0,kf(0)) gives f(kf(0))=(k+1)f(0) for k>=1, while P(-f(0),0) gives f(-f(0))=0 and the same induction downward gives f(-kf(0))=(1-k)f(0). Thus z=kf(0) realizes ratio f(z)/z=(k+1)/k for every nonzero integer k, proving every (n+1)/n lies in Z (the degenerate c=0 case is patched by z=0, where f(0)=0=q*0 for every q).
-
-## an edge-charging bound on a labeled grid is tight exactly when the minimum-value cells induce a connected spanning tree and the rest form a pairwise-non-adjacent set, to be realized for every board size
+## bounding the spread of an evolving sorted multiset
 _1 problem(s) · combinatorics_
 
-- `aimo-0565` — **Translate the equality case of an edge-charging bound into a marking condition on the grid: the cells attaining the per-edge minimum must form a connected spanning tree, and the cells exceeding it must form an independent set.** :: Tightness of 2n(n-1)+1 requires exactly one well and no two B-entries greater than 1 adjacent. A B-entry >1 cannot be the smaller endpoint of any edge, so all its neighbors are smaller — it is a local maximum, hence the >1 cells form an independent set. Together with 'exactly one well' and every edge's lower endpoint equal to 1, the value-1 cells must form a single connected acyclic set (a spanning tree). Achieving equality thus reduces to marking the value-1 squares so unmarked squares are pairwise non-adjacent and the marked squares form a connected tree.
-- `aimo-0565` — **Verify that a counting lower bound's equality conditions are sufficient (not just necessary) by exhibiting, for ANY configuration meeting them, an explicit labeling that realizes equality — here a search-order numbering of the forced-minimal cells rooted at the unique global minimum, with the remaining independent cells numbered last as local maxima.** :: The equality conditions from the lower bound (one well, B>1 cells pairwise non-adjacent) translate to: the B=1 cells form a set T whose induced subgraph is a connected spanning tree, and the complement U is an independent set. Any such T/U attains the bound: root T at the single well and number its cells 1..|T| by a tree-search order, so each non-root tree cell has exactly one already-numbered neighbor (its parent), giving B=1 throughout T; then number U-cells last, so each (all of whose neighbors lie in T, since U is independent) is a local maximum with B = deg(c). Then sum B = |T| + sum over U of deg(c) = |T| + (E - (|T|-1)) = E+1 = 2n^2-2n+1, INDEPENDENTLY of the particular tree. So tightness reduces exactly to: does there exist an induced spanning tree of the n x n grid with independent complement?
-- `aimo-0565` — **Construct an induced spanning tree of a grid graph whose complement is an independent set by a periodic comb: a connected backbone along the border columns with teeth reaching into alternating-parity columns, the period chosen by the side-length residue so the pattern closes at every size.** :: Need an induced spanning tree T of the n x n grid (T connected and acyclic as an induced subgraph) with complement U independent. Counting forces |U| ~ (n-1)^2/3: each hole must be an interior degree-4 cell killing 3 independent cycles, so the holes sit on a period-3 sublattice in one direction and the comb is staggered with period 6. Defining properties to engineer (rather than copy the solution's garbled coordinates (i+2k, j±1)): (a) a connected marked backbone in the first one or two columns; (b) teeth growing out of the backbone at spacing 6, each tooth occupying a full column-segment plus a single step into a neighboring column; (c) consecutive teeth reach into columns of OPPOSITE parity, which is exactly what keeps the unmarked holes pairwise non-adjacent and prevents any marked cycle. Tune the phase by residue: s=2 for n ≡ 0,2 (mod 3), s=1 for n ≡ 1 (mod 3); base cases n=1 (single cell) and n=2 (L-tromino). The remaining work the crux deliberately leaves to the solver is verifying the boundary closure for each residue class so the last 1-2 rows/columns leave no adjacent holes and no cycle.
-- `aimo-0565` — **To show an extremal lower bound is attained, translate the equality conditions into a single combinatorial target — a vertex subset inducing a spanning tree whose complement is an independent set — and build it explicitly for every board size by a periodic pattern.** :: The equality analysis of the lower-bound crux says the bound 2n^2-2n+1 is met exactly when the f=1 cells induce a connected acyclic subgraph (a spanning tree under grid adjacency) and the f>1 cells form an independent set (no two adjacent). So attaining the minimum reduces to choosing a set S of 'marked' cells (the f=1 cells) such that the induced subgraph on S is a tree spanning enough of the board that its complement is an independent set. Construct such an S for all n: small cases by hand (n=1 the single cell, n=2 an L-tromino of three marked cells), and for n≥3 a periodic 'comb' — a connected spine of marked cells in the first one or two columns plus marked teeth/rows pushed out on a period-6 schedule (offset s=2 for n≡0,2 mod 3, s=1 for n≡1 mod 3), arranged so the only unmarked cells are isolated and the marked cells never close a cycle. Once S is built, realize it as an actual labeling (routine finish): root the tree at the single well, label S in BFS/DFS order from the root so each marked cell's parent is its unique smaller marked neighbor (giving f=1 throughout S), and give the independent unmarked cells the largest labels so each has f = sum of its marked neighbors > 1 with no two feeding each other. This certifies the bound is achievable, upgrading the lower bound to the exact answer.
+- `aimo-0718` — dominate the evolving multiset by a majorising auxiliary sequence to cap its range
+- `aimo-0718` — use a round-robin staircase reference: arithmetic progression incremented one term per step
 
-## an edge-coloring where each edge takes the color of its lower-indexed endpoint, required to use every color on every Hamiltonian path; bound the number of colors
-_1 problem(s) · combinatorics_
-
-- `aimo-0720` — **Force a counting lower bound on a threshold coloring by showing each color must be a strict majority within some prefix, constructed via interleaving each color-i vertex with an earlier differently-colored vertex.** :: On the canonical coloring, Claim 2: if color i is never a strict prefix-majority, then ordering its nodes x_1<...<x_t and the rest y_1<...<y_s gives y_j<x_j, so the path x_1-y_1-x_2-y_2-...-x_t-y_t-y_{t+1}-...-y_s avoids color i. Hence each color i has a least prefix length p_i with >p_i/2 nodes of color i; sorting p_1<...<p_k and summing the ceil((p_j+1)/2) majority counts forces p_i >= 2^i-1, and ruling out n=2^k-1 by another explicit avoiding path yields n >= 2^k, i.e. k <= floor(log2 n).
-- `aimo-0720` — **To show a color is forced on every Hamiltonian path of a vertex-ordered coloring (each edge taking the color of its lower-indexed endpoint), argue contrapositively by greedily interleaving each vertex of that color with a distinct lower-indexed vertex of another color into an avoiding path, which succeeds exactly when the color never holds a strict majority on any prefix.** :: Upper-bound counting (Claim 2 + induction) on the canonical coloring from the normalization step: nodes A_1..A_n, edge {A_u,A_v} (u<v) colored c_u. Claim 2: if a color i is at most floor(p/2) of the first p nodes for every p (never a strict prefix-majority), a Hamiltonian path avoiding color i exists, breaking goodness. Construction: let x_1<...<x_t index color-i nodes and y_1<...<y_s the rest (s+t=n, t<=floor(n/2)<=s); the prefix condition forces y_j<x_j for every j<=t, so the path A_{x_1}-A_{y_1}-A_{x_2}-A_{y_2}-...-A_{x_t}-A_{y_t}-A_{y_{t+1}}-...-A_{y_s} keeps each color-i node A_{x_j} adjacent only to a lower-indexed A_{y_j}, using no color-i edge. So each color i has a least prefix length p_i with strict majority; order p_1<...<p_k (strict by minimality). Within A_1..A_{p_i} each color j<=i gives >= ceil((p_j+1)/2) distinct nodes, so p_i >= sum_{j<=i} ceil((p_j+1)/2), telescoping to p_i >= 2^i-1, hence n >= 2^k-1. Exclude equality n=2^k-1 (then color-i nodes are exactly A_{2^{i-1}}..A_{2^i-1}, and the interleave A_{2^{k-1}}-A_1-A_{2^{k-1}+1}-A_2-... dodges color k), giving n>=2^k, i.e. k<=floor(log2 n).
-- `aimo-0720` — **To prove an index-ordered configuration must satisfy a prefix-majority condition, argue the contrapositive constructively: when no prefix attains the threshold, interleave the two ordered vertex classes in index order using a term-wise domination of one class by the other to realize the structure the extremal hypothesis forbids.** :: The upper-bound finish (Claim 2) on the canonical lower-endpoint good coloring, where edge A_uA_v (u<v) has the color of A_u. Fix a color i. Suppose for contradiction that in every prefix A_1..A_p at most floor(p/2) nodes have color i. Let x_1<...<x_t index the color-i nodes and y_1<...<y_s the others; t<=floor(n/2)<=s. The prefix bound forces term-wise domination y_j<x_j for all j (else A_1..A_{x_j} would hold j color-i nodes and fewer than j others). This lets you splice the Hamiltonian path A_{x_1}-A_{y_1}-A_{x_2}-A_{y_2}-...-A_{x_t}-A_{y_t}-A_{y_{t+1}}-...-A_{y_s}, in which every edge's lower-index endpoint is non-color-i (guaranteed by y_j<x_j), so the path avoids color i, contradicting goodness. Hence each color i has a least prefix length p_i where it is a strict majority; the p_i are distinct (at most one color is a majority of a given prefix), order p_1<...<p_k with p_1=1. A nested greedy count gives p_i >= sum_{j<=i} ceil((p_j+1)/2), inductively yielding p_i >= 2^i - 1, so n >= 2^k - 1; ruling out n=2^k-1 (equality pins color-i nodes to A_{2^{i-1}}..A_{2^i-1}, then the interleave A_{2^{k-1}}-A_1-A_{2^{k-1}+1}-A_2-... avoids color k) gives n >= 2^k, i.e. k <= floor(log2 n).
-
-## an equation equates two expressions that differ by a small fixed constant, so a divisor common to both sides must divide that constant
-_1 problem(s) · number_theory_
-
-- `aimo-0578` — **Divide out the known prime factor of one side; the leftover cofactor divides both sides, hence divides their small constant difference, which boxes its size.** :: In case a>p we have p | a (from b > p ⇒ p | b! and p | a^p). Write a = pk. In the sub-case a < p^2 the cofactor k = a/p satisfies 1 ≤ k < p, so k ≤ b giving k | b!, while clearly k | a^p; hence k | a^p − b! = p. Since 1 ≤ k < p and k | p, this forces k = 1, i.e. a = p — contradicting a > p. This eliminates exactly the range p < a < p^2 that the AM-GM size bound (crux 1) cannot reach, completing the a>p case.
-
-## an evolving sorted multiset (one unit added somewhere each step) whose spread (max minus min) must be bounded uniformly over time
-_1 problem(s) · combinatorics_
-
-- `aimo-0718` — **To bound the range (max minus min) of an evolving sorted multiset, dominate it by an auxiliary sorted sequence in the majorisation order, whose fixed spread then caps the range since majorisation forces the minimum entry up and the maximum entry down.** :: The state is the sorted gem counts a_1^t <= ... <= a_n^t (sum t). They produce a reference sequence b_i^t with b majorising a (equal totals, all prefix sums of b <= those of a). Then b_1 <= a_1 (from k=1) and, via equal totals, a_n <= b_n (from k=n-1), giving a_n^t - a_1^t <= b_n^t - b_1^t = n-1, a constant independent of t.
-- `aimo-0718` — **Design the dominating reference sequence as a round-robin staircase: start from an arithmetic progression with exactly the target spread, then on each time step increment only the single term whose index equals the step count mod n, so the spread stays constant while the running total tracks the real process.** :: b_k^0 = k - (n+1)/2 (spread n-1, sum 0); b advances by incrementing index i exactly when t+1 ≡ i (mod n), so b_1^t+...+b_n^t = t always, b stays nondecreasing with strict gaps b_i^t < b_{i+1}^t whenever t is not ≡ i (mod n). This fixed-spread, cyclically-incremented b is what makes the spread bound n-1 possible. (Solution 2 uses the variant d_i^0 = 3n(i-(n+1)/2), d_i^t = d_i^0 + t with all terms advancing equally.)
-
-## an exactly-computed valuation of a factorial is contradicted by the monotone lower bound coming from a forced larger factorial
-_1 problem(s) · number_theory_
-
-- `aimo-0578` — **Refute an exactly-known v_ℓ(N!) by lower-bounding it with v_ℓ(m!) for a forced m ≤ N: the smaller factorial already sweeps an interval of integers whose ℓ-divisible members contribute strictly more than the closed form allows (Legendre/factor-counting).** :: Once a=p forces b! = p^p − p > p!, hence b ≥ p+1, monotonicity gives v_2(b!) ≥ v_2((p+1)!). But (p+1)! is the product of all of 1,…,p+1, and since p+1 ≥ 8 there are at least 4 even numbers in this range, whereas the exact value from LTE, v_2(b!) = v_2(p^{p-1}−1) = v_2((p−1)/2 · (p−1) · (p+1)), is the valuation of only three of those integers. At least one additional even number contributes ≥1, so v_2((p+1)!) > v_2(b!), contradicting v_2(b!) ≥ v_2((p+1)!). This kills a=p for p ≥ 7; p = 2,3,5 are checked by hand, giving (2,2,2) and (3,4,3).
-
-## an extremal sequence construction for n a power of two, with each index assigned a value from its 2-adic valuation (a ruler sequence)
-_1 problem(s) · combinatorics_
-
-- `aimo-0715` — **Build the extremal example as a ruler sequence, assigning each position a value determined by the 2-adic valuation of its index.** :: Set a_i = 2^{k - v_2(i)} for n = 2^k, giving e.g. 4,2,4,1,4,2,4 for k=2; this has length 2n-1 = 2^{k+1}-1 (the claimed maximum), and since 0 <= v_2(i) <= k for i <= 2^{k+1}-1 every term is a positive integer <= 2^k = 2^{2023}.
-
-## an extreme term lies in a known dyadic scale while the other terms obey geometric-decay bounds away from it, so its one-sided tails form geometric series to be summed
-_1 problem(s) · algebra_
-
-- `aimo-0553` — **Bucket an anchoring extreme value into a dyadic scale, then sum the geometric-growth-bounded one-sided tails as a geometric series capped strictly below the bucket's reciprocal scale.** :: Put x_a in (2^{-u-1},2^{-u}], x_a=2^{-alpha}. The ceilings give x_i <= 2^{i-a}x_a for i<a, so sum_{i<=a+u-1} x_i < 2^u x_a <= 1; symmetrically the right tail past b-v sums to <1. Mass outside [a+u,b-v] is <2; since total >=3 with each term <=1, the interval holds >=2 integers (a+u<b-v), and bounding inside trivially gives s < b-a + (2^{u+1-alpha}+2^{v+1-beta}-(u+v+1)).
-
-## an inequality carries a convex or exponential term r^t to be compared against a linear quantity
-_1 problem(s) · algebra_
-
-- `aimo-0553` — **Replace a convex exponential term by its tangent-line (Bernoulli) upper bound 2^t <= 1+t on the unit interval to convert exponential contributions into linear ones.** :: With alpha in (u,u+1], beta in (v,v+1], apply 2^{u+1-alpha} <= 1+(u+1-alpha) (and same for v) to the s-bound, giving 2^{u+1-alpha}+2^{v+1-beta}-(u+v+1) <= 3-alpha-beta, so s-3 < b-a-alpha-beta and hence 2^{s-3} < 2^{b-a-alpha-beta} = 2^{b-a}x_a x_b, the desired contradiction.
-
-## an integer allocation of a fixed real total reduces to choosing which items to round up from their floors, the leftover budget equaling the sum of fractional parts
-_1 problem(s) · algebra_
-
-- `aimo-0707` — **Pre-assign each real its floor and observe the leftover integer budget equals the sum of the fractional parts, turning the task into choosing which items to round up (each paying F_i if kept down, 1-F_i if rounded up).** :: Give floor(C_i) to each Pokemon; the remaining food R = 100 - sum floor(C_i) = sum F_i is a non-negative integer (F_i the fractional parts). Only assignments floor(C_i) or floor(C_i)+1 are sensible, costing F_i or 1-F_i, so the problem reduces to selecting R Pokemon to receive the extra kilogram.
-
-## an integer equation with one side a prime power times a factor coprime to that prime (such as p^k - 1); pin the unknown exponent
-_1 problem(s) · number_theory_
-
-- `aimo-0725` — **Pin the unknown prime-power exponent by taking the p-adic valuation of both sides, exploiting that the cofactor p^k - 1 is coprime to p.** :: In 2a^2 = p^x(p^{a-2x}-1), since gcd(p, p^{a-2x}-1)=1 the valuation forces x = v_p(2a^2); for odd p that means x = 2v_p(a), so writing a = p^m n (gcd(n,p)=1) and cancelling p^{2m} yields the clean equation 2n^2 + 1 = p^{p^m n - 4m}.
-
-## an integer process that adds a fixed step each turn but divides by a fixed coprime number whenever the value is divisible by it, asked to bound the largest power of the divisor that appears
-_1 problem(s) · number_theory_
-
-- `aimo-0577` — **Bound an orbit of an add-step-or-divide map by capping the run length of consecutive additions: since the additive step is coprime to the divisor, one of every (divisor)-many consecutive iterates is divisible, forcing a division before the values can climb past one increment-block.** :: f(x)=x+d unless a|x (then x/a). Because gcd(a,d)=1, among any a consecutive terms of a +d arithmetic progression one is divisible by a, so at most a-1 additions occur before a division. A post-division term is < d, so adding d at most a-1 times keeps every x_k < d+(a-1)d = ad. Then a^n | x_k forces a^n <= x_k < ad, i.e. a^{n-1} < d; the largest exponent n=N with a^N < ad satisfies d < a^N < ad (d is not a power of a since gcd(a,d)=1, d>1), and a^{N+1} > ad rules out larger n. Upper bound n <= N.
-- `aimo-0577` — **Recognize the update rule as a bijection on a finite invariant state set and trace its inverse backward from the seed to read off the desired pre-images.** :: On S={0<x<ad, gcd(x,d)=1}, f(x)=x+d (if a∤x) or x/a (if a|x) maps S to S, and is invertible: f^{-1}(y)=y-d if y>d else a*y (each gives the unique S-preimage). So f permutes finite S, the orbit of x_1=1 is a single cycle returning to 1, and walking f^{-1} from 1 yields predecessors a, a^2, ..., a^n, all in S exactly while a^j < ad (j <= N). Hence some x_k = a^N is divisible by a^N (lower bound), and S-invariance also forbids a^{N+1}|x_k (upper bound).
-- `aimo-0577` — **Track the orbit's residues under a fixed modulus to locate its small (sub-modulus) representative of a chosen residue class, then use the gap to that class's target value to force the additive phase to climb straight onto the target.** :: Mod d, additions fix the residue and a division multiplies it by a^{-1}; from residue 1 the post-division terms run through a^{-1}, a^{-2}, ... (divisions recur since values stay < ad). The first term ≡ a^{-n} (mod d) is either x_1 or follows a division, so is < d < a^n; thus it lies in {a^n-d, a^n-2d, ..., a^n-(a-1)d}. None of these is divisible by a (gcd(a,d)=1, j<a), so the next +d steps climb uninterrupted to exactly a^n, divisible by a^n. Lower bound n >= N.
-
-## an iterated self-map on the positive integers where a substitution makes some orbit take infinitely many values (forcing aperiodicity / injectivity)
-_1 problem(s) · number_theory_
-
-- `aimo-0730` — **Forbid periodic points of an iterated self-map by exhibiting a single orbit that attains infinitely many values.** :: Substituting P(a-1,b) gives f^{b f(a-1)}(a) = a f(b); letting b vary, the right side a f(b) takes infinitely many values, so the orbit {f^n(a)} of any a>=2 is infinite, which forces f^n(a) != a for all n (and 1 is excluded separately since, if f(b)=1, P(a,1) gives f^{f(a)}(a+1)=a+1, a periodic point). This aperiodicity, plus the injectivity it yields (f(b1)=f(b2) forces f^{b1 f(a)}(a+1)=f^{b2 f(a)}(a+1), and an aperiodic orbit forbids the index gap), is the foundation used by every later step.
-
-## an optimizer of a weighted quantity exists and a one-step-perturbed candidate is still admissible
-_1 problem(s) · algebra_
-
-- `aimo-0553` — **Exploit the optimality of an extremal maximizer of a position-weighted pairwise product by comparing it against the same product with one index shifted by a step, reading off local growth ceilings on neighboring terms.** :: Choose a<b maximizing 2^{b-a}x_a x_b. Comparing against the pair (a+t,b) gives 2^{b-a-t}x_{a+t}x_b <= 2^{b-a}x_a x_b, i.e. x_{a+t} <= 2^t x_a for indices left of b; symmetrically (a,b-t) gives x_{b-t} <= 2^t x_b for indices right of a. These geometric ceilings anchored at the two extreme terms feed the later summation.
-
-## an unbounded integer sequence whose consecutive steps increase by at most 1; force it to attain a prescribed value exactly and read off the predecessor
-_1 problem(s) · number_theory_
-
-- `aimo-0727` — **For an integer sequence whose consecutive increments are at most 1, take the first index where it reaches a target value to force the immediately preceding term to equal the target minus one, then read off the resulting exact ratio.** :: The recurrence with a_k < a_{k+1} gives b_{k+1} < b_k+2, so b_{k+1} <= b_k+1; being unbounded it reaches any n, and at the first k with b_{k+1} >= n one must have b_k = n-1, b_{k+1} = n. Then a_{k+1} = a_k·(n+1)/n, and since gcd(n,n+1)=1, n divides a_k.
-
-## an upper bound on a factorial or product of consecutive integers, compared against a perfect power, with terms pairable symmetrically about the midpoint
-_1 problem(s) · number_theory_
-
-- `aimo-0578` — **Upper-bound a factorial by pairing symmetric factors k and (n−k) and applying AM-GM to each pair to a common square.** :: In case a>p one first establishes p | a and b < 2p (so b ≤ 2p−1) via a v_p argument. For the sub-case a ≥ p^2 ONLY: write (2p−1)! = p · ∏_{k=1}^{p-1} k(2p−k); AM-GM gives each bracket k(2p−k) ≤ ((2p)/2)^2 = p^2 (strict since k ≤ p−1), so (2p−1)! < p^{2p−1} and b! + p ≤ (2p−1)! + p < p^{2p} ≤ (p^2)^p ≤ a^p, contradicting a^p = b! + p. This size bound disposes only of a ≥ p^2; the range p < a < p^2 needs the separate cofactor move (crux 2).
-
-## both endpoints of a counting/parity bound must each be attained by a single construction carrying one free continuous parameter, set just to either side of a critical value
-_1 problem(s) · combinatorics_
-
-- `aimo-0566` — **Realize the two extremes of a parity bound by tuning the continuous construction parameter to either side of a critical integer value, flipping whole residue classes of rows.** :: Hit both endpoints by choosing the slope α just to one side of the critical integer 200 (= twice the grid side 100; for α>100 already f(n,0)=n on the grid). For α just ABOVE 200 (irrational, e.g. 200.0014) every odd-indexed row is entirely odd while even-indexed rows alternate, giving 3 odd cells per 2×2 block and N=7500 (the MAXIMUM); for α just BELOW 200 (e.g. 199.9986) the odd-indexed rows become entirely even, leaving only the alternating even rows, giving 1 odd cell per block and N=2500 (the MINIMUM). Which side gives which extreme is pinned by f(0,1)=#{x≥0:x<α}=⌊α⌋+1, which is odd exactly when α∈(200,201) — matching the 7500 (all-odd-rows) construction. (Direct computation confirms this orientation; the official writeup's α≈199.999/200.001 labels are swapped because those rational values are degenerate.)
-- `aimo-0566` — **To attain an extremal parity-distribution for a rank-by-linear-form construction, set the free slope just to one side of an even integer larger than the window, forcing the rank's parity along a coordinate axis into an explicit periodic pattern.** :: Take α irrational just to one side of 200 (=2·100, an even integer exceeding the window 100). The y=0 axis is the same on both sides: f(n,0)=#{(x,y)≥0 : x+yα<n}=n for 0≤n≤100 (only y=0 contributes, since yα>100≥n for y≥1), so its parity alternates in n. The x=0 axis is what the side of 200 selects, via f(0,k)=Σ_{l=0}^{k-1} #{x≥0 : x<(k-l)α}, where #{x≥0 : x<(k-l)α}=⌊(k-l)α⌋+1. For α just ABOVE 200 (α=200+ε, (k-l)ε<1) each row is 200(k-l)+1, so f(0,k)=100k(k+1)+k ≡ k (mod 2) — the +1 per row is the off-by-one that makes the axis alternate. For α just BELOW 200 (α=200−ε) each row is 200(k-l) (no offset), so f(0,k)=100k(k+1) is even for every k and the x=0 axis is all-even. Feeding these forced boundary parities into the unit-square identity f(x,y)+f(x+1,y+1)=f(x+1,y)+f(x,y+1)+1: α just above 200 (≈200.001) makes both axes alternate, so even rows alternate while odd rows are all-odd — 3 odd cells per 2×2 block, N=7500; α just below 200 (≈199.999) forces 1 odd cell per block, N=2500. (Check: f(0,1)=#{x≥0:x<α}=201 odd for α≈200.001, =200 even for α≈199.999.) Both endpoints attained, so 2500≤N≤7500 is sharp.
-
-## bound the size of an antichain confined to the downward (triangular) region below a fixed node of a grid poset
-_1 problem(s) · combinatorics_
-
-- `aimo-0716` — **Bound an antichain confined to the triangular region below a fixed node by covering that region with one apex subtriangle rooted at the node plus monotone (comparable) chains, so the antichain meets each covering piece at most once.** :: Claim 2: for a label-i red R on row l, the label-i reds form an antichain (two cannot lie on one ninja-path). Cover the rows >= l by R's descendant subtriangle (apex R, which can hold only R since anything strictly below R would have label >= i+1) plus l-1 ninja-chains: q-1 vertical down-left chains (col = 1..q-1) and l-q down-right diagonals (col-row constant), which together cover the l-1 cells of each row outside R's cone. Each chain is comparable so holds at most one label-i red, giving e_i <= 1 + (l-1) = l.
-
-## bound the sum of the k smallest of n sorted nonnegative values by k/n of their total
-_1 problem(s) · algebra_
-
-- `aimo-0707` — **Bound the sum of the k smallest of n sorted non-negative values by (k/n) times their total sum (smallest-k average <= overall average).** :: Round up the R Pokemon with the largest fractional parts; using sum F_i = R the total cost simplifies to d = 2(F_1+...+F_{100-R}), the sum of the 100-R smallest fractions. With F sorted ascending, this partial sum <= (100-R)/100 * R, so d <= 2R(100-R)/100; AM-GM gives R(100-R) <= 2500, hence d <= 50, proving D <= 50.
-
-## build or forbid a selection under a spacing/adjacency constraint, where each chosen element can be charged to a forced exclusion
-_1 problem(s) · combinatorics_
-
-- `aimo-0558` — **Build the extremal subsequence greedily under the gap constraint, taking every majority element and dropping a minority element only when the spacing rule permits, so each included minority element is charged to a forced skip** :: WLOG at least 1011 of the 2022 terms are +1; include every +1, and skip a -1 whenever the previous term was already included (else include it out of necessity). Each included -1 forces a -1 to have been skipped, so at most floor(1011/2)=505 of the -1s are included, giving sum >= 1011-505=506
-
-## certify a point as a triangle's incenter through the arc-midpoint condition that its distance to an arc-midpoint equals that midpoint's distance to the subtended chord's endpoints
+## certifying a point as a triangle's incenter from arc-midpoint distances
 _1 problem(s) · geometry_
 
-- `aimo-0574` — **Certify that a given point is the incenter of an inscribed Poncelet triangle by showing its distance to an arc-midpoint equals that midpoint's distance to the touched chord's endpoints (trillium converse), placing it on the radical axis of two arc-midpoint circles.** :: Let Γ₁ be centered at the arc-midpoint N of AC with radius NA=NC (so NI=NA by trillium, hence I∈Γ₁), and Γ₂ centered at M (antipode of N') with radius MA'=MC'. The radical axis of Γ₁,Γ₂ passes through P=AC∩A'C' (equal powers PA·PC=PA'·PC' since A,C,A',C'∈Ω) and is perpendicular to the center-line MN. Because A'C' is tangent to ω, I is equidistant from AC and A'C', so PI bisects ∠(AC,A'C') and therefore PI∥NN'; and MN⊥NN' (M antipode of N' gives ∠MNN'=90°), so PI⊥MN as well. Two lines through P both ⊥MN coincide, so PI IS the radical axis, putting I on it. Then I∈Γ₁ forces I∈Γ₂, i.e. MI=MA'=MC', so M is the far arc-midpoint of A'C' equidistant from A',C',I, making I the incenter of triangle ZA'C' (Z=second meeting of MI with Ω) — the encoding of A'C' tangent to ω.
+- `aimo-0574` — certify an incenter via the trillium converse, placing it on a radical axis of arc-midpoint circles
 
-## comparing the count of multiples of a fixed modulus across several intervals of equal length
-_1 problem(s) · number_theory_
-
-- `aimo-0579` — **Bound how many distinct values a per-class count can take by noting the number of multiples of n in any interval of fixed length L is floor(L/n) or floor(L/n)+1, so counts over equal-length intervals differ by at most 1.** :: The number of k-digit multiples of 1829 starting with a given digit i equals the count of multiples of n in [i*10^{k-1}, (i+1)*10^{k-1}), an interval of fixed length 10^{k-1}; this is floor(10^{k-1}/n) or 1+floor(10^{k-1}/n), so across i=1..9 these counts take at most 2 distinct values, forcing #{d_i(10^k-1)} <= 2.
-
-## counting how often each digit appears in a fixed position across all multiples of a 10-coprime modulus below a power of ten
-_1 problem(s) · number_theory_
-
-- `aimo-0579` — **Show divisibility by a 10-coprime modulus is preserved under a cyclic rotation of a fixed-width digit string by writing (10 times the number) minus its rotation as (10^k - 1) times the leading digit.** :: With n=1829 (coprime to 10), pick k a multiple of phi(n) so n | 10^k - 1, and write every value in [1,10^k-1] as a k-digit string with leading zeros. Then 10 * (a_{k-1}...a_0) - (a_{k-2}...a_0 a_{k-1}) = (10^k-1)*a_{k-1} is divisible by n, so the set of multiples of n below 10^k is invariant under simultaneous cyclic digit permutation. Hence each digit i appears equally often in every position, giving d_i(10^k-1) = k times the number of k-digit multiples of n starting with digit i.
-
-## decide whether a specific integer is representable by a given quadratic form by checking its residues modulo small moduli
-_1 problem(s) · number_theory_
-
-- `aimo-0582` — **Rule out that a specific integer is representable by a quadratic form by checking the form's attainable residues against the integer's residue modulo well-chosen small moduli (or, equivalently, run a Jacobi-symbol reciprocity chain to evaluate the relevant quadratic-residue symbol).** :: With m_1=m coprime to 2,3,5, m=2^n+65 must equal ±(5a^2-3b^2) or ±(a^2-15b^2); but 2^n+65 ≡ 1 (mod 3), ≡ 1 (mod 4), ≡ ±2 (mod 5) excludes every case. The short route: from 5^n ≡ 3^n (mod m) a Jacobi-symbol chain gives -1=(5/(2^n+65))=...=(3/(2^n+65))=1, a contradiction.
-
-## disjoint classes in a layered poset where each class's topmost member lies at depth at most one more than the total size of all earlier classes; bound the class count
+## choose signs to keep a running total within a bounded window
 _1 problem(s) · combinatorics_
 
-- `aimo-0716` — **Turn a bound of the form 'a class's size is at most the row index of its topmost member' into geometric growth by noting that index is at most one plus the total of all earlier classes, since everything strictly above the topmost member belongs to an earlier class.** :: Let l be minimal with a label-j red on row l; rows 1..l-1 then each carry a red of label < j, so l-1 <= e_1+...+e_{j-1}. Combined with e_j <= l (Claim 2) this gives e_j <= 1 + (e_1+...+e_{j-1}); induction with e_1 = 1 yields e_j <= 2^{j-1}. Hence e_1+...+e_N <= 2^N - 1 < n, so the n reds cannot all have label <= N: some red has label >= N+1, i.e. a ninja-path with N+1 reds, matching the construction and pinning k = 1+floor(log2 n).
+- `aimo-0715` — choose signs online by a balancing rule to keep every prefix sum bounded
 
-## empty cells remain in a grid packing; trace beams reflecting off in-cell diagonals, using that a full tile-crossing restores the beam's direction
-_1 problem(s) · combinatorics_
-
-- `aimo-0719` — **Insert obstacle-avoiding cell diagonals as mirrors and shoot boundary-entering lasers, exploiting that a full tile-crossing restores the beam direction so any net change of direction certifies a crossing of unpacked region** :: In each empty cell a diagonal is drawn not cutting any good parallelogram; lasers enter perpendicular to each of the 4N boundary edges and reflect off these diagonals. Crossing a good parallelogram bounces the beam twice and returns its original direction, so a beam whose exit direction is perpendicular to entry must pass through >=1 empty triangle, and one whose exit is opposite to entry must pass through >=2 empty triangles.
-
-## every term of a constructed integer sequence is divisible by d; divide out d and reindex to manufacture a smaller instance of the same structure
-_1 problem(s) · number_theory_
-
-- `aimo-0728` — **Divide the common prime factor out of every difference and shift the index by one to manufacture a smaller instance of the same recurrence.** :: Because a kawaii integer divisible by 3 must come from the b_2=2 branch (the b_2=3 branch forces all terms ≡1 mod 3), m ≡ 0 mod 3 forces m odd, so m+1 is even, forcing the sequence containing m+1 to have b_2=3, whence 3 | b_n for all n≥2. Setting b'_n = b_{n+1}/3 gives b'_1=1 with ratios b'_{n+1}/b'_n ∈ {2,3}, a valid kawaii difference sequence; its partial sums a'_n = sum b'_k satisfy a'_{t-1} = (a_t - 1)/3 = m/3, so m/3 is kawaii.
-
-## every three consecutive terms of a sequence obey the same quadratic inequality, and you need sign or ordering information among the terms
+## constructing floor-based additive-FE solutions that dodge a forbidden slope
 _1 problem(s) · algebra_
 
-- `aimo-0550` — **Subtract 1 from both sides of a quadratic constraint so the remainder factors as a product of shifted linear terms.** :: Rewrote (a_{n+1})^2 + a_n a_{n+2} <= a_n + a_{n+2} as (a_{n+1})^2 - 1 <= (1-a_n)(a_{n+2}-1), exposing the sign structure of the three consecutive terms.
+- `aimo-0555` — build solutions as floor(x) plus an arbitrary function of the fractional part
+- `aimo-0555` — pick per-class intercepts dodging an integer-shifted line via a 1/(p-1) gap
 
-## exhibit a worst-case +-1 sequence by alternating equal-size opposite-sign blocks whose spacing forces any selection touching one block to also pay for an adjacent opposing block
+## counting multiples of a modulus in fixed-length intervals
+_1 problem(s) · number_theory_
+
+- `aimo-0579` — multiples of n in a length-L interval number floor(L/n) or +1, so counts differ by at most 1
+
+## counting odd values of a lattice-point-rank function over a grid region
 _1 problem(s) · combinatorics_
 
-- `aimo-0558` — **Construct the worst-case input by alternating equal-size opposite blocks with the spacing tuned so a block of one sign cannot be reached without being forced to also pick from the opposing block separating it** :: Use the sequence ({-1},{+1,+1},{-1,-1},...,{-1,-1},{+1}): 1012 blocks, ends are singletons. A subsequence touching k of the +1-blocks must include >=1 element from each of the (k-1) intervening -1-pairs (the gap<=2 rule forbids jumping a full -1-pair), so sum <= 2k-(k-1)=k+1
-- `aimo-0558` — **Close the off-by-one in the construction bound by exploiting that the extreme value of the counting estimate forces use of a deficient boundary block** :: The bound sum <= k+1 only reaches 507 at k=506, but k=506 requires using a +1-block at an end, which is a singleton holding just one +1, dropping the max to k=506; hence every admissible subsequence has |sum| <= 506, giving C <= 506
+- `aimo-0566` — evaluate a mixed second difference by a translation bijection between strips
+- `aimo-0566` — reduce a parallelogram recurrence mod 2 to fix per-2x2-block parity, then tile
+- `aimo-0566` — bound a grid parity-count via a constant mixed second difference
+- `aimo-0566` — compute a mixed second difference by counting points in the swept strip
 
-## extend a tight construction defined only for special sizes to all N by padding extra elements, bounding the resulting perturbation
+## differences of equal-base powers whose ordering mirrors their exponent gaps
 _1 problem(s) · algebra_
 
-- `aimo-0713` — **Extend a construction from a convenient size to arbitrary N by inserting the extra elements above a threshold and bounding the perturbation with the difference-of-square-roots identity.** :: For m(m+1)<=N<(m+1)(m+2), write N=m(m+1)+t and pick L=floor(4N/9); push every label > L up by t and fill positions m(m+1)+r with L+r. The change sqrt(A_k)-sqrt(a_k)=(A_k-a_k)/(sqrt(A_k)+sqrt(a_k)) <= t/(2 sqrt(L+1)) <= (2m+1)/((4/3)m) <= 2 (small N where the bound is loose handled directly), so each root shifts by at most 2 and the total stays within 8.5 of 2*sqrt(N).
+- `aimo-0554` — use strict convexity of r^t to lift difference ordering to exponent-gap ordering
 
-## force a rounding or approximation-error lower bound by constructing an instance whose targets sit maximally far from the integer lattice
+## digit-position frequencies among fixed-width multiples of a 10-coprime modulus
+_1 problem(s) · number_theory_
+
+- `aimo-0579` — show cyclic-rotation divisibility via 10·N minus its rotation = (10^k − 1)·leading digit
+
+## disjoint regions where later work erodes earlier-secured gains
+_1 problem(s) · combinatorics_
+
+- `aimo-0560` — process disjoint regions with geometrically growing per-region effort
+- `aimo-0560` — process eroded regions in order with geometrically growing budgets
+
+## dividing a common factor from a recurrence to get a smaller instance
+_1 problem(s) · number_theory_
+
+- `aimo-0728` — divide the common prime factor out of every difference and shift the index for a smaller instance
+
+## each element has exactly one partner satisfying a relation
 _1 problem(s) · algebra_
 
-- `aimo-0707` — **To prove a rounding-error lower bound, force every entry to sit at a half-integer so that any integer assignment is at least 1/2 away from it.** :: Take 99 capacities equal to 0.5 and one equal to 50.5 (still summing to 100). Since each Pokemon receives an integer N, |N-C| >= 1/2 for every bowl, so the total dissatisfaction is >= 100*(1/2) = 50, forcing D >= 50.
+- `aimo-0552` — feed the diagonal candidate into a uniqueness hypothesis to force a strict inequality
 
-## four lines form a complete quadrilateral and you use that the midpoints of its three diagonals are collinear
+## equal-power points to three circles forced onto a common line
 _1 problem(s) · geometry_
 
-- `aimo-0573` — **Force the midpoints of the three diagonals of a complete quadrilateral to be collinear via the Newton-Gauss line.** :: The four lines BB', CC', BC', B'C form a complete quadrilateral whose three diagonals have midpoints N (=mid SD), M (=mid BC), M' (=mid B'C'); Newton-Gauss makes N, M, M' collinear. Re-using the directed-angle tangency move gives circle DMM' tangent to SD at D (from Var(SD,DM')=Var(DM,MM')). Now N lies on the tangent line SD AND on the secant line MM' of circle DMM', so power-of-a-point yields ND^2 = NM·NM'; since M, M' lie on rho (the common nine-point circle identified by the centroid-homothety crux) this is power(N,rho)=ND^2. Hence N has equal power ND^2 wrt omega, Omega, rho — a common radical point; a second such point from quad CC'AA' (distinct by the non-concurrent-tangents argument) gives two distinct common points and thus coaxiality of omega, Omega, rho.
-- `aimo-0573` — **Use the Newton–Gauss line: the midpoints of the three diagonals of a complete quadrilateral are collinear, turning a tangent-length equality at a midpoint into a power-of-a-point product.** :: Form the complete quadrilateral from the four lines BB', CC', BC', B'C; its three diagonals are SD, BC, B'C' with midpoints N=mid SD, M=mid BC, M'=mid B'C', which are therefore collinear on the Newton–Gauss line. Independently, the cyclicity of BB'CC' makes triangles DBC and DC'B' inversely similar (∠(BB',DM')=∠(DM,CC')); a directed-angle chase then shows circle DMM' is tangent to SD at D, so the tangent from N gives ND²=NM·NM'. Because M,M' lie on ρ and N,M,M' are collinear, NM·NM' is exactly the power of N w.r.t. ρ. Combined with the Brocard crux (ND² = power of N w.r.t. ω and Ω), N has equal power w.r.t. all three circles ω,Ω,ρ; doing the same at E,F yields at least two such points (the three tangents to Ω at D,E,F are not concurrent), so ω,Ω,ρ are coaxial and their centres O,N9,O_Ω collinear on OH — the goal.
+- `aimo-0723` — find an equal-power point via a concyclic auxiliary quadrilateral and the radical-axis theorem
+- `aimo-0723` — upgrade equal-power points to common points by exhibiting a point strictly inside the circles
+- `aimo-0723` — reflect each apex across its circumcircle center to spawn a second radical-center construction
 
-## iterate-equality identities give pairwise additive displacements between orbits; impose their consistency around a closed 3-cycle of arguments
+## evaluating v_p(n!) exactly by taking n a power of p
 _1 problem(s) · number_theory_
 
-- `aimo-0730` — **Require the additive shift-displacements between orbits to cancel around a closed 3-cycle of arguments, forcing a three-term linear relation on the auxiliary function.** :: From f^{b g(a)}(a)=f^{a g(b)}(b) the displacement n_{a,b}=b g(a)-a g(b) satisfies f^{n+n_{a,b}}(a)=f^n(b) for large n; composing around a,b,c and invoking aperiodicity forces n_{a,b}+n_{b,c}+n_{c,a}=0, i.e. (a-b)g(c)+(b-c)g(a)+(c-a)g(b)=0, so g is arithmetic g(n)=Cn+D. Pinning constants by g surjecting onto Z_{>=2} (C=1) and min g = 2 (D=1) gives g(n)=n+1, whence f^{b(a+1)}(a)=f^{a(b+1)}(b); cancelling f^{ab} by injectivity gives f^b(a)=f^a(b), and a=1 yields f(n)=n+1.
+- `aimo-0726` — take n a power of p so Legendre's sum telescopes to (n-1)/(p-1) with no floor loss
 
-## lower-bound the number of objects with a property by bumping each element of a known-size base set into a distinct object with the property, an invertible injection
-_1 problem(s) · combinatorics_
-
-- `aimo-0562` — **Lower-bound the count of objects with a property by injecting an explicitly-sized base set into them via a small perturbation of each base element** :: The n^n functions f: X -> {1,...,n} form the base set; each is mapped to a nice function f^+: X -> {1,...,n+1} by adding 1 to f on every element of one set X_l that maximizes f(X_l), leaving the rest unchanged, exhibiting an injection from the size-n^n family into the nice functions (inverted by decrementing on the unique maximizer)
-- `aimo-0562` — **Force a strict unique maximizer after perturbing the maximizing object by noting an f-maximizing set cannot be a proper subset of any competitor, so its self-overlap strictly exceeds each cross-overlap** :: Since f^+(X_i)=f(X_i)+|X_i \cap X_l|, the bump adds |X_l| to X_l but only |X_j \cap X_l| to each X_j; X_l \subset X_j is impossible (it would give f(X_j)>f(X_l), contradicting maximality of X_l), so |X_l| > |X_j \cap X_l|, making f^+(X_l) strictly largest and the maximizer unique (hence f^+ nice and f recoverable by decrementing on its unique maximizer)
-
-## lower-bound the number of pieces of a path-partition via a count-preserving correspondence to an area/packing deficit
-_1 problem(s) · combinatorics_
-
-- `aimo-0719` — **Recast a partition-count lower bound as an area-deficit packing bound through a count-preserving correspondence between the two structures** :: Each right-down/right-up path is encoded as a chain of 'good parallelograms' (two glued isosceles right triangles) joining its consecutive cells; the correspondence is bijective (the path-partition is recoverable from the packing) and a path of L cells fills 2(L-1) of its 2L triangles, leaving exactly 2 (= 1 unit area) empty, so the number of paths k equals the leftover empty area. Thus 'at least N paths' becomes 'any packing of good parallelograms into the N x N grid leaves area at least N empty'.
-
-## marked elements sit in a grid/partial order, and you must guarantee a long monotone chain passing through many marked ones
-_1 problem(s) · combinatorics_
-
-- `aimo-0716` — **Define a potential on each node equal to the maximum number of marked nodes on a monotone chain ending there, converting 'a long marked chain exists' into 'some marked node carries a large label'.** :: Give each circle C the max number of red circles on a top-to-C ninja-path. The reds on a path are counted by the label of its lowest red, so max-reds-over-paths = max label over reds; thus a path with N+1 reds is exactly a red of label >= N+1. Two reds of equal label are incomparable (no path through both), and a red of label i (i>=1) forces a red of label i-1 strictly above it on its optimal path. This hands the antichain + predecessor structure used to bound the label classes.
-
-## minimizing a quantity where any common factor within a pair can be divided out to strictly decrease it (coprimality WLOG)
+## every summary-quantity value realized from one template with a free scaling parameter
 _1 problem(s) · number_theory_
 
-- `aimo-0731` — **To justify a coprimality WLOG, show any common factor of a pair can be divided out to produce a strictly smaller value of the quantity being minimized.** :: If g_i=gcd(a_i,b_i)>1, replacing a_i,b_i by a_i/g_i,b_i/g_i divides every product P_j by g_i, keeping them positive integers in AP but shrinking the common difference D to D/g_i; since D is being minimized, one may assume gcd(a_i,b_i)=1 for all i.
+- `aimo-0729` — exhibit a parametric family realizing every required target value
 
-## must arrange a self-similar multiset (size-N built from copies of size-N/2) to a constant per-column or per-block target
+## extend a special-size construction to arbitrary N
+_1 problem(s) · algebra_  ⚠️ REVIEW (topical): Topical/too-generic: 'extend a special-size construction to arbitrary N' names an induction/extension question-type, not a structural noun; would fire on a dozen unrelated construction problems.
+
+- `aimo-0713` — extend a construction to arbitrary N by inserting high elements, bounding via difference-of-square-roots
+
+## four concyclic points via two antiparallel chords
+_1 problem(s) · geometry_
+
+- `aimo-0574` — prove concyclic by showing one chord antiparallel to the other w.r.t. the connecting lines
+
+## hitting both extremes of a bound by tuning one continuous parameter
+_1 problem(s) · combinatorics_
+
+- `aimo-0566` — tune the construction parameter past a critical integer to flip residue classes
+- `aimo-0566` — set the slope just past an even integer to force a periodic parity pattern
+
+## injecting a known-size family into the target via a one-element bump
+_1 problem(s) · combinatorics_
+
+- `aimo-0562` — lower-bound a count by injecting a base set via small perturbations
+- `aimo-0562` — force a strict unique maximizer since self-overlap exceeds each cross-overlap
+
+## lower-bound a sequence term by a fixed gain per window
 _1 problem(s) · algebra_
 
-- `aimo-0713` — **Build a constant-column-sum arrangement of a self-similar multiset by a recursive split: shift two of the three previous rows up by one and append a paired block whose entries are forced to hit the target.** :: On T_m={1_x1,...,m_x m} they use T_m=(T_{m-1}+1) sqcup {1,...,m}: keep u_k, set v_k'=v_k+1, w_k'=w_k+1 (raising the old constant 2m-1 to 2m+1), then for the appended block r=1..m set the column (m, r, m+1-r), which sums to 2m+1. Induction on m yields three permutations of T_m with every column summing to 2m+1; M is two disjoint copies of T_m, so concatenating two such triples gives the arrangement of M.
+- `aimo-0709` — reduce a global lower bound to a fixed minimum increment per disjoint window
 
-## must construct a finite integer set in which every pairwise difference divides both of its endpoints
-_1 problem(s) · number_theory_
-
-- `aimo-0580` — **Construct a fixed finite set of integers in which every pairwise difference divides both elements of the pair, so that dividing any chosen pair by their difference yields two consecutive integers.** :: The set {0,6,8,9,12} has every pairwise difference dividing both endpoints; scaling/translating as {72k,72k+6,72k+8,72k+9,72k+12} (72 = lcm of differences) gives a family of such 'interesting' 5-element sets. Dividing a friend pair from it by their difference produces consecutive integers, hence a special number, located inside the explicit list S_k.
-
-## must count or bound the total number of strictly-increasing paths in a distinctly-labeled grid, where the number of such paths ending at a cell equals the sum over its lower-labeled neighbors
+## lower-bounding the uncovered area of a grid tile-packing
 _1 problem(s) · combinatorics_
 
-- `aimo-0565` — **Recast counting all increasing paths as a per-cell DP indexed by the path's final cell, where each cell's count is the sum of the counts of its strictly-smaller adjacent neighbors and local minima are seeded with 1.** :: On board A a 'well' (cell adjacent only to larger numbers) has exactly one path ending in it, and every other cell's path-count equals the sum of the path-counts of its smaller-valued neighbors. Filling an auxiliary board B in increasing order of A-values, a cell with no already-filled neighbor gets 1, otherwise the sum of its filled neighbors; total good paths = sum of all entries of B, turning the global count into a sum over the board.
-- `aimo-0565` — **Re-index a sum of vertex DP-values as a sum over adjacent edges by charging each non-source cell's value to its smaller neighbor, so the total becomes one term per edge bounded below by the per-cell minimum.** :: Each non-well entry of B is the sum of B-values of its smaller adjacent fields, so the total of all non-well entries equals, over every adjacency edge, the B-value of the lower-numbered endpoint; since each such value is at least 1 and the n x n grid has 2n(n-1) adjacent pairs, the non-well sum is at least 2n(n-1). Adding the single forced well (the cell labeled 1, value at least 1) gives the bound 2n(n-1)+1 = 2n^2-2n+1.
-- `aimo-0565` — **When a quantity is a sum of DAG path-counts (each cell's count equals the sum over its lower-valued in-neighbors), lower-bound the total by charging each edge of the underlying graph to its larger endpoint, since every cell's count is at least its number of lower-valued neighbors.** :: Build a second board B with B(c) = number of good paths ending at cell c. A well (all neighbors larger) has B=1; every other cell c has B(c) = sum of B over its smaller-valued neighbors, so B(c) >= (#smaller-valued neighbors of c) because each such neighbor contributes at least 1. Summing over non-wells, sum B(non-wells) >= sum over non-wells of (#smaller neighbors); charging each grid edge {u,v} to its larger (hence non-well) endpoint shows this equals the edge count 2n(n-1), since each adjacency is counted exactly once at its larger end. The cell holding value 1 is a well contributing >=1, so total good paths = sum B >= 2n(n-1)+1 = 2n^2-2n+1, the answer. Equality forces exactly one well and that each edge's smaller endpoint carries B=1, i.e. the B>1 cells are pairwise non-adjacent.
-- `aimo-0565` — **Lower-bound a sum of vertex weights, where each weight counts the increasing paths ending at that vertex, by charging every grid edge to its lower-labeled endpoint and using that each such weight is at least 1.** :: Set up a second board B with f(v) = number of good paths ending at cell v. A well (local minimum) has f=1; every other cell has f(v) = sum of f over its smaller-labeled neighbors, since an increasing path can only enter from a lower neighbor. The quantity to minimize is Σ_v f(v) (= total good paths). The charging move: assign each of the 2n(n-1) adjacent pairs to its lower-labeled endpoint; that endpoint's f-value counts once toward the non-well part of Σ f and is ≥1, so the non-well part of Σ f is ≥ (number of edges) = 2n(n-1). The cell labeled 1 is a well contributing ≥1. Hence Σ f ≥ 2n(n-1)+1 = 2n^2-2n+1, the claimed answer. Reading the equality case is the payoff: tightness requires f=1 at the lower endpoint of EVERY edge plus exactly one well — equivalently the f=1 cells induce a connected spanning tree (rooted at the single well, each non-root f=1 cell having a unique smaller f=1 neighbor) and the f>1 cells form an independent set. That equality characterization is precisely the construction target handed to the companion construction crux. Verify the answer by noting 2n^2-2n+1 equals (#edges)+(#sources) with one source.
+- `aimo-0719` — insert obstacle diagonals as mirrors and shoot lasers; net direction change certifies a crossing
 
-## must realize every prescribed value of a summary quantity (a for-all-targets attainment) from one template carrying a free scaling parameter
-_1 problem(s) · number_theory_
-
-- `aimo-0729` — **Exhibit a parametric family of solutions to realize every required target value of the summary quantity** :: Take (a,b,c,d)=(ℓ, kℓ, kℓ, k²ℓ); both sides of the equation equal kℓ, and the total a+b+c+d = ℓ(1+2k+k²) = ℓ(k+1)². Setting m=k+1≥2 and ℓ=N/p² for a prime p with p²|N realizes every non-square-free N as a total.
-
-## non-crossing trajectories enter and leave a region's boundary; pair the entry/exit points and bound the pair types from non-crossing
+## marked nodes in a grid; existence of a long monotone marked chain
 _1 problem(s) · combinatorics_
 
-- `aimo-0719` — **Pair up boundary entry/exit points of the traced trajectories and bound how many pairs of each geometric type can coexist using that the trajectories are non-crossing** :: The 4N boundary edges split into 2N entry-exit pairs of three types (vertical-horizontal, same-side, opposite-side). Non-crossing forbids opposite-side pairs on both the vertical and horizontal sides simultaneously; assuming t opposite-side pairs all vertical forces at least t same-side horizontal pairs, and summing the per-type empty-triangle minima gives (2N-2t)+2t = 2N empty triangles, i.e. area >= N.
+- `aimo-0716` — potential = longest marked monotone chain ending at a node, converting chains into labels
 
-## pieces are maximal runs of consecutive integers (residues mod n) that must reassemble into one long consecutive strip; count the minimum number of pieces
+## midpoints of corresponding sides under an established similarity
+_1 problem(s) · geometry_
+
+- `aimo-0569` — identify midpoints as corresponding points to transfer a cevian-foot angle
+
+## minimizing the number of increasing paths over integer labelings of a grid
 _1 problem(s) · combinatorics_
 
-- `aimo-0717` — **Encode each maximal run of consecutive residues a, a+1, ..., b-1 as a graph edge from vertex a to vertex b, converting 'the pieces reassemble into one strip' into 'the multigraph admits an Eulerian circuit'.** :: Work the reverse process: start from n pieces each labelled k,...,k+n-1 (a cycle through vertex k in Z/n), let every cut piece be an edge on vertices 1..n; reassembling into the single 1xn^2 strip is exactly an Eulerian cycle, and the number of pieces equals the number of edges.
+- `aimo-0565` — count increasing paths by per-cell DP summing strictly-smaller neighbors
+- `aimo-0565` — re-index a vertex DP sum as an edge sum by charging to smaller neighbor
+- `aimo-0565` — lower-bound a path-count sum by charging each edge to its larger endpoint
+- `aimo-0565` — lower-bound a path-count sum by charging each edge to its lower endpoint
 
-## prove a cyclic arrangement is unique or structured by peeling its extremal element, whose neighbors are forced, and contracting to a smaller instance of the same problem
+## neighbor relation defined by a quadratic congruence modulo the element
 _1 problem(s) · number_theory_
 
-- `aimo-0581` — **Prove uniqueness of a cyclic arrangement by peeling the extremal element, whose neighbors are forced, and contracting to a strictly smaller valid arrangement for induction.** :: Induct on |S| (base |S|≤3 immediate): take r the largest prime; its two neighbors {p,q} are forced by the root-count cap, deleting r joins p,q — special by the symmetry claim — into a smaller valid cycle, which by induction is unique, so reinserting r (only between the unique broken edge {p,q}) recovers the original uniquely.
-- `aimo-0581` — **Drive the induction by deleting the configuration's extremal (largest) element and contracting its two neighbors into a single adjacency, reducing to a smaller instance of the same problem.** :: Take r = the largest prime in S. In any valid circle r has exactly two neighbors; delete r and join those two neighbors directly into one edge, leaving a circle on |S|-1 primes. For this to be a smaller valid instance you need its two neighbors to be uniquely forced (separate crux: neighbor-count bound) and the new adjacency {p,q} to itself satisfy the defining relation (separate crux: symmetric elimination). The descent bottoms out at |S| <= 3, which is immediate. Because the contracted edge can carry index z = 0 (it happens exactly when p+q = r+1), first widen the admissible class to allow x = 0; then the contraction never leaves the class, and uniqueness for the widened class implies it for the original x >= 1 class since every strict arrangement is also a widened one.
+- `aimo-0581` — cap admissible neighbors by counting roots of the defining quadratic congruence mod that element
+- `aimo-0581` — bound a vertex's degree by counting roots of the adjacency-defining congruence
 
-## prove four points concyclic where one of them is the crossing of two of the connecting lines, the angle there being the exterior angle of the triangle those lines cut off
-_1 problem(s) · geometry_
+## non-crossing boundary-to-boundary trajectories paired by their endpoints
+_1 problem(s) · combinatorics_
 
-- `aimo-0567` — **Close a target concyclicity by the triangle exterior-angle theorem: write the target inscribed angle at the vertex where the two carrier lines cross as the exterior angle of the triangle those lines cut off, splitting it into angles already equated elsewhere.** :: Both R and P lie on line CD (P = CD ∩ AB) while Q and P lie on line AB, so at P the target angle ∠RPQ is the exterior angle of triangle CQP: ∠RPQ = ∠RCQ − ∠PQC. Substitute the two prior equalities: ∠RCQ = ∠DCQ = ∠DSQ (from C,D,Q,S concyclic, the power-of-a-point output of the similarity crux) and ∠PQC = ∠BQT = ∠TSE = ∠DSR (from the TBQ~TES similarity). This gives ∠RPQ = ∠DSQ − ∠DSR = ∠RSQ, and equal angles subtended on RQ from P and S prove P, S, Q, R concyclic.
+- `aimo-0719` — pair boundary entry/exit points and bound coexisting type-pairs via non-crossing trajectories
 
-## prove two constructed points are distinct, where their coincidence would force a reflective symmetry forbidden by a scalene/asymmetry hypothesis
-_1 problem(s) · geometry_
+## normalizing an extremal edge-coloring to a canonical vertex-ordered form
+_1 problem(s) · combinatorics_
 
-- `aimo-0723` — **Prove two constructed points are distinct by showing their coincidence would force a reflective symmetry on the configuration that a given scalene/asymmetry hypothesis forbids.** :: X lies on segment A1A2 while Y lies on line AA3. Since A1A2 = A1A3 (A1 is the center of (A2BC)), cyclic quadrilateral A A2 A1 A3 makes lines AA2 and AA3 = AY reflections of each other in line AA1. As X sits on segment A1A2, the only way X = Y is if A1 and A2 both lie on the perpendicular bisector of BC; that reflective symmetry across the bisector would send B1 to C1, forcing A1B1 = A1C1 and contradicting that triangle A1B1C1 is scalene. Hence X and Y are distinct.
+- `aimo-0720` — normalize via a max-color-degree monovariant: act at the dominant vertex, then peel and recurse
+- `aimo-0720` — normalize via a local exchange lemma: greedily monochromatize the most-dominant vertex and peel
+- `aimo-0720` — drive a vertex monochromatic at the globally maximal recolorable vertex to canonicalize
 
-## show a sequence-derived quantity is unbounded, given that infinitely many primes divide terms of the sequence
+## orbit shift-displacements that must cancel around a 3-cycle
 _1 problem(s) · number_theory_
 
-- `aimo-0727` — **Show an auxiliary quantity is unbounded by noting that if it were bounded the prime factors appearing in the sequence would be confined to a finite set, contradicting a hypothesis that infinitely many primes appear.** :: From a_{k+1} = a_k(b_k+2)/b_{k+1} we get a_{k+1} | a_k(b_k+2); if b_k <= B always, every prime factor of any a_k is <= B+2 or divides a_1 or a_2 — a finite prime set — contradicting that infinitely many primes divide some a_k. Hence (b_k) is unbounded.
+- `aimo-0730` — force shift-displacements to cancel around a closed 3-cycle, giving a three-term linear relation
 
-## the conjectured fixed point of a moving line is located by realizing a given fixed circle as a tritangent (incircle/excircle) of an auxiliary triangle on the same base
-_1 problem(s) · geometry_
+## p^x times a p-coprime factor equal to a known integer
+_1 problem(s) · number_theory_
 
-- `aimo-0572` — **To pin down the conjectured fixed point of a moving line, reconstruct a given fixed circle as a tritangent circle (incircle or excircle) of an auxiliary triangle built on the same base, so the fixed point surfaces as that circle's homothety center with a second tritangent circle of that triangle.** :: The fixed circle is ω_A = (A, AH), tangent to BC at the altitude foot H. Define the candidate fixed point K as the intersection of the reflections of line BC in lines AB and AC; K depends only on A,B,C, hence is fixed. Reflecting BC over AB sends ray BC to ray BK with AB bisecting ∠KBC, so AB and AC are the INTERNAL bisectors of ∠KBC and ∠KCB; thus A is the incenter of triangle KBC and ω_A (radius AH = distance from A to BC) is its incircle. Let ω_K be the K-excircle of KBC. The external common tangents of ω_A and ω_K are the lines KB and KC, which meet at K, so K is the external homothety center of ω_A and ω_K. This supplies the missing second fixed circle and identifies K as a homothety center, mirroring the standard fact that P is the external homothety center of the incircle ω_I and the P-excircle ω_P of triangle PBC. (Note: the official write-up calls ω_A the K-excircle and AB,AC external bisectors; a coordinate check shows ω_A is in fact the incircle and AB,AC internal bisectors — but K is the external homothety center of ω_A and ω_K either way, and the later radius-product computation is symmetric in the two radii, so nothing downstream changes.)
+- `aimo-0725` — pin a prime-power exponent by taking p-adic valuation, using p^k-1 coprime to p
 
-## the digit sum of a polynomial evaluated at a large argument, where the monomials occupy nearly-disjoint digit ranges so the carries between them are controllable
+## products in arithmetic progression differing in a single factor each step
+_1 problem(s) · number_theory_
+
+- `aimo-0731` — encode an arithmetic progression as equal consecutive differences, factoring each over its block
+
+## recoloring one edge of a Hamiltonian-path-covering coloring
+_1 problem(s) · combinatorics_
+
+- `aimo-0720` — rotate a single-same-color-edge Hamiltonian path to lower-bound the endpoints' same-color degree
+- `aimo-0720` — rotate the witnessing Hamiltonian path about a pivot edge to count forced same-color edges
+- `aimo-0720` — reverse each arm of a unique-color Hamiltonian path to bound the endpoints' same-color degree sum
+
+## round a real vector to integers preserving a fixed integer sum
 _1 problem(s) · algebra_
 
-- `aimo-0556` — **Take the variable so large that the monomials of a polynomial occupy disjoint decimal-digit ranges, so the digit sum of the whole equals the sum of the per-term digit sums (no carries).** :: Choosing X with 10 a_i < X makes a_0 < a_1 X < ... < a_n X^n have strictly increasing digit lengths with gaps wide enough that a_i (10^alpha X)^i never overlap, giving s(P(10^alpha X)) = s(X^n)+s(a_{n-1}X^{n-1})+...+s(a_0).
-- `aimo-0556` — **Engineer a single controlled carry of fixed size by tuning one term's leading digit and an adjacent term's trailing digits so exactly one column collides.** :: Place X in interval I so 9*10^t <= a_{n-1}X^{n-1} < 10^{t+1} (leading digit 9) and pick X = 1 mod 100 so X^n ends ...01; at argument 10^{alpha-1}X the leading 9 of a_{n-1}X^{n-1} lands on the 1 of X^n, producing one carry that drops the digit sum by exactly 9 (odd), flipping parity.
+- `aimo-0707` — place every entry at a half-integer to force rounding error at least 1/2
+- `aimo-0707` — pre-assign floors; the leftover budget equals the fractional-part sum, choosing which to round up
 
-## the exact 2-adic (or p-adic) valuation of a difference of equal powers a^n - b^n (or a^n - 1) with an even exponent is needed
-_1 problem(s) · number_theory_
+## strip cut into consecutive-label-run pieces, reassembled into one
+_1 problem(s) · combinatorics_
 
-- `aimo-0578` — **Apply the lifting-the-exponent lemma to a difference p^n − 1 with even exponent to pin its exact 2-adic valuation in closed form.** :: In the case a=p one has b! = p^p − p = p(p^{p-1}−1) with p odd, so v_2(b!) = v_2(p^{p-1}−1); since p−1 is even, LTE for v_2 of an even power gives v_2(p^{p-1}−1) = 2v_2(p−1)+v_2(p+1)−1. This exact value equals v_2 of the three-factor product (p−1)/2 · (p−1) · (p+1), i.e. it is accounted for by only three integers each ≤ p+1 — a quantity of size O(log p). (Other solutions instead apply LTE to an odd prime q | p±1 to get v_q(p^p−p)=v_q(p+1) or 2v_q(p−1).)
+- `aimo-0717` — encode runs as edges and reduce strip reassembly to an Eulerian circuit
 
-## the exponent of a composite base dividing n! written as a minimum over its prime factors' valuations, one of which always binds
-_1 problem(s) · number_theory_
-
-- `aimo-0726` — **Rewrite an exponent-of-a-composite-base dividing n! as the binding prime's valuation, discarding the non-binding prime from the min.** :: E_9(n)=⌊v_3(n!)/2⌋ and E_10(n)=min(v_5(n!),v_2(n!)); since v_5(n!)≤v_2(n!) always, the min collapses to E_10(n)=v_5(n!), reducing the whole comparison to v_5(n!) versus ⌊v_3(n!)/2⌋ via Legendre's formula.
-
-## the least positive multiple of m represented by a fixed-discriminant quadratic form must be shown coprime to small primes
-_1 problem(s) · number_theory_
-
-- `aimo-0582` — **To force the minimal positive multiple of m representable by forms of a fixed discriminant to be coprime to small primes, run Fermat descent across the genus of equivalent forms: if a small prime divides the minimal value, use explicit form-equivalence identities to exhibit a strictly smaller represented multiple, contradicting minimality.** :: Let m_1 be the least positive multiple of m of the form |5a^2-3b^2| or |a^2-15b^2| (both discriminant 60). In six cases (prime 2, 3, or 5 dividing m_1, times the two forms) divisibility forces 5|b, 3|a, etc., and identities like (a^2-15(b/5)^2)=m_1/5 or |((5a-3b)/2)^2-15((a-b)/2)^2|=m_1/2 produce a smaller multiple of m of the same shape, so m_1 must be coprime to 2,3,5.
-
-## the number of prescribed difference-values to realize exceeds the count of adjacent-index gaps available, forcing some value to be a multi-gap composite difference
+## terms bounded by geometric ceilings anchored at an extreme value
 _1 problem(s) · algebra_
 
-- `aimo-0554` — **Lower-bound a geometric common ratio by a counting mismatch: when the smallest several prescribed target values outnumber the 'atomic' (consecutive-index) differences available to realize them, at least one target value must be a non-atomic difference, hence at least the sum of the two smallest possible differences.** :: Among the target powers r^1,...,r^n there are n of them, but only n-1 consecutive-index differences a_{i+1}-a_i exist; so some r^e with e<=n must equal a non-adjacent difference a_j-a_i (j>=i+2). Writing it as (a_j-a_{j-1})+(a_{j-1}-a_i), each summand is itself a difference hence > r (the smallest power), so r^n >= r^e > 2r, giving the lemma r^{n-1} > 2. This threshold is exactly what later caps the number of powers exceeding half the maximal difference.
+- `aimo-0553` — dyadic-bucket the extreme value and sum geometric tails below the bucket scale
 
-## three circles; prove their three pairwise common chords (radical axes) concur at a shared equal-power point
+## the diagonal triangle of a cyclic quadrilateral
 _1 problem(s) · geometry_
 
-- `aimo-0723` — **Produce a point of equal power to three circles by proving an auxiliary cross-quadrilateral (two construction points plus two circle-defining points) is concyclic from equal angles subtended at the circumcenters, so the radical-axis theorem forces the three shared chords to concur.** :: The three circumcenter relations give equal angles (e.g. angle B1B2C1 = angle B2AB1 = angle AC2C1 = angle B1C2C1), making B1C1B2C2 cyclic, and likewise C1A1C2A2 and A1B1A2B2; the hexagon A1B2C1A2B1C2 is not cyclic (its alternate angles sum to 480 deg, not 360 deg), so the radical-axis theorem applied to the three circles makes A1A2, B1B2, C1C2 concur at a point X of equal power w.r.t. delta_A, delta_B, delta_C.
-- `aimo-0723` — **Produce a second equal-power point for a family of circles, distinct from the first, by reflecting each apex across its circumcircle's center onto the far point of that circle, generating a fresh family of cyclic quadrilaterals to feed the same radical-center construction.** :: The first equal-power point X comes routinely from the circumcenters via the concyclic quads B1C1B2C2 etc.; X has equal power to delta_A, delta_B, delta_C because A1, A2 lie on delta_A so XA1.XA2 equals X's power to the auxiliary circle through A1,A2, and likewise at B, C. For a SECOND point, let A3 be the second intersection of circle (A2BC) with delta_A; since A1 is the center of (A2BC), A1A2 = A1A3, so A3 is A2 reflected across the diameter of delta_A through A1, and A3 lies on delta_A. Define B3, C3 similarly. A directed-angle chase using B1C1B2C2 cyclic gives directed angle(B B3 C) = directed angle(B C3 C), so BCB3C3 is cyclic; cyclically CAC3A3 and ABA3B3 are cyclic. The radical center of these three new circles is the concurrency Y of AA3, BB3, CC3, and Y has equal power to delta_A, delta_B, delta_C since A, A3 lie on delta_A. Two distinct equal-power points force a common radical axis (coaxial pencil); the scalene hypothesis is what guarantees X != Y, and X interior to segment A1A2 (hence inside the circles) makes that axis a secant, yielding two real common points.
+- `aimo-0573` — compute a point's power via a self-polar segment, using inverse = foot on the polar
+- `aimo-0573` — invoke Brocard: the diagonal triangle of a cyclic quadrilateral is self-polar
 
-## three primes in arithmetic progression with a fixed small common difference, one of which is forced divisible by a small modulus and hence equals it
-_1 problem(s) · number_theory_
-
-- `aimo-0576` — **Use that three integers in arithmetic progression with common difference 2 cover all residues mod 3, so one is divisible by 3, to force the smallest of a forced prime triple to equal 3.** :: Among p_{m-2}, p_{m-2}+2, p_{m-2}+4 one is a multiple of 3 and all are primes >2, so the divisible one must be 3 itself, giving p_{m-2}=3 and p_m=7; hence 7 <= n < 11, and a finite check (7! divides the product, 8! does not) leaves only n=7.
-
-## to lower-bound a maximizer in a two-player process, hand the opponent strictly more power but in a fully uniform/enumerable form, prove the bound there, and transfer it back
-_1 problem(s) · combinatorics_
-
-- `aimo-0560` — **Prove the maximizer's guarantee against a strictly stronger but more uniform adversary whose every response you can enumerate, then transfer the guarantee back, since beating a stronger adversary also beats the real one.** :: Replace the lumberjack by a stronger one who, after the gardener plays a 3x3 subboard, decrements every tree OUTSIDE that subboard by 1 (not just 4 anywhere) and additionally cuts 4 of the 9 just-grown trees. The net effect of one paired move becomes fully structured: the lumberjack picks a 'map' (a choice of which 5 of the 9 subboard cells survive, M=binom(9,5)=126 choices); the 5 chosen rise by 1, the other 4 IN the subboard REMAIN UNCHANGED (they are NOT cut), and all trees OUTSIDE the subboard fall by 1. The key consequence of this structure: if the gardener keeps playing one fixed subboard, that subboard's cells are never 'outside' any of those plays, so their heights are monotonically non-decreasing across the whole block. Hence playing one fixed subboard Ml times forces some single map to be chosen at least l times (pigeonhole), and because those cells never fall during the block, the 5 fixed trees of that map each end at height >= l. A gardener strategy that wins this harder game wins the original. (NOTE FOR SOLVER: the inside-subboard cells not in the chosen map STAY, they are not decremented; the modified erosion hits only the complement of the played subboard. Conflating the outside-decrement with an inside cut is the trap to avoid.)
-
-## to show a parameter value can never reach the target state, exhibit a configuration the operation merely permutes into a periodic orbit with no merge, so the target is never reached
-_1 problem(s) · combinatorics_
-
-- `aimo-0559` — **Certify a pair is bad by exhibiting an initial configuration that is periodic (returns to itself) under the operation, with the block sizes parametrized so the periodicity holds exactly at the threshold value of the parameter.** :: For k<n the fixed point A^{n-1}C^{n-1}AC keeps 4 blocks forever (the k-th coin sits in the already-front block, so nothing moves); for k>(3n+1)/2 set a=k-n-1, b=2n-k+1 (so k>2a+b and k>2b+a), making A^a C^b A^b C^a cycle through four 4-block configurations forever. These pin the necessary window n<=k<=(3n+1)/2.
-- `aimo-0559` — **To prove a target state is reachable only within a parameter window, construct configurations whose block sizes are tuned so the operation merely permutes the blocks with no merge, producing a periodic orbit that never reaches the target.** :: Necessity / answer-pinning. Lower bound: if k<n, the configuration A^{n-1} C^{n-1} A C is a fixed point -- since k<=n-1 the k-th coin lies in the leading block A^{n-1}, already at the front, so nothing moves and it keeps 4 blocks forever. Upper bound: if k>(3n+1)/2, set a=k-n-1 and b=2n-k+1 (both >=1, with a+b=n so the metal counts balance); the configuration A^a C^b A^b C^a satisfies k>2a+b and k>2b+a, which forces the k-th coin into the rightmost block at every step, so the operation cyclically rotates the four blocks (A^a C^b A^b C^a -> C^a A^a C^b A^b -> ...) and never merges, keeping 4 blocks forever. These two stuck families show only n<=k<=(3n+1)/2 can have the property, establishing the answer.
-
-## two circles correspond under a known homothety and must be shown tangent, with the homothety center lying on both
-_1 problem(s) · geometry_
-
-- `aimo-0571` — **Conclude two circles are tangent by exhibiting a homothety carrying one onto the other and showing the homothety center lies on both circles, so the center is their unique common point.** :: The homothety mapping Delta_1 to Delta_2 also maps omega_1 to omega_2. An angle chase using (A,Y_i,Z_i,D_i) concyclic gives angle(HE_i, HF_i) = angle(E_1E_2,F_1F_2) = angle(AB,AC) = angle(D_iE_i, D_iF_i), so H subtends the same directed angle on E_iF_i as D_i and lies on each omega_i; H being the fixed homothety center then forces omega_1 and omega_2 to be tangent at H.
-
-## two divisibility relations share a common left factor
-_1 problem(s) · number_theory_
-
-- `aimo-0724` — **Eliminate a shared left-hand divisor between two divisibility relations by subtracting one from a suitable multiple of the other, collapsing the pair into a single tighter divisibility.** :: The complement involution yields d_i | d_{i+1}d_{i+2}; the hypothesis gives d_i | d_{i+1}(d_{i+1}+d_{i+2}); subtracting the first from the second forces d_i | d_{i+1}^2, so the least prime p | d_i propagates to p | d_{i+1} by induction, making every divisor >1 divisible by p, i.e. n a prime power.
-
-## two elements each related to a common third element through a shared quadratic relation; show the two are themselves related by eliminating the third into a symmetric expression
-_1 problem(s) · number_theory_
-
-- `aimo-0581` — **Rewrite the fixed defining constant as a symmetric polynomial in the involved variables to transfer a defining relation from given pairs to a new pair.** :: With pr=x^2+x+k and qr=y^2+y+k, Vieta on the shared mod-r quadratic plus 0≤x<y≤r-1 pins x+y=r-1; subtracting gives x-y=p-q, so x=(r+p-q-1)/2. Eliminating x yields k=¼(2pq+2pr+2qr-p^2-q^2-r^2+1), symmetric in p,q,r, hence pq=z^2+z+k with z=½(p+q-r-1), proving the two neighbors {p,q} of r are themselves a special pair (equivalently via the Brahmagupta identity (X^2+K)(Y^2+K)=(XY-K)^2+K(X+Y)^2 with X+Y=2r, K=4k-1).
-- `aimo-0581` — **Show that a derived adjacency satisfies the same defining relation by eliminating the shared third element to reach an expression symmetric in all the elements involved.** :: Suppose x^2 + x + k = pr and y^2 + y + k = qr with p < q < r. The two roots x, y of the congruence mod r satisfy x + y = r - 1 (their sum is ≡ -1 mod r by Vieta, and both lie in [0, r-1], forcing equality). Subtracting the two equations gives (x+y+1)(x-y) = r(p-q), so x - y = p - q and x = ½(r + p - q - 1). Substituting back, k = ¼(2pq + 2pr + 2qr - p^2 - q^2 - r^2 + 1), which is symmetric in p, q, r. Hence pq = z^2 + z + k with z = ½(p + q - r - 1), so {p,q} is itself a special pair — exactly the fact that makes the contracted edge legal. (z can be <= 0, but z^2+z is invariant under z↦-1-z, which is why the class is widened to allow x = 0.)
-
-## two fractions known to be in lowest terms are set equal, matching numerators and denominators
-_1 problem(s) · number_theory_
-
-- `aimo-0731` — **Equate two fractions known to be in lowest terms and match numerators to numerators and denominators to denominators.** :: Coprimality gives gcd(a_{i+1},b_{i+1}-a_{i+1})=1 and gcd(b_i,b_i-a_i)=1, so writing the relation as a_{i+1}/(b_{i+1}-a_{i+1})=b_i/(b_i-a_i) (both reduced) forces a_{i+1}=b_i and b_{i+1}-a_{i+1}=b_i-a_i; hence a_1,a_2=b_1,...,a_n,b_n is a positive-difference AP, so a_i>=i and D=(b_1-a_1)a_2...a_n >= n!, attained by a_i=i, b_i=i+1.
-
-## two separately-constructed centers known to lie on one common line must be shown to coincide by proving they divide a common segment in equal ratios
-_1 problem(s) · geometry_
-
-- `aimo-0572` — **Show two differently-constructed homothety centers on a common line coincide by proving their division ratios are equal, evaluating each ratio through the incircle–excircle radius-product identity r·r_a = (s-b)(s-c).** :: S = internal homothety center of ω_A,ω_P and S' = internal homothety center of ω_I,ω_K both lie on BC; merging the two Monge lines into one through P, Q, K requires S ≡ S'. Apply r·r_a=(s-b)(s-c) in triangle PBC to get r_I·r_P = BH·CH and in triangle KBC to get r_K·r_A = CT·BT. The tangent-length equalities BH=CT and BT=CH follow from the standard incircle/excircle tangent-length symmetry (the incircle and the excircle touch BC at points reflected over its midpoint), which also forces the BC-tangency points of ω_K and ω_P to coincide at T. These give BT·CT = BH·CH, hence r_K·r_A = r_I·r_P, i.e. r_A/r_P = r_I/r_K. The internal homothety centers then divide the SAME segment HT in equal ratios: HS/ST = r_A/r_P = r_I/r_K = HS'/S'T, so S ≡ S'.
-
-## two triangles inscribed in one circle, each incircle tangent to a common pair of lines, asked to prove the two incenters are concyclic with a corresponding pair of the triangles' vertices
-_1 problem(s) · geometry_
-
-- `aimo-0574` — **To prove the incenters of two triangles inscribed in one circle are concyclic with a corresponding pair of vertices, extend each incenter's bisector to its second meeting with the circumcircle (an arc-midpoint); when those two arc-midpoints are equidistant from the center their chord is antiparallel to the vertex chord, forcing the four points concyclic.** :: ω,ω' are the incircles of △ABC,△A'B'C' with centers I,I'; Ω is the circumcircle of the hexagon AA'BCC'B'. The two tangency hypotheses are consumed exactly here: 'AC tangent to ω'' and 'A'C' tangent to ω' mean BOTH incircles are tangent to BOTH lines AC and A'C', so I and I' each lie on the bisector of the angle between lines AC and A'C'; hence line II' IS that common bisector. Let N,N' be the second intersections of bisectors BI,B'I' with Ω. N is the arc-midpoint of AC so ON⊥AC; similarly ON'⊥A'C'; and ON=ON'=R, so chord NN' is parallel to the bisector of (AC,A'C'), i.e. NN'∥II'. Therefore NN' is antiparallel to BB' with respect to lines BI,B'I', giving B,I,I',B' concyclic. This concyclicity is the hinge that later drops the homothety center T onto line BB'.
-- `aimo-0574` — **To prove two circle centers and the two associated apex points are concyclic, show the line through the centers is antiparallel to the line through the apexes with respect to the two apex-to-center cevians.** :: Target the concyclicity B, I, I', B' (I, I' the incenters of △ABC, △A'B'C'). The two cross-tangency hypotheses are the only place they enter: AC is a side of △ABC so ω touches AC, and A'C' tangent to ω is given, hence I is equidistant (= inradius) from both lines AC and A'C'; symmetrically A'C' is a side of △A'B'C' and AC tangent to ω' is given, so I' is equidistant from AC and A'C'. Therefore both I and I' lie on the angle bisector of lines AC and A'C', i.e. line II' IS that bisector. Let N, N' be the second meets of cevians BI, B'I' with the circumcircle Ω (the arc midpoints of AC, A'C'); from ON⊥AC, ON'⊥A'C' and ON = ON' = R, the chord NN' is parallel to the bisector of AC and A'C', so NN' ∥ II'. Because N, N' are the second intersections of BI, B'I' with Ω, NN' is antiparallel to BB' with respect to lines BI, B'I'; transferring through II' ∥ NN', line II' is antiparallel to BB' as well, so B, I, I', B' are concyclic.
-
-## two triangles share one equal angle (the apex) and must be proven similar, the remaining base angles pinned by a common sum and a common difference
-_1 problem(s) · geometry_
-
-- `aimo-0721` — **Prove two triangles that already share one equal angle (the apex) are similar by showing their two base-angle pairs satisfy the same sum and the same difference, then solving that linear system to match the base angles.** :: For triangles PDC and MAB the apex angles are equal (∠CPD = ∠AMB = μ, given). Both base-angle pairs sum to 180°−μ, and both have difference α−β (the inscribed angles ∠BAC=∠BDC=α, ∠DBA=∠DCA=β, with the construction angle ν cancelling in ∠PDC−∠DCP). The shared sum-and-difference forces equal base angles, so PDC ~ MAB and PD:PC = MA:MB.
-
-## two valuation expressions agree at leading order; break the comparison via n's residue (the floor / second-order correction)
-_1 problem(s) · number_theory_
-
-- `aimo-0726` — **Since both sides agree at leading order, decide the inequality by tilting the second-order floor correction through n's residue modulo the other prime.** :: Both v_5(n!) and v_3(n!)/2 are ≈n/4, so the tie is broken by the floor terms: choosing exponent parity so 5^{2l-1}≡2 (mod 3) forces ⌊n/3⌋=(n-2)/3, giving v_3(n!)<n/2-2/3 and hence E_9(n)<n/4-1/4=E_10(n); for m the residues 3^{4l-2}≡1(mod 4) and ≡4(mod 5) similarly push v_5(m!) strictly below m/4.
-
-## want the exact p-adic valuation of n! with no floor loss, with n free to choose
-_1 problem(s) · number_theory_
-
-- `aimo-0726` — **Take n to be a power of the prime p so Legendre's sum telescopes to the exact closed form (n-1)/(p-1) with no floor loss.** :: Setting n=5^{2l-1} makes v_5(n!)=5^{2l-2}+...+1=(n-1)/4 exactly, so E_10(n)=(n-1)/4 with no floor error; symmetrically m=3^{4l-2} gives v_3(m!)=(m-1)/2 exactly. This pins one valuation precisely at the leading order n/4 where it must beat the other.
-
-## you must construct a solution of an additive functional equation whose graph avoids a prescribed forbidden line y=px
+## the digit sum of polynomial values, controlled via decimal carries
 _1 problem(s) · algebra_
 
-- `aimo-0555` — **Build a solution family by adding an arbitrary integer-valued function of the fractional part to the floor: f(x)=floor(x)+g({x}).** :: Take any g:[0,1)->Z and set f(x)=floor(x)+g({x}). Because f only outputs integers, x+f(y) has the same fractional part as x and its floor shifted by the integer f(y), so f(x+f(y))=floor(x)+f(y)+g({x})=f(x)+f(y). This yields a rich non-linear family of members of F, the freedom in g being what lets one dodge a forbidden slope p.
-- `aimo-0555` — **For each fractional class pick an integer intercept that dodges an entire integer-shifted line, using that two consecutive bad intercepts would differ by 1/(p-1).** :: For p not in S need g(alpha)=m with m+n != p(alpha+n) for all n in Z, equivalently (m-p*alpha)/(p-1) not in Z. If both m and m+1 failed, their difference 1/(p-1) would be an integer; but p not in S={(n+1)/n} is exactly the condition 1/(p-1) not in Z, contradiction. Hence a valid m exists for every alpha, making f(z)!=pz for all z and proving Z subset S (the p=1 case is trivial since g≡1 gives f(z)=floor(z)+1!=z).
+- `aimo-0556` — force equal digit sums by multiplying one number by two powers of 10
+- `aimo-0556` — take the variable huge so monomials occupy disjoint digit ranges (no carries)
+- `aimo-0556` — tune leading/trailing digits to engineer a single controlled carry
 
-## you must secure many disjoint regions in sequence, but each secured region keeps being eroded by all later work, so the per-region effort must grow geometrically along the processing order
-_1 problem(s) · combinatorics_
+## the smallest divisors of n below its second-smallest prime
+_1 problem(s) · number_theory_
 
-- `aimo-0560` — **Process disjoint regions in sequence with geometrically growing per-region effort, sizing each region's secured gain to strictly exceed the total decrement it will suffer while all later regions are processed** :: Partition the 3N x 3N board into N^2 disjoint 3x3 subboards, indexed b = N^2−1 down to 0. For each b, play subboard b exactly 10^6 * M * (M+1)^b times; this lifts a fixed 5-set in subboard b to height ≥ 10^6 (M+1)^b. The remaining later plays (on subboards b−1,...,0) total Σ_{b'<b} 10^6 M (M+1)^{b'} = 10^6((M+1)^b − 1) moves, each dropping a secured tree by exactly 1 (subboard b is outside all of them). Final height ≥ 10^6(M+1)^b − 10^6((M+1)^b−1) = 10^6 — majestic. Over N^2 disjoint subboards this yields 5N^2 majestic trees, meeting the upper bound, so K = 5N^2 = 5*674^2 = 2271380.
-- `aimo-0560` — **When each region you build up is steadily eroded by all subsequent work, process the regions in a fixed order and assign budgets that grow geometrically along that order, so each region's secured surplus survives the cumulative geometric-sum erosion still to come from all later regions.** :: Partition the 3N x 3N board into N^2 disjoint 3x3 subboards numbered 0..N^2-1; process them in order b = N^2-1 down to 0, playing subboard b exactly 10^6 * M * (M+1)^b times consecutively. The consecutive block on b suffers no erosion (only outside-plays erode b, and during its block no outside play is made), so pigeonhole secures 5 trees of b at height 10^6 * (M+1)^b. After finishing b, every remaining play lands on a lower-index subboard (outside b), and there are 10^6 * M * [(M+1)^{b-1}+...+1] = 10^6 * ((M+1)^b - 1) of them by the geometric sum, each dropping b's 5 trees by 1, leaving them at exactly 10^6 -- majestic. The exponential factor (M+1)^b is tuned so an earlier-worked (higher-index) subboard, which must survive MORE future erosion, secures proportionally MORE height. Load-bearing supporting fact: an un-worked subboard sits at height 0, and the modified erosion lowers only positive-height trees, so a region takes ZERO damage until the gardener actually grows it -- this is exactly the timing the uniform accounting ignores.
+- `aimo-0724` — pin the smallest divisors as consecutive powers of the least prime until the second prime enters
+
+## the sum of the k smallest of n nonnegative sorted values
+_1 problem(s) · algebra_
+
+- `aimo-0707` — bound the k smallest of n sorted values by (k/n) times the total (smallest-k average <= mean)
+
+## the three diagonal midpoints of a complete quadrilateral
+_1 problem(s) · geometry_
+
+- `aimo-0573` — the three diagonal midpoints of a complete quadrilateral are collinear (Newton-Gauss line)
+- `aimo-0573` — use the Newton–Gauss line to turn a midpoint tangent-length equality into a power-of-a-point product
+
+## three circles whose centers are to be proven collinear
+_1 problem(s) · geometry_
+
+- `aimo-0573` — prove circle centers collinear by showing the circles coaxial (two equal-power points give the radical line)
+
+## three circles with pairwise similitude centers; a fourth center forced onto a line
+_1 problem(s) · geometry_
+
+- `aimo-0572` — realize points as pairwise homothety centers and apply Monge (d'Alembert) three-circle theorem for collinearity
+- `aimo-0572` — apply Monge's three-circle theorem to two circle-triples sharing a homothety center for collinearity
+- `aimo-0572` — convert 'fixed point' to collinear homothety centers via Monge–d'Alembert
+
+## three integers in arithmetic progression with common difference two
+_1 problem(s) · number_theory_
+
+- `aimo-0576` — three integers in AP with difference 2 cover all residues mod 3, so one is divisible by 3
+
+## two circles meeting again, with perpendicular corresponding chords
+_1 problem(s) · geometry_
+
+- `aimo-0570` — a 90-degree spiral similarity makes the two circles meet orthogonally
+
+## two circles' external similitude center to be shown on a given line
+_1 problem(s) · geometry_
+
+- `aimo-0574` — identify a homothety center as a radical center so its Monge line is a known radical axis
+- `aimo-0574` — force a homothety center onto a target line via an auxiliary circle making the Monge line a radical axis
+- `aimo-0574` — pin a homothety center onto a radical axis via a third circle whose Monge line is that axis
+
+## two divisibility relations sharing a common left factor
+_1 problem(s) · number_theory_
+
+- `aimo-0724` — cancel a shared divisor by subtracting one divisibility relation from a multiple of the other
+
+## two pair-relations sharing one element and a fixed constant
+_1 problem(s) · number_theory_
+
+- `aimo-0581` — rewrite the defining constant as a symmetric polynomial to transfer a relation to a new pair
+- `aimo-0581` — show a derived adjacency obeys the same relation by eliminating the shared element symmetrically
+
+## two prime-power valuations of n! compared at leading order
+_1 problem(s) · number_theory_
+
+- `aimo-0726` — rewrite a composite-base exponent dividing n! as the binding prime's valuation
+- `aimo-0726` — decide a tied inequality by the second-order floor correction via n's residue mod the other prime
+
+## two tangent lines and a chord to be shown concurrent
+_1 problem(s) · geometry_
+
+- `aimo-0569` — reduce concurrency to one candidate point on an auxiliary circle, then verify
+
+## two triangle incenters and a pair of vertices, concyclicity claimed
+_1 problem(s) · geometry_
+
+- `aimo-0574` — extend incenter bisectors to arc-midpoints; equal distances make their chord antiparallel, forcing concyclic
+- `aimo-0574` — prove four points concyclic by showing the center-line antiparallel to the apex-line w.r.t. the cevians
+
+## two triangles sharing a vertex with three pairs of equal sides
+_1 problem(s) · geometry_
+
+- `aimo-0567` — transfer an apex-angle equality via SSS congruence (a rotation)
+- `aimo-0567` — promote a congruence to AA similarity using equal supplementary apex angles
+
+## two triangles sharing one equal angle, similarity sought
+_1 problem(s) · geometry_
+
+- `aimo-0721` — prove similarity of apex-sharing triangles by matching base angles via their sum and difference
+
+## two-term splittings of a maximal element, large halves forced to top values
+_1 problem(s) · algebra_
+
+- `aimo-0554` — pin the large halves of the splittings to the top consecutive elements

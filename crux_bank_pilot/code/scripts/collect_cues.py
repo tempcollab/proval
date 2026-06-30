@@ -23,6 +23,7 @@ Run standalone:  python3 code/scripts/collect_cues.py
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # code/scripts/ -> repo root
@@ -30,6 +31,7 @@ OUTPUT_DIR = ROOT / 'output'
 TMP_DIR = OUTPUT_DIR / 'tmp'
 ASSIGN_DIR = TMP_DIR / 'cue_assign'
 SEEDS_IN = OUTPUT_DIR / 'cue_seeds.json'
+CRUXES_IN = OUTPUT_DIR / 'cruxes.json'
 REGISTRY_OUT = TMP_DIR / 'cue_registry_raw.json'
 CRUX_TO_CUE_OUT = TMP_DIR / 'crux_to_cue.json'
 
@@ -109,6 +111,18 @@ def collect() -> tuple[int, int, int]:
             else:
                 dropped_bad += 1
                 print(f'  DROP[unknown-cue-id] {f.name}: cid={cid} cue_id={cue_id!r}', file=sys.stderr)
+
+    # Tag each registry cue with its majority domain (from the cruxes assigned to it), so
+    # REDUCE can block by domain. cid = index into cruxes.json.
+    cruxes = json.loads(CRUXES_IN.read_text())
+    dom_votes: dict[str, Counter] = {}
+    for cid_str, cue_id in crux_to_cue.items():
+        d = cruxes[int(cid_str)].get('domain')
+        if d:
+            dom_votes.setdefault(cue_id, Counter())[d] += 1
+    for e in registry:
+        votes = dom_votes.get(e['id'])
+        e['domain'] = votes.most_common(1)[0][0] if votes else 'unknown'
 
     REGISTRY_OUT.write_text(json.dumps(registry, indent=2))
     CRUX_TO_CUE_OUT.write_text(json.dumps(crux_to_cue))

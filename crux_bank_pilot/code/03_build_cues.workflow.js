@@ -64,17 +64,19 @@ const MERGE_PLAN = `${TMP_DIR}/cue_merge_plan.json`; // REDUCE agent's consolida
 // A CUE is the RECOGNITION TRIGGER for a technique — the situation that says "reach for
 // this kind of move." The index is keyed by cues, so genericness is the worst failure.
 // Good/bad pairs beat stated rules. (Kept in this file: 01/02 are technique-only.)
-const CUE_RUBRIC = `A CUE is the RECOGNITION TRIGGER for a technique: the feature of the problem that says "reach for this move." Write it SHORT and as a CONDITION, never as the move — state the structural pattern; never name the tool, construction, or answer. The bank is indexed by cues, so a generic cue is the worst failure.
+const CUE_RUBRIC = `A CUE is the RECOGNITION TRIGGER for a technique: the feature of the problem that says "reach for this move." Write it as a SHORT structural CONDITION — never the move, tool, construction, or answer.
+
+BREVITY IS A HARD RULE: aim for <=12 words, ONE clause. The cue is a SKIM handle, not a description — keep it as terse as the original "FORALLN" style. Discriminate by naming the precise structural NOUN (the configuration / quantity / relation), NOT by appending qualifier clauses. Forbidden: trailing "...which would not fire on..." meta-clauses, hedging slashes piling synonyms, parentheticals listing alternatives, and re-explaining the same condition twice. Pick the sharpest phrasing and stop. (All problem-specific detail lives in each exemplar's how_used, NEVER in the cue.)
 
 THREE TESTS — every cue must pass all three:
-(R) RECOGNIZABLE — can a solver who has NOT solved the problem tell, from the givens (or a concretely-stated reduction the solver has reached), that the cue applies? Not "after you have the idea".
-(D) DISCRIMINATING — THE #1 FAILURE. The cue must pick out a REAL SITUATION, not a topic or a question-type. If it would fire on a dozen unrelated problems ("a functional equation", "find all n", "prove a quadrilateral has an incircle", "a polynomial equals a product"), it is TOO GENERIC. A valid cue groups only cruxes whose members a solver would OPEN with the same recognition. Short-and-structural is good; short-and-topical is the misfire.
-(L) LEAK-FREE — the cue must not contain the TOOL/MOVE. Naming the OBJECT or GOAL that defines the situation is fine ("show a point lies on a given line"); naming the TOOL ("use Monge", "radical center", "weight by roots of unity", "LTE", "extremal principle", "AM-GM") is a leak.
+(R) RECOGNIZABLE — can a solver who has NOT solved the problem tell, from the givens (or a concretely-stated reduction), that the cue applies? Not "after you have the idea".
+(D) DISCRIMINATING — THE #1 FAILURE. The cue must pick a REAL structural situation, not a topic or question-type ("a functional equation", "find all n", "prove a quadrilateral has an incircle"). Fix genericness by naming the RIGHT structural noun, NOT by adding length — short and specific beats long and specific; long is never the way to be specific.
+(L) LEAK-FREE — name the situation/object/goal, never the TOOL ("use Monge", "radical center", "weight by roots of unity", "LTE", "extremal principle", "AM-GM").
 
-The detail/accuracy lives in each exemplar's how_used, NOT in the cue text. Keep the cue the short shared trigger.
-
-GOOD: "a relation holds for every index n, equating a fixed function of the n-th term to a product of a sliding block of the next consecutive terms (instances at n and n+1 overlap in all but their end factors)."
-GOOD: "a finite family of positive integers bounded below, in which one designated member equals the average of several others from the same family."
+GOOD (short + specific): "a for-all-n relation built from a running sum or sliding-window product"
+GOOD: "a finite family of positive integers where one equals the average of several others"
+GOOD: "three circles with pairwise similitude centers; a fourth center forced onto a line"
+BAD — VERBOSE (the first GOOD, bloated — do NOT do this): "a relation holds for every index n, equating a fixed function of the n-th term to a product of a sliding block of the next consecutive terms, so instances at n and n+1 overlap in all but their end factors."  <- cut to the GOOD form.
 BAD — TOO GENERIC: "find all n for which a configuration exists" / "prove a quadrilateral has an incircle".
 BAD — LEAKS THE MOVE: "three circles with an incidence goal, so use Monge."`;
 
@@ -140,7 +142,7 @@ python3 -c "import json; d={r['problem_id']:r for r in json.load(open('${INPUT}'
 
 For EACH crux return {cid, cue_id, new_cue}:
 - If it matches a registry cue: cue_id = that id (e.g. "S7"), new_cue = "".
-- If none fits: cue_id = "NEW", new_cue = a SHORT STRUCTURAL cue (apply the rubric). Reuse the SAME new_cue wording for two cruxes in this batch that share a trigger.
+- If none fits: cue_id = "NEW", new_cue = a SHORT STRUCTURAL cue (<=12 words, terse like the seeds; apply the rubric). Reuse the SAME new_cue wording for two cruxes in this batch that share a trigger.
 Do NOT force a crux into a registry cue whose situation it does not truly share — a wrong match is worse than a new cue (duplicates get merged later). Be strict on the (D) test: never assign by topic ("both geometry", "both functional equations"); assign by shared opening recognition.
 
 ${CUE_RUBRIC}
@@ -176,15 +178,20 @@ if (!collected?.cruxes) throw new Error(`collect_cues.py assigned ${collected?.c
 if (collected.batches < okMap.length) log(`⚠️  collect read ${collected.batches} batch file(s) but ${okMap.length}/${nBatches} MAP batch(es) returned — ${okMap.length - collected.batches} batch's assignments were NOT written (silent loss).`);
 log(`Collected registry: ${collected.cues} distinct cues over ${collected.cruxes} assigned cruxes (${collected.batches} batch file(s))`);
 
-// ---- REDUCE — one agent consolidates the registry (merge same-trigger cues) --
-// The registry is SHORT cue strings only (no LaTeX), so even at scale it fits one context.
-// The reducer MERGES cues that are the same trigger (incl. ACROSS domains — this is where a
-// cross-cutting cue split across batches gets reunited) and FLAGS any cue that is still
-// topical/too-generic (a residual misfire for review). It does NOT see crux text — only the
-// cue strings — so it cannot reassign cruxes; it only collapses + flags. A python script
-// applies the plan.
+// ---- REDUCE — DOMAIN-BLOCKED consolidation (merge same-trigger cues) ---------
+// A SINGLE agent over the whole registry under-merges: ~150 short cues is too many to
+// pairwise-compare in one pass, so it anchors on a few and misses the rest (recall fails).
+// Instead we BLOCK BY DOMAIN: one merge agent per domain sees only its ~40 cues — small and
+// dense enough that an LLM actually finds the duplicates — all four in parallel. Then a
+// single CROSS-DOMAIN pass catches the rarer same-trigger pairs that span two domains (a cue
+// recurring in e.g. algebra + number_theory), a NARROW task over the full list. Every
+// reducer sees SHORT cue strings only (no crux text) — it collapses + flags, never reassigns.
+// All merges/flags concatenate into one plan; the applier's overlap guard keeps the first
+// claim if two passes touch the same id.
 phase('Reduce');
-const readRegistry = `python3 -c "import json; r=json.load(open('${TMP_DIR}/cue_registry_raw.json')); print(json.dumps([{'id':c['id'],'cue':c['cue'],'kind':c['kind']} for c in r],indent=2))"`;
+const DOMAINS = ['algebra', 'number_theory', 'combinatorics', 'geometry'];
+const readDomainRegistry = (d) => `python3 -c "import json; r=json.load(open('${TMP_DIR}/cue_registry_raw.json')); print(json.dumps([{'id':c['id'],'cue':c['cue']} for c in r if c.get('domain')=='${d}'],indent=2))"`;
+const readRegistryWithDomain = `python3 -c "import json; r=json.load(open('${TMP_DIR}/cue_registry_raw.json')); print(json.dumps([{'id':c['id'],'cue':c['cue'],'domain':c.get('domain')} for c in r],indent=2))"`;
 const REDUCE_SCHEMA = {
   type: 'object',
   properties: {
@@ -203,22 +210,37 @@ const REDUCE_SCHEMA = {
     },
   }, required: ['merges', 'flags'],
 };
-log(`▶ REDUCE: consolidating ${collected.cues} cues (merge same-trigger across domains, flag residual topical cues)...`);
-const reduced = await agent(
-  `You are the cue REGISTRY CONSOLIDATOR. The MAP step ran batches in parallel, so the same trigger may have been written as two or three near-duplicate cues (and a cross-cutting trigger may sit in different domains). Read the whole registry — these are SHORT cue strings, the recognition triggers:
-${readRegistry}
+log(`▶ REDUCE: domain-blocked merge (${DOMAINS.length} domains in parallel) + a cross-domain pass...`);
+const perDomain = await parallel(DOMAINS.map((d) => () =>
+  agent(
+    `You are the cue CONSOLIDATOR for the "${d}" domain. The MAP step ran in parallel batches, so the SAME trigger was often written 2-3 times in slightly different words. Read THIS DOMAIN's cues (short recognition triggers):
+${readDomainRegistry(d)}
 
 TWO jobs:
-1. MERGE cues that are the SAME TRIGGER — a solver on a new problem would reach for them off the SAME recognition. Merge ACROSS DOMAINS (a trigger that recurs in algebra and number_theory is ONE cue). The test: same situation, not same vocabulary. When unsure, keep separate. When you merge, KEEP THE SHARPEST member's wording nearly verbatim — do NOT replace a group with a vaguer umbrella sentence (that re-introduces genericness). An id appears in at most one merge.
-2. FLAG any cue that is still TOPICAL or TOO-GENERIC — it names a topic/question-type, not a structural trigger (would fire on a dozen unrelated problems). Do not merge these into something broader; flag them with the reason, for later splitting.
+1. MERGE cues that are the SAME TRIGGER — a solver on a new problem would reach for them off the SAME recognition (same situation, not same vocabulary). EXPECT MANY MERGES: near-duplicate pairs are the bulk of the job here; hunt them actively. Only genuinely-unsure cases stay separate. KEEP each unified cue SHORT (<=12 words) — copy the sharpest member, never write a longer umbrella. An id appears in at most one merge.
+2. FLAG any cue still TOPICAL / TOO-GENERIC (names a topic/question-type, would fire on a dozen unrelated problems) — flag it, do not merge it broader.
 
 ${CUE_RUBRIC}
 
-Return {merges:[{ids,cue}], flags:[{id,reason}]}. If nothing merges, return empty merges — but look hard for the cross-batch / cross-domain duplicate, it is the most common real merge.`,
-  { label: 'reduce', phase: 'Reduce', schema: REDUCE_SCHEMA }
+Return {merges:[{ids,cue}], flags:[{id,reason}]}.`,
+    { label: `reduce:${d}`, phase: 'Reduce', schema: REDUCE_SCHEMA }
+  )
+));
+const okDomains = DOMAINS.map((d, i) => [d, perDomain[i]]).filter(([, r]) => r);
+if (okDomains.length < DOMAINS.length) {
+  log(`⚠️  ${DOMAINS.length - okDomains.length}/${DOMAINS.length} domain reducers FAILED: ${DOMAINS.filter((d, i) => !perDomain[i]).join(', ')}`);
+}
+const crossDomain = await agent(
+  `You are the CROSS-DOMAIN cue consolidator. The per-domain passes already merged duplicates WITHIN each domain. Your ONE job: find cues that are the SAME TRIGGER but sit in DIFFERENT domains — a structural recognition that recurs across domains (e.g. a trigger appearing in BOTH algebra and number_theory), which is the strongest evidence a cue is a real situation and not a topic. Read the whole registry with domains:
+${readRegistryWithDomain}
+
+Return ONLY merges whose ids span 2+ DIFFERENT domains AND are genuinely the same trigger (same situation, not merely shared vocabulary — be strict, a cross-domain merge must be a real shared recognition). Ignore same-domain pairs (already handled). Keep each unified cue SHORT (<=12 words). Return {merges:[{ids,cue}], flags:[]}.`,
+  { label: 'reduce:cross-domain', phase: 'Reduce', schema: REDUCE_SCHEMA }
 );
-if (!reduced) throw new Error(`REDUCE failed — no consolidation plan produced.`);
-const mergePlan = { merges: reduced.merges || [], flags: reduced.flags || [] };
+const mergePlan = {
+  merges: [...okDomains.flatMap(([, r]) => r.merges || []), ...(crossDomain?.merges || [])],
+  flags: okDomains.flatMap(([, r]) => r.flags || []),
+};
 const planWriter = await agent(
   `Write this exact JSON to ${MERGE_PLAN} using the Write tool (the cue consolidation plan). Write verbatim, then return {"ok": true}.\n\n${JSON.stringify(mergePlan, null, 2)}`,
   { label: 'write-cue-plan', phase: 'Reduce', schema: { type: 'object', properties: { ok: { type: 'boolean' } }, required: ['ok'] } }
