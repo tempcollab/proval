@@ -7,11 +7,25 @@ problem, it doesn't *remind itself* of the one idea that cracks it. This bank su
 trigger.
 
 It is indexed not by *techniques* (the moves) but by **cues** — short, structural
-**recognition triggers** ("when you see *this kind of situation*..."). A cue never states the
-move; it names the situation. The model matches its new problem to a cue, is reminded which
-family of idea applies, and **derives the rest itself**. Each cue points to the problems where
-it fired and, for each, the technique used and how — so the model can study analogous solves
-without being handed an answer.
+**recognition fingerprints** ("when you see *this kind of situation*..."). A cue never states
+the move; it names the situation, at the **entry level** — the configuration a solver
+recognizes *cold*, before choosing an approach. The model matches its new problem to a cue,
+is reminded which family of idea applies, and **derives the rest itself**. Each cue points to
+the problems where it fired and, for each, the technique(s) used and how — so the model can
+study analogous solves without being handed an answer.
+
+Three properties make a cue retrievable rather than decorative:
+
+- **Atomic** — one cue = one situation, never a compound ("X *or* Y"); a compound is
+  unmatchable, since a new problem instantiates one branch, not the bundle.
+- **A fingerprint, not an abstraction** — specific is good. A cue that fires on *one* problem
+  but hands a near-identical solved case to the next problem that matches it is high-value;
+  a cue that would fire on everything selects nothing. We optimize for **precision at match
+  on an unseen problem**, not for how often the cue happens to recur in this corpus.
+- **One cue → many techniques** — the entry cue carries the *whole menu* of moves its
+  problems used as payload. Mid-proof steps (a phantom point, a radical-axis manufacture) are
+  **not** their own cues — they ride under the entry cue. Recognize the situation, see
+  everything that worked there, adapt.
 
 ## Hypothesis (the paper's claim)
 
@@ -42,10 +56,42 @@ cannot help on a *new* problem — the needed entry usually isn't in the bank, a
 it *is* the answer, not a retrieval handle.
 
 Re-deriving a **cue** (the recognition trigger) for each crux and clustering those instead,
-the recurrence rose ~17×: **52% of cruxes fall under a cue shared by ≥2 problems** (vs ~3%
-for techniques). The cue is the **input** (the recognizable setup, which repeats); the
-technique is the **output** (the clever move, which doesn't). This is the design's load-
-bearing, falsifiable claim, and it is what the bank is built to exploit.
+the recurrence rose sharply (an early pass measured ~52% of cruxes under a cue shared by ≥2
+problems, vs ~3% for techniques). The cue is the **input** (the recognizable setup, which
+repeats); the technique is the **output** (the clever move, which doesn't).
+
+A caveat we hold honestly: that 52% was measured under a *loose* cue definition that allowed
+compound ("X or Y") cues, which inflate sharing. Under the stricter **atomic / entry-level**
+definition above, compounds split and the headline recurrence figure *drops* — but this is
+the more defensible claim, not a weaker one. The load-bearing property is not "cues recur a
+lot in this corpus"; it is **a cue is a high-precision structural fingerprint that fires on a
+new, unseen problem and retrieves an analogous solve**. Corpus recurrence is supporting
+evidence that cues are structural (not bespoke); the design target is precision-at-match. The
+exact recurrence number is re-measured each time the bank is rebuilt under the current rubric.
+
+### Cue vs technique (note to self)
+
+- **Technique = the move** (the value). Bespoke, ~unique per problem (one-off 97%).
+- **Cue = the situation that calls for it** (the query/key). Structural, recurs (52%).
+- **Leak test (L):** given the cue + problem, the full derivation must still remain. Cue
+  narrows *which idea to try*, not the *work of executing it*. Strip every word that only
+  appears in the solution (named tool, construction, count, answer) — what survives is the
+  cue; if nothing survives it was a technique in disguise.
+
+Examples (from `cues.json`):
+
+- One cue → 3 different moves: *"a line tangent to a circle at a named point"* →
+  0569 angle-equality→similarity / 0570 converse alt-segment / 0573 directed-angle pole chase.
+  Cue points; you still invent the chase. ✅ leak-free.
+- Cross-domain (proves it's structural, not a topic): *"more items than a finite state set
+  admits"* fires in NT (0580, parity-vector classes) **and** combinatorics (0715, online
+  balancing rule then pigeonhole) — shared situation, unrelated machinery.
+- Leak ❌: *"pigeonhole over the 126 response-maps on the 3×3 subboard"* names tool + state
+  set + construction → problem is over. That's a technique wearing a cue's clothes.
+- Boundary is enforced, not asserted: Reduce auto-flagged 3/151 as topical/leaky — a
+  question-type (*"is an integer representable by a quadratic form"*), a presupposed-solution
+  cue (*"corresponding points under an already-established similarity"*), a ubiquitous goal
+  (*"prove two triangles similar"*). We surface them as evidence (R/D/L) has teeth.
 
 ## Contamination guarantee
 
@@ -77,11 +123,15 @@ path. A crux that can't regenerate its own solution is fixed or dropped. Output:
 ### Stage 2 — build the cue index  (`code/03_build_cues.workflow.js`)
 
 Derive a **recognition cue** for each crux and cluster the cues. The cue is *derived here*,
-from `(technique, how_used)` + statement — stage 1 is left untouched. A cue must pass three
-tests: **(R) recognizable** from the problem (or a concretely-stated reduction the solver has
-reached), **(D) discriminating** — it must pick a real structural situation, not a topic or a
-question-type (this is the #1 failure: "a functional equation", "prove a quadrilateral has an
-incircle" are too generic), and **(L) leak-free** — it names the situation, never the tool.
+from `(technique, how_used)` + statement — stage 1 is left untouched. A cue must be **atomic**
+(one situation, no "or"-compounds) and **entry-level** (a recognition you have *before*
+choosing an approach; a mid-proof step is not a cue — it attaches as payload under the
+problem's entry cue), and pass three tests: **(R) recognizable** from the problem (or a
+concretely-stated reduction the solver has reached), **(D) discriminating** — it must pick a
+real structural situation, not a topic or a question-type (this is the #1 failure: "a
+functional equation", "prove a quadrilateral has an incircle" are too generic), and **(L)
+leak-free** — it names the situation, never the tool. If the sharpest noun for a crux *is* the
+tool (homothety center, radical axis), that is the signal it is payload, not a cue.
 
 Because one agent cannot hold every crux at corpus scale (~3k cruxes at 1000 problems),
 clustering is **seed → map → reduce**:
@@ -92,9 +142,15 @@ clustering is **seed → map → reduce**:
 - **Map** — batch the cruxes; each batch (parallel, bounded) assigns every crux to a seed cue
   or proposes a new short structural cue. No batch sees more than its slice, so this scales to
   any corpus.
-- **Reduce** — one agent reads the whole registry as *short cue strings only* (hundreds even
-  at 3k cruxes → fits one context) and **merges same-trigger cues across domains** (where a
-  cross-cutting cue split across batches gets reunited) and **flags any residual topical cue**.
+- **Reduce** — a **light cleanup**, not an aggressive merge. Domain-blocked agents read the
+  registry as *short cue strings only* and collapse the rare genuine same-situation duplicate
+  (a trigger Map wrote twice in different words), under one hard rule: **same theorem ≠ same
+  cue** — two different situations that both happen to use Monge / Legendre / AM-GM stay
+  separate (that is the whole design). Most cues are specific fingerprints and stay as-is.
+  Reduce's real value is catching the *opposite* error: it **flags** compound ("or") cues and
+  topical/question-type cues for review. (This stance was set by an adversarial check: every
+  cross-problem merge initially proposed was rejected once the actual solutions were read —
+  the candidates shared a theorem, not a situation.)
 - **Render** — python joins canonical cues back to `cruxes.json` for each exemplar's technique
   + how_used → `output/cues.json` + `output/cues.md`.
 
@@ -109,6 +165,13 @@ clustering is **seed → map → reduce**:
   so cross-cutting cues are still reunited without any agent drowning.
 - **Leak-free cue (R/D/L), enforced twice** — at Map (rubric) and Reduce (topical flag) — so
   the ablation stays interpretable.
+- **Atomic + entry-level cues** — compounds are unmatchable and mid-proof steps aren't
+  recognition triggers; folding them into the entry cue both fixes the two failure modes that
+  produced question-type/tool-leak cues *and* realizes the "one cue → full technique menu"
+  shape the hypothesis wants.
+- **Reduce as cleanup, not merge (same theorem ≠ same cue)** — set by adversarial verification
+  against the actual solutions, not by intuition: merging by shared theorem would quietly turn
+  the cue index back into a technique cheatsheet, the exact thing the design rejects.
 
 ## Output — 3 model-facing tiers (drill-down)
 

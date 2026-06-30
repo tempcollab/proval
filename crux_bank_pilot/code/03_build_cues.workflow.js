@@ -61,23 +61,33 @@ const SEEDS_IN = `${OUTPUT_DIR}/cue_seeds.json`;    // hand-cleaned seed registr
 const ASSIGN_DIR = `${TMP_DIR}/cue_assign`;         // each MAP batch writes here
 const MERGE_PLAN = `${TMP_DIR}/cue_merge_plan.json`; // REDUCE agent's consolidation plan
 
-// A CUE is the RECOGNITION TRIGGER for a technique — the situation that says "reach for
-// this kind of move." The index is keyed by cues, so genericness is the worst failure.
-// Good/bad pairs beat stated rules. (Kept in this file: 01/02 are technique-only.)
-const CUE_RUBRIC = `A CUE is the RECOGNITION TRIGGER for a technique: the feature of the problem that says "reach for this move." Write it as a SHORT structural CONDITION — never the move, tool, construction, or answer.
+// A CUE is a STRUCTURAL FINGERPRINT of a problem situation — the LOOKUP KEY of the bank.
+// The PAYLOAD (the techniques that worked + the solved problem) is what gets retrieved and
+// ADAPTED. So the cue is optimized for ONE thing: firing on a future, unseen problem that
+// INSTANTIATES it. Specificity is a virtue (high precision); genericness is the worst
+// failure (a cue firing on everything selects nothing). Good/bad pairs beat stated rules.
+const CUE_RUBRIC = `A CUE is a STRUCTURAL FINGERPRINT of a problem situation: the recognizable configuration that tells a solver "I have seen this kind of position before — here is the move-family to reach for." It is the LOOKUP KEY of the bank; the PAYLOAD (the technique(s) that worked + the full solved problem) is what gets retrieved and ADAPTED to the new problem. Write the cue as a structural CONDITION a NEW, unseen problem can be checked against — never the move, tool, construction, or answer.
 
-BREVITY IS A HARD RULE: aim for <=12 words, ONE clause. The cue is a SKIM handle, not a description — keep it as terse as the original "FORALLN" style. Discriminate by naming the precise structural NOUN (the configuration / quantity / relation), NOT by appending qualifier clauses. Forbidden: trailing "...which would not fire on..." meta-clauses, hedging slashes piling synonyms, parentheticals listing alternatives, and re-explaining the same condition twice. Pick the sharpest phrasing and stop. (All problem-specific detail lives in each exemplar's how_used, NEVER in the cue.)
+WHAT THE CUE IS FOR: it must fire on a future problem that INSTANTIATES it ("does my problem contain this configuration?"). Optimize for that match, NOT for how often the cue recurs in this corpus. A cue that fires on ONE problem but, when a future problem matches it, hands over a near-identical solved case is GOLD. SPECIFIC IS GOOD: high precision beats broad coverage; a singleton is fine. A cue that would fire on everything selects nothing and is worthless.
+
+BREVITY: <=12 words, ONE clause. A SKIM handle, not a description. Name the precise structural NOUN (configuration / quantity / relation); do NOT append qualifier clauses, hedging slashes piling synonyms, or parentheticals listing alternatives. Pick the sharpest phrasing and stop. (All problem-specific detail lives in the exemplar's how_used, NEVER in the cue.)
+
+ATOMIC — ONE cue = ONE situation. NEVER join two triggers with "or" / "and" / a slash. If you are tempted to write "or", that is TWO cues — write the single one THIS crux actually uses. A compound cue is UNMATCHABLE: a future problem instantiates one branch, not the bundle.
 
 THREE TESTS — every cue must pass all three:
-(R) RECOGNIZABLE — can a solver who has NOT solved the problem tell, from the givens (or a concretely-stated reduction), that the cue applies? Not "after you have the idea".
-(D) DISCRIMINATING — THE #1 FAILURE. The cue must pick a REAL structural situation, not a topic or question-type ("a functional equation", "find all n", "prove a quadrilateral has an incircle"). Fix genericness by naming the RIGHT structural noun, NOT by adding length — short and specific beats long and specific; long is never the way to be specific.
-(L) LEAK-FREE — name the situation/object/goal, never the TOOL ("use Monge", "radical center", "weight by roots of unity", "LTE", "extremal principle", "AM-GM").
+(R) RECOGNIZABLE — checkable from the givens (or a concretely-stated reduction), BEFORE having the idea — not "after you see the trick".
+(D) DISCRIMINATING — THE #1 FAILURE. Name a REAL structural situation, never a topic ("a functional equation", "a circle problem") or a question-type ("find all n", "prove infinitely many primes", "prove a quadrilateral is tangential"). Question-types fire on dozens of unrelated problems and select nothing. Fix genericness by naming the right structural noun, NEVER by adding length — short and specific beats long; long is never the way to be specific.
+(L) LEAK-FREE — name the situation/object/goal, never the TOOL ("use Monge", "radical center", "weight by roots of unity", "LTE", "extremal principle", "AM-GM", "induct", "pigeonhole"). The cue is the ENTRY CONDITION for the tool; the tool is the payload, retrieved AFTER the match.
 
-GOOD (short + specific): "a for-all-n relation built from a running sum or sliding-window product"
-GOOD: "a finite family of positive integers where one equals the average of several others"
-GOOD: "three circles with pairwise similitude centers; a fourth center forced onto a line"
-BAD — VERBOSE (the first GOOD, bloated — do NOT do this): "a relation holds for every index n, equating a fixed function of the n-th term to a product of a sliding block of the next consecutive terms, so instances at n and n+1 overlap in all but their end factors."  <- cut to the GOOD form.
-BAD — TOO GENERIC: "find all n for which a configuration exists" / "prove a quadrilateral has an incircle".
+ENTRY-LEVEL ONLY (resolves the two hardest cases): a cue is a recognition you have BEFORE choosing an approach. A crux that is a MID-PROOF STEP — recognizable only AFTER you adopt the main idea (a phantom point conjectured onto a line, "force the line through a fixed point", "manufacture a second equal-power point", "realize every target value") — FAILS (R). Do NOT mint a cue for it: assign it to THIS problem's entry-level cue (the givens-configuration you recognize cold), so its technique lives as PAYLOAD under that cue. One cue carrying every move a problem used is the goal, not a defect. And if the sharpest noun you can find for a crux IS the tool (homothety center, radical axis), that is the signal it is payload, not a cue — attach it to the entry cue.
+
+GOOD (specific structural fingerprints): "a finite family of positive integers where one equals the average of several others"
+GOOD: "two triangles sharing both circumcentre and orthocentre"
+GOOD: "a point on a side's extension beyond a vertex, supplementing an apex angle"
+GOOD: "a prime power equal to a product of two positive factors"
+BAD — COMPOUND (two triggers; SPLIT into two cues): "two circles meeting again, or two triangles sharing a vertex with proportional sides".
+BAD — QUESTION-TYPE (selects nothing): "an intersection point that must also satisfy a separate positional property".
+BAD — VERBOSE (bloated — cut to a GOOD form): "a relation holds for every index n, equating a fixed function of the n-th term to a product of a sliding block of the next consecutive terms, so instances at n and n+1 overlap in all but their end factors."
 BAD — LEAKS THE MOVE: "three circles with an incidence goal, so use Monge."`;
 
 // ---- Setup — scratch dirs + load corpus size and the seed registry ----------
@@ -178,16 +188,15 @@ if (!collected?.cruxes) throw new Error(`collect_cues.py assigned ${collected?.c
 if (collected.batches < okMap.length) log(`⚠️  collect read ${collected.batches} batch file(s) but ${okMap.length}/${nBatches} MAP batch(es) returned — ${okMap.length - collected.batches} batch's assignments were NOT written (silent loss).`);
 log(`Collected registry: ${collected.cues} distinct cues over ${collected.cruxes} assigned cruxes (${collected.batches} batch file(s))`);
 
-// ---- REDUCE — DOMAIN-BLOCKED consolidation (merge same-trigger cues) ---------
-// A SINGLE agent over the whole registry under-merges: ~150 short cues is too many to
-// pairwise-compare in one pass, so it anchors on a few and misses the rest (recall fails).
-// Instead we BLOCK BY DOMAIN: one merge agent per domain sees only its ~40 cues — small and
-// dense enough that an LLM actually finds the duplicates — all four in parallel. Then a
-// single CROSS-DOMAIN pass catches the rarer same-trigger pairs that span two domains (a cue
-// recurring in e.g. algebra + number_theory), a NARROW task over the full list. Every
-// reducer sees SHORT cue strings only (no crux text) — it collapses + flags, never reassigns.
-// All merges/flags concatenate into one plan; the applier's overlap guard keeps the first
-// claim if two passes touch the same id.
+// ---- REDUCE — DOMAIN-BLOCKED consolidation (merge ONLY genuine same-situation) ---
+// REDUCE is a light cleanup, NOT an aggressive merge: the cues are specific fingerprints and
+// the bank is near-deduplicated, so merges are RARE (verified: ~0 real cross-problem merges
+// in the pilot). Its real value is catching the OPPOSITE error — same-theorem-merged or
+// compound "or" cues — which it FLAGS, not collapses. We still BLOCK BY DOMAIN (one agent per
+// domain sees only its ~40 cues, dense enough to spot a true duplicate) plus one CROSS-DOMAIN
+// pass for the rare same-situation pair spanning two domains. Every reducer sees SHORT cue
+// strings only (no crux text) — it merges (rarely) + flags, never reassigns. All merges/flags
+// concatenate into one plan; the applier's overlap guard keeps the first claim on a shared id.
 phase('Reduce');
 const DOMAINS = ['algebra', 'number_theory', 'combinatorics', 'geometry'];
 const readDomainRegistry = (d) => `python3 -c "import json; r=json.load(open('${TMP_DIR}/cue_registry_raw.json')); print(json.dumps([{'id':c['id'],'cue':c['cue']} for c in r if c.get('domain')=='${d}'],indent=2))"`;
@@ -213,16 +222,16 @@ const REDUCE_SCHEMA = {
 log(`▶ REDUCE: domain-blocked merge (${DOMAINS.length} domains in parallel) + a cross-domain pass...`);
 const perDomain = await parallel(DOMAINS.map((d) => () =>
   agent(
-    `You are the cue CONSOLIDATOR for the "${d}" domain. The MAP step ran in parallel batches, so the SAME trigger was often written 2-3 times in slightly different words. Read THIS DOMAIN's cues (short recognition triggers):
+    `You are the cue CONSOLIDATOR for the "${d}" domain. The MAP step ran in parallel batches, so OCCASIONALLY the same situation was written 2-3 times in slightly different words. Read THIS DOMAIN's cues (short structural fingerprints):
 ${readDomainRegistry(d)}
 
 TWO jobs:
-1. MERGE cues that are the SAME TRIGGER — a solver on a new problem would reach for them off the SAME recognition (same situation, not same vocabulary). EXPECT MANY MERGES: near-duplicate pairs are the bulk of the job here; hunt them actively. Only genuinely-unsure cases stay separate. KEEP each unified cue SHORT (<=12 words) — copy the sharpest member, never write a longer umbrella. An id appears in at most one merge.
-2. FLAG any cue still TOPICAL / TOO-GENERIC (names a topic/question-type, would fire on a dozen unrelated problems) — flag it, do not merge it broader.
+1. MERGE — collapse cues ONLY when they are the SAME SITUATION: a solver meeting a new problem would recognize them as the identical configuration. MERGES ARE RARE — the cues are specific fingerprints and most MUST stay separate. Do NOT merge to shrink the list. CRITICAL RULE: same THEOREM is NOT the same cue. Two different situations that both happen to use Monge / radical axis / Legendre / LTE / AM-GM / induction / pigeonhole MUST stay separate — the cue is the SITUATION, not the move (that is the whole design). When unsure, DO NOT merge. A single cue carrying MANY different techniques is HEALTHY, never a reason to merge or split. If you do merge, keep the unified cue SHORT (<=12 words) — copy the sharpest member, never write a vaguer umbrella; an id appears in at most one merge.
+2. FLAG (do NOT merge) any cue that fails the rubric: a QUESTION-TYPE / TOPIC that would fire on a dozen unrelated problems (reason: "generic"), or a COMPOUND cue joining two triggers with "or"/"and"/a slash (reason: "compound: <branch A> | <branch B>"). These are authoring errors for review, not merges.
 
 ${CUE_RUBRIC}
 
-Return {merges:[{ids,cue}], flags:[{id,reason}]}.`,
+Return {merges:[{ids,cue}], flags:[{id,reason}]}. Expect few or zero merges and a short flag list.`,
     { label: `reduce:${d}`, phase: 'Reduce', schema: REDUCE_SCHEMA }
   )
 ));
@@ -231,10 +240,10 @@ if (okDomains.length < DOMAINS.length) {
   log(`⚠️  ${DOMAINS.length - okDomains.length}/${DOMAINS.length} domain reducers FAILED: ${DOMAINS.filter((d, i) => !perDomain[i]).join(', ')}`);
 }
 const crossDomain = await agent(
-  `You are the CROSS-DOMAIN cue consolidator. The per-domain passes already merged duplicates WITHIN each domain. Your ONE job: find cues that are the SAME TRIGGER but sit in DIFFERENT domains — a structural recognition that recurs across domains (e.g. a trigger appearing in BOTH algebra and number_theory), which is the strongest evidence a cue is a real situation and not a topic. Read the whole registry with domains:
+  `You are the CROSS-DOMAIN cue consolidator. The per-domain passes already handled within-domain duplicates. Your ONE job: find cues that are the SAME SITUATION but sit in DIFFERENT domains — a structural recognition that genuinely recurs across domains (e.g. the same configuration appearing in BOTH algebra and number_theory). These are RARE; most candidates are merely the same TOPIC or same TOOL across domains, which is NOT a merge. Read the whole registry with domains:
 ${readRegistryWithDomain}
 
-Return ONLY merges whose ids span 2+ DIFFERENT domains AND are genuinely the same trigger (same situation, not merely shared vocabulary — be strict, a cross-domain merge must be a real shared recognition). Ignore same-domain pairs (already handled). Keep each unified cue SHORT (<=12 words). Return {merges:[{ids,cue}], flags:[]}.`,
+Return ONLY merges whose ids span 2+ DIFFERENT domains AND are genuinely the same situation (same recognition, not shared vocabulary and not a shared theorem — be strict). Ignore same-domain pairs (already handled). Keep each unified cue SHORT (<=12 words). Expect very few or zero. Return {merges:[{ids,cue}], flags:[]}.`,
   { label: 'reduce:cross-domain', phase: 'Reduce', schema: REDUCE_SCHEMA }
 );
 const mergePlan = {
