@@ -19,10 +19,10 @@
  *
  * INPUT  : data/problems_full.json — [{problem_id, domain, competition, year,
  *          problem_label, problem, solutions[]}]
- * OUTPUTS (durable, in output/):
+ * OUTPUT (durable, in output/):
  *   cruxes.json                  — [{problem_id, domain, subtopic, technique,
  *                                  how_used, technique_tags, subtopics}]
- *   problems_with_solutions.json — tier-3: statement + full solution + its cruxes
+ *   (full solutions live in data/problems_full.json, joined by problem_id at read time)
  *
  * PLUMBING RULE (no base64, no monolith writer): every agent WRITES ITS OWN WORK to
  * a scratch file under output/tmp/, and committed python scripts MERGE those files
@@ -38,17 +38,17 @@
  *   1. Extract               — 1-3 cruxes/problem from the solution
  *   2. Reconstruct loop       — statement+crux ⇒ rebuild solution? rewrite until
  *                              it does (≤8 rounds, sketch not full solve)
- *   3. Merge                  — run merge_cruxes.py + render_problems_with_solutions.py
+ *   3. Merge                  — run merge_cruxes.py -> output/cruxes.json
  * ----------------------------------------------------------------------------
  */
 export const meta = {
   name: 'extract-cruxes',
-  description: 'Stage 1: difficulty-filter → extract cruxes → reconstruct-validate → merge to output/cruxes.json + problems_with_solutions.json',
+  description: 'Stage 1: difficulty-filter → extract cruxes → reconstruct-validate → merge to output/cruxes.json',
   phases: [
     { title: 'Difficulty', detail: 'drop easy, keep medium+hard (all 4 domains)' },
     { title: 'Extract', detail: '1-3 cruxes per problem from its solution' },
     { title: 'Reconstruct', detail: 'up to 8 rounds: statement+crux ⇒ rebuild solution? rewrite until it reconstructs' },
-    { title: 'Merge', detail: 'run merge_cruxes.py + render_problems_with_solutions.py (tmp kept for inspection)' },
+    { title: 'Merge', detail: 'run merge_cruxes.py -> output/cruxes.json (tmp kept for inspection)' },
   ],
 };
 
@@ -369,36 +369,33 @@ const reconAvgRounds = clean.length ? (clean.reduce((n, r) => n + (r.rounds_used
 log(`Reconstruct-test: ${clean.length}/${ids.length} problems OK, ${survivingCruxes} cruxes survived, ${droppedCount} dropped (avg ${reconAvgRounds} rounds/problem)`);
 
 // ---- Merge — committed python turns the scratch files into the durable -------
-// artifacts. merge_cruxes.py reads tmp/cruxes_raw/*.json + tmp/difficulty/*.json →
-// output/cruxes.json; render_problems_with_solutions.py joins data/problems_full.json +
-// output/cruxes.json → output/problems_with_solutions.json. All logic lives in those
-// files (readable, runnable standalone). The agent only runs them.
+// artifact. merge_cruxes.py reads tmp/cruxes_raw/*.json + tmp/difficulty/*.json →
+// output/cruxes.json. All logic lives in that file (readable, runnable standalone). The
+// agent only runs it. Full solutions are NOT re-emitted here — they live in
+// data/problems_full.json and are joined by problem_id at read time.
 // NOTE: output/tmp/ is intentionally NOT deleted here — it holds per-problem retries +
 // reconstruct history (debug signal). The NEXT run's first step rm -rf's it fresh.
 phase('Merge');
-log(`▶ MERGE: merge_cruxes.py + render_problems_with_solutions.py → output/cruxes.json + problems_with_solutions.json...`);
+log(`▶ MERGE: merge_cruxes.py → output/cruxes.json...`);
 const mergeCmds = [
   `python3 ${SCRIPTS_DIR}/merge_cruxes.py`,
-  `python3 ${SCRIPTS_DIR}/render_problems_with_solutions.py`,
-  `python3 -c "import json; print('CRUXES', len(json.load(open('${OUTPUT_DIR}/cruxes.json')))); print('PWS', len(json.load(open('${OUTPUT_DIR}/problems_with_solutions.json'))))"`,
+  `python3 -c "import json; print('CRUXES', len(json.load(open('${OUTPUT_DIR}/cruxes.json'))))"`,
 ].join('\n');
 const merger = await agent(
-  `Run EXACTLY these Bash commands IN ORDER, one block. They merge this run's scratch files into the durable artifacts and print counts (CRUXES <n>, PWS <n>). Do NOT delete output/tmp — it is kept for inspection. Run every command; report the two printed counts. Return {"cruxes": <CRUXES n>, "pws": <PWS n>}.\n\n${mergeCmds}`,
-  { label: 'merge', phase: 'Merge', schema: { type: 'object', properties: { cruxes: { type: 'number' }, pws: { type: 'number' } }, required: ['cruxes', 'pws'] } }
+  `Run EXACTLY these Bash commands IN ORDER, one block. They merge this run's scratch files into output/cruxes.json and print the count (CRUXES <n>). Do NOT delete output/tmp — it is kept for inspection. Run every command; report the printed count. Return {"cruxes": <CRUXES n>}.\n\n${mergeCmds}`,
+  { label: 'merge', phase: 'Merge', schema: { type: 'object', properties: { cruxes: { type: 'number' } }, required: ['cruxes'] } }
 );
 if (!merger || !merger.cruxes) {
   throw new Error(`Merge FAILED: merge_cruxes.py produced ${merger?.cruxes} cruxes. Scratch files under ${TMP_DIR} were not merged.`);
 }
-log(`Merged → output/cruxes.json (${merger.cruxes} cruxes) + output/problems_with_solutions.json (${merger.pws} problems)`);
+log(`Merged → output/cruxes.json (${merger.cruxes} cruxes)`);
 
 return {
   corpus_in: allIds.length,
   easy_dropped: easyDropped,
   problems_used: ids.length,
   surviving_cruxes: merger.cruxes,
-  problems_with_solutions: merger.pws,
   dropped_in_reconstruct: droppedCount,
   recon_avg_rounds: reconAvgRounds,
   cruxes_out: `${OUTPUT_DIR}/cruxes.json`,
-  problems_with_solutions_out: `${OUTPUT_DIR}/problems_with_solutions.json`,
 };
