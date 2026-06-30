@@ -1,0 +1,65 @@
+[
+  {"cue": "an operation adds a fixed increment pattern at a fixed set of relative cells (a stencil, e.g. +1,-2,+1), identical everywhere on a board or cycle, and you must decide reachability", "members": ["aimo-0560", "aimo-0561", "aimo-0714"], "origin": "kept", "note": "all annihilate the stencil with a position-weighting/coloring to get a conserved quantity"},
+
+  {"cue": "a functional equation or inequality in two free variables where setting one variable to f (or an iterate f^k) of the other makes terms recombine", "members": ["aimo-0552", "aimo-0555", "aimo-0557", "aimo-0710", "aimo-0730"], "origin": "kept", "note": "the substitution collapses the relation into one among consecutive iterates of f"},
+
+  {"cue": "a relation given for every index n, built from a running sum or a sliding-window product, so consecutive instances overlap in all but their end terms", "members": ["aimo-0550", "aimo-0551", "aimo-0712", "aimo-0727", "aimo-0731"], "origin": "kept", "note": "subtract or divide two index-shifted copies; the shared block cancels to a per-index relation"},
+
+  {"cue": "a quantity provably ranges over a finite state set (parity-vectors, response maps, residues, bounded prefix sums) while you collect more items than there are states", "members": ["aimo-0560", "aimo-0564", "aimo-0580", "aimo-0715"], "origin": "kept", "note": "more collected items than available states forces a state to repeat"},
+
+  {"cue": "the objects in play (a pair, a represented value, the differences of a sequence) share a common factor, or the minimal/extremal value is divisible", "members": ["aimo-0580", "aimo-0582", "aimo-0728", "aimo-0731"], "origin": "kept", "note": "divide the common factor out to pass to a smaller or coprime equivalent instance (descent)"},
+
+  {"cue": "a line is tangent to a circle at a named point, given as hypothesis or required as the goal", "members": ["aimo-0569", "aimo-0570", "aimo-0573"], "origin": "kept", "note": "tangent-chord angle equals the inscribed angle on that chord, and its converse"},
+
+  {"cue": "two figures have respectively parallel corresponding sides, or two triangles share their circumcenter and orthocenter", "members": ["aimo-0571", "aimo-0573"], "origin": "kept", "note": "parallel correspondence forces a homothety (or translation); the task is to locate its center"},
+
+  {"cue": "build or forbid a selection under a spacing/adjacency constraint, where each chosen element can be charged to a forced exclusion", "members": ["aimo-0558", "aimo-0720"], "origin": "kept", "note": "amortize each included pick against a forced skip to bound the selection size"},
+
+  {"cue": "a process carries a bounded, monotone integer count or convex potential whose target is exactly a small extreme value of it", "members": ["aimo-0559", "aimo-0561"], "origin": "kept", "note": "classify which moves keep it from changing, forcing it to reach the target or halt"},
+
+  {"cue": "a derived point lies on the extension of a side through a vertex, so an apex angle is replaced by its supplement", "members": ["aimo-0567", "aimo-0721"], "origin": "kept", "note": "the supplement manufactures the second equal-angle pair needed for AA similarity"},
+
+  {"cue": "a quantity is trapped between two bounds that coincide, or k copies each at least m sum to exactly k*m", "members": ["aimo-0554", "aimo-0712"], "origin": "kept", "note": "coinciding bounds force equality throughout the chain"},
+
+  {"cue": "an optimizer of a weighted quantity exists and a one-step-perturbed candidate is still admissible", "members": ["aimo-0553", "aimo-0562"], "origin": "kept", "note": "read the governing inequality straight off the admissible perturbation"},
+
+  {"cue": "an inequality carries a convex or exponential term r^t to be compared against a linear quantity", "members": ["aimo-0553", "aimo-0554"], "origin": "kept", "note": "a tangent-line / Bernoulli bound linearizes the exponential contribution"},
+
+  {"cue": "two divisibility relations share a common left factor", "members": ["aimo-0578", "aimo-0724"], "origin": "kept", "note": "subtract one from a multiple of the other to collapse onto a tighter single divisibility"},
+
+  {"cue": "two circles meet at a second point, or two triangles share a vertex with proportional / reflected sides", "members": ["aimo-0567", "aimo-0569", "aimo-0570", "aimo-0722"], "origin": "tightened", "note": "that common point is the spiral-similarity center carrying one chord/triangle to the other"},
+
+  {"cue": "a point on a circle is equidistant from two others (equal chords), or is the second meeting of an angle bisector with the circumcircle", "members": ["aimo-0568", "aimo-0570", "aimo-0574", "aimo-0723"], "origin": "tightened", "note": "such a point is an arc-midpoint / circumcenter, giving a perpendicular, antiparallel chord, or central=2*inscribed"},
+
+  {"cue": "an equation forces one side to be a pure prime power (or a divisibility by one) and the exponent is the unknown", "members": ["aimo-0578", "aimo-0725", "aimo-0726"], "origin": "tightened", "note": "extract the prime-exponent on each side and compare (LTE/Legendre downstream)"},
+
+  {"cue": "a moving point keeps a constant difference, or a constant ratio, of distances to two fixed points or lines", "members": ["aimo-0572", "aimo-0721", "aimo-0722"], "origin": "tightened", "note": "constant difference yields a conic with those foci; constant ratio yields an Apollonius circle / fixed line"},
+
+  {"cue": "a point is defined only as an intersection, and you must prove it also satisfies a separate positional property", "members": ["aimo-0570", "aimo-0723"], "origin": "tightened", "note": "introduce a phantom point carrying the wanted property and show it meets the defining condition, so they coincide"},
+
+  {"cue": "three circles where each pair shares a center of similitude (mutually tangent or dilation-related), and the goal forces a fourth such center onto a known line or vertex", "members": ["aimo-0571", "aimo-0572", "aimo-0574"], "origin": "split-from:MONGE_RADICAL", "note": "all reduce a concurrency/tangency goal to collinearity of the pairwise homothety centers of a circle-triple (Monge)"},
+
+  {"cue": "a point at which two products of signed collinear segments are equal, or that has equal power to two circles (often read off from given equal segments or parallels)", "members": ["aimo-0567", "aimo-0568", "aimo-0573", "aimo-0574", "aimo-0723"], "origin": "split-from:MONGE_RADICAL", "note": "all open by placing an equal-power point on a radical axis, yielding concyclic / coaxial / radical-center conclusions"},
+
+  {"cue": "a symmetric expression pairing a set's sum with its reciprocal-sum, or a two-term sum whose two summands multiply to a quantity already controlled", "members": ["aimo-0552", "aimo-0709"], "origin": "split-from:AMGM", "note": "expanding the cross terms of (sum)(reciprocal-sum) regroups them into the controlled diagonal products"},
+
+  {"cue": "a product of positive quantities whose total sum is fixed, to be maximized or bounded", "members": ["aimo-0557", "aimo-0578", "aimo-0707"], "origin": "split-from:AMGM", "note": "split the fixed sum into equal / complementary parts to extremize the product"},
+
+  {"cue": "an extremal construction required for every n whose target size or bound is logarithmic (~log2 n) or ~2^k", "members": ["aimo-0715", "aimo-0716", "aimo-0720"], "origin": "split-from:DOUBLING_CONSTRUCT", "note": "build index-layers of geometrically doubling size (2-adic valuation / floor(log2)) so a monotone path or class meets at most one per layer"},
+
+  {"cue": "a merge operation fuses two equal-size piles into one of double size, with a target pile count to reach", "members": ["aimo-0563"], "origin": "split-from:DOUBLING_CONSTRUCT", "note": "doubling-tournament ladder plus a reservoir pile; demoted from DOUBLING_CONSTRUCT because its trigger is a pile-merge op, not a log-bound layout"},
+
+  {"cue": "a target value must be represented using a fixed prescribed number of distinct summands", "members": ["aimo-0551"], "origin": "split-from:REALIZE_TARGET", "note": "pad to the required count with value-canceling (sign-symmetric) pairs that contribute zero to the total"},
+
+  {"cue": "a prescribed structured multiset of pairwise differences (e.g. consecutive powers) must be realized by points on a line", "members": ["aimo-0554"], "origin": "split-from:REALIZE_TARGET", "note": "place points as partial sums of powers of a root of a tailored recurrence so block-sums collapse to single powers"},
+
+  {"cue": "a generating process closed under both addition and coordinatewise maximum, asked to reach a target tuple or bound the reachable count", "members": ["aimo-0564"], "origin": "split-from:REALIZE_TARGET", "note": "build spike/basis vectors from generators spanning {1,index,index^2}; folds in the bound-side closure invariant for the same problem"},
+
+  {"cue": "must construct a finite integer set in which every pairwise difference divides both of its endpoints", "members": ["aimo-0580"], "origin": "split-from:REALIZE_TARGET", "note": "a fixed gadget {0,6,8,9,12} scaled by the lcm of its differences gives an infinite family"},
+
+  {"cue": "must arrange a self-similar multiset (size-N built from copies of size-N/2) to a constant per-column or per-block target", "members": ["aimo-0713"], "origin": "split-from:REALIZE_TARGET", "note": "recursive split T_m = (T_{m-1}+1) union {1..m}, two copies concatenated"},
+
+  {"cue": "a prescribed per-row or per-position shift must be realized by cutting a strip into complementary-length blocks and transposing them", "members": ["aimo-0717"], "origin": "split-from:REALIZE_TARGET", "note": "pieces sized n, n-1, ... paired with 1, 2, ... each summing to n, swap each pair"},
+
+  {"cue": "must realize every prescribed value of a summary quantity (a for-all-targets attainment) from one template carrying a free scaling parameter", "members": ["aimo-0729"], "origin": "split-from:REALIZE_TARGET", "note": "family (l, kl, kl, k^2 l) with l tuned to hit every non-squarefree total"}
+]
