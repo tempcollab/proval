@@ -1,0 +1,3090 @@
+[
+  {
+    "technique": "Substitute f (possibly a deeper iterate of f) applied to one variable in place of a free variable of the functional relation, folding the multivariable relation into a constraint among composites/iterates of f \u2014 e.g. an index-shifted chain relating consecutive-iterate gaps.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [
+      "substitution",
+      "functional-equations",
+      "iterates",
+      "monotonicity"
+    ],
+    "exemplar_ids": [
+      "aimo-0552",
+      "aimo-0710"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "Bound how many (smaller) partners a fixed element can have by counting the roots of the congruence that defines the partnership: a degree-d congruence has at most d roots per modulus (e.g. a quadratic congruence modulo a prime has at most two).",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "count-congruence-roots",
+      "quadratic-residue-bound",
+      "bound-degrees-of-freedom",
+      "quadratic-congruence",
+      "root-counting",
+      "neighbor-bound"
+    ],
+    "exemplar_ids": [
+      "aimo-0581"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When each region you build up is steadily eroded by all later work, process the regions in a fixed order and assign them geometrically growing budgets, so each region's secured surplus outlasts the cumulative erosion still to come from every later region.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle",
+      "induction-and-construction",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle",
+      "induction-and-construction",
+      "sequences-and-recurrences"
+    ],
+    "exemplar_ids": [
+      "aimo-0560"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To lower-bound a sum over vertices of (number of monotone/increasing paths ending at that vertex), charge each edge of the underlying graph to one fixed (smaller-valued) endpoint, turning the per-edge total into a lower bound on the vertex-weight sum, one term per adjacency.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "extremal-principle",
+      "graph-theory-and-connectivity",
+      "induction-and-construction",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [
+      "double-counting",
+      "extremal-principle",
+      "DAG-path-counting",
+      "edge-charging",
+      "path-counting",
+      "extremal-equality-analysis"
+    ],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a lattice map's value-comparisons are invariant under unit translation in each coordinate, deduce that the sign of f(P+v) - f(P) depends only on the difference vector v, and classify each lattice direction as one along which f increases or decreases.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity",
+      "monovariants-and-invariants",
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "order-reduction",
+      "linear-functional",
+      "translation-invariance",
+      "order-structure",
+      "linear-form-ranking"
+    ],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To reach the extremal endpoints of a lattice-rank-by-linear-form construction, slide its free slope to just above versus just below a critical integer (taking it irrational and infinitesimally to a selected side), flipping whole residue classes of boundary lattice points across the threshold line.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity",
+      "monovariants-and-invariants",
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "extremal-construction",
+      "parameter-tuning",
+      "lattice-point-counting",
+      "construction",
+      "parity"
+    ],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Get a conserved invariant for a local chip-passing/redistribution move by assigning position-dependent cell weights that the move's symmetric difference-stencil annihilates.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "processes-and-algorithms",
+      "coloring-and-parity",
+      "invariants",
+      "modular-arithmetic"
+    ],
+    "technique_tags": [
+      "invariants-and-monovariants",
+      "invariants"
+    ],
+    "exemplar_ids": [
+      "aimo-0561"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Promote a purely local firing move into a long-range transport \u2014 ship one unit (or chip-pair) to a site at a fixed distance k while restoring every intermediate site to its original value, via a fixed scripted macro of legal operations \u2014 established by induction on the transport distance k.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "processes-and-algorithms",
+      "extremal-principle",
+      "induction",
+      "monovariants"
+    ],
+    "technique_tags": [
+      "induction-and-construction",
+      "processes-and-algorithms"
+    ],
+    "exemplar_ids": [
+      "aimo-0561"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a target state unreachable / a parameter value infeasible by exhibiting a starting configuration whose orbit under the move is periodic, so it cycles forever without hitting the target \u2014 with the block sizes left as free parameters tuned to keep the cycle alive at the boundary value.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "processes-and-algorithms",
+      "invariants-and-monovariants",
+      "construction"
+    ],
+    "technique_tags": [
+      "periodic-counterexample",
+      "size-tuned-construction"
+    ],
+    "exemplar_ids": [
+      "aimo-0559"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To prove a given label or color must appear on every Hamiltonian path of a graph (or that a color class is removable), argue the contrapositive by explicitly constructing a Hamiltonian path that avoids it, routing only through the other colors' vertices.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "graph-theory-and-connectivity",
+      "induction-and-construction",
+      "pigeonhole"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Drive an edge-coloring toward canonical form using each vertex's largest color-degree as a monovariant: via the local exchange lemma, recolor a chosen vertex's entire incident star to the color realizing its current maximum, a move that pushes that maximum monotonically upward (collapsing the star to a single color) and so terminates.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "graph-theory-and-connectivity",
+      "extremal-principle",
+      "induction-and-construction",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Control the extreme entries / spread of an evolving sorted multiset by dominating it in the majorisation (prefix-sum) order by a constructed auxiliary reference sequence that holds a fixed spread while its running total dominates the real process, transferring entrywise bounds from the auxiliary to the real one.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "invariants-and-monovariants",
+      "sequences-and-recurrences",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0718"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Charge a packing/tiling lower bound by a billiard argument: reflect non-crossing beams off the cell diagonals and pair the boundary edges where each beam enters and exits, using non-crossing to cap how many pairs of each geometric type can coexist.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "extremal-principle",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0719"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a line through a point of a circle is tangent there by the converse tangent-chord (alternate segment) theorem: a directed-angle chase showing the angle it makes with a chord through that point equals the inscribed angle that chord subtends in the alternate segment.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "tangent-chord-angle",
+      "converse-alternate-segment",
+      "tangency-via-inscribed-angle",
+      "directed-angles",
+      "tangent-criterion",
+      "power-of-a-point"
+    ],
+    "exemplar_ids": [
+      "aimo-0570",
+      "aimo-0573"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "Apply the homothety centered at the centroid with ratio -1/2, which carries each vertex to the opposite side's midpoint and the orthocenter to the circumcenter, to transport vertex and orthocenter data onto the medial triangle and nine-point circle.",
+    "domain": "geometry",
+    "subtopics": [
+      "homothety-and-similarity",
+      "triangle-centers-and-euler-line",
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "homothety",
+      "nine-point-circle",
+      "euler-line",
+      "centroid",
+      "orthocenter-circumcenter"
+    ],
+    "exemplar_ids": [
+      "aimo-0573"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Identify each external homothety center of two circles (the meet of their common tangents, or their point of tangency) and apply Monge-d'Alembert's three-circle theorem to a circle triple so the three pairwise homothety centers, with consistent internal/external parity, are forced collinear.",
+    "domain": "geometry",
+    "subtopics": [
+      "euclidean-geometry",
+      "angle-chasing-and-cyclic-quads",
+      "power-of-a-point-and-radical-axes",
+      "projective-and-cross-ratio"
+    ],
+    "technique_tags": [
+      "monge-three-circle",
+      "homothety-center-collinearity",
+      "radius-ratio",
+      "monge-dalembert",
+      "homothety-center",
+      "fixed-point",
+      "monge-theorem",
+      "auxiliary-circles",
+      "tangential-quadrilateral",
+      "auxiliary-tangent-circle"
+    ],
+    "exemplar_ids": [
+      "aimo-0572",
+      "aimo-0574"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "Introduce an auxiliary third circle so that the Monge line of three circles coincides with a known radical axis, dragging an external homothety center onto that target line.",
+    "domain": "geometry",
+    "subtopics": [
+      "radical-axes-and-power-of-a-point",
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [
+      "monge-theorem",
+      "radical-axis",
+      "homothety-center",
+      "auxiliary-circle",
+      "radical-center"
+    ],
+    "exemplar_ids": [
+      "aimo-0574"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove four points concyclic by exhibiting a chord through two of them that is antiparallel to the chord through the other two with respect to the two connecting lines.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "power-of-a-point-and-radical-axes",
+      "spiral-similarity-and-rotation",
+      "radical-axes-and-power-of-a-point"
+    ],
+    "technique_tags": [
+      "antiparallel-chord",
+      "concyclic-criterion",
+      "arc-midpoint",
+      "antiparallel",
+      "cyclic-quadrilateral",
+      "incenter",
+      "antiparallel-concyclic",
+      "incenter-arc-midpoint",
+      "tangency-equidistance",
+      "angle-bisector"
+    ],
+    "exemplar_ids": [
+      "aimo-0574"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two carrier lines pass through a shared vertex, replace an apex angle by its supplement at that vertex to manufacture the second equal-angle pair needed to conclude AA similarity of two triangles built on that vertex.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [
+      "similar-triangles",
+      "aa-similarity",
+      "supplementary-angles",
+      "power-of-a-point"
+    ],
+    "exemplar_ids": [
+      "aimo-0567"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a target concyclicity by writing the inscribed angle at the crossing of two carrier lines as the exterior angle of the triangle those lines cut off, so it splits as a difference of two angles already equated.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0567"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a vertex on a circle is equidistant from two of the circle's points (equal chords), treat it as the arc-midpoint so the side through it bisects the inscribed angle and the second chord is the reflection of the first across that side.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0568"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Convert a tangency hypothesis into an inscribed-angle equality using the tangent-chord (alternate segment) angle.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [
+      "tangent-chord-angle",
+      "AA-similarity"
+    ],
+    "exemplar_ids": [
+      "aimo-0569"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Reduce a 'three lines concurrent' claim to a single candidate point defined as the second intersection of one line with an auxiliary circle through key points, then verify each remaining line passes through it.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "construct-concurrency-point",
+      "converse-tangent-chord"
+    ],
+    "exemplar_ids": [
+      "aimo-0569"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recognize a point on the line of a right triangle's hypotenuse that is equidistant from the right-angle vertex and one endpoint as the hypotenuse midpoint, hence the circumcenter equidistant from all three vertices.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "midpoint-of-hypotenuse",
+      "equal-distance-to-circumcenter",
+      "reflection-symmetry"
+    ],
+    "exemplar_ids": [
+      "aimo-0570"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a constructed intersection point has a desired property by introducing a phantom point that has the property by construction and showing it satisfies the original point's defining concyclicity, forcing the two to coincide.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "phantom-point",
+      "coincidence-via-concyclicity",
+      "parallel-chord"
+    ],
+    "exemplar_ids": [
+      "aimo-0570"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two figures have parallel corresponding sides (so are homothetic or translates), directed-angle-chase the lines joining two pairs of corresponding points to show they are not parallel, ruling out translation and leaving a homothety.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [
+      "distinguish-homothety-vs-translation",
+      "directed-angle-chase"
+    ],
+    "exemplar_ids": [
+      "aimo-0571"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Reconstruct a given fixed circle in the configuration as a tritangent circle (incircle or excircle) of an auxiliary triangle erected on the same base.",
+    "domain": "geometry",
+    "subtopics": [
+      "euclidean-geometry",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "tritangent-circle",
+      "auxiliary-triangle",
+      "homothety-center"
+    ],
+    "exemplar_ids": [
+      "aimo-0572"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Identify a point as the internal homothety center of two tangent circles by proving it is the harmonic conjugate of their tangency point (the external center) with respect to the two circle centers.",
+    "domain": "geometry",
+    "subtopics": [
+      "euclidean-geometry",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "harmonic-conjugate",
+      "complete-quadrilateral",
+      "homothety-center"
+    ],
+    "exemplar_ids": [
+      "aimo-0572"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove two triangles sharing one equal (apex) angle are similar by showing their two base-angle pairs have the same sum and the same difference, then solving that linear system to match the base angles.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "trig-and-length-bashing"
+    ],
+    "technique_tags": [
+      "similarity-via-angle-sum-and-difference",
+      "shared-apex-angle"
+    ],
+    "exemplar_ids": [
+      "aimo-0721"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recognize points whose ratio of distances to two fixed points is constant as lying on the Apollonius circle of those points, forcing that circle's center onto the line through the two fixed points.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "trig-and-length-bashing"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0722"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Certify a point on a chord's perpendicular bisector as the circumcenter of a triangle erected on that chord by checking that the angle it subtends over the chord equals twice the inscribed angle the triangle's third vertex subtends (central-equals-twice-inscribed test).",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0723"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove two constructed points are distinct by showing their coincidence would force a reflective symmetry on the configuration that a scalene/asymmetry hypothesis forbids.",
+    "domain": "geometry",
+    "subtopics": [
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0723"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To lower-bound the number of objects satisfying a property, inject an explicitly-sized family into them by sending each base object to a qualifying one via a single minimal perturbation that an extremal feature of the object lets you invert.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "bijections-and-encoding",
+      "induction-and-construction",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0562"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Encode each maximal run of consecutive labels as a directed edge from its start value to its end value, turning a 'reassemble the pieces into one strip' question into existence of an Eulerian circuit in the resulting multigraph.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "bijections-and-encoding",
+      "graph-theory-and-connectivity"
+    ],
+    "technique_tags": [
+      "encoding",
+      "eulerian-circuit"
+    ],
+    "exemplar_ids": [
+      "aimo-0717"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recast a lower bound on the number of parts in a partition as an area-deficit packing bound by setting up a count-preserving correspondence that encodes each part as a chain of tiles in a grid.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "bijections-and-encoding",
+      "double-counting"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0719"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Find a periodic coloring of the board so that every legal move (or move-window) intersects each color class in the same fixed count, making the move act uniformly on the classes.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity",
+      "double-counting",
+      "extremal-principle",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [
+      "coloring-and-parity",
+      "double-counting",
+      "extremal-principle"
+    ],
+    "exemplar_ids": [
+      "aimo-0560",
+      "aimo-0714"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "Weight the cells of a balanced periodic coloring by a root of unity matching its period, so that each move's weighted contribution sums to zero and the global weighted total becomes an exact invariant.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity"
+    ],
+    "technique_tags": [
+      "coloring-and-parity"
+    ],
+    "exemplar_ids": [
+      "aimo-0714"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Reduce a constant mixed (parallelogram) second-difference relation on a grid modulo 2 to pin a fixed parity relation among the four corners of every 2x2 block, converting a count of odd-valued cells into a sum of per-block tallies.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity",
+      "double-counting",
+      "monovariants-and-invariants"
+    ],
+    "technique_tags": [
+      "finite-differences",
+      "parity",
+      "counting-bound"
+    ],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To compute the mixed second difference of a lattice-point-counting function over one unit cell, count the lattice points falling in the half-open strip swept between the two consecutive boundary lines as the evaluation point advances by one in each coordinate.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "coloring-and-parity",
+      "monovariants-and-invariants"
+    ],
+    "technique_tags": [
+      "discrete-second-difference",
+      "lattice-point-counting",
+      "strip-counting"
+    ],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "After a forced factor is divided out of one side of an equation, note the leftover cofactor divides both sides, hence divides their (small constant) difference, which boxes the cofactor's size and pins it to a tiny value.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "p-adic-valuation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0578"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Eliminate the shared third variable between two instances of a defining relation to reach an expression symmetric in all the parameters.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "modular-arithmetic-and-CRT",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "symmetric-parameter",
+      "brahmagupta-identity",
+      "vieta",
+      "eliminate-shared-variable",
+      "symmetric-expression",
+      "vieta-root-sum"
+    ],
+    "exemplar_ids": [
+      "aimo-0581"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Read a divisibility by m involving a difference of odd powers as m representing a binary quadratic form, then invoke Thue's lemma to extract a small nonzero value of that form that is a multiple of m.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "size-bounding-and-descent",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [
+      "thue-lemma",
+      "pigeonhole-bound",
+      "binary-quadratic-form"
+    ],
+    "exemplar_ids": [
+      "aimo-0582"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Factor a prime power written as a difference of two squares; since the product is a prime power, conclude each of the two factors is itself a power of that prime.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "polynomial-roots-and-factoring",
+      "diophantine-and-factoring"
+    ],
+    "exemplar_ids": [
+      "aimo-0725"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Exhibit a parametric family of solutions engineered so its summary quantity ranges over every required target value.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0729"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Cancel the common factor block shared by two adjacent 'consecutive differences are equal' expressions to extract a per-index relation between neighboring terms.",
+    "domain": "number_theory",
+    "subtopics": [
+      "diophantine-and-factoring",
+      "divisibility-and-gcd",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0731"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a parity or congruence condition is built from a completely additive function f (f(ab)=f(a)+f(b)), show it is invariant under dividing both arguments by a common divisor d, since f(m)+f(n) and f(m/d)+f(n/d) differ only by 2f(d).",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [
+      "completely-additive-invariance",
+      "divide-out-common-factor"
+    ],
+    "exemplar_ids": [
+      "aimo-0580"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Build a fixed finite integer set in which every pairwise difference divides both elements of its pair.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "diophantine-and-factoring"
+    ],
+    "technique_tags": [
+      "interesting-set-construction",
+      "difference-divides-endpoints"
+    ],
+    "exemplar_ids": [
+      "aimo-0580"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Apply the complement involution d \u2194 n/d to a divisor-list condition, converting a relation among small divisors into a divisibility among the complementary large divisors (and reversing their order).",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "p-adic-valuation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0724"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Identify the smallest divisors of n as the consecutive powers of its least prime, up to the index where its second-smallest prime first enters the divisor list.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0724"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Combine two divisibility relations that share the same left-hand divisor by subtracting one from a suitable multiple of the other, collapsing them into a single tighter divisibility.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0724"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Reparametrize a second-order recurrence by its consecutive differences b_n = a_n - a_{n-1}, so a factored two-branch relation becomes a per-step multiplicative ratio choice for the differences.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0728"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When N is the sum of two quantities X and Y, a prime dividing N together with one of X, Y must divide the other.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0729"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "If N is square-free and every prime factor of N divides X, conclude that N itself divides X.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0729"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To justify a coprimality WLOG, divide out any common factor of a pair and show this strictly decreases the quantity being minimized, so a minimal configuration must already be coprime.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0731"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two fractions known to be in lowest terms are equal, match numerator to numerator and denominator to denominator.",
+    "domain": "number_theory",
+    "subtopics": [
+      "divisibility-and-gcd",
+      "diophantine-and-factoring",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0731"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Sum, over each element of a set in turn, a lower bound the structure forces on that element, then divide by the elements' known total to get an averaged bound that contradicts the hypothesis.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "extremal-principle",
+      "pigeonhole"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0559"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Count all increasing paths on a labeled board by a per-cell DP indexed on the path's final cell, where each cell's count is the sum of its strictly-smaller adjacent neighbors' counts and local minima are seeded at 1.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "processes-and-algorithms",
+      "induction-and-construction"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Evaluate the mixed second difference of a lattice-point-counting function by exhibiting a translation bijection between the two adjacent slanted strips it differences.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "bijections-and-encoding",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When each move flips exactly one element per color class, equate the move count to each class's total flip count modulo 2 to force the class sizes to share parity.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "coloring-and-parity",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0714"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Lower-bound the combined same-color degree of two vertices by counting the edges that successive rotations of a Hamiltonian path about each endpoint force to carry a given color, each such forced edge being incident to an endpoint exactly once.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "double-counting",
+      "graph-theory-and-connectivity",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pick the index pair maximizing a position-weighted product of two sequence terms, then compare it against the same product with one index shifted, using optimality to bound how fast the neighboring terms may grow relative to the extremal pair.",
+    "domain": "algebra",
+    "subtopics": [
+      "extremal-principle",
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "extremal-selection",
+      "optimality-inequalities",
+      "weighted-product-maximization"
+    ],
+    "exemplar_ids": [
+      "aimo-0553"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Tighten a counting bound by one by showing its equality case is itself inadmissible: the only configuration that would attain it is forced to use a deficient boundary block.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "extremal-principle",
+      "induction-and-construction"
+    ],
+    "exemplar_ids": [
+      "aimo-0558"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Amortize a periodic process's local constraints by summing the per-step inequality over one full period of the (eventually periodic) process.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "processes-and-algorithms",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [
+      "averaging-over-a-period",
+      "amortized-inequality"
+    ],
+    "exemplar_ids": [
+      "aimo-0559"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Argue that an object maximizing a set-function cannot be a proper subset of any competitor (else the competitor would score strictly higher), so its self-overlap strictly exceeds every cross-overlap.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "induction-and-construction",
+      "bijections-and-encoding"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0562"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Translate the equality case of an edge-charging (per-edge minimum) bound into adjacency constraints on the cells, separating those that attain the minimum from those that strictly exceed it.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "graph-theory-and-connectivity",
+      "induction-and-construction"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a total order on the integer lattice is invariant under every translation, represent it by ranking points along a single real linear form x + alpha*y.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "invariants-and-monovariants",
+      "bijections-and-encoding"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0566"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To force a rounding / integer-approximation lower bound, place every target value at a half-integer so any integer assignment is at least 1/2 away from it.",
+    "domain": "algebra",
+    "subtopics": [
+      "extremal-principle",
+      "induction-and-construction"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0707"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Label each node by the maximum number of marked nodes on a monotone chain ending at it, converting 'a long marked chain exists' into 'some marked node carries a large label.'",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "double-counting",
+      "pigeonhole"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0716"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound the size of an antichain by covering its ground set with comparable (totally ordered) chains, since an antichain meets each chain at most once.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "extremal-principle",
+      "double-counting",
+      "pigeonhole"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0716"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When each object has a unique partner satisfying a relation, test the object against itself: if it already has a different valid partner, uniqueness forces the self-pairing to violate the relation, yielding a strict inequality.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0552"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Iterate the functional equation along the additive orbit of a distinguished value (such as f(0)) to determine f across the whole arithmetic progression that value generates.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "orbit-iteration",
+      "induction-on-functional-equation"
+    ],
+    "exemplar_ids": [
+      "aimo-0555"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When the functional equation couples f-values only within equivalence classes, generate solution families by assigning f freely and independently on each class the equation leaves uncoupled.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [
+      "floor-fractional-decomposition",
+      "solution-family-construction"
+    ],
+    "exemplar_ids": [
+      "aimo-0555"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To pick an integer that avoids every point of a shifted integer lattice, use that two consecutive integers cannot both land on it because their forbidden offsets would differ by a non-integer step.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "polynomial-roots-and-factoring"
+    ],
+    "technique_tags": [
+      "avoid-integer-lattice",
+      "consecutive-difference-contradiction"
+    ],
+    "exemplar_ids": [
+      "aimo-0555"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Add to a functional inequality its copy with one variable negated so the antisymmetric part of the relation cancels, leaving a clean symmetric sign condition.",
+    "domain": "algebra",
+    "subtopics": [
+      "functional-equations",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0708"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To bound what a maximizer can guarantee in a pursuit/erosion game, replace the minimizer by a strictly stronger but more rigidly structured adversary whose every response you can enumerate, prove the guarantee against that adversary, then transfer it back since out-guaranteeing the stronger one out-guarantees the real one.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "exemplar_ids": [
+      "aimo-0560"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To upper-bound how many cells a maximizer can keep nonzero, design a coloring and have the minimizer each turn reactively cut exactly the cells the maximizer just raised in one designated color class, permanently pinning that whole class at zero.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "exemplar_ids": [
+      "aimo-0560"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When an agent always acts on the current minimum while an adversary freezes one item per turn, recast the dynamics as an order-statistic inequality on the sorted state keyed to the running count of frozen items.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "games-and-strategy",
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0718"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To realize the equality case of a path-counting bound, number the vertices in a search (BFS/DFS) order from a chosen root so that every non-root vertex has exactly one earlier-numbered neighbor.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "graph-theory-and-connectivity",
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "extremal-principle",
+      "spanning-tree",
+      "constructive-labeling"
+    ],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To lower-bound the edge count of a graph carrying several edge-disjoint cycles, delete one edge from each cycle (a cycle edge is never a bridge) so connectivity survives, leaving a connected spanning subgraph with at least (#vertices - 1) edges.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "graph-theory-and-connectivity",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "connectivity-preserving-deletion",
+      "bridge-free-cycle-edge"
+    ],
+    "exemplar_ids": [
+      "aimo-0717"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To test whether a single edge of an extremal coloring that must meet every Hamiltonian path in all colors is recolorable, pivot the witnessing Hamiltonian path about that edge, sending one endpoint to the path's far end and rerouting its arms.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "graph-theory-and-connectivity",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To exploit a failed prefix-count condition on index-ordered vertices, splice the two ordered vertex classes alternately into a single Hamiltonian path.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "graph-theory-and-connectivity",
+      "induction-and-construction",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To upper-bound a gap-limited selection process, construct an adversarial sign sequence whose local structure forces every bounded-gap subsequence to cancel rather than accumulate one-sign surplus.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "double-counting",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "induction-and-construction",
+      "double-counting"
+    ],
+    "exemplar_ids": [
+      "aimo-0558"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Collapse equal objects by a doubling ladder: repeatedly combine two piles of the same size into one of double size, halving the number of piles each round.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0563"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bleed a single oversized pile down to a target size one unit per step by repeatedly pairing it against a small auxiliary pile that is regenerated each step, so no fresh material is consumed during the bleed.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0563"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To build arbitrary targets under coordinatewise max plus addition, assemble them from building-block vectors each of which max-dominates at one chosen coordinate.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "bijections-and-encoding"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0564"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Make a periodic grid construction close up for every input size by choosing its period according to the side-length's residue class.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "graph-theory-and-connectivity",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [
+      "explicit-construction",
+      "spanning-tree",
+      "grid-graph",
+      "periodicity"
+    ],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To show an extremal bound is attained, characterize its equality case as a single combinatorial target object (a vertex set whose induced subgraph and complement have prescribed structure) and construct that object explicitly for every input size.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "graph-theory-and-connectivity",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [
+      "explicit-construction",
+      "spanning-tree",
+      "independent-set",
+      "extremal-equality-analysis"
+    ],
+    "exemplar_ids": [
+      "aimo-0565"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Realize an every-cell-flipped-once target as an exact tiling of the board by the move-shapes, covering each cell exactly once.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "bijections-and-encoding",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0714"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When an exact once-each tiling cannot cover a small leftover region, cover it instead with overlapping copies of the move-shapes so that every cell is flipped an odd number of times (a parity cover rather than an exact cover).",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0714"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Partition the board into independent local blocks (sizes forced by the divisibility hypothesis) so that every move's support lies entirely inside one block, letting the blocks be cleared independently.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "constructions"
+    ],
+    "technique_tags": [
+      "block-decomposition",
+      "independent-subproblems",
+      "constructive-tiling",
+      "GF2-toggle"
+    ],
+    "exemplar_ids": [
+      "aimo-0714"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Build an extremal sequence avoiding a forbidden signed consecutive-block sum by a self-similar recursive construction, defining the full sequence from a scaled copy of itself.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "coloring-and-parity",
+      "p-adic-valuation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0715"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To limit how many marked cells a bounded-step monotone path can collect, give the mark pattern a per-row horizontal shift steeper than the path's maximum step so the path falls off each marked band.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "coloring-and-parity",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0716"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Convert a per-class bound of the form 'a class's size is at most the index of its topmost member' into a doubling recursion on cumulative size.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "double-counting",
+      "pigeonhole"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0716"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Realize a required cyclic shift of a strip by cutting it into two complementary-length blocks and swapping them by translation.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "construction",
+      "block-swap"
+    ],
+    "exemplar_ids": [
+      "aimo-0717"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Extend a corner-anchored monotone path toward the opposite corner by splicing in the tail or a sub-segment of each path it abuts.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0719"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Build a few-color edge-coloring robust to deletion of any single color by deriving each edge's color from a recursive bisection of the vertex set into geometrically sized nested classes.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "induction-and-construction",
+      "coloring-and-parity",
+      "pigeonhole",
+      "graph-theory-and-connectivity",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0720"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a factored inequality has one factor pinned to a known interval, replace that factor by a coarser monotone bound chosen so the product recombines into a neighboring term's difference of squares.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0550"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound an extremal element that must equal a sum of k others by the sum of the k smallest (or k largest) of the remaining elements.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0551"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Apply AM-GM to a pair of cross terms whose geometric-mean product regroups into quantities you already control.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0552"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Replace a convex exponential term by its tangent-line (Bernoulli) bound 2^t <= 1+t to convert exponential contributions into linear ones.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [
+      "tangent-line-bound",
+      "bernoulli-inequality",
+      "convexity-linearization"
+    ],
+    "exemplar_ids": [
+      "aimo-0553"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Use strict convexity of t -> r^t to lift a monotone ordering of consecutive power-differences to the same ordering of the underlying integer exponent gaps.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "convexity-lift",
+      "exponent-gap-monotonicity"
+    ],
+    "exemplar_ids": [
+      "aimo-0554"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Control the parity of a decimal digit sum by carry-counting: each carry in an addition lowers the digit sum by exactly 9 (an odd change), so digit-sum parity is fixed by the number of carries.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [
+      "leading-digit-control",
+      "single-carry-engineering",
+      "parity-flip-by-9"
+    ],
+    "exemplar_ids": [
+      "aimo-0556"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Maximize a product of positive integers with a fixed sum by splitting the sum into parts of size 3.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [
+      "max-product-fixed-sum",
+      "parts-of-three",
+      "AM-GM-extremum"
+    ],
+    "exemplar_ids": [
+      "aimo-0557"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound the sum of the k smallest of n sorted non-negative values by (k/n) times their total sum.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0707"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two terms are forced to be distinct, use that the bound (a+b)(1/a+1/b) >= 4 becomes strict to extract a definite surplus over the equality value.",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "inequalities-SOS-and-convexity",
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences"
+    ],
+    "exemplar_ids": [
+      "aimo-0709"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound the change from a small perturbation of a quantity under a square root via the difference-of-square-roots identity sqrt(A)-sqrt(a) = (A-a)/(sqrt(A)+sqrt(a)).",
+    "domain": "algebra",
+    "subtopics": [
+      "inequalities-SOS-and-convexity",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "padding-extension",
+      "difference-of-roots-bound",
+      "threshold-insertion"
+    ],
+    "exemplar_ids": [
+      "aimo-0713"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recast a qualitative target condition on a sequence as a fixed value of a counting monovariant (such as the number of maximal monochromatic blocks/runs), so reaching the target becomes driving that count to a specified value.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0559"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To prove a non-increasing integer monovariant must eventually strictly drop, classify every move by whether it preserves the monovariant and reduce to the single recurrent move that keeps it constant.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "processes-and-algorithms",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "monovariant-case-classification",
+      "process-reduction"
+    ],
+    "exemplar_ids": [
+      "aimo-0559"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Re-apply an already-established conserved invariant to the unique near-terminal normal form a descent reaches, using it to rule out the unwanted terminal state.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "extremal-principle",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [
+      "invariants-and-monovariants"
+    ],
+    "exemplar_ids": [
+      "aimo-0561"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a constrained chip-firing process terminates by adopting a strictly convex site-weight (such as count weighted by squared position) as a monovariant that every outward-spreading firing strictly increases.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "processes-and-algorithms",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "invariants-and-monovariants"
+    ],
+    "exemplar_ids": [
+      "aimo-0561"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Use divisibility by a fixed odd modulus as a backward-propagating invariant of a doubling/merging process, where the oddness is what lets the divisibility survive the move's doubling step.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "coloring-and-parity",
+      "size-bounding-and-descent",
+      "processes-and-algorithms"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0563"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Identify a homogeneous two-coordinate linear inequality v_j >= a*v_k (a >= 0) that is preserved by both coordinatewise addition and coordinatewise maximum, making it an invariant of any process built from those two operations.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "invariants-and-monovariants",
+      "extremal-principle"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0564"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pin the exact prime-power dividing a difference a^n - 1 (or a^n - b^n) by applying the lifting-the-exponent lemma, using the special even-exponent form for the prime 2.",
+    "domain": "number_theory",
+    "subtopics": [
+      "lifting-the-exponent",
+      "p-adic-valuation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0578"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When k terms of an arithmetic progression whose common difference is coprime to a small prime p run through all residues mod p, one term is forced divisible by p; if every term must be prime, that divisible term equals p itself.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0576"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To find where a dynamical orbit first enters a target residue class, track its residues modulo a fixed modulus d, using that a 'divide by a' step acts as multiplication by a^{-1} mod d.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "orders-and-primitive-roots",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "residue-tracking",
+      "inverse-power-residues",
+      "forced-ascent"
+    ],
+    "exemplar_ids": [
+      "aimo-0577"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To show divisibility by a modulus coprime to the base is preserved under a cyclic rotation of a fixed-width digit string, write (base times the number) minus its rotation as (base^k - 1) times the leading digit.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd",
+      "orders-and-primitive-roots"
+    ],
+    "technique_tags": [
+      "cyclic-digit-rotation",
+      "fixed-width-divisibility-invariance",
+      "repunit-modulus"
+    ],
+    "exemplar_ids": [
+      "aimo-0579"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound the spread of an interval-count: the number of multiples of n in any interval of fixed length L is floor(L/n) or floor(L/n)+1, so counts over equal-length intervals differ by at most one.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "size-bounding-and-descent",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "count-multiples-in-interval",
+      "off-by-one-equidistribution"
+    ],
+    "exemplar_ids": [
+      "aimo-0579"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To perturb a count that came out too uniform, lower the range's upper endpoint by one so exactly one extremal element is removed, shifting a single tally while the others stay fixed.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "perturb-threshold-by-one",
+      "break-tie-edge-case"
+    ],
+    "exemplar_ids": [
+      "aimo-0579"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pigeonhole on the finitely many parity vectors of a tuple of additive invariants: any collection larger than the number of parity classes contains two elements sharing the same parity vector.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "pigeonhole-parity-classes"
+    ],
+    "exemplar_ids": [
+      "aimo-0580"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a given integer is not represented by a quadratic form by checking the form's attainable residues against the integer modulo well-chosen small moduli, or equivalently by running a Jacobi-symbol reciprocity chain on the relevant quadratic-residue symbol.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "diophantine-and-factoring",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "residue-obstruction",
+      "jacobi-symbol",
+      "quadratic-reciprocity"
+    ],
+    "exemplar_ids": [
+      "aimo-0582"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two valuation expressions agree at leading order, break the tie by choosing n's residue modulo the relevant prime to tilt the second-order floor correction in floor(n/p).",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "p-adic-valuation",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "modular-arithmetic",
+      "floor-function-correction",
+      "residue-control"
+    ],
+    "exemplar_ids": [
+      "aimo-0726"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Rewrite each branch of a recurrence as p times one combination plus an earlier term to show every term is congruent mod p to an earlier term, confining all residues to the starting pair.",
+    "domain": "number_theory",
+    "subtopics": [
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0728"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound an unknown factorial's p-adic valuation by monotonicity of v_p(n!) against a smaller forced factorial, counting the p-divisible integers swept by the larger consecutive range to compare with an exact closed form.",
+    "domain": "number_theory",
+    "subtopics": [
+      "p-adic-valuation",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0578"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "In any block of consecutive integers, use that exactly one element attains the maximal 2-adic valuation to single out one summand not divisible by the next power of two.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "p-adic-valuation",
+      "coloring-and-parity",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0715"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Take the p-adic valuation of both sides of an equation, using that a cofactor of the form p^k - 1 is coprime to p, to pin an unknown prime-power exponent.",
+    "domain": "number_theory",
+    "subtopics": [
+      "p-adic-valuation",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "p-adic-valuation",
+      "divisibility-and-gcd"
+    ],
+    "exemplar_ids": [
+      "aimo-0725"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Collapse a minimum taken over the prime valuations of a composite divisor by proving one prime's valuation uniformly dominates, dropping it from the min.",
+    "domain": "number_theory",
+    "subtopics": [
+      "p-adic-valuation",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "p-adic-valuation",
+      "legendre-formula",
+      "min-over-prime-factors"
+    ],
+    "exemplar_ids": [
+      "aimo-0726"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Choose the variable to be a power of the prime p so that Legendre's formula for v_p(n!) telescopes to an exact closed form with no floor loss.",
+    "domain": "number_theory",
+    "subtopics": [
+      "p-adic-valuation",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "p-adic-valuation",
+      "legendre-formula",
+      "geometric-sum"
+    ],
+    "exemplar_ids": [
+      "aimo-0726"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When an adversary's reply to one repeated identical move is drawn from a finite set of response patterns, repeat that move enough times that pigeonhole forces a single response pattern to recur a guaranteed number of times.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "pigeonhole",
+      "games-and-strategy",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [
+      "pigeonhole",
+      "games-and-strategy",
+      "invariants-and-monovariants"
+    ],
+    "exemplar_ids": [
+      "aimo-0560"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pigeonhole on the per-coordinate sign patterns of a few vectors: when the number of coordinates exceeds the number of possible sign patterns, two coordinates must share the identical sign pattern across all the vectors.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "pigeonhole",
+      "coloring-and-parity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0564"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Assign signs online by a balancing rule (add when the running total is nonpositive, subtract when positive) to confine every prefix sum to a bounded interval.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "pigeonhole",
+      "processes-and-algorithms",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0715"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Subtract a well-chosen constant from both sides of a quadratic constraint so the remainder factors as a product of shifted linear terms, exposing the sign structure.",
+    "domain": "algebra",
+    "subtopics": [
+      "polynomial-roots-and-factoring",
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0550"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a fixed monic degree-k polynomial equals a sliding product of k shifted terms, compare the subleading (x^{k-1}) coefficient of both sides to constrain the sum of the shifts.",
+    "domain": "algebra",
+    "subtopics": [
+      "polynomial-roots-and-factoring",
+      "inequalities-SOS-and-convexity",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0712"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two products of signed segment lengths taken along two lines through their common intersection point are equal, invoke the converse of power-of-a-point to conclude the four segment endpoints are concyclic.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0567"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To prove four points concyclic, introduce the intersection of two connecting chords and instead show that point has equal power to two auxiliary circles (i.e. that it lies on their radical axis).",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0568"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Convert a pair of parallel-line conditions into an equal-power product equality by chasing the shared ratio they create into a product of collinear segment lengths.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "trig-and-length-bashing"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0568"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a set of circle centres collinear by showing the circles are coaxial: exhibit two distinct points each of equal power to all of them, forcing the centres onto the common perpendicular radical line.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "radical-axis",
+      "coaxial-circles",
+      "collinear-centers"
+    ],
+    "exemplar_ids": [
+      "aimo-0573"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Evaluate the power of a point with respect to a circle by treating it as a pole and using that its inverse is the foot of the perpendicular from it onto its polar, turning the inversion product OP*OP' into the squared radius.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "projective-and-cross-ratio",
+      "inversion"
+    ],
+    "technique_tags": [
+      "brocard-theorem",
+      "pole-polar",
+      "self-polar-triangle",
+      "inversion"
+    ],
+    "exemplar_ids": [
+      "aimo-0573"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Apply the Newton-Gauss line: the midpoints of the three diagonals of a complete quadrilateral are collinear.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "projective-and-cross-ratio",
+      "complete-quadrilateral-and-newton-gauss"
+    ],
+    "technique_tags": [
+      "newton-gauss-line",
+      "complete-quadrilateral",
+      "power-of-a-point",
+      "radical-axis",
+      "coaxial-circles"
+    ],
+    "exemplar_ids": [
+      "aimo-0573"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "For a cyclic quadrilateral, invoke Brocard's theorem: the diagonal triangle (meet of the diagonals together with the two meets of opposite-side pairs) is self-polar with respect to the circle, so each vertex is the pole of the opposite side.",
+    "domain": "geometry",
+    "subtopics": [
+      "projective-and-polar-methods",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "brocard-theorem",
+      "pole-polar",
+      "self-polar-triangle",
+      "power-of-a-point",
+      "radical-axis"
+    ],
+    "exemplar_ids": [
+      "aimo-0573"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Certify a point is the incenter of an inscribed (Poncelet) triangle via the trillium converse: show its distance to an arc-midpoint equals that midpoint's distance to the endpoints of the touched chord, placing it on the radical axis of two arc-midpoint circles.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "radical-axis",
+      "trillium-lemma",
+      "poncelet-porism"
+    ],
+    "exemplar_ids": [
+      "aimo-0574"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recognize the external homothety center of two circles as the radical center of a triple of auxiliary circles built on the configuration.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "spiral-similarity-and-rotation"
+    ],
+    "technique_tags": [
+      "monge-theorem",
+      "radical-center",
+      "homothety-center"
+    ],
+    "exemplar_ids": [
+      "aimo-0574"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Make three chords concur at a point of equal power by recognizing them as the three pairwise radical axes of a circle triple, which meet at the radical center.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0723"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Upgrade two distinct equal-power points of a coaxial circle family into two genuine common intersection points by certifying their shared radical axis is of secant type, exhibiting a point lying strictly inside the circles.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0723"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Obtain a second equal-power point distinct from the first by re-running the same concyclic-quadrilateral radical-center construction on an alternative auxiliary point chosen on each circle.",
+    "domain": "geometry",
+    "subtopics": [
+      "power-of-a-point-and-radical-axes",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0723"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To cap how many unwanted (off-type) elements a spacing-constrained selection is forced to include, injectively charge each forced inclusion to a distinct skipped position.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "processes-and-algorithms",
+      "extremal-principle",
+      "induction-and-construction"
+    ],
+    "technique_tags": [
+      "processes-and-algorithms",
+      "extremal-principle"
+    ],
+    "exemplar_ids": [
+      "aimo-0558"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove an iterative shuttling/balancing loop terminates by tracking a strictly shrinking sub-block as the monovariant.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "processes-and-algorithms",
+      "monovariants",
+      "extremal-principle"
+    ],
+    "technique_tags": [
+      "processes-and-algorithms"
+    ],
+    "exemplar_ids": [
+      "aimo-0561"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "In a merging process, keep one oversized pile as a reservoir and draw an equal amount from it to inflate a smaller pile up to a partner's size, making any two piles mergeable.",
+    "domain": "combinatorics",
+    "subtopics": [
+      "processes-and-algorithms",
+      "invariants-and-monovariants"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0563"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Spot a complete quadrangle in the figure and use its harmonic property: the two opposite sides through one diagonal point cut a harmonic range on the line joining the other two diagonal points, certifying a constructed intersection as the harmonic conjugate of two known points.",
+    "domain": "geometry",
+    "subtopics": [
+      "projective-and-cross-ratio"
+    ],
+    "technique_tags": [
+      "complete-quadrangle",
+      "harmonic-conjugate",
+      "homothety-center"
+    ],
+    "exemplar_ids": [
+      "aimo-0572"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Apply a shift-invariant strict inequality at the next index, using the relation's symmetry to derive the same inequality reversed and force a contradiction.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0550"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Choose the common ratio of a geometric progression to be a root of a tailored polynomial so that a sum of consecutive powers collapses into a single higher power.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "polynomial-roots-and-factoring"
+    ],
+    "technique_tags": [
+      "partial-sums-of-geometric-progression",
+      "root-of-defining-polynomial",
+      "constructive-realization"
+    ],
+    "exemplar_ids": [
+      "aimo-0554"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Lower-bound a quantity by a counting mismatch: when the prescribed target values outnumber the atomic (consecutive-index) differences available, force at least one target to be a non-atomic difference, which decomposes into a sum of two smaller differences.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "pigeonhole-on-atomic-differences",
+      "ratio-lower-bound",
+      "minimal-element-bound"
+    ],
+    "exemplar_ids": [
+      "aimo-0554"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When the extremal element splits in many two-term ways and a threshold shows only a few values can exceed half of it, use distinctness across the splittings to pin which elements those large halves must be.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "max-element-two-term-splittings",
+      "half-threshold-pigeonhole",
+      "forced-top-consecutive-values"
+    ],
+    "exemplar_ids": [
+      "aimo-0554"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Substitute an already-established equal pair of terms back into the self-composed (index-additive) defining relation to propagate the equality one index forward.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "functional-equations"
+    ],
+    "technique_tags": [
+      "equality-propagation",
+      "forced-periodicity",
+      "functional-relation"
+    ],
+    "exemplar_ids": [
+      "aimo-0557"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Write a relation containing a running sum or sliding product at two consecutive indices and subtract (additive case) or divide (multiplicative case) the two copies to cancel the shared cumulative part, leaving a local recurrence between neighboring terms.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "polynomial-roots-and-factoring",
+      "telescoping-and-summation",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "sequences-and-recurrences"
+    ],
+    "exemplar_ids": [
+      "aimo-0712",
+      "aimo-0727"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "From an equation forcing k times the minimum of a set of quantities to equal a sum of k quantities each at least that minimum, invoke the equality case to conclude every one of them equals the minimum.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "telescoping-and-summation",
+      "polynomial-roots-and-factoring"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0712"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Build a constant-column-sum arrangement of a self-similar multiset by recursion on its size, reducing the larger instance to the arrangement of the next-smaller copy plus a small base block.",
+    "domain": "algebra",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [
+      "recursive-construction",
+      "constant-sum-triples",
+      "induction-on-multiset"
+    ],
+    "exemplar_ids": [
+      "aimo-0713"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Take the first index at which a unit-step (increments at most one) unbounded integer sequence reaches a target value to force the immediately preceding term to equal the target minus one.",
+    "domain": "number_theory",
+    "subtopics": [
+      "sequences-and-recurrences",
+      "divisibility-and-gcd",
+      "size-bounding-and-descent"
+    ],
+    "technique_tags": [
+      "sequences-and-recurrences"
+    ],
+    "exemplar_ids": [
+      "aimo-0727"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pin the value of a quantity known to be a multiple of a prime p by squeezing it into an interval spanning only one or two multiples of p, forcing it to equal one of those multiples.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd",
+      "diophantine-and-factoring",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0576"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound the orbit of a map that either adds a fixed step or divides by d (when divisible) using coprimality of step and d: among any d consecutive additive iterates one is divisible by d, capping the additions before a forced division.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "modular-arithmetic-and-CRT",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "pigeonhole-in-AP",
+      "orbit-boundedness",
+      "coprimality"
+    ],
+    "exemplar_ids": [
+      "aimo-0577"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recognize an add-or-divide update rule as a bijection on a finite invariant state set and iterate its inverse backward from the seed to read off the desired pre-images.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [
+      "finite-set-permutation",
+      "invertible-dynamics",
+      "reverse-iteration"
+    ],
+    "exemplar_ids": [
+      "aimo-0577"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Upper-bound a factorial by pairing factors k and (n-k) symmetrically and applying AM-GM to each pair to bound it by a common square.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "diophantine-and-factoring"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0578"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Induct on a cyclic configuration by deleting its extremal (largest) element and contracting its two neighbors into a single adjacency, producing a smaller valid instance of the same problem.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd"
+    ],
+    "technique_tags": [
+      "extremal-peel",
+      "contraction",
+      "induction-on-size",
+      "extremal-element",
+      "induction-by-deletion",
+      "contraction-reduction"
+    ],
+    "exemplar_ids": [
+      "aimo-0581"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Force the minimal positive value represented by a quadratic form to be coprime to a small prime by Fermat descent across equivalent forms: if the prime divides the minimal value, use form-equivalence identities to exhibit a strictly smaller represented multiple, contradicting minimality.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "diophantine-and-factoring",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [
+      "fermat-descent",
+      "quadratic-form-equivalence",
+      "genus-switching"
+    ],
+    "exemplar_ids": [
+      "aimo-0582"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Resolve a prime-power-equals-polynomial equation by lower-bounding the exponent so the prime power eventually outgrows the polynomial, leaving only finitely many small cases to check.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "diophantine-and-factoring"
+    ],
+    "technique_tags": [
+      "size-bounding-and-descent",
+      "inequalities-SOS-and-convexity"
+    ],
+    "exemplar_ids": [
+      "aimo-0725"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove an auxiliary quantity is unbounded by contradiction: if it were bounded, the prime factors occurring in the sequence would lie in a finite set, contradicting that infinitely many primes appear.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd",
+      "diophantine-and-factoring"
+    ],
+    "technique_tags": [
+      "size-bounding-and-descent"
+    ],
+    "exemplar_ids": [
+      "aimo-0727"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Divide a common prime factor out of every term of a recurrence and shift the index to manufacture a smaller instance of the same recurrence (descent).",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0728"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Forbid periodic points of an iterated self-map by exhibiting a single argument whose orbit attains infinitely many values.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "orders-and-primitive-roots",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "no-periodic-points-via-infinite-orbit",
+      "aperiodicity-from-orbit-infinitude"
+    ],
+    "exemplar_ids": [
+      "aimo-0730"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Evaluate the same expression via two substitutions whose shared value is symmetric in two free parameters, then equate the resulting two composition expressions to extract a symmetric identity.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "divisibility-and-gcd",
+      "modular-arithmetic-and-CRT"
+    ],
+    "technique_tags": [
+      "symmetrize-two-evaluations",
+      "use-symmetric-value-to-equate-compositions"
+    ],
+    "exemplar_ids": [
+      "aimo-0730"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Force an auxiliary function to be arithmetic by summing the additive shift-displacements around a closed 3-cycle of arguments and requiring them to cancel, yielding a three-term linear relation.",
+    "domain": "number_theory",
+    "subtopics": [
+      "size-bounding-and-descent",
+      "sequences-and-recurrences",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [
+      "triangle-shift-sum-zero",
+      "cocycle-cancellation-forces-linearity"
+    ],
+    "exemplar_ids": [
+      "aimo-0730"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two triangles share a vertex and have three pairs of equal sides, recognize the SSS congruence as a rotation about the shared vertex and read off the equal apex angles.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0567"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Identify the midpoints (or equal-ratio points) of corresponding sides as corresponding points under an established similarity, so an angle measured at one transfers to its counterpart.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "corresponding-points-under-similarity"
+    ],
+    "exemplar_ids": [
+      "aimo-0569"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Treat the second intersection of two circles through a common point as the center of the spiral similarity carrying one circle's chord to the other's (the Miquel point of the four lines).",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "spiral-center",
+      "miquel-point"
+    ],
+    "exemplar_ids": [
+      "aimo-0570"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a spiral similarity at the common point of two circles has rotation angle 90 degrees, conclude the circles meet orthogonally there, so each circle's radius at that point is tangent to the other circle.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "orthogonal-circles",
+      "tangent-radius",
+      "spiral-angle"
+    ],
+    "exemplar_ids": [
+      "aimo-0570"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Recognize two triangles with respectively parallel corresponding sides as homothetic and locate the homothety center as the intersection of two corresponding-vertex lines, forcing the third corresponding-vertex line through it.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "homothety-from-parallel-sides",
+      "center-as-corresponding-vertex-intersection"
+    ],
+    "exemplar_ids": [
+      "aimo-0571"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove two circles are tangent by exhibiting a homothety that carries one onto the other and showing its center lies on both circles, so that center is their unique common point.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "tangency-from-homothety-center-on-both-circles"
+    ],
+    "exemplar_ids": [
+      "aimo-0571"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Prove a quadrilateral is tangential by taking the circle tangent to three of its four sides and using Monge's three-circle theorem (on that circle and two reference circles) to show it also touches the fourth side.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads",
+      "radical-axes-and-power-of-a-point"
+    ],
+    "technique_tags": [
+      "monge-theorem",
+      "homothety-center",
+      "tangential-quadrilateral",
+      "tangency-propagation"
+    ],
+    "exemplar_ids": [
+      "aimo-0574"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Realize the reflections of a vertex across two cevians through that vertex as the images of the two cevian-feet under the homothety of ratio 2 centered at the vertex, carrying the foot-triangle's similarity type to the reflection triangle.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0722"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When two triangles share a vertex and are each inversely similar to a common reference triangle, recognize them as related by a spiral similarity centered at the shared vertex.",
+    "domain": "geometry",
+    "subtopics": [
+      "spiral-similarity-and-rotation",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0722"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To hit an exact target sum while keeping a prescribed number of distinct summands, pad the set with sign-symmetric zero-sum pairs {-i, i} that change the count without changing the total.",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0551"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Produce two inputs with identical digit sum by multiplying one fixed number by two different powers of 10, exploiting s(10^m X) = s(X).",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "digit-sum-invariance",
+      "power-of-10-shift",
+      "reduction-to-two-inputs"
+    ],
+    "exemplar_ids": [
+      "aimo-0556"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Decompose each real into its floor plus fractional part, so the leftover integer budget equals the sum of the fractional parts.",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "telescoping-and-summation"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0707"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Substitute sum/difference coordinates s = x+y, t = x-y to recast an inequality in shifted arguments as a symmetric relation in two independent free variables.",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "functional-equations"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0708"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Assign each value a potential equal to its distance from the central/median value, so the potentials form a fixed multiset whose total is independent of the arrangement.",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "median-centering",
+      "potential-function",
+      "fixed-multiset"
+    ],
+    "exemplar_ids": [
+      "aimo-0711"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Round each irrational/real term to its nearest integer to convert an approximate-sum inequality into an exact integer constant-sum target.",
+    "domain": "algebra",
+    "subtopics": [
+      "symmetric-functions-and-substitution",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "discretization",
+      "rounding-to-nearest-integer",
+      "reduce-analytic-to-combinatorial"
+    ],
+    "exemplar_ids": [
+      "aimo-0713"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a chain of terms admits both a lower-bound inequality and an upper-bound inequality that share a common block of middle terms, add the two inequalities so the shared block cancels, leaving a relation among only the boundary terms.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [],
+    "exemplar_ids": [
+      "aimo-0551"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Bound a one-sided tail sum of a sequence by a geometric series, using a uniform per-step multiplicative ratio between consecutive terms so the whole tail caps at a constant multiple of its anchor term.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "sequences-and-recurrences",
+      "pigeonhole",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "geometric-series-tail-bound",
+      "dyadic-bucketing",
+      "pigeonhole-on-leftover-mass",
+      "scaling-identity-amplification",
+      "superadditive-concatenation",
+      "geometric-tail-bound"
+    ],
+    "exemplar_ids": [
+      "aimo-0553",
+      "aimo-0557"
+    ],
+    "exemplar_count": 2
+  },
+  {
+    "technique": "Squeeze a sum of distinct positive integers (or strictly decreasing positive integer gaps) between its forced minimal value 1+2+...+k and an independently derived upper bound; when the two bounds coincide, equality is forced in every term.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "squeeze-to-equality",
+      "minimal-integer-gap-sum",
+      "no-unit-gap-via-exponent-injectivity"
+    ],
+    "exemplar_ids": [
+      "aimo-0554"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Pick the variable large enough that the monomials of a polynomial occupy disjoint decimal-digit ranges, so that with no carries the digit sum of the value splits as the sum of the individual monomials' digit sums.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "symmetric-functions-and-substitution"
+    ],
+    "technique_tags": [
+      "non-overlapping-digit-blocks",
+      "carry-free-decomposition",
+      "growth-spacing"
+    ],
+    "exemplar_ids": [
+      "aimo-0556"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To lower-bound a cumulative increasing-integer sequence, partition its index range into disjoint fixed-length windows, prove a uniform minimum gain over each window, and sum the per-window bounds.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "telescoping-and-summation",
+      "sequences-and-recurrences"
+    ],
+    "exemplar_ids": [
+      "aimo-0709"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Telescope a quantity that is bounded independently of m into a sum of m same-sign terms each at least a fixed constant; letting m grow forces that constant to vanish (Archimedean principle).",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "sequences-and-recurrences",
+      "inequalities-SOS-and-convexity"
+    ],
+    "technique_tags": [
+      "telescoping",
+      "archimedean",
+      "unbounded-sum"
+    ],
+    "exemplar_ids": [
+      "aimo-0710"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Sum a per-edge bound along a path so that each interior vertex's contribution is counted twice while the two endpoints are counted once, isolating an inequality on only the endpoint terms.",
+    "domain": "algebra",
+    "subtopics": [
+      "telescoping-and-summation",
+      "inequalities-SOS-and-convexity",
+      "sequences-and-recurrences"
+    ],
+    "technique_tags": [
+      "double-counting-along-path",
+      "endpoint-isolation",
+      "triangle-inequality"
+    ],
+    "exemplar_ids": [
+      "aimo-0711"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "When a moving point keeps a constant difference (or sum) of distances to two fixed points, conclude it traces a conic having those two points as foci.",
+    "domain": "geometry",
+    "subtopics": [
+      "trig-and-length-bashing",
+      "projective-and-cross-ratio"
+    ],
+    "technique_tags": [
+      "conic-locus",
+      "focal-radii",
+      "tangent-segments"
+    ],
+    "exemplar_ids": [
+      "aimo-0572"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To prove two homothety centers that lie on a common line coincide, show they divide a shared segment in equal ratios (equal homothety radius-ratios force the same internal center).",
+    "domain": "geometry",
+    "subtopics": [
+      "trig-and-length-bashing",
+      "power-of-a-point-and-radical-axes"
+    ],
+    "technique_tags": [
+      "homothety-center",
+      "radius-product-identity",
+      "tangent-segments"
+    ],
+    "exemplar_ids": [
+      "aimo-0572"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "To prove a moving point is collinear with the intersection of two fixed lines, show its ratio of distances to those two lines stays constant (a point lies on a fixed line through the intersection iff this distance-ratio is fixed).",
+    "domain": "geometry",
+    "subtopics": [
+      "trig-and-length-bashing",
+      "barycentric-and-areas"
+    ],
+    "technique_tags": [
+      "distance-ratio-collinearity",
+      "concurrency-via-intersection-point"
+    ],
+    "exemplar_ids": [
+      "aimo-0721"
+    ],
+    "exemplar_count": 1
+  },
+  {
+    "technique": "Express the perpendicular distance from a point to a line as an adjacent segment times the sine of the known angle that segment makes with the line, so shared angles cancel and a distance-ratio reduces to a pure side-ratio.",
+    "domain": "geometry",
+    "subtopics": [
+      "trig-and-length-bashing",
+      "angle-chasing-and-cyclic-quads"
+    ],
+    "technique_tags": [
+      "distance-as-side-times-sine",
+      "ratio-simplification"
+    ],
+    "exemplar_ids": [
+      "aimo-0721"
+    ],
+    "exemplar_count": 1
+  }
+]

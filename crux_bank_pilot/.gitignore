@@ -1,0 +1,2 @@
+# Per-agent scratch written during a run; regenerated each run, deleted at next run's start.
+output/tmp/
