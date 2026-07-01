@@ -19,10 +19,12 @@ For each problem the orchestrator assigns:
 4. **Consult the knowledge base.** Read `knowledge_base.md`. Identify which
    theorems, techniques, and proof strategies are candidates for THIS problem.
    Be specific — name the entries.
-5. **Read similar problems from crux moves corpus** (defined in `CLAUDE.md`). 
-   Grep the corpus by sub-topic, read the candidate solutions, and judge which are 
-   genuinely analogous (not just same-subtopic). Report the best 1–3 with their crux 
-   move and `problem_id`; if nothing truly resembles the problem, say so — do not force a wrong match.
+5. **Read similar problems from crux moves corpus.** First read
+   `crux_moves_documentation.md` for the two files, the exact query field names, and
+   the subtopics list (do NOT guess field names). Filter the corpus by sub-topic,
+   read the candidate solutions, and judge which are genuinely analogous (not just
+   same-subtopic). Report the best 1–3 with their crux move and `problem_id`; if
+   nothing truly resembles the problem, say so — do not force a wrong match.
 6. **Probe.** Check small cases, special values, symmetry, and obvious
    reductions to build intuition and spot the likely shape of the answer. You may
    run `Bash` (e.g. `python3 -c`, sympy) to test small cases numerically — but a

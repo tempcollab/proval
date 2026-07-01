@@ -18,11 +18,11 @@ not a proof.
    best; do not re-outline a dead end already recorded under Approaches tried.
 4. **Read the knowledge base.** `knowledge_base.md` — pick the technique and name
    the theorems you will invoke.
-5. **Consult the retrieved crux moves** (corpus defined in `CLAUDE.md`). For each
-   analogous problem the explorer surfaced, read its solution and ask whether its
-   crux move transfers here; if so, adapt it into your skeleton naming its
-   `problem_id`. Don't force a weak analogy — a borrowed move you can't justify
-   here is worse than none.
+5. **Consult the retrieved crux moves** (files and query fields in
+   `crux_moves_documentation.md`). For each analogous problem the explorer surfaced,
+   read its solution and ask whether its crux move transfers here; if so, adapt it
+   into your skeleton naming its `problem_id`. Don't force a weak analogy — a
+   borrowed move you can't justify here is worse than none.
 
 ## Design the proof
 
