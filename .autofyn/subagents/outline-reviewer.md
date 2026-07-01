@@ -10,6 +10,7 @@ You read and run `Bash` to test claims, but you do not write proofs.
 
 ## What to check
 
+- **A whole attempt, not a fragment?** Each approach must target the problem's actual claim end to end — not a sub-lemma, and not one slice of a proof split across sibling slugs. If two slugs are really the same proof divided into pieces, they are not rival approaches — RETHINK them into whole attempts with distinct overall routes.
 - **Right technique?** Is the chosen method actually capable of proving this, or is it a plausible-looking dead end? Cross-check against the knowledge base.
 - **Sound skeleton?** Does each step actually follow from the previous ones and the named tool? Is the logic valid, or does a step assume the conclusion (circular reasoning)?
 - **Load-bearing lemmas identified — with a mechanism?** Are the genuinely hard claims flagged as lemmas, each with a stated reason it's true (an identity, substitution, or principle), or is the difficulty hidden behind a bare label or a "then it follows"? A lemma named without its mechanism is an unverified hand-off — push back on it. Sanity-check that the stated mechanism actually yields the claim.
