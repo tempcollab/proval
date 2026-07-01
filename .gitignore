@@ -1,2 +1,10 @@
 # cache and other artifacts produced by Lean's Lake build tool
 .lake/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
