@@ -41,7 +41,7 @@ Each crux carries one `subtopic`. Filter by these values.
 `cyclotomic-and-roots-of-unity` · `polynomial-roots-and-factoring` ·
 `sequences-and-recurrences` · `telescoping-and-summation` · `double-counting` ·
 `functional-equations` · `graph-theory-and-connectivity` ·
-`induction-and-construction` · `pigeonhole` · `zsygmondy-and-primitive-divisors` ·
+`induction-and-construction` · `pigeonhole` · `zsigmondy-and-primitive-divisors` ·
 `invariants-and-monovariants` · `coloring-and-parity` · `games-and-strategy`
 
 **algebra** · **combinatorics** · **geometry** — *Future work — no cruxes yet.*

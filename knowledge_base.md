@@ -69,6 +69,10 @@ not by problem domain — many problems mix areas.
   prime (dividing no `aᵏ − bᵏ`, `k < n`) except `n=1` with `a−b=1`, `n=2` with
   `a+b` a power of 2, and `(a,b,n)=(2,1,6)`; for `aⁿ + bⁿ` except `2³+1³`. Forces
   distinct primes across a family, or bounds exponents.
+- **Bertrand's postulate**: for every `n ≥ 1` there is a prime `p` with
+  `n < p ≤ 2n`. Guarantees a prime in a dyadic range — pick a prime just above a
+  bound, force a prime factor into `(n, 2n]`, or extract a prime `p` with
+  `n/2 < p ≤ n` that divides `n!` to exactly the first power.
 - **Dirichlet's theorem (primes in AP)**: for `gcd(a,d)=1`, `a, a+d, a+2d, …` has
   infinitely many primes — pick a prime in a chosen residue class (e.g. `p≡1 mod m`
   for an element of order `m`).

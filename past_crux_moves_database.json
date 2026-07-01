@@ -1097,12 +1097,12 @@
   {
     "problem_id": "aimo-0157",
     "domain": "number_theory",
-    "subtopic": "zsygmondy-and-primitive-divisors",
+    "subtopic": "zsigmondy-and-primitive-divisors",
     "technique": "Guarantee a brand-new prime divisor at each step of an inductive prime chain by invoking Zsigmondy on the growing exponent.",
     "how_used": "Building distinct primes p_0,p_1,... with p_0^2...p_{k-1}^2 p_k | b^{p_0...p_{k-1}}+1: since p_0...p_k | b^{p_0...p_{k-1}}+1, Zsigmondy yields an odd prime q outside {p_0,...,p_k} dividing b^{p_0...p_k}+1, taken as p_{k+1}; the b>2 hypothesis is exactly what defeats the only exceptional case (2^3+1=3^2 has no primitive prime), and elementarily one shows (c^p+1)/(c+1) is coprime to c+1 apart from p once c^p+1 > p(c+1).",
     "technique_tags": [],
     "subtopics": [
-      "zsygmondy-and-primitive-divisors",
+      "zsigmondy-and-primitive-divisors",
       "divisibility-and-gcd",
       "diophantine-and-factoring"
     ],
@@ -4899,12 +4899,12 @@
   {
     "problem_id": "aimo-0611",
     "domain": "number_theory",
-    "subtopic": "zsygmondy-and-primitive-divisors",
+    "subtopic": "zsigmondy-and-primitive-divisors",
     "technique": "To force the existence of a primitive prime, prove a term grows larger than the product of all earlier terms, so some prime must appear in it to a strictly higher exponent than in that product.",
     "how_used": "Establish x_n > x_1·x_2···x_{n-2} (via x_{n+1}>x_n^2>x_n x_{n-1} once terms exceed 7, then induction). This guarantees a prime p with v_p(x_n) > v_p(x_1···x_{n-2}). Combined with the two periodicity claims (k|n and v_p(x_n)=v_p(x_k) for a proper divisor k≤n-2), this exponent gap is impossible unless p divides none of x_1,...,x_{n-1}; n=2,3 handled since the only proper divisor is 1 and x_1=1 carries no prime.",
     "technique_tags": [],
     "subtopics": [
-      "zsygmondy-and-primitive-divisors",
+      "zsigmondy-and-primitive-divisors",
       "size-bounding-and-descent",
       "p-adic-valuation"
     ],
