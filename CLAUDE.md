@@ -25,10 +25,7 @@ the hard problems as possible.
 
 This is a math repo, not a code repo. Adapt the standard round accordingly:
 
-- **Setup: none.** There is no build, no package to install, no test suite. Skip
-  the round-1 build-environment setup entirely — do NOT run `pip install`,
-  `npm ci`, `uv sync`, or look for `package.json` / `pyproject.toml`. The only
-  artifacts are Markdown files under `results/`.
+- **Setup: none.** `pip install` scientific and computational python packages: `numpy`, `scipy`, and `sympy`. Do not look for `package.json` / `pyproject.toml`. The only artifacts are Markdown files under `results/`.
 - **Goal & eval.** The Goal is **maximize the number of hard problems solved**
   out of the 39 `difficulty_level: "hard"` entries in `problems.jsonl`. The eval
   is a count, not a test run: the number of `results/<id>.md` files whose
