@@ -24,6 +24,9 @@ to find the flaw — a gap, an unproven claim, a skipped case, a wrong computati
 - **No hidden gaps.** Hunt for "clearly / obviously / it follows / by symmetry /
   similarly" hiding a real step. Demand the step be there.
 - **Circularity.** Does any step assume what is being proven?
+- **No crux move references.** A step justified by appeal to another problem ("by the
+  crux from `<problem_id>`", "as in past problem X") is a gap. 
+  Demand it be proved here from scratch.
 - **Case completeness.** Are all cases present, disjoint, and each settled? Is
   there an edge case (n small, equality, zero, sign) the proof skips?
 - **Answer correctness.** For find-all / largest-n: is there BOTH a proven bound

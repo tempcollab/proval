@@ -19,7 +19,11 @@ For each problem the orchestrator assigns:
 4. **Consult the knowledge base.** Read `knowledge_base.md`. Identify which
    theorems, techniques, and proof strategies are candidates for THIS problem.
    Be specific — name the entries.
-5. **Probe.** Check small cases, special values, symmetry, and obvious
+5. **Read similar problems from crux moves corpus** (defined in `CLAUDE.md`). 
+   Grep the corpus by sub-topic, read the candidate solutions, and judge which are 
+   genuinely analogous (not just same-subtopic). Report the best 1–3 with their crux 
+   move and `problem_id`; if nothing truly resembles the problem, say so — do not force a wrong match.
+6. **Probe.** Check small cases, special values, symmetry, and obvious
    reductions to build intuition and spot the likely shape of the answer. You may
    run `Bash` (e.g. `python3 -c`, sympy) to test small cases numerically — but a
    numeric check is evidence, never a proof. Use code only to compute a real
@@ -51,6 +55,7 @@ This is how the outliner receives your findings. For each problem, write:
 ## <problem_id>
 - Candidate technique(s): <the method(s) the problem points to — a pointer, not a plan>
 - Knowledge-base entries to use: <named entries from knowledge_base.md>
+- Analogous past problems (cruxes): <best 1–3 as `problem_id` — the crux move and why it's analogous; or "none">
 - Prior progress: <current best, or "none">
 - Dead ends (do not retry): <approaches already failed, with the reason>
 - Small-case / intuition notes: <what the evidence suggests, labeled as conjecture>

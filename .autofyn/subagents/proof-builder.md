@@ -16,6 +16,10 @@ deep-reasoning step — every gap the outline left is yours to close, fully.
    Current best; don't restart from scratch if a lemma is already proven).
 5. **Read the knowledge base.** `knowledge_base.md` — for the exact statements of
    the theorems you invoke.
+6. **Pull the mechanism from any analogous crux** (corpus defined in `CLAUDE.md`).
+   If the outline adapts a crux move from a past problem with `problem_id`,
+   read that solution from `past_problems_database.json` for the exact identity,
+   computation, or case-split you need, and prove it here from scratch.
 
 ## Build the proof
 

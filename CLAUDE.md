@@ -5,6 +5,15 @@ This repo solves Olympiad math problems with AI. Problems are in
 theorems and strategies are in `knowledge_base.md`. Proofs are written in
 **prose Markdown** (no Lean).
 
+**Two retrieval resources, consult BOTH when solving:**
+- `knowledge_base.md` — generic theorems and techniques.
+- The **crux corpus** — `past_crux_moves_database.json` (the load-bearing moves of
+  ~200 solved pre-2026 problems) + `past_problems_database.json` (their full
+  statements + solutions), joined by `problem_id`. It is pre-2026, disjoint from the
+   2026 test set. A retrieved crux is a
+  *hint to adapt*, never a citation — every borrowed step must still be proven from
+  scratch.
+
 We target the **hard** problems only: the 39 entries whose `difficulty_level`
 field is `"hard"` (IMO P3 / P6 difficulty, `difficulty_rating` 8–10). Ignore the
 `easy` and `medium` problems.
@@ -47,8 +56,7 @@ than one problem at a time. For each problem, run this loop:
 
 1. **math-explorer** — Read the problem, `knowledge_base.md`, and the problem's
    existing `results/<id>.md`. Report what's been tried, what worked, what
-   failed and why, and which knowledge-base techniques look promising. Do NOT
-   attempt the proof.
+   failed and why, and which knowledge-base and crux moves techniques look promising. Do NOT attempt the proof.
 2. **proof-outliner** — Outline a proof *strategy*: the technique/theorem to use,
    the skeleton, and the key lemmas. Not a finished proof — a plan with the hard
    steps identified.
@@ -125,3 +133,27 @@ These are mandatory. The proof-reviewer enforces them.
   field from the JSONL.
 - **The scratch pad is the source of truth.** Discussion, attempts, and the proof
   all live in the problem file — not only in conversation.
+
+## Crux Moves corpus — subtopics by domain
+
+The subtopics present in the crux corpus (the corpus itself is described in
+`CLAUDE.md`). Each crux carries one `subtopic`:
+
+### number_theory
+`size-bounding-and-descent` · `divisibility-and-gcd` ·
+`modular-arithmetic-and-CRT` · `p-adic-valuation` · `diophantine-and-factoring` ·
+`orders-and-primitive-roots` · `lifting-the-exponent` · `vieta-jumping` ·
+`cyclotomic-and-roots-of-unity` · `polynomial-roots-and-factoring` ·
+`sequences-and-recurrences` · `telescoping-and-summation` · `double-counting` ·
+`functional-equations` · `graph-theory-and-connectivity` ·
+`induction-and-construction` · `pigeonhole` · `zsygmondy-and-primitive-divisors` ·
+`invariants-and-monovariants` · `coloring-and-parity` · `games-and-strategy`
+
+### algebra
+*Future work — no cruxes yet.*
+
+### combinatorics
+*Future work — no cruxes yet.*
+
+### geometry
+*Future work — no cruxes yet.*

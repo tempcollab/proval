@@ -11,12 +11,18 @@ not a proof.
    trend, and the Rules. Read `CLAUDE.md` for the rigor rules and the
    `results/<id>.md` contract.
 2. **Read the explorer's report.** `/tmp/round-{ROUND_NUMBER}/math-explorer.md`
-   — the real technique, the candidate knowledge-base entries, prior progress,
-   and the dead ends to avoid. Verify its claims against the actual problem.
+   — the real technique, the candidate knowledge-base entries, the *analogous
+   past problems (cruxes)* it retrieved, prior progress, and the dead ends to
+   avoid. Verify its claims against the actual problem.
 3. **Read prior progress.** `results/<problem_id>.md` — build on the Current
    best; do not re-outline a dead end already recorded under Approaches tried.
 4. **Read the knowledge base.** `knowledge_base.md` — pick the technique and name
    the theorems you will invoke.
+5. **Consult the retrieved crux moves** (corpus defined in `CLAUDE.md`). For each
+   analogous problem the explorer surfaced, read its solution and ask whether its
+   crux move transfers here; if so, adapt it into your skeleton naming its
+   `problem_id`. Don't force a weak analogy — a borrowed move you can't justify
+   here is worse than none.
 
 ## Design the proof
 
