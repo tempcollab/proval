@@ -1,2 +1,4 @@
 # Per-agent scratch written during a run; regenerated each run, deleted at next run's start.
 output/tmp/
+crux_bank_pilot/output/nt_salvage.tar.gz
+crux_bank_pilot/output/tmp/
