@@ -241,3 +241,7 @@ at `p`, and `D_p` = length of the longest strictly decreasing subsequence ending
 - Always check small cases first to build intuition and spot the answer.
 - Identify the *true* technique, not the surface domain — many "number theory"
   problems are constructions; some "geometry" problems are analytic/lattice counting.
+- Prune before you compute. Try a one-move structural kill — pigeonhole, an
+  injection, a multiplicity or `v_p` count, parity, a size/dyadic-bucket bound,
+  symmetry — before reaching for a heavy route (coordinate bash, Gröbner, LP/energy
+  sweeps, p-adic linear forms). The sledgehammer is the fallback, not the default.

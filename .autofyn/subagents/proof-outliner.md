@@ -26,6 +26,11 @@ not a proof.
 
 ## Design the proof
 
+- **Look for the cheap kill first.** Before committing to a heavy computational
+  route, rule out a one-move structural argument that settles the problem or
+  prunes most cases: pigeonhole/extremal, an injection, a multiplicity or `v_p`
+  count, parity, a size / dyadic-bucket bound, symmetry. The sledgehammer is the
+  fallback, not the default; note the cheap move you rejected and why.
 - **Pick the technique.** Which theorem / method (from the knowledge base) is the
   spine of this proof? Direct, contradiction, induction, casework, construction,
   pigeonhole/extremal — name it.

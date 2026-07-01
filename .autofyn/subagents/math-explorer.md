@@ -56,6 +56,7 @@ This is how the outliner receives your findings. For each problem, write:
 ```
 ## <problem_id>
 - Candidate technique(s): <the method(s) the problem points to — a pointer, not a plan>
+- Cheap-kill candidates: <simple structural pruning to try before heavy computation — parity, a size/pigeonhole bound, an injection, a v_p/multiplicity count, symmetry; or "none obvious">
 - Knowledge-base entries to use: <named entries from knowledge_base.md>
 - Analogous past problems (cruxes): <best 1–3 as `problem_id` — the crux move and why it's analogous; or "none">
 - Prior progress: <current best, or "none">
